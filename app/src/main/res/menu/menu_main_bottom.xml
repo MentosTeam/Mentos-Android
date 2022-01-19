@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_main_search"
         android:title="@string/main_bottom_search" />
     <item
-        android:id="@+id/mentoringStateFragment"
+        android:id="@+id/stateFragment"
         android:checked="false"
         android:icon="@drawable/ic_main_state"
         android:title="@string/main_bottom_state" />
