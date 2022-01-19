@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Mentos</string>
+
+    <!--Bottom Navigation-->
+    <string name="main_bottom_search">멘토-쓰 찾기</string>
+    <string name="main_bottom_state">멘토스 현황</string>
+    <string name="main_bottom_home">우리학교</string>
+    <string name="main_bottom_profile">내 정보</string>
+    <string name="main_bottom_setting">설정</string>
+
 </resources>
