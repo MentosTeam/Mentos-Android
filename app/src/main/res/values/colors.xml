@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFFFF</color>
+<<<<<<< HEAD
+=======
+    <color name="white_opacity">#CCFFFFFF</color>
+>>>>>>> 92fd4b84dee27a509884a087692ae784d49f7814
     <color name="black_0000">#FF000000</color>
     <color name="black_3333">#333333</color>
     <color name="black_1c1d">#1c1d1e</color>
@@ -11,7 +15,11 @@
     <color name="mentos_yellow">#ffecba</color>
     <color name="mentos_green">#d4f0cc</color>
     <color name="mentos_green_dark">#dfe5d0</color>
+<<<<<<< HEAD
     <color name="mentos_blue_sky">#cfebec</color>
+=======
+    <color name="mentos_sky">#cfebec</color>
+>>>>>>> 92fd4b84dee27a509884a087692ae784d49f7814
     <color name="mentos_blue">#bdc7f6</color>
     <color name="mentos_pink">#e8b1de</color>
     <color name="mentos_purple">#d0c6da</color>

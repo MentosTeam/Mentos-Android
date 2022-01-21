@@ -23,8 +23,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/layer_main_bottom"
+<<<<<<< HEAD
             app:itemTextAppearanceActive="@style/bottom_navi_font"
             app:itemTextAppearanceInactive="@style/bottom_navi_font"
+=======
+            app:itemIconSize="22dp"
+            app:itemIconTint="@color/black_0000"
+            app:itemRippleColor="@color/gray_eded"
+            app:itemTextAppearanceActive="@style/bottom_navi_font"
+            app:itemTextAppearanceInactive="@style/bottom_navi_font"
+            app:itemTextColor="@color/gray_7070"
+>>>>>>> 92fd4b84dee27a509884a087692ae784d49f7814
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
