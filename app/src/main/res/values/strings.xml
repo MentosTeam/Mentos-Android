@@ -22,4 +22,6 @@
     <string name="mentor_home_category_sub">도움을 줄 수 있는 영역을 바탕으로 우리학교 멘티를 소개할게요.</string>
     <string name="mentor_home_other">다른 영역에도 이렇게 다양한 멘티가 있어요!</string>
 
+    <!--Search Fragment-->
+    <string name="search_title_sub">멘토가 가능한 멘토링 내용을 세부적인 글로 작성했어요</string>
 </resources>
