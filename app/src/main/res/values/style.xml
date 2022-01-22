@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <style name="bottom_navi_font" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textColor">@color/gray_7070</item>
         <item name="android:textSize">9sp</item>
         <item name="fontFamily">@font/noto_medium</item>
+    </style>
+
+    <style name="shadow_round_20">
+        <item name="neumorph_cornerFamily">rounded</item>
+        <item name="neumorph_cornerSize">20dp</item>
+    </style>
+
+    <style name="shadow_round_8">
+        <item name="neumorph_cornerFamily">rounded</item>
+        <item name="neumorph_cornerSize">8dp</item>
     </style>
 </resources>
