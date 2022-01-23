@@ -24,4 +24,5 @@
 
     <!--Search Fragment-->
     <string name="search_title_sub">멘토가 가능한 멘토링 내용을 세부적인 글로 작성했어요</string>
+    <string name="search_title_all_category">전체검색</string>
 </resources>
