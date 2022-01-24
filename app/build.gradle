@@ -52,10 +52,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
 
+    // Shadow
+    implementation 'com.github.fornewid:neumorphism:0.3.0'
+    
     // BottomSheet
     implementation "com.google.android.material:material:1.2.1"
-
-    // 그림자 라이브러리리
-    implementation 'com.github.fornewid:neumorphism:0.3.0'
 
 }

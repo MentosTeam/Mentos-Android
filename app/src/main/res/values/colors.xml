@@ -7,6 +7,7 @@
     <color name="black_1c1d">#1c1d1e</color>
     <color name="gray_7070">#707070</color>
     <color name="gray_eded">#ededed</color>
+    <color name="gray_shadow">#0A000000</color>
     <color name="mentos_red">#f7c5cc</color>
     <color name="mentos_orange">#ffd1b4</color>
     <color name="mentos_yellow">#ffecba</color>
@@ -19,4 +20,5 @@
     <color name="mentos_brown_light">#eee6d7</color>
     <color name="mentos_brown_red">#c9979b</color>
     <color name="mentos_gray">#e6e6e6</color>
+    <color name="red_f547">#f54747</color>
 </resources>

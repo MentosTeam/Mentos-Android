@@ -1,22 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_bottom_search"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_main_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/search_top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/search_title_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="@string/main_bottom_search"
+                android:textColor="@color/black_3333"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/search_back_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_search_write"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/search_write_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="18dp"
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="2dp"
+                android:src="@drawable/ic_search_write"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/search_title_sub_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/search_title_sub"
+                android:textColor="@color/gray_7070"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_title_iv" />
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/search_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="14dp"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_title_sub_iv"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_insetBottom="10dp"
+                app:neumorph_insetEnd="6dp"
+                app:neumorph_insetStart="1dp"
+                app:neumorph_insetTop="1dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="4dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat"
+                app:neumorph_strokeColor="@color/gray_eded"
+                app:neumorph_strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/search_main_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_home_search"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/search_main_et"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <EditText
+                        android:id="@+id/search_main_et"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:inputType="text"
+                        android:paddingVertical="2dp"
+                        android:paddingEnd="22dp"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_7070"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@id/search_main_iv"
+                        app:layout_constraintStart_toEndOf="@id/search_main_iv"
+                        app:layout_constraintTop_toTopOf="@id/search_main_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_bar_layout">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/selector_search_all_category"
+                    android:button="@null"
+                    android:fontFamily="@font/noto_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/search_title_all_category"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_1c1d"
+                    android:textSize="8sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/selector_search_all_category"
+                    android:button="@null"
+                    android:fontFamily="@font/noto_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/search_title_all_category"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_1c1d"
+                    android:textSize="8sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:background="@drawable/selector_search_all_category"
+                    android:button="@null"
+                    android:fontFamily="@font/noto_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/search_title_all_category"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_1c1d"
+                    android:textSize="8sp" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/search_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_eded"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_top_layout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_divider"
+            tools:listitem="@layout/item_search_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
