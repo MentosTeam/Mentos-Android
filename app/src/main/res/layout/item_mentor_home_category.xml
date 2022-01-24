@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="menteeCategory"
-            type="com.mentos.mentosandroid.ui.home.MenteeCategory" />
+            type="com.mentos.mentosandroid.data.MenteeCategory" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,11 +52,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mentor_home_category_mentee_rv"
+            profileItems="@{menteeCategory.menteeList}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/shape_gray_stroke_rec"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_img"
             tools:itemCount="3"
@@ -63,168 +67,3 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/mentor_home_category_mentee_layout1"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="20dp"-->
-    <!--        android:layout_marginTop="10dp"-->
-    <!--        android:background="@drawable/shape_gray_stroke_20"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_img">-->
-
-    <!--        <ImageView-->
-    <!--            android:id="@+id/mentor_home_category_profile_img1"-->
-    <!--            android:layout_width="30dp"-->
-    <!--            android:layout_height="30dp"-->
-    <!--            android:layout_marginStart="8dp"-->
-    <!--            android:layout_marginTop="5dp"-->
-    <!--            android:layout_marginBottom="5dp"-->
-    <!--            android:background="@drawable/shape_gray_stroke_8"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/mentor_home_category_profile_tv1"-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="6dp"-->
-    <!--            android:layout_marginEnd="11dp"-->
-    <!--            android:ellipsize="end"-->
-    <!--            android:fontFamily="@font/noto_medium"-->
-    <!--            android:includeFontPadding="false"-->
-    <!--            android:maxLines="1"-->
-    <!--            android:text="홍길동 / 경영학과 / 19학번"-->
-    <!--            android:textColor="@color/black_3333"-->
-    <!--            android:textSize="12sp"-->
-    <!--            app:layout_constraintBottom_toTopOf="@+id/mentor_home_category_tag_tv1"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/mentor_home_category_profile_img1"-->
-    <!--            app:layout_constraintTop_toTopOf="@+id/mentor_home_category_profile_img1" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/mentor_home_category_tag_tv1"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginBottom="3dp"-->
-    <!--            android:fontFamily="@font/noto_regular"-->
-    <!--            android:includeFontPadding="false"-->
-    <!--            android:text="#경제/경영, #어문"-->
-    <!--            android:textColor="@color/black_3333"-->
-    <!--            android:textSize="12sp"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="@+id/mentor_home_category_profile_tv1"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_profile_tv1" />-->
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/mentor_home_category_mentee_layout2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="20dp"-->
-    <!--        android:layout_marginTop="4dp"-->
-    <!--        android:background="@drawable/shape_gray_stroke_20"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_mentee_layout1">-->
-
-    <!--        <ImageView-->
-    <!--            android:id="@+id/mentor_home_category_profile_img2"-->
-    <!--            android:layout_width="30dp"-->
-    <!--            android:layout_height="30dp"-->
-    <!--            android:layout_marginStart="8dp"-->
-    <!--            android:layout_marginTop="5dp"-->
-    <!--            android:layout_marginBottom="5dp"-->
-    <!--            android:background="@drawable/shape_gray_stroke_8"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/mentor_home_category_profile_tv2"-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="6dp"-->
-    <!--            android:layout_marginEnd="11dp"-->
-    <!--            android:ellipsize="end"-->
-    <!--            android:fontFamily="@font/noto_medium"-->
-    <!--            android:includeFontPadding="false"-->
-    <!--            android:maxLines="1"-->
-    <!--            android:text="홍길동 / 경영학과 / 19학번"-->
-    <!--            android:textColor="@color/black_3333"-->
-    <!--            android:textSize="12sp"-->
-    <!--            app:layout_constraintBottom_toTopOf="@+id/mentor_home_category_tag_tv2"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/mentor_home_category_profile_img2"-->
-    <!--            app:layout_constraintTop_toTopOf="@+id/mentor_home_category_profile_img2" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/mentor_home_category_tag_tv2"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginBottom="3dp"-->
-    <!--            android:fontFamily="@font/noto_regular"-->
-    <!--            android:includeFontPadding="false"-->
-    <!--            android:text="#경제/경영, #어문"-->
-    <!--            android:textColor="@color/black_3333"-->
-    <!--            android:textSize="12sp"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="@+id/mentor_home_category_profile_tv2"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_profile_tv2" />-->
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/mentor_home_category_mentee_layout3"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="20dp"-->
-    <!--        android:layout_marginTop="4dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        android:background="@drawable/shape_gray_stroke_20"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_mentee_layout2">-->
-
-    <!--        <ImageView-->
-    <!--            android:id="@+id/mentor_home_category_profile_img3"-->
-    <!--            android:layout_width="30dp"-->
-    <!--            android:layout_height="30dp"-->
-    <!--            android:layout_marginStart="8dp"-->
-    <!--            android:layout_marginTop="5dp"-->
-    <!--            android:layout_marginBottom="5dp"-->
-    <!--            android:background="@drawable/shape_gray_stroke_8"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/mentor_home_category_profile_tv3"-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="6dp"-->
-    <!--            android:layout_marginEnd="11dp"-->
-    <!--            android:ellipsize="end"-->
-    <!--            android:fontFamily="@font/noto_medium"-->
-    <!--            android:includeFontPadding="false"-->
-    <!--            android:maxLines="1"-->
-    <!--            android:text="홍길동 / 경영학과 / 19학번"-->
-    <!--            android:textColor="@color/black_3333"-->
-    <!--            android:textSize="12sp"-->
-    <!--            app:layout_constraintBottom_toTopOf="@+id/mentor_home_category_tag_tv3"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/mentor_home_category_profile_img3"-->
-    <!--            app:layout_constraintTop_toTopOf="@+id/mentor_home_category_profile_img3" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/mentor_home_category_tag_tv3"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginBottom="3dp"-->
-    <!--            android:fontFamily="@font/noto_regular"-->
-    <!--            android:includeFontPadding="false"-->
-    <!--            android:text="#경제/경영, #어문"-->
-    <!--            android:textColor="@color/black_3333"-->
-    <!--            android:textSize="12sp"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="@+id/mentor_home_category_profile_tv3"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_profile_tv3" />-->
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
