@@ -21,4 +21,10 @@
     <color name="mentos_brown_red">#c9979b</color>
     <color name="mentos_gray">#e6e6e6</color>
     <color name="red_f547">#f54747</color>
+    <color name="bg_red">#f0bbc1</color>
+    <color name="bg_orange">#ffd5be</color>
+    <color name="bg_yellow">#ffebb9</color>
+    <color name="bg_green">#c5e6bd</color>
+    <color name="bg_blue">#a7b3f3</color>
+    <color name="bg_purple">#edc3e7</color>
 </resources>

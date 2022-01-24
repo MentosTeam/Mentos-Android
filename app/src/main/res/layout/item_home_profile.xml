@@ -5,7 +5,7 @@
     <data>
         <variable
             name="profile"
-            type="com.mentos.mentosandroid.ui.home.Profile" />
+            type="com.mentos.mentosandroid.data.Profile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="11dp"
+            android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:fontFamily="@font/noto_medium"
             android:includeFontPadding="false"
@@ -42,7 +43,7 @@
             app:layout_constraintBottom_toTopOf="@+id/item_home_profile_tag_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_home_profile_img"
-            app:layout_constraintTop_toTopOf="@+id/item_home_profile_img" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_home_profile_tag_tv"

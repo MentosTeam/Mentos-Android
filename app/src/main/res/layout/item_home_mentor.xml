@@ -5,16 +5,21 @@
     <data>
         <variable
             name="mentor"
-            type="com.mentos.mentosandroid.ui.home.Mentor" />
+            type="com.mentos.mentosandroid.data.Mentor" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_gray_stroke_rec"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mentee_home_category_img">
-        
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/item_home_mentor_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_eded"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <ImageView
             android:id="@+id/item_home_mentor_img"
             android:layout_width="30dp"
@@ -25,7 +30,7 @@
             android:background="@drawable/shape_gray_stroke_8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/item_home_mentor_view" />
 
         <TextView
             android:id="@+id/item_home_mentor_tv"
