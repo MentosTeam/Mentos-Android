@@ -7,13 +7,23 @@
         <item name="fontFamily">@font/noto_medium</item>
     </style>
 
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_bottom_sheet_white_15</item>
+    </style>
+
     <style name="shadow_round_20">
         <item name="neumorph_cornerFamily">rounded</item>
         <item name="neumorph_cornerSize">20dp</item>
     </style>
 
+
     <style name="shadow_round_8">
         <item name="neumorph_cornerFamily">rounded</item>
         <item name="neumorph_cornerSize">8dp</item>
     </style>
+
 </resources>

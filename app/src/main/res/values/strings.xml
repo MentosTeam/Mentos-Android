@@ -8,6 +8,48 @@
     <string name="main_bottom_profile">내 정보</string>
     <string name="main_bottom_setting">설정</string>
 
+    <!--Mentoring start1-->
+    <string name="mentoring_start1_title">멘토링 시작하기</string>
+    <string name="mentoring_start1_subtitle">세부 사항을 적어볼까요?</string>
+    <string name="mentoring_start1_plus_title">멘토링을 몇 회 진행할지 알려주세요!</string>
+    <string name="mentoring_start1_next_button">다음 단계로(1/3)</string>
+
+    <!--Mentoring start2-->
+    <string name="mentoring_start2_title">멘토링 시작하기</string>
+    <string name="mentoring_start2_subtitle1">멘토는 멘티에게</string>
+    <string name="mentoring_start2_subtitle2">몇 개의 멘토-쓰를 받나요?</string>
+    <string name="mentoring_start2_next_button">다음 단계로(2/3)</string>
+
+    <!--Mentoring start3-->
+    <string name="mentoring_start3_title">멘토링 시작하기</string>
+    <string name="mentoring_start3_subtitle1">멘토링 할 멘토-쓰 종류를</string>
+    <string name="mentoring_start3_subtitle2">골라주세요.</string>
+    <string name="mentoring_start3_next_button">다음 단계로(3/3)</string>
+
+
+    <!--Mentos image-->
+    <string name="bottom_sheet_mentos_red">경제/경영</string>
+    <string name="bottom_sheet_mentos_orange">인문</string>
+    <string name="bottom_sheet_mentos_yellow">사회</string>
+    <string name="bottom_sheet_mentos_green">어문</string>
+    <string name="bottom_sheet_mentos_light_green">의학</string>
+    <string name="bottom_sheet_mentos_sky_blue">공학</string>
+    <string name="bottom_sheet_mentos_blue">자연과학</string>
+    <string name="bottom_sheet_mentos_purple">IT</string>
+    <string name="bottom_sheet_mentos_mauve">교육</string>
+    <string name="bottom_sheet_mentos_beige">건축</string>
+    <string name="bottom_sheet_mentos_pink">예체능</string>
+    <string name="bottom_sheet_mentos_white">기타</string>
+
+    <!--Mentoring start4-->
+    <string name="mentoring_start4_title">멘토링 시작하기</string>
+    <string name="mentoring_start4_subtitle1">축하해요!</string>
+    <string name="mentoring_start4_subtitle2">이제는 진짜로</string>
+    <string name="mentoring_start4_subtitle3">멘토-쓰를 사용할 시간</string>
+    <string name="mentoring_start4_next_button">멘토 수락 요청하기</string>
+    <string name="mentoring_start4_next_button_bottom_comment">멘토가 최종 수락하면 멘토링이 바로 시작돼요</string>
+
+
     <!--Home Fragment for mentee-->
     <string name="mentee_home_search_main">멘토-쓰를 통해\n더욱 발전된 하루를 만들어 볼까요?</string>
     <string name="mentee_home_search_sub">검색을 통해 나에게 맞는 우리학교 멘토를 찾아봐요!</string>
@@ -25,4 +67,5 @@
     <!--Search Fragment-->
     <string name="search_title_sub">멘토가 가능한 멘토링 내용을 세부적인 글로 작성했어요</string>
     <string name="search_title_all_category">전체검색</string>
+
 </resources>
