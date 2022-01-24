@@ -23,7 +23,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding.bottomSheetMentosChooseTv.setOnClickListener {
             dialog?.dismiss()
         }
-
         return binding.root
     }
 }
