@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,12 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_main_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:id="@+id/mentoring_start1_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
             android:text="@string/mentoring_start1_title"
             android:textColor="@color/black_0000"
             android:textSize="16sp"
@@ -26,11 +39,10 @@
 
         <ImageView
             android:id="@+id/mentoring_start1_back_arrow_iv"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
-            android:backgroundTint="@color/black_0000"
-            android:src="@drawable/btn_mentoring_start_arrow_back"
+            android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="@id/mentoring_start1_title_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/mentoring_start1_title_tv" />
@@ -40,44 +52,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="27dp"
-            android:layout_marginTop="188dp"
+            android:layout_marginTop="124dp"
             android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
             android:text="@string/mentoring_start1_subtitle"
             android:textColor="@color/black_0000"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/mentoring_start1_title_tv" />
 
         <TextView
             android:id="@+id/mentoring_start1_plus_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="27dp"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="1dp"
             android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
             android:text="@string/mentoring_start1_plus_title"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/mentoring_start1_subtitle_tv" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mentoring_start1_number_blank_layout"
-            android:layout_width="137dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="344dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
             android:background="@drawable/shape_white_stroke_rectangle_20"
+            android:paddingHorizontal="26dp"
+            android:paddingVertical="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/mentoring_start1_plus_title_tv">
 
             <EditText
                 android:id="@+id/mentoring_start1_number_blank_et"
                 android:layout_width="67dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
+                android:backgroundTint="@color/gray_7070"
                 android:gravity="center"
-                android:backgroundTint="@color/black_0000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -86,9 +101,10 @@
                 android:id="@+id/mentoring_start1_number_blank_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_medium"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
                 android:text="회"
-                android:textColor="@color/black_0000"
+                android:textColor="@color/black_3333"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/mentoring_start1_number_blank_et"
                 app:layout_constraintStart_toEndOf="@id/mentoring_start1_number_blank_et"
@@ -99,17 +115,19 @@
 
         <Button
             android:id="@+id/mentoring_start1_button_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="526dp"
-            android:background="@drawable/shape_black_rectangle_10"
+            android:layout_marginHorizontal="27dp"
+            android:layout_marginTop="112dp"
+            android:background="@drawable/shape_black_rectangle_8"
             android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
             android:text="@string/mentoring_start1_next_button"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/mentoring_start1_number_blank_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

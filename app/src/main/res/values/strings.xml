@@ -16,14 +16,12 @@
 
     <!--Mentoring start2-->
     <string name="mentoring_start2_title">멘토링 시작하기</string>
-    <string name="mentoring_start2_subtitle1">멘토는 멘티에게</string>
-    <string name="mentoring_start2_subtitle2">몇 개의 멘토-쓰를 받나요?</string>
+    <string name="mentoring_start2_subtitle1">멘토는 멘티에게\n몇 개의 멘토-쓰를 받나요?</string>
     <string name="mentoring_start2_next_button">다음 단계로(2/3)</string>
 
     <!--Mentoring start3-->
     <string name="mentoring_start3_title">멘토링 시작하기</string>
-    <string name="mentoring_start3_subtitle1">멘토링 할 멘토-쓰 종류를</string>
-    <string name="mentoring_start3_subtitle2">골라주세요.</string>
+    <string name="mentoring_start3_subtitle1">멘토링 할 멘토-쓰 종류를\n골라주세요.</string>
     <string name="mentoring_start3_next_button">다음 단계로(3/3)</string>
 
     <!--Mentos image-->
@@ -31,20 +29,19 @@
     <string name="bottom_sheet_mentos_orange">인문</string>
     <string name="bottom_sheet_mentos_yellow">사회</string>
     <string name="bottom_sheet_mentos_green">어문</string>
-    <string name="bottom_sheet_mentos_light_green">의학</string>
-    <string name="bottom_sheet_mentos_sky_blue">공학</string>
+    <string name="bottom_sheet_mentos_green_dark">의학</string>
+    <string name="bottom_sheet_mentos_sky">공학</string>
     <string name="bottom_sheet_mentos_blue">자연과학</string>
-    <string name="bottom_sheet_mentos_purple">IT</string>
-    <string name="bottom_sheet_mentos_mauve">교육</string>
-    <string name="bottom_sheet_mentos_beige">건축</string>
-    <string name="bottom_sheet_mentos_pink">예체능</string>
-    <string name="bottom_sheet_mentos_white">기타</string>
+    <string name="bottom_sheet_mentos_pink">IT</string>
+    <string name="bottom_sheet_mentos_purple">교육</string>
+    <string name="bottom_sheet_mentos_brown_light">건축</string>
+    <string name="bottom_sheet_mentos_brown_red">예체능</string>
+    <string name="bottom_sheet_mentos_gray">기타</string>
 
     <!--Mentoring start4-->
     <string name="mentoring_start4_title">멘토링 시작하기</string>
     <string name="mentoring_start4_subtitle1">축하해요!</string>
-    <string name="mentoring_start4_subtitle2">이제는 진짜로</string>
-    <string name="mentoring_start4_subtitle3">멘토-쓰를 사용할 시간</string>
+    <string name="mentoring_start4_subtitle2">이제는 진짜로\n멘토-쓰를 사용할 시간</string>
     <string name="mentoring_start4_next_button">멘토 수락 요청하기</string>
     <string name="mentoring_start4_next_button_bottom_comment">멘토가 최종 수락하면 멘토링이 바로 시작돼요</string>
 
