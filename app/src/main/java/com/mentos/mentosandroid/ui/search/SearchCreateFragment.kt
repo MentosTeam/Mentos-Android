@@ -22,7 +22,7 @@ class SearchCreateFragment : Fragment() {
     ): View {
         binding = FragmentSearchCreateBinding.inflate(inflater, container, false)
         setBtnBackClickListener()
-        setKeyBoardHide()
+        setKeyBoardHideListener()
         binding.searchCreateContentEt.setTouchForScrollBars()
         return binding.root
     }
@@ -33,7 +33,7 @@ class SearchCreateFragment : Fragment() {
         }
     }
 
-    private fun setKeyBoardHide() {
+    private fun setKeyBoardHideListener() {
         binding.searchCreateTabLayout.setOnClickListener {
             KeyBoardUtil.hide(requireActivity())
         }
