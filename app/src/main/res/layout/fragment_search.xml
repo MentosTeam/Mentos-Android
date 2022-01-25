@@ -8,7 +8,6 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/search_fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -45,18 +44,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/search_back_ib"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="40dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_search_write"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/search_write_ib"
@@ -110,28 +97,25 @@
                 app:neumorph_strokeColor="@color/gray_eded"
                 app:neumorph_strokeWidth="1dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="10dp"
+                    android:orientation="horizontal"
                     android:layout_marginBottom="10dp">
 
                     <ImageView
                         android:id="@+id/search_main_iv"
                         android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_home_search"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/search_main_et"
-                        app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="ContentDescription" />
 
                     <EditText
                         android:id="@+id/search_main_et"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
                         android:background="@android:color/transparent"
@@ -139,14 +123,10 @@
                         android:includeFontPadding="false"
                         android:inputType="text"
                         android:paddingVertical="2dp"
-                        android:paddingEnd="22dp"
                         android:singleLine="true"
                         android:textColor="@color/gray_7070"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="@id/search_main_iv"
-                        app:layout_constraintStart_toEndOf="@id/search_main_iv"
-                        app:layout_constraintTop_toTopOf="@id/search_main_iv" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:textSize="12sp" />
+                </LinearLayout>
             </soup.neumorphism.NeumorphCardView>
 
             <RadioGroup
