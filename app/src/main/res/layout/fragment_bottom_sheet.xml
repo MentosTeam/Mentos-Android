@@ -17,17 +17,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:layout_marginEnd="5dp"
+            android:id="@+id/bottom_sheet_mentos_red_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/shape_bottom_sheet_gray_stroke_rectangle_20">
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
                 android:id="@+id/bottom_sheet_mentos_red_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/img_mentos_red_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +36,14 @@
 
             <TextView
                 android:id="@+id/bottom_sheet_mentos_red_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
                 android:text="@string/bottom_sheet_mentos_red"
-                android:textColor="@color/black_0000"
-                android:textSize="9sp"
+                android:textColor="@color/black_3333"
+                android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_red_iv" />
@@ -48,47 +51,52 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
+            android:id="@+id/bottom_sheet_mentos_orange_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
                 android:id="@+id/bottom_sheet_mentos_orange_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/img_mentos_orange_41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_metnos_orange_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/bottom_sheet_mentos_orange_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
                 android:text="@string/bottom_sheet_mentos_orange"
-                android:textColor="@color/black_0000"
+                android:textColor="@color/black_3333"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_orange_iv" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
+            android:id="@+id/bottom_sheet_mentos_yellow_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
                 android:id="@+id/bottom_sheet_mentos_yellow_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/img_mentos_yellow_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,11 +104,13 @@
 
             <TextView
                 android:id="@+id/bottom_sheet_mentos_yellow_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
                 android:text="@string/bottom_sheet_mentos_yellow"
-                android:textColor="@color/black_0000"
+                android:textColor="@color/black_3333"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,15 +119,19 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
+            android:id="@+id/bottom_sheet_mentos_green_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
                 android:id="@+id/bottom_sheet_mentos_green_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:src="@drawable/img_mentos_green_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -125,11 +139,13 @@
 
             <TextView
                 android:id="@+id/bottom_sheet_mentos_green_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
                 android:text="@string/bottom_sheet_mentos_green"
-                android:textColor="@color/black_0000"
+                android:textColor="@color/black_3333"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,86 +154,103 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
+            android:id="@+id/bottom_sheet_mentos_green_dark_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
-                android:id="@+id/bottom_sheet_mentos_light_green_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/img_mentos_light_green_41"
+                android:id="@+id/bottom_sheet_mentos_green_dark_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/img_mentos_green_dark_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/bottom_sheet_mentos_light_green_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
-                android:text="@string/bottom_sheet_mentos_light_green"
-                android:textColor="@color/black_0000"
+                android:id="@+id/bottom_sheet_mentos_green_dark_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/bottom_sheet_mentos_green_dark"
+                android:textColor="@color/black_3333"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_light_green_iv" />
+                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_green_dark_iv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
+            android:id="@+id/bottom_sheet_mentos_sky_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
-                android:id="@+id/bottom_sheet_mentos_sky_blue_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/img_mentos_sky_blue_41"
+                android:id="@+id/bottom_sheet_mentos_sky_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/img_mentos_sky_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/bottom_sheet_mentos_sky_blue_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
-                android:text="@string/bottom_sheet_mentos_sky_blue"
-                android:textColor="@color/black_0000"
+                android:id="@+id/bottom_sheet_mentos_sky_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/bottom_sheet_mentos_sky"
+                android:textColor="@color/black_3333"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_sky_blue_iv" />
+                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_sky_iv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
+            android:id="@+id/bottom_sheet_mentos_blue_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
                 android:id="@+id/bottom_sheet_mentos_blue_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/img_mentos_blue_41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_metnos_blue_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/bottom_sheet_mentos_blue_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
                 android:text="@string/bottom_sheet_mentos_blue"
-                android:textColor="@color/black_0000"
+                android:textColor="@color/black_3333"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -226,102 +259,19 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
-
-            <ImageView
-                android:id="@+id/bottom_sheet_mentos_purple_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/img_mentos_purple_41"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/bottom_sheet_mentos_purple_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
-                android:text="@string/bottom_sheet_mentos_purple"
-                android:textColor="@color/black_0000"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_purple_iv" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
-
-            <ImageView
-                android:id="@+id/bottom_sheet_mentos_mauve_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/img_mentos_mauve_41"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/bottom_sheet_mentos_mauve_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
-                android:text="@string/bottom_sheet_mentos_mauve"
-                android:textColor="@color/black_0000"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_mauve_iv" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
-
-            <ImageView
-                android:id="@+id/bottom_sheet_mentos_beige_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/img_mentos_beige_41"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/bottom_sheet_mentos_beige_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
-                android:text="@string/bottom_sheet_mentos_beige"
-                android:textColor="@color/black_0000"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_beige_iv" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
+            android:id="@+id/bottom_sheet_mentos_pink_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
                 android:id="@+id/bottom_sheet_mentos_pink_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:src="@drawable/img_mentos_pink_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -329,11 +279,13 @@
 
             <TextView
                 android:id="@+id/bottom_sheet_mentos_pink_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
                 android:text="@string/bottom_sheet_mentos_pink"
-                android:textColor="@color/black_0000"
+                android:textColor="@color/black_3333"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -342,44 +294,154 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="81dp"
-            android:background="@drawable/shape_white_stroke_rectangle_20">
+            android:id="@+id/bottom_sheet_mentos_purple_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
 
             <ImageView
-                android:id="@+id/bottom_sheet_mentos_white_iv"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/img_mentos_white_41"
+                android:id="@+id/bottom_sheet_mentos_purple_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_mentos_purple_41"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/bottom_sheet_mentos_white_tv"
-                android:layout_width="41dp"
-                android:layout_height="15dp"
-                android:gravity="center"
-                android:text="@string/bottom_sheet_mentos_white"
-                android:textColor="@color/black_0000"
+                android:id="@+id/bottom_sheet_mentos_purple_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/bottom_sheet_mentos_purple"
+                android:textColor="@color/black_3333"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_white_iv" />
+                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_purple_iv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_sheet_mentos_brown_light_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
+
+            <ImageView
+                android:id="@+id/bottom_sheet_mentos_brown_light_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/img_mentos_brown_light_41"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/bottom_sheet_mentos_brown_light_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/bottom_sheet_mentos_brown_light"
+                android:textColor="@color/black_3333"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_brown_light_iv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_sheet_mentos_brown_red_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
+
+            <ImageView
+                android:id="@+id/bottom_sheet_mentos_brown_red_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/img_mentos_brown_red_41"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/bottom_sheet_mentos_brown_red_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/bottom_sheet_mentos_brown_red"
+                android:textColor="@color/black_3333"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_brown_red_iv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_sheet_mentos_gray_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/shape_gray_stroke_20"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp">
+
+            <ImageView
+                android:id="@+id/bottom_sheet_mentos_gray_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/img_metnos_gray_41"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/bottom_sheet_mentos_gray_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/bottom_sheet_mentos_gray"
+                android:textColor="@color/black_3333"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_gray_iv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </GridLayout>
 
-    <TextView
+    <Button
         android:id="@+id/bottom_sheet_mentos_choose_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="27dp"
         android:layout_marginTop="22dp"
         android:layout_marginBottom="22dp"
-        android:background="@drawable/shape_black_rectangle_10"
+        android:background="@drawable/shape_black_rectangle_8"
         android:gravity="center"
         android:text="선택 완료"
         android:textColor="@color/white"
