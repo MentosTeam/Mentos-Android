@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/stateFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.mentos.mentosandroid.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_mentoringStart1Fragment"
             app:destination="@id/mentoringStart1Fragment" />
@@ -19,7 +19,21 @@
         android:id="@+id/searchFragment"
         android:name="com.mentos.mentosandroid.ui.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_searchCreateFragment"
+            app:destination="@id/searchCreateFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchCreateFragment"
+        android:name="com.mentos.mentosandroid.ui.search.SearchCreateFragment"
+        android:label="SearchCreateFragment"
+        tools:layout="@layout/fragment_search_create">
+        <action
+            android:id="@+id/action_searchCreateFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/stateFragment"
@@ -38,6 +52,7 @@
         android:name="com.mentos.mentosandroid.ui.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting" />
+
     <fragment
         android:id="@+id/mentoringStart1Fragment"
         android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringStart1Fragment"
@@ -47,6 +62,7 @@
             android:id="@+id/action_mentoringStart1Fragment_to_mentoringStart2Fragment22"
             app:destination="@id/mentoringStart2Fragment2" />
     </fragment>
+
     <fragment
         android:id="@+id/mentoringStart2Fragment2"
         android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringStart2Fragment"
@@ -56,6 +72,7 @@
             android:id="@+id/action_mentoringStart2Fragment2_to_mentoringStart3Fragment2"
             app:destination="@id/mentoringStart3Fragment2" />
     </fragment>
+
     <fragment
         android:id="@+id/mentoringStart3Fragment2"
         android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringStart3Fragment"
@@ -65,14 +82,16 @@
             android:id="@+id/action_mentoringStart3Fragment2_to_mentoringStart4Fragment"
             app:destination="@id/mentoringStart4Fragment" />
     </fragment>
+
     <fragment
         android:id="@+id/bottomSheetFragment"
         android:name="com.mentos.mentosandroid.ui.mentoringstart.BottomSheetFragment"
         android:label="BottomSheetFragment"
-        tools:layout="@layout/fragment_bottom_sheet"/>
+        tools:layout="@layout/fragment_bottom_sheet" />
+
     <fragment
         android:id="@+id/mentoringStart4Fragment"
         android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringStart4Fragment"
         android:label="MentoringStart4Fragment"
-        tools:layout="@layout/fragment_mentoring_start4"/>
+        tools:layout="@layout/fragment_mentoring_start4" />
 </navigation>
