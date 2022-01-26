@@ -20,10 +20,13 @@
         <item name="neumorph_cornerSize">20dp</item>
     </style>
 
-
     <style name="shadow_round_8">
         <item name="neumorph_cornerFamily">rounded</item>
         <item name="neumorph_cornerSize">8dp</item>
+    </style>
+
+    <style name="shadow_oval">
+        <item name="neumorph_cornerFamily">oval</item>
     </style>
 
 </resources>
