@@ -1,6 +1,7 @@
 package com.mentos.mentosandroid.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -36,13 +37,23 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.searchFragment -> selectedBottomNaviPosition = 0
-                R.id.stateFragment -> selectedBottomNaviPosition = 1
-                R.id.homeFragment -> selectedBottomNaviPosition = 2
-                R.id.profileFragment -> selectedBottomNaviPosition = 3
-                R.id.settingFragment -> selectedBottomNaviPosition = 4
+                R.id.searchFragment -> showBottomNavi(0)
+                R.id.stateFragment -> showBottomNavi(1)
+                R.id.homeFragment -> showBottomNavi(2)
+                R.id.profileFragment -> showBottomNavi(3)
+                R.id.settingFragment -> showBottomNavi(4)
+                else -> hideBottomNavi()
             }
         }
         binding.mainBottomNavi.setupWithNavController(navController)
+    }
+
+    private fun hideBottomNavi() {
+        binding.mainBottomNavi.visibility = View.INVISIBLE
+    }
+
+    private fun showBottomNavi(position: Int) {
+        selectedBottomNaviPosition = position
+        binding.mainBottomNavi.visibility = View.VISIBLE
     }
 }

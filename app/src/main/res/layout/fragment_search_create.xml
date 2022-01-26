@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.mentos.mentosandroid.ui.search.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,11 +39,11 @@
                 android:id="@+id/search_back_ib"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_search_write"
+                android:padding="6dp"
+                android:src="@drawable/ic_back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -121,7 +124,7 @@
 
                         <EditText
                             android:id="@+id/search_create_title_et"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="top"
                             android:layout_marginStart="4dp"
@@ -130,8 +133,9 @@
                             android:includeFontPadding="false"
                             android:inputType="none"
                             android:maxLength="100"
+                            android:maxLines="3"
                             android:minLines="2"
-                            android:singleLine="false"
+                            android:text="@{viewModel.createTitle}"
                             android:textColor="@color/black_3333"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -170,6 +174,7 @@
                             android:minHeight="220dp"
                             android:overScrollMode="always"
                             android:scrollbars="vertical"
+                            android:text="@{viewModel.createContent}"
                             android:textSize="11sp" />
                     </androidx.core.widget.NestedScrollView>
 
@@ -196,7 +201,8 @@
                         android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/search_divider_2" />
+                        app:layout_constraintTop_toBottomOf="@id/search_divider_2"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/search_create_photo_iv"
@@ -226,21 +232,24 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/search_create_btn_complete"
-                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="26dp"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/shape_gray_stroke_8"
+                    android:backgroundTint="@{viewModel.canUpdate ? @color/black_0000 : @color/gray_eded}"
+                    android:clickable="@{viewModel.canUpdate ? true : false}"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:minHeight="0dp"
-                    android:paddingVertical="8dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingVertical="12dp"
+                    android:stateListAnimator="@null"
                     android:text="@string/search_create_button"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    app:cornerRadius="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/search_et_container_layout" />

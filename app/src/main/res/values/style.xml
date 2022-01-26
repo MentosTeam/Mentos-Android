@@ -10,9 +10,10 @@
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
+
     <style name="AppModalStyle"
         parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/shape_gray_stroke_20</item>
+        <item name="android:background">@drawable/shape_gray_2_stroke_top_20</item>
     </style>
 
     <style name="shadow_round_20">

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.databinding.ItemSearchListBinding
+import com.mentos.mentosandroid.util.navigate
 
 class SearchAdapter :
     ListAdapter<Search, SearchAdapter.SearchViewHolder>(SearchDiffUtil()) {
@@ -33,6 +34,10 @@ class SearchAdapter :
                 10 -> setMentosImgSrc(R.drawable.img_mentos_brown_red_17)
                 11 -> setMentosImgSrc(R.drawable.img_mentos_gray_17)
                 else -> setMentosImgSrc(R.drawable.img_mentos_red_17)
+            }
+
+            binding.searchListLayout.setOnClickListener {
+                it.navigate(R.id.action_searchFragment_to_searchDetailDialog)
             }
         }
 
