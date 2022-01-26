@@ -29,7 +29,15 @@ class HomeFragment : Fragment() {
         //무지개 배경 지정
         setRainbowBackground()
 
+        setSearchBarClickListener()
+
         return binding.root
+    }
+
+    private fun setSearchBarClickListener() {
+        binding.homeSearchLayout.setOnClickListener {
+            navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 
     private fun initViewModel() {
