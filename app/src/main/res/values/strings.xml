@@ -62,8 +62,9 @@
     <!--Search Fragment-->
     <string name="search_title_sub">멘토가 가능한 멘토링 내용을 세부적인 글로 작성했어요</string>
     <string name="search_title_all_category">전체검색</string>
-    <string name="search_create_title">멘토에게 알려줄 수 있는 내용을\n세부적으로 적어주세요!</string>
+    <string name="search_create_title">멘티에게 알려줄 수 있는 내용을\n세부적으로 적어주세요!</string>
     <string name="search_create_sub_title">과목별로, 특징별로, 멘토의 개성이 담긴 글을 작성해볼까요?</string>
-    <string name="search_create_button">질문 등록하기</string>
+    <string name="search_create_button">글 등록하기</string>
     <string name="search_create_button_hint">작성한 글은 ‘프로필’과 ‘멘토-쓰 찾기’ 두 영역에 표시돼요</string>
+    <string name="search_detail_mentor">멘토</string>
 </resources>
