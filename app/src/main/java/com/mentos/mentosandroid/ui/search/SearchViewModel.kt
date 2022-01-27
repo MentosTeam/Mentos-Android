@@ -1,5 +1,6 @@
 package com.mentos.mentosandroid.ui.search
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,16 +8,24 @@ import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
 
 class SearchViewModel : ViewModel() {
+
+    //searchCreate
     val createTitle = MutableLiveData("")
     val createContent = MutableLiveData("")
 
-    private val _canUpdate = MediatorLiveDataUtil.initMediatorLiveData(
+    private val _isRegister = MutableLiveData<Boolean>()
+    val isRegister: LiveData<Boolean> = _isRegister
+
+    private val _image = MutableLiveData<Uri>()
+    val image: LiveData<Uri> = _image
+
+    private val _canRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(
             createTitle,
             createContent
         )
     ) { canRegisterCheck() }
-    val canUpdate: LiveData<Boolean> = _canUpdate
+    val canRegister: LiveData<Boolean> = _canRegister
 
     private fun canRegisterCheck() =
         requireNotNull(createContent.value).isNotBlank() && requireNotNull(createTitle.value).isNotBlank()
@@ -41,5 +50,23 @@ class SearchViewModel : ViewModel() {
             Search("제목 3", 12, 0),
             Search("제목 14", 13, 0)
         )
+    }
+
+    //searchCreate
+    fun postContent() {
+        //network
+        _isRegister.postValue(true)
+    }
+
+    fun resetIsRegister() {
+        _isRegister.value = false
+    }
+
+    fun setImage(imgUri: Uri) {
+        _image.value = imgUri
+    }
+
+    fun resetImage() {
+        _image.value = null
     }
 }

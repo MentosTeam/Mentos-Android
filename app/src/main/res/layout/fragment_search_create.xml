@@ -135,7 +135,7 @@
                             android:maxLength="100"
                             android:maxLines="3"
                             android:minLines="2"
-                            android:text="@{viewModel.createTitle}"
+                            android:text="@={viewModel.createTitle}"
                             android:textColor="@color/black_3333"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -174,7 +174,7 @@
                             android:minHeight="220dp"
                             android:overScrollMode="always"
                             android:scrollbars="vertical"
-                            android:text="@{viewModel.createContent}"
+                            android:text="@={viewModel.createContent}"
                             android:textSize="11sp" />
                     </androidx.core.widget.NestedScrollView>
 
@@ -198,7 +198,6 @@
                         android:layout_marginBottom="12dp"
                         android:background="@android:color/transparent"
                         android:src="@drawable/ic_search_new_photo"
-                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/search_divider_2"
@@ -211,25 +210,25 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="12dp"
-                        android:visibility="invisible"
+                        android:scaleType="centerCrop"
+                        android:src="@{viewModel.image}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/search_divider_2"
                         tools:ignore="ContentDescription" />
 
                     <ImageButton
-                        android:id="@+id/search_btn_elete_photo_ib"
+                        android:id="@+id/search_btn_delete_photo_ib"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
-                        android:paddingTop="6dp"
-                        android:paddingEnd="6dp"
+                        android:onClick="@{() -> viewModel.resetImage()}"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
                         android:src="@drawable/ic_search_delete_photo"
-                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="@id/search_create_photo_iv"
                         app:layout_constraintStart_toStartOf="@id/search_create_photo_iv"
                         tools:ignore="ContentDescription" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.button.MaterialButton
@@ -238,13 +237,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="26dp"
                     android:layout_marginTop="12dp"
-                    android:backgroundTint="@{viewModel.canUpdate ? @color/black_0000 : @color/gray_eded}"
-                    android:clickable="@{viewModel.canUpdate ? true : false}"
+                    android:backgroundTint="@{viewModel.canRegister ? @color/black_0000 : @color/gray_eded}"
+                    android:clickable="@{viewModel.canRegister ? true : false}"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
-                    android:paddingVertical="12dp"
+                    android:onClick="@{() -> viewModel.postContent()}"
+                    android:paddingVertical="13dp"
                     android:stateListAnimator="@null"
                     android:text="@string/search_create_button"
                     android:textColor="@color/white"
