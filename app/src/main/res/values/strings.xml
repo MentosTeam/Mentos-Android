@@ -67,4 +67,21 @@
     <string name="search_create_button">글 등록하기</string>
     <string name="search_create_button_hint">작성한 글은 ‘프로필’과 ‘멘토-쓰 찾기’ 두 영역에 표시돼요</string>
     <string name="search_detail_mentor">멘토</string>
+
+    <!--Profile Fragment-->
+    <string name="profile_mentor_tab">멘토 프로필</string>
+    <string name="profile_mentee_tab">멘티 프로필</string>
+    <string name="profile_info_mentoring_count_title">멘토링 진행 횟수</string>
+    <string name="profile_info_certification_title">학교/학과</string>
+    <string name="profile_inform_button">멘토-쓰 운영진에게 할말이 있을때는?</string>
+
+    <string name="mentee_profile_major_title">멘티는 이 영역의 도움이 필요해요!</string>
+    <string name="mentee_profile_add_mentor_button">멘토로도 참여하고 싶어요!(프로필 생성하기)</string>
+
+    <string name="mentor_profile_major_title">멘토는 이 영역에 도움을 줄 수 있어요!</string>
+    <string name="mentor_profile_detail_title">세부적으로 어떤 도움을 받을 수 있을까요?</string>
+    <string name="mentor_profile_review_title">함께 한 멘티들의 후기❤️</string>
+    <string name="mentor_profile_mentoring_title">지금까지 진행한 멘토링</string>
+    <string name="mentor_profile_add_mentee_button">멘티로도 참여하고 싶어요!(프로필 생성하기)</string>
+
 </resources>
