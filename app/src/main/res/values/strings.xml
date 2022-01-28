@@ -72,7 +72,8 @@
     <string name="profile_mentor_tab">멘토 프로필</string>
     <string name="profile_mentee_tab">멘티 프로필</string>
     <string name="profile_info_mentoring_count_title">멘토링 진행 횟수</string>
-    <string name="profile_info_certification_title">학교/학과</string>
+    <string name="profile_info_certification_title">학교</string>
+    <string name="profile_info_certification_finish">인증 완료</string>
     <string name="profile_inform_button">멘토-쓰 운영진에게 할말이 있을때는?</string>
 
     <string name="mentee_profile_major_title">멘티는 이 영역의 도움이 필요해요!</string>
