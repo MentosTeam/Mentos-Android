@@ -1,6 +1,7 @@
 package com.mentos.mentosandroid.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSearchBinding
 import com.mentos.mentosandroid.util.KeyBoardUtil
+import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 
 class SearchFragment : Fragment() {
@@ -22,11 +24,25 @@ class SearchFragment : Fragment() {
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         searchViewModel.requestEvent()
+        initLayout()
         setBtnWriteClickListener()
         setKeyBoardVisible()
         setSearchListAdapter()
         setSearchListObserver()
         return binding.root
+    }
+
+    private fun initLayout() {
+        when (SharedPreferenceController.getNowState(requireContext())) {
+            //멘토
+            0 -> {
+                binding.searchListRv.visibility = View.VISIBLE
+            }
+            //멘티
+            1 -> {
+                binding.searchListRv.visibility = View.GONE
+            }
+        }
     }
 
     private fun setBtnWriteClickListener() {

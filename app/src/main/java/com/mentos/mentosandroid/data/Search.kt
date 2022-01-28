@@ -1,7 +1,15 @@
 package com.mentos.mentosandroid.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Search(
-    val title: String,
-    val major: Int,
-    val imgCount: Int
-)
+    val postTitle: String,
+    val majorCategoryId: Int,
+    val mentoId: Int,
+    val imageUrl: String?,
+    val mentoNickName: String,
+    val postContents: String,
+    val postId: Int
+) : Parcelable

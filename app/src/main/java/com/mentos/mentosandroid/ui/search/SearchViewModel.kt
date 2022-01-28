@@ -16,8 +16,8 @@ class SearchViewModel : ViewModel() {
     private val _isRegister = MutableLiveData<Boolean>()
     val isRegister: LiveData<Boolean> = _isRegister
 
-    private val _image = MutableLiveData<Uri>()
-    val image: LiveData<Uri> = _image
+    private val _image = MutableLiveData<Uri?>()
+    val image: MutableLiveData<Uri?> = _image
 
     private val _canRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(
@@ -35,20 +35,24 @@ class SearchViewModel : ViewModel() {
 
     fun requestEvent() {
         _dummyList.value = listOf(
-            Search("제목 1", 0, 100),
-            Search("제목 2", 1, 200),
-            Search("제목 2", 3, 200),
-            Search("제목 31", 4, 200),
-            Search("제목 3", 5, 0),
+            Search("제목 1", 0, 1, null, "태현", "내용입니다1", 1),
+            Search("제목 2", 1, 1, "dd", "가은", "내용입니다1내용입니다1내용입니다1", 1),
+            Search("제목 2", 3, 1, null, "태현", "내용입니다1", 1),
+            Search("제목 31", 4, 1, null, "태현", "내용입니다1", 1),
+            Search("제목 3", 5, 1, null, "태현", "내용입니다1", 1),
             Search(
                 "프랑스어과 17학번 재학생입니다. 프랑스 문화, 회화, 쓰기, 읽기 관련 강의 모읽기 관련 강의 모읽기 관련 강의 모읽기 관련 강의 모",
                 6,
-                0
+                1,
+                null,
+                "태현",
+                "내용입니다1",
+                1
             ),
-            Search("제목 2", 10, 0),
-            Search("제목 31", 11, 0),
-            Search("제목 3", 12, 0),
-            Search("제목 14", 13, 0)
+            Search("제목 2", 10, 1, null, "태현", "내용입니다1", 1),
+            Search("제목 31", 11, 1, null, "태현", "내용입니다1", 1),
+            Search("제목 3", 12, 1, null, "태현", "내용입니다1", 1),
+            Search("제목 14", 13, 1, null, "태현", "내용입니다1", 1)
         )
     }
 

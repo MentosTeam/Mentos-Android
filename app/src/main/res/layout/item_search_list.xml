@@ -14,66 +14,8 @@
         android:id="@+id/search_list_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layer_gray_top_none_stroke_opacity">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/search_list_mentos_multiple_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="11dp"
-                android:padding="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:neumorph_backgroundColor="@color/white"
-                app:neumorph_inset="6dp"
-                app:neumorph_shadowColorDark="@color/gray_shadow"
-                app:neumorph_shadowColorLight="@android:color/transparent"
-                app:neumorph_shadowElevation="2dp"
-                app:neumorph_shapeAppearance="@style/shadow_round_8"
-                app:neumorph_shapeType="flat"
-                app:neumorph_strokeColor="@color/gray_eded"
-                app:neumorph_strokeWidth="1dp">
-
-                <View
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    tools:ignore="ContentDescription" />
-            </soup.neumorphism.NeumorphCardView>
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:padding="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:neumorph_backgroundColor="@color/white"
-                app:neumorph_inset="6dp"
-                app:neumorph_shadowColorDark="@color/gray_shadow"
-                app:neumorph_shadowColorLight="@android:color/transparent"
-                app:neumorph_shadowElevation="4dp"
-                app:neumorph_shapeAppearance="@style/shadow_round_8"
-                app:neumorph_shapeType="flat"
-                app:neumorph_strokeColor="@color/gray_eded"
-                app:neumorph_strokeWidth="1dp">
-
-                <ImageView
-                    android:id="@+id/search_mentos_multiple_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/img_mentos_red_17"
-                    tools:ignore="ContentDescription" />
-            </soup.neumorphism.NeumorphCardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@drawable/layer_gray_top_none_stroke_opacity"
+        android:paddingBottom="11dp">
 
         <soup.neumorphism.NeumorphCardView
             android:id="@+id/search_list_mentos_layout"
@@ -82,7 +24,6 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="5dp"
             android:padding="12dp"
-            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:neumorph_backgroundColor="@color/white"
@@ -114,7 +55,7 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="2"
-            android:text="@{data.title}"
+            android:text="@{data.postTitle}"
             android:textColor="@color/black_3333"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,24 +68,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="10dp"
             android:src="@drawable/ic_search_photo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_list_mentos_layout"
             app:layout_constraintTop_toBottomOf="@id/search_list_title"
             tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/search_photo_count_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:fontFamily="@font/noto_medium"
-            android:includeFontPadding="false"
-            android:textColor="@color/gray_7070"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@id/search_photo_iv"
-            app:layout_constraintStart_toEndOf="@id/search_photo_iv"
-            app:layout_constraintTop_toTopOf="@id/search_photo_iv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

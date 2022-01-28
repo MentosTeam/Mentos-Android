@@ -7,6 +7,8 @@
     <string name="main_bottom_home">우리학교</string>
     <string name="main_bottom_profile">내 정보</string>
     <string name="main_bottom_setting">설정</string>
+    <string name="bottom_start_mentoring">멘토링 시작하기</string>
+    <string name="bottom_chat">멘토와 대화하기</string>
 
     <!--Mentoring start1-->
     <string name="mentoring_start1_title">멘토링 시작하기</string>
