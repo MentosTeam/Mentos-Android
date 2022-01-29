@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.Mentor
 import com.mentos.mentosandroid.databinding.ItemHomeMentorBinding
 
-class MentorRVAdapter(): RecyclerView.Adapter<MentorRVAdapter.MentorViewHolder>() {
+class MentorRVAdapter: RecyclerView.Adapter<MentorRVAdapter.MentorViewHolder>() {
 
     var mentorList = mutableListOf<Mentor>()
 

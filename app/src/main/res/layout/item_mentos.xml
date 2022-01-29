@@ -5,12 +5,11 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/item_mentos_img"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/shape_gray_stroke_oval"
-        android:src="@drawable/img_mentos_blue_37"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
