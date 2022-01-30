@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="profile"
             type="com.mentos.mentosandroid.data.Profile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_home_profile_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -22,25 +25,26 @@
             android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp"
             android:padding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:neumorph_inset="0dp"
             app:neumorph_shadowColorDark="@android:color/transparent"
             app:neumorph_shadowColorLight="@android:color/transparent"
-            app:neumorph_shapeAppearance="@style/shadow_round_8"
-            app:neumorph_strokeColor="@color/gray_eded"
-            app:neumorph_strokeWidth="1dp"
-            app:neumorph_shapeType="flat"
             app:neumorph_shadowElevation="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:neumorph_shapeAppearance="@style/shadow_round_8"
+            app:neumorph_shapeType="flat"
+            app:neumorph_strokeColor="@color/gray_eded"
+            app:neumorph_strokeWidth="1dp">
 
             <ImageView
                 android:id="@+id/item_home_profile_img"
                 android:layout_width="30dp"
                 android:layout_height="29dp"
                 android:background="@drawable/shape_gray_stroke_8"
+                android:scaleType="fitXY"
                 android:src="@drawable/img_home_user"
-                android:scaleType="fitXY" />
+                tools:ignore="ContentDescription" />
         </soup.neumorphism.NeumorphCardView>
 
 
@@ -49,8 +53,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginEnd="11dp"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="11dp"
             android:ellipsize="end"
             android:fontFamily="@font/noto_medium"
             android:includeFontPadding="false"

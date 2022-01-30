@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mentos.mentosandroid.data.Profile
 import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
 
@@ -39,6 +40,9 @@ class SearchViewModel : ViewModel() {
     private val _dummyList = MutableLiveData<List<Search>>()
     val dummyList: LiveData<List<Search>> = _dummyList
 
+    private val _dummyMenteeList = MutableLiveData<List<Profile>>()
+    val dummyMenteeList: LiveData<List<Profile>> = _dummyMenteeList
+
     fun requestEvent() {
         _dummyList.value = listOf(
             Search("제목 1", 0, 1, null, "태현", "내용입니다1", 1),
@@ -59,6 +63,19 @@ class SearchViewModel : ViewModel() {
             Search("제목 31", 11, 1, null, "태현", "내용입니다1", 1),
             Search("제목 3", 12, 1, null, "태현", "내용입니다1", 1),
             Search("제목 14", 13, 1, null, "태현", "내용입니다1", 1)
+        )
+    }
+
+    fun requestMenteeList() {
+        _dummyMenteeList.value = listOf(
+            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
+            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
+            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
+            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
+            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
+            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
+            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
+            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문")
         )
     }
 

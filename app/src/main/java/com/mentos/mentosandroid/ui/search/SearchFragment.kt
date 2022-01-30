@@ -23,11 +23,13 @@ class SearchFragment : Fragment() {
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         searchViewModel.requestEvent()
+        searchViewModel.requestMenteeList()
         initLayout()
         setBtnWriteClickListener()
         setKeyBoardVisible()
         setSearchListAdapter()
-        setSearchListObserver()
+        setSearchMentorObserver()
+        setSearchMenteeObserver()
         return binding.root
     }
 
@@ -35,11 +37,18 @@ class SearchFragment : Fragment() {
         when (SharedPreferenceController.getNowState(requireContext())) {
             //멘토
             0 -> {
-                binding.searchListRv.visibility = View.VISIBLE
+                binding.searchMentorListRv.visibility = View.VISIBLE
+                binding.searchMenteeListRv.visibility = View.GONE
+                binding.searchMentorTitleSubIv.visibility = View.VISIBLE
+                binding.searchMenteeTitleSubIv.visibility = View.GONE
             }
             //멘티
             1 -> {
-                binding.searchListRv.visibility = View.GONE
+                binding.searchMentorListRv.visibility = View.GONE
+                binding.searchMenteeListRv.visibility = View.VISIBLE
+                binding.searchMentorTitleSubIv.visibility = View.INVISIBLE
+                binding.searchMenteeTitleSubIv.visibility = View.VISIBLE
+                binding.searchWriteIb.visibility = View.GONE
             }
         }
     }
@@ -61,13 +70,22 @@ class SearchFragment : Fragment() {
     }
 
     private fun setSearchListAdapter() {
-        binding.searchListRv.adapter = SearchAdapter()
+        binding.searchMentorListRv.adapter = SearchMentorAdapter()
+        binding.searchMenteeListRv.adapter = SearchMenteeAdapter()
     }
 
-    private fun setSearchListObserver() {
+    private fun setSearchMentorObserver() {
         searchViewModel.dummyList.observe(viewLifecycleOwner) { list ->
             list?.let {
-                with(binding.searchListRv.adapter as SearchAdapter) { submitList(list) }
+                with(binding.searchMentorListRv.adapter as SearchMentorAdapter) { submitList(list) }
+            }
+        }
+    }
+
+    private fun setSearchMenteeObserver() {
+        searchViewModel.dummyMenteeList.observe(viewLifecycleOwner) { list ->
+            list?.let {
+                with(binding.searchMenteeListRv.adapter as SearchMenteeAdapter) { submitList((list)) }
             }
         }
     }
