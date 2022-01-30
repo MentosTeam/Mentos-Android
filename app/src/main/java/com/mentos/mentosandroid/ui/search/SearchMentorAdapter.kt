@@ -11,8 +11,8 @@ import com.mentos.mentosandroid.databinding.ItemSearchListBinding
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.setMentosImg17
 
-class SearchAdapter :
-    ListAdapter<Search, SearchAdapter.SearchViewHolder>(SearchDiffUtil()) {
+class SearchMentorAdapter :
+    ListAdapter<Search, SearchMentorAdapter.SearchViewHolder>(SearchDiffUtil()) {
 
     inner class SearchViewHolder(
         private val binding: ItemSearchListBinding
@@ -21,7 +21,7 @@ class SearchAdapter :
             binding.data = item
             binding.searchMentosIv.setMentosImg17(item.majorCategoryId)
 
-            if(item.imageUrl == null) {
+            if (item.imageUrl == null) {
                 binding.searchPhotoIv.visibility = View.GONE
             } else {
                 binding.searchPhotoIv.visibility = View.VISIBLE
@@ -30,7 +30,7 @@ class SearchAdapter :
             binding.searchListLayout.setOnClickListener {
                 it.navigateWithData(
                     SearchFragmentDirections.actionSearchFragmentToSearchDetailDialog(
-                      item
+                        item
                     )
                 )
             }

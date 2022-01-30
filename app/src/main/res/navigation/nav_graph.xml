@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_searchFragment_to_searchDetailDialog"
             app:destination="@id/searchDetailDialog" />
+        <action
+            android:id="@+id/action_searchFragment_to_oneMenteeProfileFragment"
+            app:destination="@id/oneMenteeProfileFragment" />
     </fragment>
 
     <fragment
@@ -51,7 +54,22 @@
             android:defaultValue="@null"
             app:argType="com.mentos.mentosandroid.data.Search"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_searchDetailDialog_to_oneMentorProfileFragment"
+            app:destination="@id/oneMentorProfileFragment" />
     </dialog>
+
+    <fragment
+        android:id="@+id/oneMenteeProfileFragment"
+        android:name="com.mentos.mentosandroid.ui.search.OneMenteeProfileFragment"
+        android:label="OneMenteeProfileFragment"
+        tools:layout="@layout/fragment_one_mentee_profile" />
+
+    <fragment
+        android:id="@+id/oneMentorProfileFragment"
+        android:name="com.mentos.mentosandroid.ui.search.OneMentorProfileFragment"
+        android:label="OneMentorProfileFragment"
+        tools:layout="@layout/fragment_one_mentor_profile" />
 
     <fragment
         android:id="@+id/stateFragment"

@@ -239,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/bottom_chat"
+                    android:text="@string/bottom_chat_mentor"
                     android:textColor="@color/gray_7070"
                     android:textSize="9sp" />
             </LinearLayout>

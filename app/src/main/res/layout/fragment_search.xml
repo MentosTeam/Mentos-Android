@@ -60,13 +60,27 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/search_title_sub_iv"
+                android:id="@+id/search_mentor_title_sub_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:text="@string/search_title_sub"
+                android:textColor="@color/gray_7070"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_title_iv" />
+
+            <TextView
+                android:id="@+id/search_mentee_title_sub_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/search_mentee_title_sub"
                 android:textColor="@color/gray_7070"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +97,7 @@
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_title_sub_iv"
+                app:layout_constraintTop_toBottomOf="@id/search_mentor_title_sub_iv"
                 app:neumorph_backgroundColor="@color/white"
                 app:neumorph_insetBottom="10dp"
                 app:neumorph_insetEnd="6dp"
@@ -189,7 +203,7 @@
             app:layout_constraintTop_toBottomOf="@id/search_top_layout" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_list_rv"
+            android:id="@+id/search_mentor_list_rv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
@@ -200,5 +214,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_divider"
             tools:listitem="@layout/item_search_list" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_mentee_list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white_opacity"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="6dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_divider"
+            tools:listitem="@layout/item_home_profile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
