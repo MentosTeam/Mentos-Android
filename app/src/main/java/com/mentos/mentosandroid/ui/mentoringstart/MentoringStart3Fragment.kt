@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.DialogFragment.STYLE_NORMAL
 import androidx.fragment.app.Fragment
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringStart3Binding
@@ -19,18 +17,18 @@ class MentoringStart3Fragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
-        binding = FragmentMentoringStart3Binding.inflate(inflater,container,false)
+        binding = FragmentMentoringStart3Binding.inflate(inflater, container, false)
         binding.mentoringStart3BackArrowIv.setOnClickListener {
             popBackStack()
         }
 
         binding.mentoringStart3ChooseMentosIv.setOnClickListener {
-            val bottomsheet = BottomSheetFragment()
-            bottomsheet.setStyle(STYLE_NORMAL,R.style.AppBottomSheetDialogTheme)
-            bottomsheet.show(childFragmentManager,bottomsheet.tag)
+//            val bottomsheet = MentosCategoryDialog()
+//            bottomsheet.setStyle(STYLE_NORMAL,R.style.AppBottomSheetDialogTheme)
+//            bottomsheet.show(childFragmentManager,bottomsheet.tag)
         }
 
 

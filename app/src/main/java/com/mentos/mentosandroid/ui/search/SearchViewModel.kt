@@ -13,6 +13,9 @@ class SearchViewModel : ViewModel() {
     val createTitle = MutableLiveData("")
     val createContent = MutableLiveData("")
 
+    private val _isCategorySelected = MutableLiveData(false)
+    val isCategorySelected: LiveData<Boolean> = _isCategorySelected
+
     private val _isRegister = MutableLiveData<Boolean>()
     val isRegister: LiveData<Boolean> = _isRegister
 
@@ -22,13 +25,16 @@ class SearchViewModel : ViewModel() {
     private val _canRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(
             createTitle,
-            createContent
+            createContent,
+            isCategorySelected
         )
     ) { canRegisterCheck() }
     val canRegister: LiveData<Boolean> = _canRegister
 
     private fun canRegisterCheck() =
-        requireNotNull(createContent.value).isNotBlank() && requireNotNull(createTitle.value).isNotBlank()
+        requireNotNull(createContent.value).isNotBlank()
+                && requireNotNull(createTitle.value).isNotBlank()
+                && requireNotNull(isCategorySelected.value)
 
     private val _dummyList = MutableLiveData<List<Search>>()
     val dummyList: LiveData<List<Search>> = _dummyList
@@ -72,5 +78,9 @@ class SearchViewModel : ViewModel() {
 
     fun resetImage() {
         _image.value = null
+    }
+
+    fun setCategory(isSelected: Boolean) {
+        _isCategorySelected.value = isSelected
     }
 }
