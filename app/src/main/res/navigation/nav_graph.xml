@@ -101,11 +101,11 @@
             app:destination="@id/mentoringStart4Fragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/bottomSheetFragment"
-        android:name="com.mentos.mentosandroid.ui.mentoringstart.BottomSheetFragment"
-        android:label="BottomSheetFragment"
-        tools:layout="@layout/fragment_bottom_sheet" />
+    <dialog
+        android:id="@+id/mentosCategoryDialog"
+        android:name="com.mentos.mentosandroid.util.MentosCategoryDialog"
+        android:label="MentosCategoryDialog"
+        tools:layout="@layout/dialog_mentos_category" />
 
     <fragment
         android:id="@+id/mentoringStart4Fragment"

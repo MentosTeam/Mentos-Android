@@ -18,7 +18,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.databinding.FragmentSearchCreateBinding
 import com.mentos.mentosandroid.util.KeyBoardUtil
+import com.mentos.mentosandroid.util.MentosCategoryDialog
 import com.mentos.mentosandroid.util.popBackStack
+import com.mentos.mentosandroid.util.setMentosImg17
 import java.io.ByteArrayOutputStream
 
 class SearchCreateFragment : Fragment() {
@@ -35,6 +37,8 @@ class SearchCreateFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         searchViewModel.resetIsRegister()
         searchViewModel.resetImage()
+        searchViewModel.setCategory(false)
+        setMentosBtnClickListener()
         setNewPhotoClickListener()
         setBtnBackClickListener()
         hideKeyBoard()
@@ -42,6 +46,18 @@ class SearchCreateFragment : Fragment() {
         setImageObserve()
         setIsRegisterObserve()
         return binding.root
+    }
+
+    private fun setMentosBtnClickListener() {
+        binding.searchCreateMentosIv.setOnClickListener {
+            MentosCategoryDialog { category ->
+                binding.searchCreateMentosIv.setMentosImg17(category)
+                when (category) {
+                    -1 -> searchViewModel.setCategory(false)
+                    else -> searchViewModel.setCategory(true)
+                }
+            }.show(childFragmentManager, "SELECT_MENTO_POST")
+        }
     }
 
     private fun setNewPhotoClickListener() {

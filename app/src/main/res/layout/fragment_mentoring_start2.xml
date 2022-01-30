@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="27dp"
             android:layout_marginTop="111dp"
-            android:background="@drawable/shape_black_rectangle_8"
+            android:background="@drawable/shape_black_fill_8"
             android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
             android:text="@string/mentoring_start2_next_button"
