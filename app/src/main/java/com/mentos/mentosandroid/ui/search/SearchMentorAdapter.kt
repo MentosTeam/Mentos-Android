@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.databinding.ItemSearchListBinding
 import com.mentos.mentosandroid.util.navigateWithData
-import com.mentos.mentosandroid.util.setMentosImg17
+import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 
 class SearchMentorAdapter :
     ListAdapter<Search, SearchMentorAdapter.SearchViewHolder>(SearchDiffUtil()) {

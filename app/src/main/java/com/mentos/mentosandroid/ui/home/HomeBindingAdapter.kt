@@ -1,20 +1,18 @@
 package com.mentos.mentosandroid.ui.home
 
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.MenteeCategory
-import com.mentos.mentosandroid.data.Mentor
-import com.mentos.mentosandroid.data.MentorCategory
-import com.mentos.mentosandroid.data.Profile
+import com.mentos.mentosandroid.data.*
 
 object HomeBindingAdapter {
     //@BindingAdapter으로 함수를 작성하면 커스텀한 속성을 xml에서 사용 가능하다
     //@JvmStatic을 작성하여 스태틱으로 생성
-    @BindingAdapter("profileItems")
+    @BindingAdapter("menteeItems")
     @JvmStatic
-    fun setProfileItems(recyclerView: RecyclerView, items: ArrayList<Profile>) {
+    fun setMenteeItems(recyclerView: RecyclerView, items: ArrayList<Mentee>) {
         if (recyclerView.adapter == null) {
-            val adapter = ProfileRVAdapter()
+            val adapter = MenteeRVAdapter()
             //깜빡임 방지
             adapter.setHasStableIds(true)
 
@@ -22,17 +20,18 @@ object HomeBindingAdapter {
 
         }
         //어댑터 연결
-        val profileAdapter = recyclerView.adapter as ProfileRVAdapter
+        val menteeAdapter = recyclerView.adapter as MenteeRVAdapter
 
-        profileAdapter.profileList = items
-        profileAdapter.notifyDataSetChanged()
+        menteeAdapter.menteeList = items
+        menteeAdapter.notifyDataSetChanged()
     }
 
-    @BindingAdapter("mentorItems")
+    //멘티 홈 - 다른 영역 멘토
+    @BindingAdapter("otherMentorItems")
     @JvmStatic
-    fun setMentorItems(recyclerView: RecyclerView, items: ArrayList<Mentor>) {
+    fun setOtherMentorItems(recyclerView: RecyclerView, items: ArrayList<OtherMentor>) {
         if (recyclerView.adapter == null) {
-            val adapter = MentorRVAdapter()
+            val adapter = OtherMentorRVAdapter()
             //깜빡임 방지
             adapter.setHasStableIds(true)
 
@@ -40,7 +39,26 @@ object HomeBindingAdapter {
 
         }
         //어댑터 연결
-        val mentorAdapter = recyclerView.adapter as MentorRVAdapter
+        val otherMentorAdapter = recyclerView.adapter as OtherMentorRVAdapter
+
+        otherMentorAdapter.otherMentorList = items
+        otherMentorAdapter.notifyDataSetChanged()
+    }
+
+    //멘티 홈 - 멘토 글RV
+    @BindingAdapter("mentorPostItems")
+    @JvmStatic
+    fun setMentorPostItems(recyclerView: RecyclerView, items: ArrayList<MentorPost>) {
+        if (recyclerView.adapter == null) {
+            val adapter = MentorPostRVAdapter()
+            //깜빡임 방지
+            adapter.setHasStableIds(true)
+
+            recyclerView.adapter = adapter
+
+        }
+        //어댑터 연결
+        val mentorAdapter = recyclerView.adapter as MentorPostRVAdapter
 
         mentorAdapter.mentorList = items
         mentorAdapter.notifyDataSetChanged()
@@ -64,6 +82,7 @@ object HomeBindingAdapter {
         menteeCategoryRVAdapter.notifyDataSetChanged()
     }
 
+    //멘티 홈 - 멘토 카테고리RV
     @BindingAdapter("mentorCategoryItems")
     @JvmStatic
     fun setMentorCategoryItems(recyclerView: RecyclerView, items: ArrayList<MentorCategory>) {
@@ -81,5 +100,4 @@ object HomeBindingAdapter {
         mentorCategoryRVAdapter.mentorCategoryList = items
         mentorCategoryRVAdapter.notifyDataSetChanged()
     }
-
 }

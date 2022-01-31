@@ -16,22 +16,22 @@
 
         <ImageView
             android:id="@+id/mentee_home_category_img"
+            mentosImg25="@{mentorCategory.mentorCategoryId}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="11dp"
-            android:src="@drawable/img_mentos_red_25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mentee_home_category_name_tv"
+            mentosCategory="@{mentorCategory.mentorCategoryId}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
             android:fontFamily="@font/noto_bold"
             android:includeFontPadding="false"
-            android:text="@{mentorCategory.category}"
             android:textColor="@color/black_3333"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/mentee_home_category_img"
@@ -51,7 +51,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mentee_home_category_mentor_rv"
-            mentorItems="@{mentorCategory.mentorList}"
+            mentorPostItems="@{mentorCategory.mentorPost}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -62,7 +62,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mentee_home_category_img"
             tools:itemCount="3"
-            tools:listitem="@layout/item_home_mentor" />
+            tools:listitem="@layout/item_home_mentor_post" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

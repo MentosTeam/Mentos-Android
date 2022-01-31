@@ -305,7 +305,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_mentor_category_rv"
-                        mentorCategoryItems="@{homeViewModel.mentorCategoryList}"
+                        mentorCategoryItems="@{homeViewModel.menteeHomeData.mentorCategory}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
@@ -320,7 +320,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_mentee_category_rv"
-                        menteeCategoryItems="@{homeViewModel.menteeCategoryList}"
+                        menteeCategoryItems="@{homeViewModel.mentorHomeData.menteeCategory}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
@@ -361,8 +361,8 @@
                     app:layout_constraintTop_toTopOf="@+id/home_other_tv" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/home_other_rv"
-                    profileItems="@{homeViewModel.profileList}"
+                    android:id="@+id/home_other_mentor_rv"
+                    otherMentorItems="@{homeViewModel.menteeHomeData.otherMentor}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -378,7 +378,27 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_other_tv"
                     tools:itemCount="3"
-                    tools:listitem="@layout/item_home_profile" />
+                    tools:listitem="@layout/item_home_mentee" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_other_mentee_rv"
+                    menteeItems="@{homeViewModel.mentorHomeData.otherMentee}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/shape_gray_stroke_rec"
+                    android:overScrollMode="never"
+                    android:paddingHorizontal="20dp"
+                    android:paddingTop="5dp"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_other_tv"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_home_mentee" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

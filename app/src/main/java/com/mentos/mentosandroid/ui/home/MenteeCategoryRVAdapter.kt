@@ -15,10 +15,10 @@ class MenteeCategoryRVAdapter(): RecyclerView.Adapter<MenteeCategoryRVAdapter.Me
         fun bind(currentMenteeCategory: MenteeCategory){
             binding.menteeCategory = currentMenteeCategory
 
-            val innerProfileRVAdapter = ProfileRVAdapter()
-            innerProfileRVAdapter.profileList = currentMenteeCategory.menteeList
+            val innerMenteeRVAdapter = MenteeRVAdapter()
+            innerMenteeRVAdapter.menteeList = currentMenteeCategory.mentee
 
-            binding.mentorHomeCategoryMenteeRv.adapter = innerProfileRVAdapter
+            binding.mentorHomeCategoryMenteeRv.adapter = innerMenteeRVAdapter
         }
     }
 

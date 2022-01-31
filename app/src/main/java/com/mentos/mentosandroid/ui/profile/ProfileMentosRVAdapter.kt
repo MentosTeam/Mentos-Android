@@ -3,11 +3,8 @@ package com.mentos.mentosandroid.ui.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.databinding.ItemMajorMentosBinding
 import com.mentos.mentosandroid.databinding.ItemMentosBinding
-import com.mentos.mentosandroid.util.setMentosImg37
-import com.mentos.mentosandroid.util.setMentosImg41
-import com.mentos.mentosandroid.util.setMentosText
+import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg37
 
 class ProfileMentosRVAdapter : RecyclerView.Adapter<ProfileMentosRVAdapter.MentosViewHolder>() {
 

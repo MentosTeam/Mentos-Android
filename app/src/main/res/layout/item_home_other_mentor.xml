@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="otherMentor"
+            type="com.mentos.mentosandroid.data.OtherMentor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_home_other_mentor_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/shape_gray_stroke_20">
+
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/item_home_other_mentor_img_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:padding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:neumorph_inset="0dp"
+            app:neumorph_shadowColorDark="@android:color/transparent"
+            app:neumorph_shadowColorLight="@android:color/transparent"
+            app:neumorph_shadowElevation="4dp"
+            app:neumorph_shapeAppearance="@style/shadow_round_8"
+            app:neumorph_shapeType="flat"
+            app:neumorph_strokeColor="@color/gray_eded"
+            app:neumorph_strokeWidth="1dp">
+
+            <ImageView
+                android:id="@+id/item_home_other_mentor_img"
+                android:layout_width="30dp"
+                android:layout_height="29dp"
+                android:background="@drawable/shape_gray_stroke_8"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_home_user"
+                tools:ignore="ContentDescription" />
+        </soup.neumorphism.NeumorphCardView>
+
+
+        <TextView
+            android:id="@+id/item_home_other_mentor_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="11dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="info"
+            android:textColor="@color/black_3333"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/item_home_other_mentor_tag_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_home_other_mentor_img_layout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_home_other_mentor_tag_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="tag"
+            android:textColor="@color/black_3333"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/item_home_other_mentor_tv"
+            app:layout_constraintTop_toBottomOf="@+id/item_home_other_mentor_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

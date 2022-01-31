@@ -8,17 +8,20 @@ import com.mentos.mentosandroid.data.MentorCategory
 import com.mentos.mentosandroid.databinding.ItemMenteeHomeCategoryBinding
 import com.mentos.mentosandroid.util.navigate
 
-class MentorCategoryRVAdapter(): RecyclerView.Adapter<MentorCategoryRVAdapter.MentorCategoryViewHolder>() {
+class MentorCategoryRVAdapter() :
+    RecyclerView.Adapter<MentorCategoryRVAdapter.MentorCategoryViewHolder>() {
 
     var mentorCategoryList = mutableListOf<MentorCategory>()
 
-    inner class MentorCategoryViewHolder(val binding: ItemMenteeHomeCategoryBinding) : RecyclerView.ViewHolder(
-        binding.root){
-        fun bind(currentMentorCategory: MentorCategory){
+    inner class MentorCategoryViewHolder(val binding: ItemMenteeHomeCategoryBinding) :
+        RecyclerView.ViewHolder(
+            binding.root
+        ) {
+        fun bind(currentMentorCategory: MentorCategory) {
             binding.mentorCategory = currentMentorCategory
 
-            val innerMentorRVAdapter = MentorRVAdapter()
-            innerMentorRVAdapter.mentorList = currentMentorCategory.mentorList
+            val innerMentorRVAdapter = MentorPostRVAdapter()
+            innerMentorRVAdapter.mentorList = currentMentorCategory.mentorPost
 
             binding.menteeHomeCategoryMentorRv.adapter = innerMentorRVAdapter
 
@@ -34,7 +37,11 @@ class MentorCategoryRVAdapter(): RecyclerView.Adapter<MentorCategoryRVAdapter.Me
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MentorCategoryViewHolder {
-        val binding = ItemMenteeHomeCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMenteeHomeCategoryBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return MentorCategoryViewHolder(binding)
     }
 
