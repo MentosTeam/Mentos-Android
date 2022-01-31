@@ -1,6 +1,7 @@
 package com.mentos.mentosandroid.ui.home
 
 import android.graphics.drawable.GradientDrawable
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentHomeBinding
+import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 
 class HomeFragment : Fragment() {
@@ -31,7 +33,34 @@ class HomeFragment : Fragment() {
 
         setSearchBarClickListener()
 
+        initLayout()
+
         return binding.root
+    }
+
+    private fun initLayout() {
+        when (SharedPreferenceController.getNowState(requireContext())) {
+            //멘토
+            0 -> {
+                binding.homeSearchTv1.setText(R.string.mentor_home_search_main)
+                binding.homeSearchTv2.setText(R.string.mentor_home_search_sub)
+                binding.homeCategoryTv1.setText(R.string.mentor_home_category_main)
+                binding.homeCategoryTv2.setText(R.string.mentor_home_category_sub)
+                binding.homeMenteeCategoryRv.visibility = View.VISIBLE
+                binding.homeMentorCategoryRv.visibility = View.GONE
+                binding.homeOtherTv.setText(R.string.mentor_home_other)
+            }
+            //멘티
+            1 -> {
+                binding.homeSearchTv1.setText(R.string.mentee_home_search_main)
+                binding.homeSearchTv2.setText(R.string.mentee_home_search_sub)
+                binding.homeCategoryTv1.setText(R.string.mentee_home_category_main)
+                binding.homeCategoryTv2.setText(R.string.mentee_home_category_sub)
+                binding.homeMenteeCategoryRv.visibility = View.GONE
+                binding.homeMentorCategoryRv.visibility = View.VISIBLE
+                binding.homeOtherTv.setText(R.string.mentee_home_other)
+            }
+        }
     }
 
     private fun setSearchBarClickListener() {

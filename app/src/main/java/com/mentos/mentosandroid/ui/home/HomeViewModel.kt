@@ -3,10 +3,7 @@ package com.mentos.mentosandroid.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mentos.mentosandroid.data.MenteeCategory
-import com.mentos.mentosandroid.data.Mentor
-import com.mentos.mentosandroid.data.MentorCategory
-import com.mentos.mentosandroid.data.Profile
+import com.mentos.mentosandroid.data.*
 
 class HomeViewModel() : ViewModel() {
     //other profile list
