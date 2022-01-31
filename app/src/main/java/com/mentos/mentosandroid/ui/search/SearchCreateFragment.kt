@@ -16,16 +16,18 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSearchCreateBinding
-import com.mentos.mentosandroid.util.KeyBoardUtil
-import com.mentos.mentosandroid.util.MentosCategoryDialog
-import com.mentos.mentosandroid.util.popBackStack
+import com.mentos.mentosandroid.util.*
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 import java.io.ByteArrayOutputStream
 
 class SearchCreateFragment : Fragment() {
     private lateinit var binding: FragmentSearchCreateBinding
     private val searchViewModel by viewModels<SearchViewModel>()
+    private val args by navArgs<SearchCreateFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,14 +40,32 @@ class SearchCreateFragment : Fragment() {
         searchViewModel.resetIsRegister()
         searchViewModel.resetImage()
         searchViewModel.setCategory(false)
+        searchViewModel.setIsWritten(false)
+        if (args.postMento != null) {
+            initModifyView()
+        }
         setMentosBtnClickListener()
         setNewPhotoClickListener()
-        setBtnBackClickListener()
         hideKeyBoard()
         setEtScroll()
+        setIsWrittenObserve()
         setImageObserve()
         setIsRegisterObserve()
         return binding.root
+    }
+
+    private fun initModifyView() {
+        with(searchViewModel) {
+            setCreateTitle(args.postMento?.postTitle!!)
+            setCreateContent(args.postMento?.postContents!!)
+            setCategory(true)
+        }
+        // 사진 관련 수정 필요
+        Glide.with(requireContext())
+            .load(args.postMento?.imageUrl)
+            .into(binding.searchCreatePhotoIv)
+        binding.searchCreateMentosIv.setMentosImg17(args.postMento?.majorCategoryId!!)
+        binding.searchCreateBtnComplete.setText(R.string.search_create_modify_complete)
     }
 
     private fun setMentosBtnClickListener() {
@@ -98,12 +118,6 @@ class SearchCreateFragment : Fragment() {
         // val file = File(imageUri.toString())
     }
 
-    private fun setBtnBackClickListener() {
-        binding.searchBackIb.setOnClickListener {
-            popBackStack()
-        }
-    }
-
     private fun hideKeyBoard() {
         binding.searchCreateTabLayout.setOnClickListener {
             KeyBoardUtil.hide(requireActivity())
@@ -113,6 +127,20 @@ class SearchCreateFragment : Fragment() {
     private fun setEtScroll() {
         binding.searchCreateContentEt.setTouchForScrollBars()
         binding.searchCreateTitleEt.setTouchForScrollBars()
+    }
+
+    private fun setIsWrittenObserve() {
+        searchViewModel.isWritten.observe(viewLifecycleOwner) { isWritten ->
+            binding.searchBackIb.setOnClickListener {
+                if (isWritten) {
+                    DialogUtil(R.string.dialog_stop_write) {
+                        popBackStack()
+                    }.show(childFragmentManager, "search_create_stop_write")
+                } else {
+                    popBackStack()
+                }
+            }
+        }
     }
 
     private fun setImageObserve() {

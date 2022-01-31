@@ -1,20 +1,20 @@
-package com.mentos.mentosandroid.ui.search
+package com.mentos.mentosandroid.ui.otherprofile
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.databinding.ItemSearchListBinding
-import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
+import com.mentos.mentosandroid.util.navigateWithData
 
-class SearchMentorAdapter :
-    ListAdapter<Search, SearchMentorAdapter.SearchViewHolder>(SearchDiffUtil()) {
+class MentorPostListAdapter :
+    ListAdapter<Search, MentorPostListAdapter.MentorPostListViewHolder>(SearchDiffUtil()) {
 
-    inner class SearchViewHolder(
+    inner class MentorPostListViewHolder(
         private val binding: ItemSearchListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Search) {
@@ -29,7 +29,7 @@ class SearchMentorAdapter :
 
             binding.searchListLayout.setOnClickListener {
                 it.navigateWithData(
-                    SearchFragmentDirections.actionSearchFragmentToSearchDetailDialog(
+                    MentorPostListFragmentDirections.actionMentorPostListFragmentToSearchDetailDialog(
                         myList = false,
                         postMento = item
                     )
@@ -38,17 +38,17 @@ class SearchMentorAdapter :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MentorPostListViewHolder {
         val binding: ItemSearchListBinding =
             ItemSearchListBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
-        return SearchViewHolder(binding)
+        return MentorPostListViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MentorPostListViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 

@@ -75,41 +75,5 @@
             app:layout_constraintStart_toEndOf="@id/search_list_mentos_layout"
             app:layout_constraintTop_toBottomOf="@id/search_list_title"
             tools:ignore="ContentDescription" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/search_list_edit_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/search_list_btn_x"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="13dp"
-                android:background="@android:color/transparent"
-                android:padding="3dp"
-                android:src="@drawable/ic_x_8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/search_list_btn_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
-                android:background="@android:color/transparent"
-                android:paddingHorizontal="1dp"
-                android:paddingVertical="3dp"
-                android:src="@drawable/ic_edit_10"
-                app:layout_constraintBottom_toBottomOf="@id/search_list_btn_x"
-                app:layout_constraintEnd_toStartOf="@id/search_list_btn_x"
-                app:layout_constraintTop_toTopOf="@id/search_list_btn_x"
-                tools:ignore="ContentDescription" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

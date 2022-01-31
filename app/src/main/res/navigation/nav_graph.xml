@@ -47,7 +47,14 @@
         android:id="@+id/searchCreateFragment"
         android:name="com.mentos.mentosandroid.ui.search.SearchCreateFragment"
         android:label="SearchCreateFragment"
-        tools:layout="@layout/fragment_search_create" />
+        tools:layout="@layout/fragment_search_create">
+
+        <argument
+            android:name="postMento"
+            android:defaultValue="@null"
+            app:argType="com.mentos.mentosandroid.data.Search"
+            app:nullable="true" />
+    </fragment>
 
     <dialog
         android:id="@+id/searchDetailDialog"
@@ -57,7 +64,10 @@
         <action
             android:id="@+id/action_searchDetailDialog_to_searchCreateFragment"
             app:destination="@id/searchCreateFragment" />
-
+        <argument
+            android:name="myList"
+            android:defaultValue="false"
+            app:argType="boolean" />
         <argument
             android:name="postMento"
             android:defaultValue="@null"
@@ -185,6 +195,9 @@
         <action
             android:id="@+id/action_postListFragment_to_searchCreateFragment"
             app:destination="@id/searchCreateFragment" />
+        <action
+            android:id="@+id/action_postListFragment_to_searchDetailDialog"
+            app:destination="@id/searchDetailDialog" />
     </fragment>
 
     <fragment
@@ -207,5 +220,8 @@
             android:name="mentorId"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_mentorPostListFragment_to_searchDetailDialog"
+            app:destination="@id/searchDetailDialog" />
     </fragment>
 </navigation>

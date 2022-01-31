@@ -42,13 +42,13 @@ class MyPostListFragment : Fragment() {
     }
 
     private fun setPostListAdapter() {
-        binding.myPostRv.adapter = PostListAdapter()
+        binding.myPostRv.adapter = MyPostListAdapter()
     }
 
     private fun setSearchMentorObserver() {
         postListViewModel.dummyList.observe(viewLifecycleOwner) { list ->
             list?.let {
-                with(binding.myPostRv.adapter as PostListAdapter) { submitList(list) }
+                with(binding.myPostRv.adapter as MyPostListAdapter) { submitList(list) }
             }
         }
     }
