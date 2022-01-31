@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchDetailDialog"
+            app:destination="@id/searchDetailDialog" />
     </fragment>
 
     <fragment
@@ -81,7 +84,17 @@
         android:id="@+id/profileFragment"
         android:name="com.mentos.mentosandroid.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_searchCreateFragment"
+            app:destination="@id/searchCreateFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_postListFragment"
+            app:destination="@id/postListFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_reviewListFragment"
+            app:destination="@id/reviewListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/settingFragment"
@@ -130,4 +143,28 @@
         android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringStart4Fragment"
         android:label="MentoringStart4Fragment"
         tools:layout="@layout/fragment_mentoring_start4" />
+
+    <fragment
+        android:id="@+id/profileMentorFragment"
+        android:name="com.mentos.mentosandroid.ui.profile.ProfileMentorFragment"
+        android:label="ProfileMentorFragment"
+        tools:layout="@layout/fragment_profile_mentor">
+    </fragment>
+
+    <fragment
+        android:id="@+id/postListFragment"
+        android:name="com.mentos.mentosandroid.ui.profile.PostListFragment"
+        android:label="PostListFragment"
+        tools:layout="@layout/fragment_post_list">
+        <action
+            android:id="@+id/action_postListFragment_to_searchCreateFragment"
+            app:destination="@id/searchCreateFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reviewListFragment"
+        android:name="com.mentos.mentosandroid.ui.profile.ReviewListFragment"
+        android:label="ReviewListFragment"
+        tools:layout="@layout/fragment_review_list"/>
+
 </navigation>

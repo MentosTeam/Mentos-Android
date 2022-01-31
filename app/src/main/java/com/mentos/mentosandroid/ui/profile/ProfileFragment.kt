@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileBinding
 import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.popBackStack
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -39,9 +43,19 @@ class ProfileFragment : Fragment() {
             tab.text = tabTitle[position]
         }.attach()
 
-        //첫 화면 설정
-        //  profileViewPager.setCurrentItem(1)
+        //버튼 클릭리스너
+        setBtnWriteClickListener()
+        setBtnBackClickListener()
 
+        //탭 선택 시 화면 변경
+        setNowState(profileViewPager, tabLayout)
+        return binding.root
+    }
+
+    private fun setNowState(
+        profileViewPager: ViewPager2,
+        tabLayout: TabLayout
+    ) {
         profileViewPager.currentItem = SharedPreferenceController.getNowState(requireContext())
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -55,6 +69,17 @@ class ProfileFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
-        return binding.root
+    }
+
+    private fun setBtnWriteClickListener() {
+        binding.profileWriteIb.setOnClickListener {
+            navigate(R.id.action_profileFragment_to_searchCreateFragment)
+        }
+    }
+
+    private fun setBtnBackClickListener() {
+        binding.profileBackIb.setOnClickListener {
+            popBackStack()
+        }
     }
 }

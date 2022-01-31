@@ -354,6 +354,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:id="@+id/mentor_profile_detail_more_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_home_more"
+                    app:layout_constraintBottom_toBottomOf="@+id/mentor_profile_detail_title_tv"
+                    app:layout_constraintStart_toEndOf="@+id/mentor_profile_detail_title_tv"
+                    app:layout_constraintTop_toTopOf="@+id/mentor_profile_detail_title_tv" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mentor_profile_detail_rv"
                     majorDetailItems="@{profileViewModel.majorDetailList}"
@@ -393,6 +404,18 @@
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/mentor_profile_review_more_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_home_more"
+                    app:layout_constraintBottom_toBottomOf="@+id/mentor_profile_review_title_tv"
+                    app:layout_constraintStart_toEndOf="@+id/mentor_profile_review_title_tv"
+                    app:layout_constraintTop_toTopOf="@+id/mentor_profile_review_title_tv" />
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mentor_profile_review_rv"

@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMentorBinding
+import com.mentos.mentosandroid.util.navigate
 
 class ProfileMentorFragment : Fragment() {
     private lateinit var binding: FragmentProfileMentorBinding
@@ -22,7 +24,22 @@ class ProfileMentorFragment : Fragment() {
         //뷰모델 연결
         initViewModel()
 
+        setPostMoreClickListener()
+        setReviewMoreClickListener()
+
         return binding.root
+    }
+
+    private fun setReviewMoreClickListener() {
+        binding.mentorProfileReviewMoreImg.setOnClickListener {
+            navigate(R.id.action_profileFragment_to_reviewListFragment)
+        }
+    }
+
+    private fun setPostMoreClickListener() {
+        binding.mentorProfileDetailMoreImg.setOnClickListener {
+            navigate(R.id.action_profileFragment_to_postListFragment)
+        }
     }
 
     private fun initViewModel() {
