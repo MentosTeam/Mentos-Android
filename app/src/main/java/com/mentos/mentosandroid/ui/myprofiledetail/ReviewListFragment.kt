@@ -1,4 +1,4 @@
-package com.mentos.mentosandroid.ui.profile
+package com.mentos.mentosandroid.ui.myprofiledetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ class ReviewListFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentReviewListBinding.inflate(inflater, container, false)
 
         setBtnBackClickListener()

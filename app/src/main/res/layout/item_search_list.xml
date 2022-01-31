@@ -14,8 +14,7 @@
         android:id="@+id/search_list_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layer_gray_top_none_stroke_opacity"
-        android:paddingBottom="11dp">
+        android:background="@drawable/layer_gray_top_none_stroke_opacity">
 
         <soup.neumorphism.NeumorphCardView
             android:id="@+id/search_list_mentos_layout"
@@ -50,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="44dp"
+            android:layout_marginBottom="24dp"
             android:ellipsize="end"
             android:fontFamily="@font/noto_medium"
             android:includeFontPadding="false"
@@ -58,6 +58,7 @@
             android:text="@{data.postTitle}"
             android:textColor="@color/black_3333"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_list_mentos_layout"
             app:layout_constraintTop_toTopOf="parent" />
@@ -68,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/ic_search_photo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_list_mentos_layout"
@@ -78,18 +80,18 @@
             android:id="@+id/search_list_edit_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="10dp">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 android:id="@+id/search_list_btn_x"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="13dp"
                 android:background="@android:color/transparent"
-                android:padding="1dp"
+                android:padding="3dp"
                 android:src="@drawable/ic_x_8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -99,11 +101,14 @@
                 android:id="@+id/search_list_btn_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="1dp"
                 android:background="@android:color/transparent"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="3dp"
                 android:src="@drawable/ic_edit_10"
+                app:layout_constraintBottom_toBottomOf="@id/search_list_btn_x"
                 app:layout_constraintEnd_toStartOf="@id/search_list_btn_x"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/search_list_btn_x"
                 tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

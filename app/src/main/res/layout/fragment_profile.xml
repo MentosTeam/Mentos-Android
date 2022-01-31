@@ -24,7 +24,7 @@
                 android:id="@+id/profile_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="38dp"
                 android:fontFamily="@font/noto_bold"
                 android:includeFontPadding="false"
                 android:text="@string/main_bottom_profile"
@@ -33,19 +33,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/profile_back_ib"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="27dp"
-                android:layout_marginTop="43dp"
-                android:layout_marginBottom="6dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_back"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/profile_write_ib"

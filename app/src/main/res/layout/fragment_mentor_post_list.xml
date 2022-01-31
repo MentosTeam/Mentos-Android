@@ -17,21 +17,21 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/review_title_tv"
+        android:id="@+id/mentor_post_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_bold"
         android:includeFontPadding="false"
-        android:text="@string/review_list_title"
+        android:text="@string/mentor_post_list_title"
         android:textColor="@color/black_3333"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/review_back_ib"
+        app:layout_constraintBottom_toBottomOf="@id/mentor_post_btn_back_ib"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/review_back_ib" />
+        app:layout_constraintTop_toTopOf="@id/mentor_post_btn_back_ib" />
 
     <ImageButton
-        android:id="@+id/review_back_ib"
+        android:id="@+id/mentor_post_btn_back_ib"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
@@ -44,25 +44,26 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <ScrollView
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/gray_eded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mentor_post_title_tv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mentor_post_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="14sp"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_title_tv">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/review_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:overScrollMode="never"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_divider"
-            tools:itemCount="4"
-            tools:listitem="@layout/item_profile_review" />
-    </ScrollView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        tools:listitem="@layout/item_search_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>

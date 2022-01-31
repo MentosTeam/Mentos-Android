@@ -1,121 +1,645 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="profileViewModel"
+            type="com.mentos.mentosandroid.ui.profile.ProfileViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/one_mentor_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/one_mentor_btn_back_ib"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/one_mentor_top_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginBottom="9dp"
-            android:background="@android:color/transparent"
-            android:padding="6dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_bold"
-            android:includeFontPadding="false"
-            android:text="@string/profile_mentor_tab"
-            android:textColor="@color/black_3333"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/one_mentor_btn_back_ib"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/one_mentor_btn_back_ib" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/one_mentor_profile_container_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/one_mentor_top_layout" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mentor_profile_bottom_menu_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_gray_stroke_top_20"
-        android:paddingVertical="14dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:id="@+id/mentor_profile_bottom_chat_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/mentor_profile_bottom_mentoring_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/one_mentor_btn_back_ib"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:src="@drawable/ic_bottom_chat"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="37dp"
+                android:layout_marginBottom="9dp"
+                android:background="@android:color/transparent"
+                android:padding="6dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_regular"
+                android:fontFamily="@font/noto_bold"
                 android:includeFontPadding="false"
-                android:text="@string/bottom_chat_mentor"
-                android:textColor="@color/gray_7070"
-                android:textSize="9sp" />
-        </LinearLayout>
+                android:text="@string/profile_mentor_tab"
+                android:textColor="@color/black_3333"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/one_mentor_btn_back_ib"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/one_mentor_btn_back_ib" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/mentor_profile_bottom_mentoring_layout"
-            android:layout_width="wrap_content"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/one_mentor_profile_container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/mentor_profile_bottom_menu_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/one_mentor_top_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentor_profile_info_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_rec"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="16dp"
+                        android:background="@drawable/shape_gray_stroke_20"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <soup.neumorphism.NeumorphCardView
+                            android:id="@+id/mentor_profile_img_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="7dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="10dp"
+                            android:padding="10dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:neumorph_backgroundColor="@color/white"
+                            app:neumorph_inset="10dp"
+                            app:neumorph_shadowColorDark="@color/gray_shadow"
+                            app:neumorph_shadowColorLight="@android:color/transparent"
+                            app:neumorph_shadowElevation="3dp"
+                            app:neumorph_shapeAppearance="@style/shadow_round_8"
+                            app:neumorph_shapeType="flat"
+                            app:neumorph_strokeColor="@color/gray_eded"
+                            app:neumorph_strokeWidth="1dp">
+
+                            <ImageView
+                                android:id="@+id/mentor_profile_img"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/img_home_user"
+                                tools:ignore="ContentDescription" />
+                        </soup.neumorphism.NeumorphCardView>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="@id/mentor_profile_img_layout"
+                            app:layout_constraintStart_toEndOf="@id/mentor_profile_img_layout"
+                            app:layout_constraintTop_toTopOf="@id/mentor_profile_img_layout">
+
+                            <TextView
+                                android:id="@+id/mentor_profile_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="홍길동 멘토"
+                                android:textColor="@color/black_3333"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/mentor_profile_uni_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_medium"
+                                android:includeFontPadding="false"
+                                android:text="0000대학교 / 22학번"
+                                android:textColor="@color/black_3333"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/mentor_profile_major_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_medium"
+                                android:includeFontPadding="false"
+                                android:text="중어중문, 경영학 전공"
+                                android:textColor="@color/black_3333"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/mentor_profile_view1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/gray_eded"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mentor_profile_img_layout" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/mentor_profile_view1">
+
+                            <LinearLayout
+                                android:id="@+id/mentor_profile_mentoring_count_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/mentor_profile_view1">
+
+                                <ImageView
+                                    android:id="@+id/mentor_profile_mentoring_count_img"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_profile_mentoring_count"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/mentor_profile_view1"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:id="@+id/mentor_profile_mentoring_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/profile_info_mentoring_count_title"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:id="@+id/mentor_profile_mentoring_count_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_bold"
+                                    android:includeFontPadding="false"
+                                    android:text="3회"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
+
+                            <View
+                                android:id="@+id/mentor_profile_view2"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_eded" />
+
+                            <LinearLayout
+                                android:id="@+id/mentor_profile_star_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/mentor_profile_star_img"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_profile_star"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:id="@+id/mentor_profile_star_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:fontFamily="@font/noto_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="4.5/5"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/mentor_profile_view3"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_eded" />
+
+                            <LinearLayout
+                                android:id="@+id/mentor_profile_certification_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/mentor_profile_certification_img"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_profile_certification"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:id="@+id/mentor_profile_certification_tv1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/profile_info_certification_title"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:id="@+id/mentor_profile_certification_tv2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_bold"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/profile_info_certification_finish"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentor_profile_major_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_gray_stroke_rec"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mentor_profile_info_layout">
+
+                    <TextView
+                        android:id="@+id/mentor_profile_major_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/noto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentor_profile_major_title"
+                        android:textColor="@color/black_3333"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mentor_profile_major_mentos_rv"
+                        majorItems="@{profileViewModel.majorList}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="7dp"
+                        android:orientation="horizontal"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/mentor_profile_major_title_tv"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_major_mentos" />
+
+                    <soup.neumorphism.NeumorphCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="1dp"
+                        android:padding="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/mentor_profile_major_mentos_rv"
+                        app:neumorph_backgroundColor="@color/white"
+                        app:neumorph_insetBottom="10dp"
+                        app:neumorph_insetEnd="10dp"
+                        app:neumorph_insetStart="10dp"
+                        app:neumorph_insetTop="4dp"
+                        app:neumorph_shadowColorDark="@color/gray_shadow"
+                        app:neumorph_shadowColorLight="@android:color/transparent"
+                        app:neumorph_shadowElevation="4dp"
+                        app:neumorph_shapeAppearance="@style/shadow_round_20"
+                        app:neumorph_shapeType="flat"
+                        app:neumorph_strokeColor="@color/gray_eded"
+                        app:neumorph_strokeWidth="1dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="중어중문학과 16학번 홍길동입니다. 기초 중국어 영역에 도움을 줄 수 있어요!  3년 동안 학생회에 참여해 관련 정보도 드릴 수 있습니다! 멘토와 대화하기 버튼을 눌러서 편하게 대화해봐요! 언제든지 환영입니다~"
+                            android:textColor="@color/black_3333"
+                            android:textSize="11sp" />
+                    </soup.neumorphism.NeumorphCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentor_profile_detail_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_gray_stroke_rec"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mentor_profile_major_layout">
+
+                    <TextView
+                        android:id="@+id/mentor_profile_detail_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/noto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentor_profile_detail_title"
+                        android:textColor="@color/black_3333"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/mentor_profile_detail_more_ib"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_home_more"
+                        app:layout_constraintBottom_toBottomOf="@+id/mentor_profile_detail_title_tv"
+                        app:layout_constraintStart_toEndOf="@+id/mentor_profile_detail_title_tv"
+                        app:layout_constraintTop_toTopOf="@+id/mentor_profile_detail_title_tv"
+                        tools:ignore="ContentDescription" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mentor_profile_detail_rv"
+                        majorDetailItems="@{profileViewModel.majorDetailList}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/mentor_profile_detail_title_tv"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/item_major_detail" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentor_profile_review_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_gray_stroke_rec"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mentor_profile_detail_layout">
+
+                    <TextView
+                        android:id="@+id/mentor_profile_review_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/noto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentor_profile_review_title"
+                        android:textColor="@color/black_3333"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/mentor_profile_review_more_ib"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_home_more"
+                        app:layout_constraintBottom_toBottomOf="@+id/mentor_profile_review_title_tv"
+                        app:layout_constraintStart_toEndOf="@+id/mentor_profile_review_title_tv"
+                        app:layout_constraintTop_toTopOf="@+id/mentor_profile_review_title_tv"
+                        tools:ignore="ContentDescription" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mentor_profile_review_rv"
+                        reviewItems="@{profileViewModel.reviewList}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/mentor_profile_review_title_tv"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/item_profile_review" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentor_profile_mentoring_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_gray_stroke_rec"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mentor_profile_review_layout">
+
+                    <TextView
+                        android:id="@+id/mentor_profile_mentoring_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/noto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentor_profile_mentoring_title"
+                        android:textColor="@color/black_3333"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <soup.neumorphism.NeumorphCardView
+                        android:id="@+id/mentor_profile_mentoring_mentos_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="1dp"
+                        android:padding="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/mentor_profile_mentoring_title_tv"
+                        app:neumorph_backgroundColor="@color/white"
+                        app:neumorph_insetBottom="10dp"
+                        app:neumorph_insetEnd="10dp"
+                        app:neumorph_insetStart="1dp"
+                        app:neumorph_insetTop="1dp"
+                        app:neumorph_shadowColorDark="@color/gray_shadow"
+                        app:neumorph_shadowColorLight="@android:color/transparent"
+                        app:neumorph_shadowElevation="4dp"
+                        app:neumorph_shapeAppearance="@style/shadow_round_20"
+                        app:neumorph_shapeType="flat"
+                        app:neumorph_strokeColor="@color/gray_eded"
+                        app:neumorph_strokeWidth="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/mentor_profile_mentoring_mentos_rv"
+                                mentosItems="@{profileViewModel.mentosList}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="9dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="4dp"
+                                android:overScrollMode="never"
+                                android:scrollbars="none"
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/mentor_profile_mentoring_mentos_count_tv"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:spanCount="5"
+                                tools:itemCount="10"
+                                tools:listitem="@layout/item_mentos" />
+
+                            <TextView
+                                android:id="@+id/mentor_profile_mentoring_mentos_count_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="28dp"
+                                android:fontFamily="@font/noto_medium"
+                                android:includeFontPadding="false"
+                                android:text="@{profileViewModel.strMentosCount}"
+                                android:textColor="@color/black_3333"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/mentor_profile_mentoring_mentos_rv" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </soup.neumorphism.NeumorphCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mentor_profile_bottom_menu_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
+            android:background="@drawable/shape_gray_stroke_top_20"
+            android:paddingVertical="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/mentor_profile_bottom_chat_layout"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent">
 
-            <ImageView
+            <LinearLayout
+                android:id="@+id/mentor_profile_bottom_chat_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:src="@drawable/ic_bottom_start_mentoring"
-                tools:ignore="ContentDescription" />
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/mentor_profile_bottom_mentoring_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:src="@drawable/ic_bottom_chat"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/bottom_chat_mentor"
+                    android:textColor="@color/gray_7070"
+                    android:textSize="9sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mentor_profile_bottom_mentoring_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_regular"
-                android:includeFontPadding="false"
-                android:text="@string/bottom_start_mentoring"
-                android:textColor="@color/gray_7070"
-                android:textSize="9sp" />
-        </LinearLayout>
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mentor_profile_bottom_chat_layout"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:src="@drawable/ic_bottom_start_mentoring"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/bottom_start_mentoring"
+                    android:textColor="@color/gray_7070"
+                    android:textSize="9sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

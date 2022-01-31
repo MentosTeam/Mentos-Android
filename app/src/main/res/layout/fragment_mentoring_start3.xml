@@ -23,29 +23,33 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
+        <ImageButton
+            android:id="@+id/mentoring_start3_back_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginBottom="9dp"
+            android:background="@android:color/transparent"
+            android:padding="6dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:id="@+id/mentoring_start3_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:fontFamily="@font/noto_bold"
             android:includeFontPadding="false"
             android:text="@string/mentoring_start3_title"
             android:textColor="@color/black_0000"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/mentoring_start3_back_ib"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/mentoring_start3_back_arrow_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="@id/mentoring_start3_title_tv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/mentoring_start3_title_tv" />
+            app:layout_constraintTop_toTopOf="@id/mentoring_start3_back_ib" />
 
         <TextView
             android:id="@+id/mentoring_start3_subtitle1_tv"

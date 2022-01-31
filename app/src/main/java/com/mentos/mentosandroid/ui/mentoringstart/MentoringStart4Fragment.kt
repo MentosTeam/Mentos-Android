@@ -16,10 +16,10 @@ class MentoringStart4Fragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMentoringStart4Binding.inflate(inflater,container,false)
+    ): View {
+        binding = FragmentMentoringStart4Binding.inflate(inflater, container, false)
 
-        binding.mentoringStart4BackArrowIv.setOnClickListener {
+        binding.mentoringStart4BackIb.setOnClickListener {
             popBackStack()
         }
 
