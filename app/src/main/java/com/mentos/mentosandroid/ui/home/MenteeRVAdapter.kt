@@ -1,11 +1,17 @@
 package com.mentos.mentosandroid.ui.home
 
+import android.app.Application
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.Mentee
 import com.mentos.mentosandroid.databinding.ItemHomeMenteeBinding
+import com.mentos.mentosandroid.util.MentosCategoryUtil
 import com.mentos.mentosandroid.util.MentosCategoryUtil.geMentosText
+import com.mentos.mentosandroid.util.navigate
+import kotlin.coroutines.coroutineContext
 
 class MenteeRVAdapter() : RecyclerView.Adapter<MenteeRVAdapter.MenteeViewHolder>() {
 
@@ -22,6 +28,11 @@ class MenteeRVAdapter() : RecyclerView.Adapter<MenteeRVAdapter.MenteeViewHolder>
             binding.itemHomeMenteeTagTv.text =
                 "#" + geMentosText(currentMentee.firstMajorCategory) +
                         ", #" + geMentosText(currentMentee.secondMajorCategory)
+
+
+            binding.itemHomeMenteeLayout.setOnClickListener {
+                it.navigate(R.id.action_homeFragment_to_oneMenteeProfileFragment)
+            }
         }
     }
 

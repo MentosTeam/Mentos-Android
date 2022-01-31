@@ -4,9 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.OtherMentor
 import com.mentos.mentosandroid.databinding.ItemHomeOtherMentorBinding
 import com.mentos.mentosandroid.util.MentosCategoryUtil.geMentosText
+import com.mentos.mentosandroid.util.navigate
 
 class OtherMentorRVAdapter() : RecyclerView.Adapter<OtherMentorRVAdapter.OtherMentorViewHolder>() {
 
@@ -24,6 +26,10 @@ class OtherMentorRVAdapter() : RecyclerView.Adapter<OtherMentorRVAdapter.OtherMe
             binding.itemHomeOtherMentorTagTv.text =
                 "#" + geMentosText(currentOtherMentor.firstMajorCategory) +
                         ", #" + geMentosText(currentOtherMentor.secondMajorCategory)
+
+            binding.itemHomeOtherMentorLayout.setOnClickListener {
+                it.navigate(R.id.action_homeFragment_to_oneMentorProfileFragment)
+            }
         }
     }
 
