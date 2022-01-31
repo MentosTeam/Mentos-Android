@@ -14,12 +14,14 @@ class ProfileReviewRVAdapter :
         val binding: ItemProfileReviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(currentReview: String) {
-            binding.itemReviewTv.text = currentReview
+            binding.review = currentReview
+
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
-        val binding = ItemProfileReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemProfileReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ReviewViewHolder(binding)
     }
 

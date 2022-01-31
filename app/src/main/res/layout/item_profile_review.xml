@@ -1,46 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <soup.neumorphism.NeumorphCardView
+    <data>
+
+        <variable
+            name="review"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
-        android:padding="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:neumorph_backgroundColor="@color/white"
-        app:neumorph_insetBottom="6dp"
-        app:neumorph_insetEnd="6dp"
-        app:neumorph_insetStart="6dp"
-        app:neumorph_insetTop="1dp"
-        app:neumorph_shadowColorDark="@color/gray_shadow"
-        app:neumorph_shadowColorLight="@android:color/transparent"
-        app:neumorph_shadowElevation="4dp"
-        app:neumorph_shapeAppearance="@style/shadow_round_20"
-        app:neumorph_shapeType="flat"
-        app:neumorph_strokeColor="@color/gray_eded"
-        app:neumorph_strokeWidth="1dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/item_review_tv"
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_regular"
-            android:includeFontPadding="false"
-            android:paddingStart="17dp"
-            android:paddingTop="1dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="8dp"
-            android:text="중어중문학과 학생입니다! 덕분에 000교수님 기초 중국어 A+맞았어요! 감사합니다! 기초 중국어 때문에 문제 있으셨던 분들! 꼭 이 분 찾아가세요!"
-            android:textColor="@color/black_3333"
-            android:textSize="11sp"
-            android:minLines="3"/>
-    </soup.neumorphism.NeumorphCardView>
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:padding="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:neumorph_backgroundColor="@color/white"
+            app:neumorph_insetBottom="6dp"
+            app:neumorph_insetEnd="6dp"
+            app:neumorph_insetStart="6dp"
+            app:neumorph_insetTop="1dp"
+            app:neumorph_shadowColorDark="@color/gray_shadow"
+            app:neumorph_shadowColorLight="@android:color/transparent"
+            app:neumorph_shadowElevation="4dp"
+            app:neumorph_shapeAppearance="@style/shadow_round_20"
+            app:neumorph_shapeType="flat"
+            app:neumorph_strokeColor="@color/gray_eded"
+            app:neumorph_strokeWidth="1dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/item_review_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:minLines="3"
+                android:paddingStart="17dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                android:text="@{review}"
+                android:textColor="@color/black_3333"
+                android:textSize="11sp" />
+        </soup.neumorphism.NeumorphCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
