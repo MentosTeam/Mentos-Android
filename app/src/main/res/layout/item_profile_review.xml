@@ -39,7 +39,8 @@
             android:paddingBottom="8dp"
             android:text="중어중문학과 학생입니다! 덕분에 000교수님 기초 중국어 A+맞았어요! 감사합니다! 기초 중국어 때문에 문제 있으셨던 분들! 꼭 이 분 찾아가세요!"
             android:textColor="@color/black_3333"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:minLines="3"/>
     </soup.neumorphism.NeumorphCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

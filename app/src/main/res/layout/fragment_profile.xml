@@ -48,7 +48,7 @@
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/search_write_ib"
+                android:id="@+id/profile_write_ib"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="45dp"
