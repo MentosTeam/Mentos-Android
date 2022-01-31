@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.databinding.ItemSearchListBinding
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
+import com.mentos.mentosandroid.util.navigateWithData
 
-class PostListAdapter :
-    ListAdapter<Search, PostListAdapter.PostListViewHolder>(SearchDiffUtil()) {
+class MyPostListAdapter :
+    ListAdapter<Search, MyPostListAdapter.PostListViewHolder>(SearchDiffUtil()) {
 
     inner class PostListViewHolder(
         private val binding: ItemSearchListBinding
@@ -19,7 +20,6 @@ class PostListAdapter :
         fun bind(item: Search) {
             binding.data = item
             binding.searchMentosIv.setMentosImg17(item.majorCategoryId)
-            binding.searchListEditLayout.visibility = View.VISIBLE
 
             if (item.imageUrl == null) {
                 binding.searchPhotoIv.visibility = View.GONE
@@ -28,11 +28,12 @@ class PostListAdapter :
             }
 
             binding.searchListLayout.setOnClickListener {
-//                it.navigateWithData(
-//                    SearchFragmentDirections.actionSearchFragmentToSearchDetailDialog(
-//                        item
-//                    )
-//                )
+                it.navigateWithData(
+                    MyPostListFragmentDirections.actionPostListFragmentToSearchDetailDialog(
+                        myList = true,
+                        postMento = item
+                    )
+                )
             }
         }
     }

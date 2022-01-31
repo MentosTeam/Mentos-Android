@@ -8,13 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.databinding.FragmentMentorPostListBinding
+import com.mentos.mentosandroid.ui.myprofiledetail.PostListViewModel
 import com.mentos.mentosandroid.ui.search.SearchMentorAdapter
 import com.mentos.mentosandroid.ui.search.SearchViewModel
 import com.mentos.mentosandroid.util.popBackStack
 
 class MentorPostListFragment : Fragment() {
     lateinit var binding: FragmentMentorPostListBinding
-    private val searchViewModel by viewModels<SearchViewModel>()
+    private val postListViewModel by viewModels<PostListViewModel>()
     private val args by navArgs<MentorPostListFragmentArgs>()
 
     override fun onCreateView(
@@ -23,7 +24,7 @@ class MentorPostListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMentorPostListBinding.inflate(inflater, container, false)
-        searchViewModel.requestEvent()
+        postListViewModel.requestEvent()
         setBtnBackClickListener()
         setSearchListAdapter()
         setSearchMentorObserver()
@@ -37,13 +38,13 @@ class MentorPostListFragment : Fragment() {
     }
 
     private fun setSearchListAdapter() {
-        binding.mentorPostRv.adapter = SearchMentorAdapter()
+        binding.mentorPostRv.adapter = MentorPostListAdapter()
     }
 
     private fun setSearchMentorObserver() {
-        searchViewModel.dummyList.observe(viewLifecycleOwner) { list ->
+        postListViewModel.dummyList.observe(viewLifecycleOwner) { list ->
             list?.let {
-                with(binding.mentorPostRv.adapter as SearchMentorAdapter) { submitList(list) }
+                with(binding.mentorPostRv.adapter as MentorPostListAdapter) { submitList(list) }
             }
         }
     }

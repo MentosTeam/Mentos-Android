@@ -11,6 +11,12 @@
     <string name="bottom_chat_mentor">멘토와 대화하기</string>
     <string name="bottom_chat_mentee">멘티와 대화하기</string>
 
+    <!--Dialog Util-->
+    <string name="dialog_util_confirm">확인</string>
+    <string name="dialog_util_cancel">취소</string>
+    <string name="dialog_stop_write">작성된 내용이 저장되지 않습니다. 취소하시겠습니까?</string>
+    <string name="dialog_post_delete">작성된 글이 삭제됩니다. 삭제하시겠습니까?</string>
+
     <!--Mentoring start1-->
     <string name="mentoring_start1_title">멘토링 시작하기</string>
     <string name="mentoring_start1_subtitle">세부 사항을 적어볼까요?</string>
@@ -70,6 +76,7 @@
     <string name="search_create_title">멘티에게 알려줄 수 있는 내용을\n세부적으로 적어주세요!</string>
     <string name="search_create_sub_title">과목별로, 특징별로, 멘토의 개성이 담긴 글을 작성해볼까요?</string>
     <string name="search_create_button">글 등록하기</string>
+    <string name="search_create_modify_complete">글 수정완료-!</string>
     <string name="search_create_button_hint">작성한 글은 ‘프로필’과 ‘멘토-쓰 찾기’ 두 영역에 표시돼요</string>
     <string name="search_detail_mentor">멘토</string>
 

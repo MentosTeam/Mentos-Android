@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.DialogSearchDetailBinding
+import com.mentos.mentosandroid.util.DialogUtil
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 
@@ -22,6 +24,11 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
     ): View {
         binding = DialogSearchDetailBinding.inflate(inflater, container, false)
         initData()
+        initMyPostView()
+        if (args.myList) {
+            setDeleteBtnClickListener()
+            setEditBtnClickListener()
+        }
         setMentorInfoLayoutClickListener()
         setMentoringStartClickListener()
         return binding.root
@@ -43,6 +50,31 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
                         .into(searchDetailPhotoIv)
                 }
             }
+        }
+    }
+
+    private fun initMyPostView() {
+        if (args.myList) {
+            binding.searchDetailEditLayout.visibility = View.VISIBLE
+            binding.searchDetailBottomMenuLayout.visibility = View.GONE
+        } else {
+            binding.searchDetailEditLayout.visibility = View.GONE
+        }
+    }
+
+    private fun setDeleteBtnClickListener() {
+        binding.searchDetailBtnX.setOnClickListener {
+            DialogUtil(R.string.dialog_post_delete) {
+                // 글 삭제 api
+            }.show(childFragmentManager, "my_post_list_delete")
+        }
+    }
+
+    private fun setEditBtnClickListener() {
+        binding.searchDetailBtnEdit.setOnClickListener {
+            navigateWithData(
+                SearchDetailDialogDirections.actionSearchDetailDialogToSearchCreateFragment(args.postMento)
+            )
         }
     }
 

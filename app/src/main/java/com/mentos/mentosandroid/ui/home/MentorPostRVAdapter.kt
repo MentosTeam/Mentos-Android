@@ -23,7 +23,8 @@ class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostV
             binding.itemHomeMentorLayout.setOnClickListener {
                 it.navigateWithData(
                     HomeFragmentDirections.actionHomeFragmentToSearchDetailDialog(
-                        Search(
+                        myList = false,
+                        postMento = Search(
                             currentMentorPost.postTitle,
                             currentMentorPost.postCategoryId,
                             currentMentorPost.mentorStudentId,

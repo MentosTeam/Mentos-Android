@@ -1,6 +1,7 @@
 package com.mentos.mentosandroid.ui.search
 
 import android.net.Uri
+import android.provider.ContactsContract
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,6 +24,15 @@ class SearchViewModel : ViewModel() {
     private val _image = MutableLiveData<Uri?>()
     val image: MutableLiveData<Uri?> = _image
 
+    private val _isWritten = MediatorLiveDataUtil.initMediatorLiveData(
+        listOf(
+            createTitle,
+            createContent,
+            isCategorySelected
+        )
+    ) { isWrittenCheck() }
+    val isWritten: LiveData<Boolean> = _isWritten
+
     private val _canRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(
             createTitle,
@@ -36,6 +46,11 @@ class SearchViewModel : ViewModel() {
         requireNotNull(createContent.value).isNotBlank()
                 && requireNotNull(createTitle.value).isNotBlank()
                 && requireNotNull(isCategorySelected.value)
+
+    private fun isWrittenCheck() =
+        requireNotNull(createContent.value).isNotBlank()
+                || requireNotNull(createTitle.value).isNotBlank()
+                || requireNotNull(isCategorySelected.value)
 
     private val _dummyList = MutableLiveData<List<Search>>()
     val dummyList: LiveData<List<Search>> = _dummyList
@@ -88,6 +103,14 @@ class SearchViewModel : ViewModel() {
         _isRegister.value = false
     }
 
+    fun setCreateTitle(title: String) {
+        createTitle.value = title
+    }
+
+    fun setCreateContent(content: String) {
+        createContent.value = content
+    }
+
     fun setImage(imgUri: Uri) {
         _image.value = imgUri
     }
@@ -98,5 +121,9 @@ class SearchViewModel : ViewModel() {
 
     fun setCategory(isSelected: Boolean) {
         _isCategorySelected.value = isSelected
+    }
+
+    fun setIsWritten(isWritten: Boolean) {
+        _isWritten.value = isWritten
     }
 }
