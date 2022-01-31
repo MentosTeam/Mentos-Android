@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.databinding.ItemSearchListBinding
-import com.mentos.mentosandroid.util.setMentosImg17
+import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 
 class PostListAdapter :
     ListAdapter<Search, PostListAdapter.PostListViewHolder>(SearchDiffUtil()) {

@@ -20,7 +20,7 @@ import com.mentos.mentosandroid.databinding.FragmentSearchCreateBinding
 import com.mentos.mentosandroid.util.KeyBoardUtil
 import com.mentos.mentosandroid.util.MentosCategoryDialog
 import com.mentos.mentosandroid.util.popBackStack
-import com.mentos.mentosandroid.util.setMentosImg17
+import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 import java.io.ByteArrayOutputStream
 
 class SearchCreateFragment : Fragment() {

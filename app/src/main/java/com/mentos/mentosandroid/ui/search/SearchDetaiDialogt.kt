@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mentos.mentosandroid.databinding.DialogSearchDetailBinding
 import com.mentos.mentosandroid.util.navigateWithData
-import com.mentos.mentosandroid.util.setMentosImg17
+import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 
 class SearchDetailDialog : BottomSheetDialogFragment() {
     lateinit var binding: DialogSearchDetailBinding

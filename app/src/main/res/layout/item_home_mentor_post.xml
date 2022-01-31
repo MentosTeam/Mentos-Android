@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="mentor"
-            type="com.mentos.mentosandroid.data.Mentor" />
+            name="mentorPost"
+            type="com.mentos.mentosandroid.data.MentorPost" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,8 +26,9 @@
             android:id="@+id/item_home_mentor_img_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_home_mentor_view"
@@ -39,15 +40,14 @@
             app:neumorph_shapeAppearance="@style/shadow_round_8"
             app:neumorph_shapeType="flat"
             app:neumorph_strokeColor="@color/gray_eded"
-            app:neumorph_strokeWidth="1dp"
-            android:layout_marginStart="10dp">
+            app:neumorph_strokeWidth="1dp">
 
             <ImageView
                 android:id="@+id/item_home_mentor_img"
                 android:layout_width="30dp"
                 android:layout_height="29dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_home_user"/>
+                android:src="@drawable/img_home_user" />
         </soup.neumorphism.NeumorphCardView>
 
 
@@ -55,15 +55,15 @@
             android:id="@+id/item_home_mentor_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
             android:layout_marginStart="55dp"
+            android:layout_marginTop="11dp"
             android:layout_marginEnd="33dp"
             android:ellipsize="end"
             android:fontFamily="@font/noto_bold"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="2"
-            android:text="@{mentor.title}"
+            android:text="@{mentorPost.postTitle}"
             android:textColor="@color/black_3333"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"

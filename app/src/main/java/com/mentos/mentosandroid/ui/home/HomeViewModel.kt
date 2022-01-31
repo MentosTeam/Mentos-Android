@@ -6,80 +6,70 @@ import androidx.lifecycle.ViewModel
 import com.mentos.mentosandroid.data.*
 
 class HomeViewModel() : ViewModel() {
-    //other profile list
-    private val _profileList = MutableLiveData<ArrayList<Profile>>()
-    val profileList: LiveData<ArrayList<Profile>>
-        get() = _profileList
-
-    private var profileItems = ArrayList<Profile>()
-
-    //menteeCategory list
-    private val _menteeCategoryList = MutableLiveData<ArrayList<MenteeCategory>>()
-    val menteeCategoryList: LiveData<ArrayList<MenteeCategory>>
-        get() = _menteeCategoryList
-
-    private var menteeCategoryItems = ArrayList<MenteeCategory>()
-
-    //mentorCategory list
-    private val _mentorCategoryList = MutableLiveData<ArrayList<MentorCategory>>()
-    val mentorCategoryList: LiveData<ArrayList<MentorCategory>>
-        get() = _mentorCategoryList
-
-    private var mentorCategoryItems = ArrayList<MentorCategory>()
-
-
-    init {
-        initOtherProfileRV()
-
-        initMenteeCategoryRV()
-
-        initMentorCategoryRV()
-    }
-
-    private fun initMentorCategoryRV() {
-        //mentorCategory
-        mentorCategoryItems = arrayListOf(
-            MentorCategory(
-                "", "경제 / 경영", arrayListOf(
-                    Mentor("", "[중어중문과 1학년 기초교양] 초급중국어 가나다 교수님 수업 수강했습니다(A+)"),
-                    Mentor("", "[중어중문학과 2학년 전공] 중국문화의 이해 라마바 교수님 시험 및 기말 과제 수행에 도움 드릴 수 있습니다")
-                )
-            ), MentorCategory(
-                "", "인문", arrayListOf(
-                    Mentor("", "[중어중문과 1학년 기초교양] 초급중국어 가나다 교수님 수업 수강했습니다(A+)"),
-                    Mentor("", "[중어중문학과 2학년 전공] 중국문화의 이해 라마바 교수님 시험 및 기말 과제 수행에 도움 드릴 수 있습니다")
-                )
-            )
-        )
-        _mentorCategoryList.value = mentorCategoryItems
-    }
-
-    private fun initMenteeCategoryRV() {
-        //menteeCategory
-        menteeCategoryItems = arrayListOf(
-            MenteeCategory(
-                "", "경제 / 경영", arrayListOf(
-                    Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
-                    Profile("", "홍길동 / 경제학과, 미디어커뮤니케이션학과 / 17학번", "#경제/경영, #인문")
+    private val _menteeHomeData = MutableLiveData<MenteeHome>()
+    val menteeHomeData: LiveData<MenteeHome>
+        get() = _menteeHomeData
+    private var menteeHomeDataItem: MenteeHome =
+        MenteeHome(
+            5,
+            arrayListOf(
+                MentorCategory(
+                    3,
+                    arrayListOf(
+                        MentorPost(1, "현진", "소프트웨어", "", 10, 3, "C언어 알려드려요", "C언어 본문1", null),
+                        MentorPost(2, "가은", "소프트웨어", "", 11, 3, "JAVA 알려드려요", "JAVA 본문1", null)
+                    )
+                ),
+                MentorCategory(
+                    4,
+                    arrayListOf(
+                        MentorPost(3, "현진", "소프트웨어", "", 12, 4, "C언어 알려드려요", "C언어 본문1", null),
+                        MentorPost(4, "가은", "소프트웨어", "", 13, 4, "JAVA 알려드려요", "JAVA 본문1", null)
+                    )
                 )
             ),
-            MenteeCategory(
-                "", "인문", arrayListOf(
-                    Profile("", "홍길동 / 경영학과 / 19학번", "#인문, #어문"),
-                    Profile("", "홍길동 / 경제학과, 미디어커뮤니케이션학과 / 17학번", "#경제/경영, #인문")
-                )
+            arrayListOf(
+                OtherMentor(5, "준원", "컴퓨터공학", "18학번", "", 1, 2),
+                OtherMentor(6, "준원", "컴퓨터공학", "18학번", "", 5, 6)
             )
         )
-        _menteeCategoryList.value = menteeCategoryItems
+
+    private val _mentorHomeData = MutableLiveData<MentorHome>()
+    val mentorHomeData: LiveData<MentorHome>
+        get() = _mentorHomeData
+    private var mentorHomeDataItem: MentorHome =
+        MentorHome(
+            7,
+            arrayListOf(
+                MenteeCategory(
+                    3,
+                    arrayListOf(
+                        Mentee(1, "현진", "소프트웨어", "18학번", "", 3, 4),
+                        Mentee(2, "가은", "소프트웨어", "18학번", "", 3, 5)
+                    )
+                ),
+                MenteeCategory(
+                    4,
+                    arrayListOf(
+                        Mentee(1, "현진", "소프트웨어", "18학번", "", 4, 5),
+                        Mentee(2, "가은", "소프트웨어", "18학번", "", 4, 6)
+                    )
+                )
+            ),
+            arrayListOf(
+                Mentee(5, "준원", "컴퓨터공학", "18학번", "", 1, 2),
+                Mentee(6, "준원", "컴퓨터공학", "18학번", "", 5, 6)
+            )
+        )
+
+    init {
+        _menteeHomeData.value = menteeHomeDataItem
+        _mentorHomeData.value = mentorHomeDataItem
     }
 
+
     private fun initOtherProfileRV() {
-        //other profile
-        profileItems = arrayListOf(
-            Profile("", "홍길동 / 경영학과 / 19학번", "#경제/경영, #어문"),
-            Profile("", "홍길동 / 경제학과, 미디어커뮤니케이션학과 / 17학번", "#경제/경영, #인문")
-        )
-        _profileList.value = profileItems
+
     }
 
 }

@@ -49,6 +49,8 @@ class HomeFragment : Fragment() {
                 binding.homeMenteeCategoryRv.visibility = View.VISIBLE
                 binding.homeMentorCategoryRv.visibility = View.GONE
                 binding.homeOtherTv.setText(R.string.mentor_home_other)
+                binding.homeOtherMenteeRv.visibility = View.VISIBLE
+                binding.homeOtherMentorRv.visibility = View.GONE
             }
             //멘티
             1 -> {
@@ -59,6 +61,8 @@ class HomeFragment : Fragment() {
                 binding.homeMenteeCategoryRv.visibility = View.GONE
                 binding.homeMentorCategoryRv.visibility = View.VISIBLE
                 binding.homeOtherTv.setText(R.string.mentee_home_other)
+                binding.homeOtherMenteeRv.visibility = View.GONE
+                binding.homeOtherMentorRv.visibility = View.VISIBLE
             }
         }
     }

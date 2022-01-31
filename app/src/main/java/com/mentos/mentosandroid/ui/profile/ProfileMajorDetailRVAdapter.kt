@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.databinding.ItemMajorDetailBinding
-import com.mentos.mentosandroid.util.setMentosImg17
+import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 
 class ProfileMajorDetailRVAdapter :
     RecyclerView.Adapter<ProfileMajorDetailRVAdapter.MajorDetailViewHolder>() {
@@ -34,6 +34,7 @@ class ProfileMajorDetailRVAdapter :
         return majorDetailList.size
     }
 }
+
 data class MajorDetail(
     val category: Int,
     val title: String

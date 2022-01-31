@@ -6,28 +6,28 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.R
-import com.mentos.mentosandroid.data.Profile
-import com.mentos.mentosandroid.databinding.ItemHomeProfileBinding
+import com.mentos.mentosandroid.data.Mentee
+import com.mentos.mentosandroid.databinding.ItemHomeMenteeBinding
 import com.mentos.mentosandroid.util.navigate
 
 class SearchMenteeAdapter :
-    ListAdapter<Profile, SearchMenteeAdapter.SearchMenteeViewHolder>(SearchDiffUtil()) {
+    ListAdapter<Mentee, SearchMenteeAdapter.SearchMenteeViewHolder>(SearchDiffUtil()) {
 
     inner class SearchMenteeViewHolder(
-        private val binding: ItemHomeProfileBinding
+        private val binding: ItemHomeMenteeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Profile) {
-            binding.profile = item
+        fun bind(item: Mentee) {
+            binding.mentee = item
 
-            binding.itemHomeProfileLayout.setOnClickListener {
+            binding.itemHomeMenteeLayout.setOnClickListener {
                 it.navigate(R.id.action_searchFragment_to_oneMenteeProfileFragment)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMenteeViewHolder {
-        val binding: ItemHomeProfileBinding =
-            ItemHomeProfileBinding.inflate(
+        val binding: ItemHomeMenteeBinding =
+            ItemHomeMenteeBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -39,13 +39,13 @@ class SearchMenteeAdapter :
         holder.bind(getItem(position))
     }
 
-    private class SearchDiffUtil : DiffUtil.ItemCallback<Profile>() {
-        override fun areContentsTheSame(oldItem: Profile, newItem: Profile): Boolean {
+    private class SearchDiffUtil : DiffUtil.ItemCallback<Mentee>() {
+        override fun areContentsTheSame(oldItem: Mentee, newItem: Mentee): Boolean {
             return oldItem == newItem
         }
 
-        override fun areItemsTheSame(oldItem: Profile, newItem: Profile): Boolean {
-            return oldItem.info == newItem.info
+        override fun areItemsTheSame(oldItem: Mentee, newItem: Mentee): Boolean {
+            return oldItem.nickName == newItem.nickName
         }
     }
 }
