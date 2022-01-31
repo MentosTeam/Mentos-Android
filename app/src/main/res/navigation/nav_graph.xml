@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_homeFragment_to_searchDetailDialog"
             app:destination="@id/searchDetailDialog" />
+        <action
+            android:id="@+id/action_homeFragment_to_oneMenteeProfileFragment"
+            app:destination="@id/oneMenteeProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_oneMentorProfileFragment"
+            app:destination="@id/oneMentorProfileFragment" />
     </fragment>
 
     <fragment

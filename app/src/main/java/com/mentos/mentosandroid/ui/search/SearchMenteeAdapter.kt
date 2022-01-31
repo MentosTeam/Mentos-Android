@@ -1,5 +1,6 @@
 package com.mentos.mentosandroid.ui.search
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.Mentee
 import com.mentos.mentosandroid.databinding.ItemHomeMenteeBinding
+import com.mentos.mentosandroid.util.MentosCategoryUtil
 import com.mentos.mentosandroid.util.navigate
 
 class SearchMenteeAdapter :
@@ -18,6 +20,14 @@ class SearchMenteeAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Mentee) {
             binding.mentee = item
+
+            //프로필 텍스트 적용
+            binding.itemHomeMenteeTv.text =
+                item.nickName + "/" + item.menteeMajor + "/" + item.mentorYear
+            binding.itemHomeMenteeTagTv.text =
+                "#" + MentosCategoryUtil.geMentosText(item.firstMajorCategory) +
+                        ", #" + MentosCategoryUtil.geMentosText(item.secondMajorCategory)
+
 
             binding.itemHomeMenteeLayout.setOnClickListener {
                 it.navigate(R.id.action_searchFragment_to_oneMenteeProfileFragment)
