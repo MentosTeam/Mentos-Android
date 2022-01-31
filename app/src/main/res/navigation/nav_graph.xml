@@ -60,19 +60,36 @@
         <action
             android:id="@+id/action_searchDetailDialog_to_oneMentorProfileFragment"
             app:destination="@id/oneMentorProfileFragment" />
+        <action
+            android:id="@+id/action_searchDetailDialog_to_mentoringStart1Fragment"
+            app:destination="@id/mentoringStart1Fragment" />
     </dialog>
 
     <fragment
         android:id="@+id/oneMenteeProfileFragment"
-        android:name="com.mentos.mentosandroid.ui.search.OneMenteeProfileFragment"
+        android:name="com.mentos.mentosandroid.ui.otherprofile.OneMenteeProfileFragment"
         android:label="OneMenteeProfileFragment"
         tools:layout="@layout/fragment_one_mentee_profile" />
 
     <fragment
         android:id="@+id/oneMentorProfileFragment"
-        android:name="com.mentos.mentosandroid.ui.search.OneMentorProfileFragment"
+        android:name="com.mentos.mentosandroid.ui.otherprofile.OneMentorProfileFragment"
         android:label="OneMentorProfileFragment"
-        tools:layout="@layout/fragment_one_mentor_profile" />
+        tools:layout="@layout/fragment_one_mentor_profile">
+        <argument
+            android:name="mentorId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_oneMentorProfileFragment_to_mentoringStart1Fragment"
+            app:destination="@id/mentoringStart1Fragment" />
+        <action
+            android:id="@+id/action_oneMentorProfileFragment_to_mentorPostListFragment"
+            app:destination="@id/mentorPostListFragment" />
+        <action
+            android:id="@+id/action_oneMentorProfileFragment_to_reviewListFragment"
+            app:destination="@id/reviewListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/stateFragment"
@@ -84,7 +101,7 @@
         android:id="@+id/profileFragment"
         android:name="com.mentos.mentosandroid.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_searchCreateFragment"
             app:destination="@id/searchCreateFragment" />
@@ -110,6 +127,10 @@
         <action
             android:id="@+id/action_mentoringStart1Fragment_to_mentoringStart2Fragment22"
             app:destination="@id/mentoringStart2Fragment2" />
+        <argument
+            android:name="mentorId"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -148,14 +169,13 @@
         android:id="@+id/profileMentorFragment"
         android:name="com.mentos.mentosandroid.ui.profile.ProfileMentorFragment"
         android:label="ProfileMentorFragment"
-        tools:layout="@layout/fragment_profile_mentor">
-    </fragment>
+        tools:layout="@layout/fragment_profile_mentor" />
 
     <fragment
         android:id="@+id/postListFragment"
-        android:name="com.mentos.mentosandroid.ui.profile.PostListFragment"
+        android:name="com.mentos.mentosandroid.ui.myprofiledetail.MyPostListFragment"
         android:label="PostListFragment"
-        tools:layout="@layout/fragment_post_list">
+        tools:layout="@layout/fragment_my_post_list">
         <action
             android:id="@+id/action_postListFragment_to_searchCreateFragment"
             app:destination="@id/searchCreateFragment" />
@@ -163,8 +183,23 @@
 
     <fragment
         android:id="@+id/reviewListFragment"
-        android:name="com.mentos.mentosandroid.ui.profile.ReviewListFragment"
+        android:name="com.mentos.mentosandroid.ui.myprofiledetail.ReviewListFragment"
         android:label="ReviewListFragment"
-        tools:layout="@layout/fragment_review_list"/>
+        tools:layout="@layout/fragment_review_list">
+        <argument
+            android:name="mentorId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/mentorPostListFragment"
+        android:name="com.mentos.mentosandroid.ui.otherprofile.MentorPostListFragment"
+        android:label="MentorPostListFragment"
+        tools:layout="@layout/fragment_mentor_post_list">
+        <argument
+            android:name="mentorId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>

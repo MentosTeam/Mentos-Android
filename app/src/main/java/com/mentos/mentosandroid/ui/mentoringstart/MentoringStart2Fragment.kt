@@ -11,16 +11,16 @@ import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.popBackStack
 
 class MentoringStart2Fragment : Fragment() {
-    private lateinit var binding : FragmentMentoringStart2Binding
+    private lateinit var binding: FragmentMentoringStart2Binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMentoringStart2Binding.inflate(inflater,container,false)
+    ): View {
+        binding = FragmentMentoringStart2Binding.inflate(inflater, container, false)
 
-        binding.mentoringStart2BackArrowIv.setOnClickListener {
+        binding.mentoringStart2BackIb.setOnClickListener {
             popBackStack()
         }
 

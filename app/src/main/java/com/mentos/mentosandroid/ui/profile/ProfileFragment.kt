@@ -45,7 +45,6 @@ class ProfileFragment : Fragment() {
 
         //버튼 클릭리스너
         setBtnWriteClickListener()
-        setBtnBackClickListener()
 
         //탭 선택 시 화면 변경
         setNowState(profileViewPager, tabLayout)
@@ -74,12 +73,6 @@ class ProfileFragment : Fragment() {
     private fun setBtnWriteClickListener() {
         binding.profileWriteIb.setOnClickListener {
             navigate(R.id.action_profileFragment_to_searchCreateFragment)
-        }
-    }
-
-    private fun setBtnBackClickListener() {
-        binding.profileBackIb.setOnClickListener {
-            popBackStack()
         }
     }
 }

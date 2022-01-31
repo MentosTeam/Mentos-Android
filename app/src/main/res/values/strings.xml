@@ -90,4 +90,8 @@
     <string name="mentor_profile_mentoring_title">지금까지 진행한 멘토링</string>
     <string name="mentor_profile_add_mentee_button">멘티로도 참여하고 싶어요!(프로필 생성하기)</string>
 
+    <string name="my_post_list_title">내가 쓴 글</string>
+    <string name="mentor_post_list_title">멘토 글 모음</string>
+    <string name="review_list_title">멘티들의 후기</string>
+
 </resources>

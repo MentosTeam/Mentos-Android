@@ -35,20 +35,16 @@ class SearchFragment : Fragment() {
 
     private fun initLayout() {
         when (SharedPreferenceController.getNowState(requireContext())) {
-            //멘토
             0 -> {
-                binding.searchMentorListRv.visibility = View.VISIBLE
-                binding.searchMenteeListRv.visibility = View.GONE
-                binding.searchMentorTitleSubIv.visibility = View.VISIBLE
-                binding.searchMenteeTitleSubIv.visibility = View.GONE
-            }
-            //멘티
-            1 -> {
                 binding.searchMentorListRv.visibility = View.GONE
                 binding.searchMenteeListRv.visibility = View.VISIBLE
-                binding.searchMentorTitleSubIv.visibility = View.INVISIBLE
-                binding.searchMenteeTitleSubIv.visibility = View.VISIBLE
+                binding.searchMentorTitleSubIv.setText(R.string.search_mentee_title_sub)
                 binding.searchWriteIb.visibility = View.GONE
+            }
+            1 -> {
+                binding.searchMentorListRv.visibility = View.VISIBLE
+                binding.searchMenteeListRv.visibility = View.GONE
+                binding.searchMentorTitleSubIv.setText(R.string.search_title_sub)
             }
         }
     }

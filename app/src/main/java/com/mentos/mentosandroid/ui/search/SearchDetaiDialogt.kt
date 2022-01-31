@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.DialogSearchDetailBinding
-import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.setMentosImg17
 
 class SearchDetailDialog : BottomSheetDialogFragment() {
@@ -24,6 +23,7 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         binding = DialogSearchDetailBinding.inflate(inflater, container, false)
         initData()
         setMentorInfoLayoutClickListener()
+        setMentoringStartClickListener()
         return binding.root
     }
 
@@ -48,7 +48,21 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
 
     private fun setMentorInfoLayoutClickListener() {
         binding.searchDetailMentorInfoLayout.setOnClickListener {
-            navigate(R.id.action_searchDetailDialog_to_oneMentorProfileFragment)
+            navigateWithData(
+                SearchDetailDialogDirections.actionSearchDetailDialogToOneMentorProfileFragment(
+                    args.postMento?.mentoId!!
+                )
+            )
+        }
+    }
+
+    private fun setMentoringStartClickListener() {
+        binding.searchBottomMentoringLayout.setOnClickListener {
+            navigateWithData(
+                SearchDetailDialogDirections.actionSearchDetailDialogToMentoringStart1Fragment(
+                    args.postMento?.mentoId!!
+                )
+            )
         }
     }
 }

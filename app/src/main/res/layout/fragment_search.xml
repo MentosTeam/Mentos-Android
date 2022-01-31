@@ -73,20 +73,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_title_iv" />
 
-            <TextView
-                android:id="@+id/search_mentee_title_sub_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/noto_regular"
-                android:includeFontPadding="false"
-                android:text="@string/search_mentee_title_sub"
-                android:textColor="@color/gray_7070"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_title_iv" />
-
             <soup.neumorphism.NeumorphCardView
                 android:id="@+id/search_bar_layout"
                 android:layout_width="match_parent"

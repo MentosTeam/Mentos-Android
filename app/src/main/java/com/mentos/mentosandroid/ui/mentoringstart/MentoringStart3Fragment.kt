@@ -21,7 +21,7 @@ class MentoringStart3Fragment : Fragment() {
 
 
         binding = FragmentMentoringStart3Binding.inflate(inflater, container, false)
-        binding.mentoringStart3BackArrowIv.setOnClickListener {
+        binding.mentoringStart3BackIb.setOnClickListener {
             popBackStack()
         }
 
