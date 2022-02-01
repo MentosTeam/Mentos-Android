@@ -101,4 +101,54 @@
     <string name="mentor_post_list_title">멘토 글 모음</string>
     <string name="review_list_title">멘티들의 후기</string>
 
+    <!--Splash Fragment-->
+    <string name="splash_title">누군가의 도움이 필요할 땐\n<b>멘토-쓰</b> 쓰러 가자!</string>
+    <string name="splash_btn_sign_in">로그인 하러가기</string>
+    <string name="splash_btn_sign_up">회원가입 하러가기</string>
+
+    <!--Sign up-->
+    <string name="sign_up_first_title">다음 항목을 작성해주세요</string>
+    <string name="sign_up_first_sub_title">이 곳에서는 별명으로 소통합니다!\n설정에서 성별 공개를 비공개로 바꿀 수 있어요!</string>
+    <string name="sign_up_name">이름</string>
+    <string name="sign_up_nick_name">별명</string>
+    <string name="sign_up_nick_name_check">중복확인</string>
+    <string name="sign_up_sex">성별</string>
+    <string name="sign_up_nick_name_success">사용 가능한 별명입니다</string>
+    <string name="sign_up_nick_name_fail">사용할 수 없는 별명입니다</string>
+    <string name="sign_up_first_btn">다음 단계로 넘어가기(1/4)</string>
+
+    <string name="sign_up_second_title"><b>학교 인증</b>이 필요해요!</string>
+    <string name="sign_up_second_sub_title">메일 주소는 아이디로 사용됩니다!</string>
+    <string name="sign_up_school">학교 선택</string>
+    <string name="sign_up_email">메일주소</string>
+    <string name="sign_up_email_confirm">인증번호</string>
+    <string name="sign_up_email_confirm_btn">인증받기</string>
+    <string name="sign_up_email_message">(3분 내에 입력해주세요)</string>
+    <string name="sign_up_second_btn">다음 단계로 넘어가기(2/4)</string>
+
+    <string name="sign_up_third_title"><b>전공</b>과 <b>학번</b>을 적어주세요</string>
+    <string name="sign_up_third_sub_title">다·부전공 포함한 전공을 직접 입력해 주세요!</string>
+    <string name="sign_up_major">전공</string>
+    <string name="sign_up_year">학번</string>
+    <string name="sign_up_third_btn">다음 단계로 넘어가기(3/4)</string>
+
+    <string name="sign_up_fourth_title"><b>비밀번호</b>를 설정해 주세요!</string>
+    <string name="sign_up_fourth_sub_title">아이디는 학교 인증시 사용한 메일 주소입니다!</string>
+    <string name="sign_up_password">비밀번호</string>
+    <string name="sign_up_password_hint">8-20자, 영문, 숫자, 특수문자 1개 이상 필수</string>
+    <string name="sign_up_password_check">확인란</string>
+    <string name="sign_up_password_check_hint">(한 번 더 입력해주세요!)</string>
+    <string name="sign_up_password_success">비밀번호가 일치합니다</string>
+    <string name="sign_up_password_fail">비밀번호가 일치하지 않습니다!</string>
+    <string name="sign_up_fourth_terms"><u>멘토-쓰 가입 약관에 모두 동의합니다</u></string>
+    <string name="sign_up_fourth_btn">회원가입 완료-!</string>
+
+    <string name="sign_in_id">이메일</string>
+    <string name="sign_in_btn">멘토-쓰 시작하기</string>
+    <string name="sign_in_find_password">비밀번호 재발급</string>
+
+    <string name="find_password_title"><b>임시 비밀번호</b> 발급</string>
+    <string name="find_password_sub_title">임시 비밀번호를 받을 이메일을 입력해주세요.</string>
+    <string name="find_password_btn">비밀번호 발급받기</string>
+
 </resources>

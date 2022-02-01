@@ -28,4 +28,6 @@
     <color name="bg_green">#c5e6bd</color>
     <color name="bg_blue">#a7b3f3</color>
     <color name="bg_purple">#edc3e7</color>
+    <color name="red_alert">#e50000</color>
+    <color name="green_alert">#02a147</color>
 </resources>
