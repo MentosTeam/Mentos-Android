@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.mentos.mentosandroid.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_signUpFirstFragment"
+            app:destination="@id/signUpFirstFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFirstFragment"
+        android:name="com.mentos.mentosandroid.ui.signup.SignUpFirstFragment"
+        android:label="SignUpFirstFragment"
+        tools:layout="@layout/fragment_sign_up_first">
+        <action
+            android:id="@+id/action_signUpFirstFragment_to_signUpSecondFragment"
+            app:destination="@id/signUpSecondFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpSecondFragment"
+        android:name="com.mentos.mentosandroid.ui.signup.SignUpSecondFragment"
+        android:label="SignUpSecondFragment"
+        tools:layout="@layout/fragment_sign_up_second">
+        <action
+            android:id="@+id/action_signUpSecondFragment_to_signUpThirdFragment"
+            app:destination="@id/signUpThirdFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpThirdFragment"
+        android:name="com.mentos.mentosandroid.ui.signup.SignUpThirdFragment"
+        android:label="SignUpThirdFragment"
+        tools:layout="@layout/fragment_sign_up_third">
+        <action
+            android:id="@+id/action_signUpThirdFragment_to_signUpFourthFragment"
+            app:destination="@id/signUpFourthFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFourthFragment"
+        android:name="com.mentos.mentosandroid.ui.signup.SignUpFourthFragment"
+        android:label="SignUpFourthFragment"
+        tools:layout="@layout/fragment_sign_up_fourth" />
+
+    <fragment
+        android:id="@+id/findPwFragment"
+        android:name="com.mentos.mentosandroid.ui.findpassword.FindPwFragment"
+        android:label="FindPwFragment"
+        tools:layout="@layout/fragment_find_password" />
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.mentos.mentosandroid.ui.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signInFragment_to_findPwFragment"
+            app:destination="@id/findPwFragment" />
+    </fragment>
+</navigation>
