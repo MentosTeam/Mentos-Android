@@ -5,38 +5,80 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringStart3Binding
+import com.mentos.mentosandroid.util.MentosCategoryDialog
+import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosText
+import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
+import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg71
 import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
 class MentoringStart3Fragment : Fragment() {
     private lateinit var binding: FragmentMentoringStart3Binding
+    private val args by navArgs<MentoringStart3FragmentArgs>()
+
+    var mentosCategory = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
         binding = FragmentMentoringStart3Binding.inflate(inflater, container, false)
+
+        //mentosingStart4에서 back버튼 눌렀을 때 사용
+        initLayout()
+
+        setBtnBackClickListener()
+        setBtnSelectClickListener()
+        setBtnStartClickListener()
+
+        return binding.root
+    }
+
+    private fun initLayout() {
+        if (mentosCategory != -1) {
+            binding.mentoringStart3SelectedImg.setMentosImg71(mentosCategory)
+            binding.mentoringStart3SelectedTv.setMentosText(mentosCategory)
+            binding.mentoringStart3SelectTv.visibility = View.GONE
+            binding.mentoringStart3ButtonTv.setBackgroundResource(R.drawable.shape_black_fill_8)
+        }
+    }
+
+    private fun setBtnStartClickListener() {
+        binding.mentoringStart3ButtonTv.setOnClickListener {
+            if (mentosCategory != -1) {
+                var mentoringStart = args.mentoringStart
+                mentoringStart.majorCategoryId = mentosCategory
+                navigateWithData(
+                    MentoringStart3FragmentDirections.actionMentoringStart3Fragment2ToMentoringStart4Fragment(
+                        mentoringStart
+                    )
+                )
+            }
+        }
+    }
+
+    private fun setBtnSelectClickListener() {
+        binding.mentoringStart3ChooseMentosLayout.setOnClickListener {
+            MentosCategoryDialog { category ->
+                if (category != 0) {
+                    mentosCategory = category
+                    binding.mentoringStart3SelectedImg.setMentosImg71(category)
+                    binding.mentoringStart3SelectedTv.setMentosText(category)
+                    binding.mentoringStart3SelectTv.visibility = View.GONE
+                    binding.mentoringStart3ButtonTv.setBackgroundResource(R.drawable.shape_black_fill_8)
+                }
+            }.show(childFragmentManager, "SELECT_MENTORING_START")
+        }
+    }
+
+    private fun setBtnBackClickListener() {
         binding.mentoringStart3BackIb.setOnClickListener {
             popBackStack()
         }
-
-        binding.mentoringStart3ChooseMentosIv.setOnClickListener {
-//            val bottomsheet = MentosCategoryDialog()
-//            bottomsheet.setStyle(STYLE_NORMAL,R.style.AppBottomSheetDialogTheme)
-//            bottomsheet.show(childFragmentManager,bottomsheet.tag)
-        }
-
-
-
-        binding.mentoringStart3ButtonBtn.setOnClickListener {
-            navigate(R.id.action_mentoringStart3Fragment2_to_mentoringStart4Fragment)
-        }
-
-        return binding.root
     }
 }

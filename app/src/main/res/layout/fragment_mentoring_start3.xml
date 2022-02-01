@@ -65,38 +65,90 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mentoring_start3_title_tv" />
 
-        <TextView
-            android:id="@+id/mentoring_start3_choose_mentos_iv"
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/mentoring_start3_choose_mentos_layout"
+            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/shape_gray_stroke_20"
-            android:fontFamily="@font/noto_regular"
-            android:includeFontPadding="false"
-            android:paddingHorizontal="46dp"
-            android:paddingVertical="65dp"
-            android:text="선택하기"
-            android:textColor="@color/gray_7070"
-            android:textSize="12sp"
+            android:layout_marginTop="50dp"
+            android:padding="10dp"
+            app:neumorph_backgroundColor="@color/white"
+            app:neumorph_inset="10dp"
+            app:neumorph_shadowColorDark="@color/gray_shadow"
+            app:neumorph_shadowColorLight="@android:color/transparent"
+            app:neumorph_shadowElevation="4dp"
+            app:neumorph_shapeAppearance="@style/shadow_round_20"
+            app:neumorph_shapeType="flat"
+            app:neumorph_strokeColor="@color/gray_eded"
+            app:neumorph_strokeWidth="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mentoring_start3_subtitle1_tv" />
+            app:layout_constraintTop_toBottomOf="@id/mentoring_start3_subtitle1_tv">
 
-        <Button
-            android:id="@+id/mentoring_start3_button_btn"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="33dp"
+                android:layout_marginVertical="25dp">
+
+                <TextView
+                    android:id="@+id/mentoring_start3_select_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginVertical="40dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/mentoring_start3_select"
+                    android:textColor="@color/gray_7070"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/mentoring_start3_selected_Img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/mentoring_start3_selected_tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/mentoring_start3_selected_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black_3333"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mentoring_start3_selected_Img" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </soup.neumorphism.NeumorphCardView>
+
+        <TextView
+            android:id="@+id/mentoring_start3_button_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="27dp"
-            android:layout_marginTop="72dp"
-            android:background="@drawable/shape_black_fill_8"
+            android:layout_marginTop="62dp"
+            android:background="@drawable/shape_gray_fill_8"
             android:fontFamily="@font/noto_regular"
+            android:gravity="center"
             android:includeFontPadding="false"
+            android:paddingVertical="13dp"
             android:text="@string/mentoring_start3_next_button"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mentoring_start3_choose_mentos_iv" />
+            app:layout_constraintTop_toBottomOf="@id/mentoring_start3_choose_mentos_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

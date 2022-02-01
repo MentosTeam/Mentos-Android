@@ -157,6 +157,9 @@
         <action
             android:id="@+id/action_mentoringStart2Fragment2_to_mentoringStart3Fragment2"
             app:destination="@id/mentoringStart3Fragment2" />
+        <argument
+            android:name="mentoringStart"
+            app:argType="com.mentos.mentosandroid.data.MentoringStart" />
     </fragment>
 
     <fragment
@@ -167,6 +170,9 @@
         <action
             android:id="@+id/action_mentoringStart3Fragment2_to_mentoringStart4Fragment"
             app:destination="@id/mentoringStart4Fragment" />
+        <argument
+            android:name="mentoringStart"
+            app:argType="com.mentos.mentosandroid.data.MentoringStart" />
     </fragment>
 
     <dialog
@@ -179,7 +185,11 @@
         android:id="@+id/mentoringStart4Fragment"
         android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringStart4Fragment"
         android:label="MentoringStart4Fragment"
-        tools:layout="@layout/fragment_mentoring_start4" />
+        tools:layout="@layout/fragment_mentoring_start4">
+        <argument
+            android:name="mentoringStart"
+            app:argType="com.mentos.mentosandroid.data.MentoringStart" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileMentorFragment"
