@@ -1,6 +1,6 @@
 package com.mentos.mentosandroid.util
 
-import android.content.Context
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.mentos.mentosandroid.R
@@ -39,6 +39,23 @@ object MentosCategoryUtil {
             10 -> "건축"
             11 -> "예체능"
             else -> "기타"
+        }
+    }
+
+    fun View.setMentosColor(category: Int?) {
+        when (category) {
+            1 -> this.setBackgroundResource(R.color.mentos_red)
+            2 -> this.setBackgroundResource(R.color.mentos_orange)
+            3 -> this.setBackgroundResource(R.color.mentos_yellow)
+            4 -> this.setBackgroundResource(R.color.mentos_green)
+            5 -> this.setBackgroundResource(R.color.mentos_green_dark)
+            6 -> this.setBackgroundResource(R.color.mentos_sky)
+            7 -> this.setBackgroundResource(R.color.mentos_blue)
+            8 -> this.setBackgroundResource(R.color.mentos_pink)
+            9 -> this.setBackgroundResource(R.color.mentos_purple)
+            10 -> this.setBackgroundResource(R.color.mentos_brown_light)
+            11 -> this.setBackgroundResource(R.color.mentos_brown_red)
+            12 -> this.setBackgroundResource(R.color.mentos_gray)
         }
     }
 }

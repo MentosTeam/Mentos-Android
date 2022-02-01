@@ -67,7 +67,7 @@ object MentosImgUtil {
 
     @BindingAdapter("mentosImg41")
     @JvmStatic
-    fun ImageView.setMentosImg41(category: Int) {
+    fun ImageView.setMentosImg41(category: Int?) {
         when (category) {
             1 -> this.setImageResource(R.drawable.img_mentos_red_41)
             2 -> this.setImageResource(R.drawable.img_mentos_orange_41)
@@ -81,6 +81,25 @@ object MentosImgUtil {
             10 -> this.setImageResource(R.drawable.img_mentos_brown_light_41)
             11 -> this.setImageResource(R.drawable.img_mentos_brown_red_41)
             12 -> this.setImageResource(R.drawable.img_mentos_gray_41)
+        }
+    }
+
+    @BindingAdapter("mentosImg71")
+    @JvmStatic
+    fun ImageView.setMentosImg71(category: Int) {
+        when (category) {
+            1 -> this.setImageResource(R.drawable.img_mentos_red_71)
+            2 -> this.setImageResource(R.drawable.img_mentos_orange_71)
+            3 -> this.setImageResource(R.drawable.img_mentos_yellow_71)
+            4 -> this.setImageResource(R.drawable.img_mentos_green_71)
+            5 -> this.setImageResource(R.drawable.img_mentos_green_dark_71)
+            6 -> this.setImageResource(R.drawable.img_mentos_sky_71)
+            7 -> this.setImageResource(R.drawable.img_mentos_blue_71)
+            8 -> this.setImageResource(R.drawable.img_mentos_pink_71)
+            9 -> this.setImageResource(R.drawable.img_mentos_purple_71)
+            10 -> this.setImageResource(R.drawable.img_mentos_brown_light_71)
+            11 -> this.setImageResource(R.drawable.img_mentos_brown_red_71)
+            12 -> this.setImageResource(R.drawable.img_mentos_gray_71)
         }
     }
 }

@@ -27,13 +27,13 @@ class HomeFragment : Fragment() {
 
         //뷰모델 연결
         initViewModel()
-
         //무지개 배경 지정
         setRainbowBackground()
-
         setSearchBarClickListener()
-
         initLayout()
+
+        //가지고 있는 멘토스 개수 저장
+        SharedPreferenceController.setMyMentos(requireContext(), homeViewModel.menteeHomeData.value?.mentos)
 
         return binding.root
     }
