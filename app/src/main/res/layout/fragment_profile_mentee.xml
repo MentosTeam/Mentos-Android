@@ -14,285 +14,301 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mentee_profile_info_layout"
+        <ScrollView
+            android:id="@+id/mentee_profile_scroll_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_gray_stroke_rec"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/mentee_profile_etc_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="16dp"
-                android:background="@drawable/shape_gray_stroke_20"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent">
 
-                <soup.neumorphism.NeumorphCardView
-                    android:id="@+id/mentee_profile_img_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:neumorph_backgroundColor="@color/white"
-                    app:neumorph_inset="10dp"
-                    app:neumorph_shadowColorDark="@color/gray_shadow"
-                    app:neumorph_shadowColorLight="@android:color/transparent"
-                    app:neumorph_shadowElevation="3dp"
-                    app:neumorph_shapeAppearance="@style/shadow_round_8"
-                    app:neumorph_shapeType="flat"
-                    app:neumorph_strokeColor="@color/gray_eded"
-                    app:neumorph_strokeWidth="1dp">
-
-                    <ImageView
-                        android:id="@+id/mentor_profile_img"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/img_home_user" />
-                </soup.neumorphism.NeumorphCardView>
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@id/mentee_profile_img_layout"
-                    app:layout_constraintStart_toEndOf="@id/mentee_profile_img_layout"
-                    app:layout_constraintTop_toTopOf="@id/mentee_profile_img_layout">
-
-                    <TextView
-                        android:id="@+id/mentee_profile_name_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_bold"
-                        android:includeFontPadding="false"
-                        android:text="홍길동 멘티"
-                        android:textColor="@color/black_3333"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/mentee_profile_uni_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_medium"
-                        android:includeFontPadding="false"
-                        android:text="0000대학교 / 22학번"
-                        android:textColor="@color/black_3333"
-                        android:textSize="11sp" />
-
-                    <TextView
-                        android:id="@+id/mentee_profile_major_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_medium"
-                        android:includeFontPadding="false"
-                        android:text="중어중문, 경영학 전공"
-                        android:textColor="@color/black_3333"
-                        android:textSize="11sp" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/mentee_profile_view1"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentee_profile_info_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray_eded"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_rec"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mentee_profile_img_layout" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="center"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="16dp"
+                        android:background="@drawable/shape_gray_stroke_20"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <soup.neumorphism.NeumorphCardView
+                            android:id="@+id/mentee_profile_img_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="7dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="10dp"
+                            android:padding="10dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:neumorph_backgroundColor="@color/white"
+                            app:neumorph_inset="10dp"
+                            app:neumorph_shadowColorDark="@color/gray_shadow"
+                            app:neumorph_shadowColorLight="@android:color/transparent"
+                            app:neumorph_shadowElevation="3dp"
+                            app:neumorph_shapeAppearance="@style/shadow_round_8"
+                            app:neumorph_shapeType="flat"
+                            app:neumorph_strokeColor="@color/gray_eded"
+                            app:neumorph_strokeWidth="1dp">
+
+                            <ImageView
+                                android:id="@+id/mentor_profile_img"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/img_home_user" />
+                        </soup.neumorphism.NeumorphCardView>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="@id/mentee_profile_img_layout"
+                            app:layout_constraintStart_toEndOf="@id/mentee_profile_img_layout"
+                            app:layout_constraintTop_toTopOf="@id/mentee_profile_img_layout">
+
+                            <TextView
+                                android:id="@+id/mentee_profile_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="홍길동 멘티"
+                                android:textColor="@color/black_3333"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/mentee_profile_uni_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_medium"
+                                android:includeFontPadding="false"
+                                android:text="0000대학교 / 22학번"
+                                android:textColor="@color/black_3333"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:id="@+id/mentee_profile_major_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_medium"
+                                android:includeFontPadding="false"
+                                android:text="중어중문, 경영학 전공"
+                                android:textColor="@color/black_3333"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/mentee_profile_view1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/gray_eded"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mentee_profile_img_layout" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/mentee_profile_view1">
+
+                            <LinearLayout
+                                android:id="@+id/mentee_profile_mentoring_count_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/mentee_profile_view1">
+
+                                <ImageView
+                                    android:id="@+id/mentee_profile_mentoring_count_img"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_profile_mentoring_count"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/mentee_profile_view1" />
+
+                                <TextView
+                                    android:id="@+id/mentee_profile_mentoring_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/profile_info_mentoring_count_title"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:id="@+id/mentee_profile_mentoring_count_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_bold"
+                                    android:includeFontPadding="false"
+                                    android:text="3회"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/mentee_profile_view2"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_eded" />
+
+                            <LinearLayout
+                                android:id="@+id/mentee_profile_certification_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/mentee_profile_certification_img"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_profile_certification" />
+
+                                <TextView
+                                    android:id="@+id/mentee_profile_certification_tv1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/profile_info_certification_title"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:id="@+id/mentee_profile_certification_tv2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_bold"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/profile_info_certification_finish"
+                                    android:textColor="@color/black_3333"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentee_profile_major_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_gray_stroke_rec"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/mentee_profile_view1">
+                    app:layout_constraintTop_toBottomOf="@+id/mentee_profile_info_layout">
 
-                    <LinearLayout
-                        android:id="@+id/mentee_profile_mentoring_count_layout"
+                    <TextView
+                        android:id="@+id/mentee_profile_major_title_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/noto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentee_profile_major_title"
+                        android:textColor="@color/black_3333"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mentee_profile_view1">
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/mentee_profile_mentoring_count_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_profile_mentoring_count"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/mentee_profile_view1" />
-
-                        <TextView
-                            android:id="@+id/mentee_profile_mentoring_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:fontFamily="@font/noto_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/profile_info_mentoring_count_title"
-                            android:textColor="@color/black_3333"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:id="@+id/mentee_profile_mentoring_count_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:fontFamily="@font/noto_bold"
-                            android:includeFontPadding="false"
-                            android:text="3회"
-                            android:textColor="@color/black_3333"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/mentee_profile_view2"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/gray_eded" />
-
-                    <LinearLayout
-                        android:id="@+id/mentee_profile_certification_layout"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mentee_profile_major_mentos_rv"
+                        majorItems="@{profileViewModel.majorList}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="7dp"
+                        android:orientation="horizontal"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/mentee_profile_major_title_tv"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_major_mentos" />
 
-                        <ImageView
-                            android:id="@+id/mentee_profile_certification_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_profile_certification" />
+                    <soup.neumorphism.NeumorphCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="1dp"
+                        android:padding="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/mentee_profile_major_mentos_rv"
+                        app:neumorph_backgroundColor="@color/white"
+                        app:neumorph_insetBottom="10dp"
+                        app:neumorph_insetEnd="10dp"
+                        app:neumorph_insetStart="10dp"
+                        app:neumorph_insetTop="4dp"
+                        app:neumorph_shadowColorDark="@color/gray_shadow"
+                        app:neumorph_shadowColorLight="@android:color/transparent"
+                        app:neumorph_shadowElevation="4dp"
+                        app:neumorph_shapeAppearance="@style/shadow_round_20"
+                        app:neumorph_shapeType="flat"
+                        app:neumorph_strokeColor="@color/gray_eded"
+                        app:neumorph_strokeWidth="1dp">
 
                         <TextView
-                            android:id="@+id/mentee_profile_certification_tv1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
+                            android:layout_marginStart="17dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:text="@string/profile_info_certification_title"
+                            android:text="22학번 새내기입니다,,,,! 경제학과인데 경제학원론1 시험은 어떻게 대비해야할까요? 따라가기 힘들어요ㅠ\n기숙사나 학생회 등의 정보도 함께 얻고 싶어요!"
                             android:textColor="@color/black_3333"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:id="@+id/mentee_profile_certification_tv2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:fontFamily="@font/noto_bold"
-                            android:includeFontPadding="false"
-                            android:text="@string/profile_info_certification_finish"
-                            android:textColor="@color/black_3333"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </LinearLayout>
+                            android:textSize="11sp" />
+                    </soup.neumorphism.NeumorphCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mentee_profile_major_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/shape_gray_stroke_rec"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mentee_profile_info_layout">
-
-            <TextView
-                android:id="@+id/mentee_profile_major_title_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="7dp"
-                android:fontFamily="@font/noto_bold"
-                android:includeFontPadding="false"
-                android:text="@string/mentee_profile_major_title"
-                android:textColor="@color/black_3333"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mentee_profile_major_mentos_rv"
-                majorItems="@{profileViewModel.majorList}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="7dp"
-                android:orientation="horizontal"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mentee_profile_major_title_tv"
-                tools:itemCount="2"
-                tools:listitem="@layout/item_major_mentos" />
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginBottom="1dp"
-                android:padding="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mentee_profile_major_mentos_rv"
-                app:neumorph_backgroundColor="@color/white"
-                app:neumorph_insetBottom="10dp"
-                app:neumorph_insetEnd="10dp"
-                app:neumorph_insetStart="10dp"
-                app:neumorph_insetTop="4dp"
-                app:neumorph_shadowColorDark="@color/gray_shadow"
-                app:neumorph_shadowColorLight="@android:color/transparent"
-                app:neumorph_shadowElevation="4dp"
-                app:neumorph_shapeAppearance="@style/shadow_round_20"
-                app:neumorph_shapeType="flat"
-                app:neumorph_strokeColor="@color/gray_eded"
-                app:neumorph_strokeWidth="1dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:text="22학번 새내기입니다,,,,! 경제학과인데 경제학원론1 시험은 어떻게 대비해야할까요? 따라가기 힘들어요ㅠ\n기숙사나 학생회 등의 정보도 함께 얻고 싶어요!"
-                    android:textColor="@color/black_3333"
-                    android:textSize="11sp" />
-            </soup.neumorphism.NeumorphCardView>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
         <LinearLayout
             android:id="@+id/mentee_profile_etc_layout"
@@ -398,4 +414,6 @@
             </soup.neumorphism.NeumorphCardView>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

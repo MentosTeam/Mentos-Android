@@ -25,9 +25,9 @@ class ProfileFragment : Fragment() {
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
+        initLayout()
+
         val profileViewPagerAdapter = ProfileViewPagerAdapter(this)
-
-
         val profileViewPager = binding.profileTabVp
         //스와이프 막기
         profileViewPager.isUserInputEnabled = false
@@ -60,6 +60,7 @@ class ProfileFragment : Fragment() {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 SharedPreferenceController.setNowState(requireContext(), tab?.position)
+                initLayout()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -73,6 +74,19 @@ class ProfileFragment : Fragment() {
     private fun setBtnWriteClickListener() {
         binding.profileWriteIb.setOnClickListener {
             navigate(R.id.action_profileFragment_to_searchCreateFragment)
+        }
+    }
+
+    private fun initLayout() {
+        when (SharedPreferenceController.getNowState(requireContext())) {
+            //멘토
+            0 -> {
+                binding.profileWriteIb.visibility = View.VISIBLE
+            }
+            //멘티
+            1 -> {
+                binding.profileWriteIb.visibility = View.GONE
+            }
         }
     }
 }

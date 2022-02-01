@@ -30,4 +30,5 @@
     <color name="bg_purple">#edc3e7</color>
     <color name="red_alert">#e50000</color>
     <color name="green_alert">#02a147</color>
+    <color name="red_e500">#e50000</color>
 </resources>
