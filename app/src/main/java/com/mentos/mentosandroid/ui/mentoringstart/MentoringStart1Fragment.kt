@@ -1,11 +1,13 @@
 package com.mentos.mentosandroid.ui.mentoringstart
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -76,14 +78,17 @@ class MentoringStart1Fragment : Fragment() {
     private fun chkTextValidation(mentoringCount: String) {
         if (mentoringCount.equals("") || Integer.parseInt(mentoringCount) == 0) {
             binding.mentoringStart1ButtonTv.setBackgroundResource(R.drawable.shape_gray_fill_8)
+            binding.mentoringStart1ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_c7c6))
             binding.mentoringStart1ButtonTv.isClickable = false
             binding.mentoringStart1ErrorTv.visibility = View.VISIBLE
         } else if (Integer.parseInt(mentoringCount) in 1..10) {
             binding.mentoringStart1ButtonTv.setBackgroundResource(R.drawable.shape_black_fill_8)
+            binding.mentoringStart1ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             binding.mentoringStart1ButtonTv.isClickable = true
             binding.mentoringStart1ErrorTv.visibility = View.GONE
         } else {
             binding.mentoringStart1ButtonTv.setBackgroundResource(R.drawable.shape_gray_fill_8)
+            binding.mentoringStart1ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_c7c6))
             binding.mentoringStart1ButtonTv.isClickable = false
             binding.mentoringStart1ErrorTv.visibility = View.VISIBLE
         }

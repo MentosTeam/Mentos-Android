@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
@@ -45,6 +46,7 @@ class MentoringStart3Fragment : Fragment() {
             binding.mentoringStart3SelectedTv.setMentosText(mentosCategory)
             binding.mentoringStart3SelectTv.visibility = View.GONE
             binding.mentoringStart3ButtonTv.setBackgroundResource(R.drawable.shape_black_fill_8)
+            binding.mentoringStart3ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
     }
 
@@ -71,6 +73,7 @@ class MentoringStart3Fragment : Fragment() {
                     binding.mentoringStart3SelectedTv.setMentosText(category)
                     binding.mentoringStart3SelectTv.visibility = View.GONE
                     binding.mentoringStart3ButtonTv.setBackgroundResource(R.drawable.shape_black_fill_8)
+                    binding.mentoringStart3ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 }
             }.show(childFragmentManager, "SELECT_MENTORING_START")
         }

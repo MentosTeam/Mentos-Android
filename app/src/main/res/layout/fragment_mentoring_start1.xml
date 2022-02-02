@@ -166,7 +166,7 @@
                 android:includeFontPadding="false"
                 android:paddingVertical="13dp"
                 android:text="@string/mentoring_start1_next_button"
-                android:textColor="@color/white"
+                android:textColor="@color/gray_c7c6"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

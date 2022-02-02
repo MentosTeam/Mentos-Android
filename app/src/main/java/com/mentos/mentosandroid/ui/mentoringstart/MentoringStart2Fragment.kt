@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
@@ -76,16 +77,19 @@ class MentoringStart2Fragment : Fragment() {
     private fun chkTextValidation(mentosCount: String) {
         if (mentosCount.equals("") || Integer.parseInt(mentosCount) == 0) {
             binding.mentoringStart2ButtonTv.setBackgroundResource(R.drawable.shape_gray_fill_8)
+            binding.mentoringStart2ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_c7c6))
             binding.mentoringStart2ButtonTv.isClickable = false
             binding.mentoringStart2ErrorTv.visibility = View.VISIBLE
             binding.mentoringStart2Error2Tv.visibility = View.GONE
         } else if (Integer.parseInt(mentosCount) > SharedPreferenceController.getMyMentos(requireContext())) {
             binding.mentoringStart2ButtonTv.setBackgroundResource(R.drawable.shape_gray_fill_8)
+            binding.mentoringStart2ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_c7c6))
             binding.mentoringStart2ButtonTv.isClickable = false
             binding.mentoringStart2ErrorTv.visibility = View.GONE
             binding.mentoringStart2Error2Tv.visibility = View.VISIBLE
         } else {
             binding.mentoringStart2ButtonTv.setBackgroundResource(R.drawable.shape_black_fill_8)
+            binding.mentoringStart2ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             binding.mentoringStart2ButtonTv.isClickable = true
             binding.mentoringStart2ErrorTv.visibility = View.GONE
             binding.mentoringStart2Error2Tv.visibility = View.GONE
