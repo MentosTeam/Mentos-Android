@@ -32,8 +32,8 @@
     <!--Mentoring start2-->
     <string name="mentoring_start2_title">멘토링 시작하기</string>
     <string name="mentoring_start2_subtitle1">멘토는 멘티에게\n몇 개의 멘토-쓰를 받나요?</string>
-    <string name="mentoring_start2_error">멘토-쓰는 1개 이상 전달 가능합니다.</string>
-    <string name="mentoring_start2_error2">현재 보유한 멘토-쓰보다 많습니다.</string>
+    <string name="mentoring_start2_error">최소 1개 이상 전달 가능합니다</string>
+    <string name="mentoring_start2_error2">보유한 멘토-쓰를 초과한 개수입니다</string>
     <string name="mentoring_start2_next_button">다음 단계로(2/3)</string>
 
     <!--Mentoring start3-->
@@ -164,4 +164,27 @@
     <string name="find_password_btn">비밀번호 발급받기</string>
     <string name="find_password_goto_sign_in">로그인 하러가기</string>
 
+    <!--Setting Main-->
+    <string name="setting_profile_title">프로필 관리</string>
+    <string name="setting_nickname">별명</string>
+    <string name="setting_image">프로필 사진</string>
+    <string name="setting_sex">성별 공개 설정</string>
+    <string name="setting_mentos">멘토-쓰 및 자기소개</string>
+    <string name="setting_major">전공 및 학번</string>
+    <string name="setting_etc_title">기타</string>
+    <string name="setting_pw">비밀번호 변경</string>
+    <string name="setting_policy">이용약관 / 개인처리정보지침</string>
+    <string name="setting_logout">로그아웃</string>
+    <string name="setting_withdrawal">회원탈퇴</string>
+
+    <string name="setting_change_complete">변경 완료</string>
+
+    <string name="change_pw_title">비밀번호 변경</string>
+    <string name="change_now_pw">현재 비밀번호</string>
+    <string name="change_new_pw_">새 비밀번호</string>
+    <string name="change_chk_new_pw">새 비밀번호 재입력</string>
+
+    <string name="change_profile_img"><b>프로필 이미지</b>를 넣어주세요!</string>
+
+    <string name="change_nickname_title"><b>새로운 별명</b>을 입력해주세요</string>
 </resources>
