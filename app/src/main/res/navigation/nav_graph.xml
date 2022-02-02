@@ -133,7 +133,23 @@
         android:id="@+id/settingFragment"
         android:name="com.mentos.mentosandroid.ui.setting.SettingFragment"
         android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_changeMajorFragment"
+            app:destination="@id/changeMajorFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_changeNicknameFragment"
+            app:destination="@id/changeNicknameFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_changeMentosFragment"
+            app:destination="@id/changeMentosFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_changeProfileImgFragment"
+            app:destination="@id/changeProfileImgFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/mentoringStart1Fragment"
@@ -234,4 +250,34 @@
             android:id="@+id/action_mentorPostListFragment_to_searchDetailDialog"
             app:destination="@id/searchDetailDialog" />
     </fragment>
+
+    <fragment
+        android:id="@+id/changeMajorFragment"
+        android:name="com.mentos.mentosandroid.ui.setting.ChangeMajorFragment"
+        android:label="ChangeMajorFragment"
+        tools:layout="@layout/fragment_change_major"/>
+
+    <fragment
+        android:id="@+id/changeMentosFragment"
+        android:name="com.mentos.mentosandroid.ui.setting.ChangeMentosFragment"
+        android:label="ChangeMentosFragment"
+        tools:layout="@layout/fragment_change_mentos"/>
+
+    <fragment
+        android:id="@+id/changeNicknameFragment"
+        android:name="com.mentos.mentosandroid.ui.setting.ChangeNicknameFragment"
+        android:label="ChangeNicknameFragment"
+        tools:layout="@layout/fragment_change_nickname"/>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.mentos.mentosandroid.ui.setting.ChangePasswordFragment"
+        android:label="ChangePasswordFragment"
+        tools:layout="@layout/fragment_change_password"/>
+
+    <fragment
+        android:id="@+id/changeProfileImgFragment"
+        android:name="com.mentos.mentosandroid.ui.setting.ChangeProfileImgFragment"
+        android:label="ChangeProfileImgFragment"
+        tools:layout="@layout/fragment_change_profile_img"/>
 </navigation>
