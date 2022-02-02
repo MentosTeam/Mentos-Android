@@ -16,7 +16,6 @@ import com.mentos.mentosandroid.util.navigate
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,76 +24,26 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        //뷰모델 연결
-        initViewModel()
-        //무지개 배경 지정
-        setRainbowBackground()
-        setSearchBarClickListener()
         initLayout()
-
-        //가지고 있는 멘토스 개수 저장
-        SharedPreferenceController.setMyMentos(requireContext(), homeViewModel.menteeHomeData.value?.mentos)
 
         return binding.root
     }
 
     private fun initLayout() {
+        val transaction = childFragmentManager.beginTransaction()
         when (SharedPreferenceController.getNowState(requireContext())) {
             //멘토
             0 -> {
-                binding.homeSearchTv1.setText(R.string.mentor_home_search_main)
-                binding.homeSearchTv2.setText(R.string.mentor_home_search_sub)
-                binding.homeCategoryTv1.setText(R.string.mentor_home_category_main)
-                binding.homeCategoryTv2.setText(R.string.mentor_home_category_sub)
-                binding.homeMenteeCategoryRv.visibility = View.VISIBLE
-                binding.homeMentorCategoryRv.visibility = View.GONE
-                binding.homeOtherTv.setText(R.string.mentor_home_other)
-                binding.homeOtherMenteeRv.visibility = View.VISIBLE
-                binding.homeOtherMentorRv.visibility = View.GONE
+                val mentorHomeFragment = MentorHomeFragment()
+                transaction.replace(R.id.home_fragment_container, mentorHomeFragment).commit()
             }
             //멘티
             1 -> {
-                binding.homeSearchTv1.setText(R.string.mentee_home_search_main)
-                binding.homeSearchTv2.setText(R.string.mentee_home_search_sub)
-                binding.homeCategoryTv1.setText(R.string.mentee_home_category_main)
-                binding.homeCategoryTv2.setText(R.string.mentee_home_category_sub)
-                binding.homeMenteeCategoryRv.visibility = View.GONE
-                binding.homeMentorCategoryRv.visibility = View.VISIBLE
-                binding.homeOtherTv.setText(R.string.mentee_home_other)
-                binding.homeOtherMenteeRv.visibility = View.GONE
-                binding.homeOtherMentorRv.visibility = View.VISIBLE
+                val menteeHomeFragment = MenteeHomeFragment()
+                transaction.replace(R.id.home_fragment_container, menteeHomeFragment).commit()
             }
         }
     }
 
-    private fun setSearchBarClickListener() {
-        binding.homeSearchLayout.setOnClickListener {
-            navigate(R.id.action_homeFragment_to_searchFragment)
-        }
-    }
 
-    private fun initViewModel() {
-        //뷰모델 연결
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        binding.homeViewModel = homeViewModel
-
-        //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
-        binding.lifecycleOwner = this
-    }
-
-    private fun setRainbowBackground() {
-        //homeTopLayout에 무지개 배경 지정
-        var bgHomeTopLayout: GradientDrawable = binding.homeTopLayout.background as GradientDrawable
-        bgHomeTopLayout.setColors(
-            intArrayOf(
-                ContextCompat.getColor(requireContext(), R.color.bg_red),
-                ContextCompat.getColor(requireContext(), R.color.bg_orange),
-                ContextCompat.getColor(requireContext(), R.color.bg_yellow),
-                ContextCompat.getColor(requireContext(), R.color.bg_green),
-                ContextCompat.getColor(requireContext(), R.color.bg_blue),
-                ContextCompat.getColor(requireContext(), R.color.bg_purple)
-            )
-        )
-        bgHomeTopLayout.orientation = GradientDrawable.Orientation.TL_BR
-    }
 }
