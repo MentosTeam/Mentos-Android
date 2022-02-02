@@ -54,7 +54,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_title_tv"
-                app:tabBackground="@drawable/selector_profile_tab"
+                app:tabBackground="@drawable/selector_profile_both_tab"
                 app:tabGravity="fill"
                 app:tabIndicator="@android:color/transparent"
                 app:tabIndicatorAnimationDuration="0"

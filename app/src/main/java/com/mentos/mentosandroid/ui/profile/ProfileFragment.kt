@@ -4,19 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileBinding
+import com.mentos.mentosandroid.ui.home.BOTH
+import com.mentos.mentosandroid.ui.home.ONLY_MENTEE
+import com.mentos.mentosandroid.ui.home.ONLY_MENTOR
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
-import com.mentos.mentosandroid.util.popBackStack
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
-    private val tabTitle = arrayOf("멘토 프로필", "멘티 프로필")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,28 +29,60 @@ class ProfileFragment : Fragment() {
 
         initLayout()
 
-        val profileViewPagerAdapter = ProfileViewPagerAdapter(this)
         val profileViewPager = binding.profileTabVp
-        //스와이프 막기
-        profileViewPager.isUserInputEnabled = false
-        profileViewPager.adapter = profileViewPagerAdapter
-
+        intiViewPager(profileViewPager)
 
         val tabLayout = binding.profileTab
-        TabLayoutMediator(tabLayout, profileViewPager) { tab, position ->
-            //특정 탭 클릭 못하게
-//            if(position == 0){
-//                tab.view.isClickable = false
-//            }
-            tab.text = tabTitle[position]
-        }.attach()
+        initTab(tabLayout, profileViewPager)
 
         //버튼 클릭리스너
         setBtnWriteClickListener()
 
         //탭 선택 시 화면 변경
         setNowState(profileViewPager, tabLayout)
+
         return binding.root
+    }
+
+    private fun initTab(tabLayout: TabLayout, profileViewPager: ViewPager2) {
+        val tabTitle = arrayOf("멘토 프로필", "멘티 프로필")
+        TabLayoutMediator(tabLayout, profileViewPager) { tab, position ->
+            val profileState = 3
+            when (profileState) {
+                ONLY_MENTOR -> {
+                    if(position == 0){
+                        tab.view.isClickable = true
+                    }else if(position == 1){
+                        tab.view.isClickable = false
+                    }
+                    tab.view.background = getDrawable(requireContext(),  R.drawable.selector_profile_only_tab)
+                }
+                ONLY_MENTEE -> {
+                    if(position == 0){
+                        tab.view.isClickable = false
+                    }else if(position == 1){
+                        tab.view.isClickable = true
+                    }
+                    tab.view.background = getDrawable(requireContext(),  R.drawable.selector_profile_only_tab)
+                }
+                BOTH -> {
+                    if(position == 0){
+                        tab.view.isClickable = true
+                    }else if(position == 1){
+                        tab.view.isClickable = true
+                    }
+                    tab.view.background = getDrawable(requireContext(),  R.drawable.selector_profile_both_tab)
+                }
+            }
+            tab.text = tabTitle[position]
+        }.attach()
+    }
+
+    private fun intiViewPager(profileViewPager: ViewPager2) {
+        val profileViewPagerAdapter = ProfileViewPagerAdapter(this)
+        //스와이프 막기
+        profileViewPager.isUserInputEnabled = false
+        profileViewPager.adapter = profileViewPagerAdapter
     }
 
     private fun setNowState(

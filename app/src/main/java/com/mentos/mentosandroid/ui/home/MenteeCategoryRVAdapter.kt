@@ -3,8 +3,10 @@ package com.mentos.mentosandroid.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.MenteeCategory
 import com.mentos.mentosandroid.databinding.ItemMentorHomeCategoryBinding
+import com.mentos.mentosandroid.util.navigate
 
 class MenteeCategoryRVAdapter(): RecyclerView.Adapter<MenteeCategoryRVAdapter.MenteeCategoryViewHolder>() {
 
@@ -19,6 +21,14 @@ class MenteeCategoryRVAdapter(): RecyclerView.Adapter<MenteeCategoryRVAdapter.Me
             innerMenteeRVAdapter.menteeList = currentMenteeCategory.mentee
 
             binding.mentorHomeCategoryMenteeRv.adapter = innerMenteeRVAdapter
+
+            setMenteeMoreClickListener()
+        }
+
+        private fun setMenteeMoreClickListener() {
+            binding.mentorHomeCategoryMoreImg.setOnClickListener {
+                it.navigate(R.id.action_homeFragment_to_searchFragment)
+            }
         }
     }
 
