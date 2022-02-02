@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSignUpSecondBinding
+import com.mentos.mentosandroid.util.DialogUtil
 import com.mentos.mentosandroid.util.navigate
 
 class SignUpSecondFragment : Fragment() {
@@ -19,13 +20,42 @@ class SignUpSecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignUpSecondBinding.inflate(layoutInflater, container, false)
+        binding.viewModel = signUpViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         setCompleteBtnClickListener()
+        setEmailConfirmClickListener()
         return binding.root
     }
 
     private fun setCompleteBtnClickListener() {
         binding.signUpBtnSecondComplete.setOnClickListener {
-            navigate(R.id.action_signUpSecondFragment_to_signUpThirdFragment)
+            signUpViewModel.isEmailConfirmValid.observe(viewLifecycleOwner) { isEmailConfirmValid ->
+                when (isEmailConfirmValid) {
+                    true -> navigate(R.id.action_signUpSecondFragment_to_signUpThirdFragment)
+                    false -> {
+                        if (!isEmailConfirmValid) {
+                            DialogUtil(2) {
+
+                            }.show(childFragmentManager, "email_confirm_fail")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setEmailConfirmClickListener() {
+        binding.signUpBtnEmailCheckTv.setOnClickListener {
+            signUpViewModel.postEmailConfirm()
+            setIsDomainValidObserve()
+        }
+    }
+
+    private fun setIsDomainValidObserve() {
+        signUpViewModel.isDomainValid.observe(viewLifecycleOwner) { isDomainValid ->
+            if (!isDomainValid) {
+                DialogUtil(1) { }.show(childFragmentManager, "email_domain_fail")
+            }
         }
     }
 }

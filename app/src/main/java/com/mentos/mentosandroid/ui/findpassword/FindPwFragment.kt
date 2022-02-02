@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.databinding.FragmentFindPasswordBinding
+import com.mentos.mentosandroid.util.DialogUtil
+import com.mentos.mentosandroid.util.popBackStack
 
 class FindPwFragment : Fragment() {
     private lateinit var binding: FragmentFindPasswordBinding
@@ -17,6 +19,29 @@ class FindPwFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFindPasswordBinding.inflate(layoutInflater, container, false)
+        binding.viewModel = findPwViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        setGoToSignInClickListener()
+        setSuccessFindPwObserve()
         return binding.root
+    }
+
+    private fun setGoToSignInClickListener() {
+        binding.findPasswordBtnSignInTv.setOnClickListener {
+            popBackStack()
+        }
+    }
+
+    private fun setSuccessFindPwObserve() {
+        findPwViewModel.isSuccessFindPw.observe(viewLifecycleOwner) { isSuccess ->
+            when (isSuccess) {
+                true -> {
+                    DialogUtil(3) {}.show(childFragmentManager, "find_pw")
+                }
+                false -> {
+                    DialogUtil(6) {}.show(childFragmentManager, "find_pw_fail")
+                }
+            }
+        }
     }
 }

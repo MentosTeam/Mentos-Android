@@ -133,7 +133,7 @@ class SearchCreateFragment : Fragment() {
         searchViewModel.isWritten.observe(viewLifecycleOwner) { isWritten ->
             binding.searchBackIb.setOnClickListener {
                 if (isWritten) {
-                    DialogUtil(R.string.dialog_stop_write) {
+                    DialogUtil(5) {
                         popBackStack()
                     }.show(childFragmentManager, "search_create_stop_write")
                 } else {

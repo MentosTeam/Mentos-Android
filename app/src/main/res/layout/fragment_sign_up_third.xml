@@ -5,7 +5,9 @@
 
     <data>
 
-
+        <variable
+            name="viewModel"
+            type="com.mentos.mentosandroid.ui.signup.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,6 +114,7 @@
                             android:includeFontPadding="false"
                             android:inputType="text"
                             android:singleLine="true"
+                            android:text="@={viewModel.major}"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -164,6 +167,7 @@
                             android:inputType="number"
                             android:maxLength="2"
                             android:singleLine="true"
+                            android:text="@={viewModel.year}"
                             android:textColor="@color/black_3333"
                             android:textColorHint="@color/gray_eded"
                             android:textSize="16sp" />
@@ -176,6 +180,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="27dp"
+                android:backgroundTint="@{viewModel.canThirdRegister ? @color/black_0000 : @color/gray_eded}"
+                android:clickable="@{viewModel.canThirdRegister ? true : false}"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:insetTop="0dp"
