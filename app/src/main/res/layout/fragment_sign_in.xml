@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.mentos.mentosandroid.ui.signin.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -90,15 +93,16 @@
                             android:textSize="16sp" />
 
                         <EditText
-                            android:id="@+id/sign_in_password__et"
+                            android:id="@+id/sign_in_password_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="14dp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:inputType="textEmailAddress"
+                            android:inputType="textPassword"
                             android:singleLine="true"
+                            android:text="@={viewModel.email}"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -150,6 +154,7 @@
                             android:inputType="textPassword"
                             android:maxLength="20"
                             android:singleLine="true"
+                            android:text="@={viewModel.password}"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -161,10 +166,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="27dp"
+                android:backgroundTint="@{viewModel.canSignIn ? @color/black_0000 : @color/gray_eded}"
+                android:clickable="@{viewModel.canSignIn ? true : false}"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:onClick="@{() -> viewModel.postSignIn()}"
                 android:paddingVertical="13dp"
                 android:stateListAnimator="@null"
                 android:text="@string/sign_in_btn"

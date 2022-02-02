@@ -5,7 +5,9 @@
 
     <data>
 
-
+        <variable
+            name="viewModel"
+            type="com.mentos.mentosandroid.ui.signup.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="22dp"
                 android:layout_marginTop="60dp"
-                android:layout_marginBottom="70dp"
+                android:layout_marginBottom="65dp"
                 app:layout_constraintBottom_toTopOf="@id/sign_up_btn_second_complete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +98,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
                             android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
                             android:text="@string/sign_up_school"
@@ -106,23 +109,38 @@
                             android:id="@+id/sign_up_school_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="12dp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:inputType="text"
+                            android:maxLength="8"
                             android:singleLine="true"
-                            android:text="홍길동"
+                            android:text="@={viewModel.school}"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </soup.neumorphism.NeumorphCardView>
 
+                <TextView
+                    android:id="@+id/sign_up_school_hint_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="88dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/sign_up_school_hint"
+                    android:textColor="@color/gray_7070"
+                    android:textSize="10sp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="@id/sign_up_school_layout"
+                    app:layout_constraintTop_toBottomOf="@id/sign_up_school_layout" />
+
                 <soup.neumorphism.NeumorphCardView
                     android:id="@+id/sign_up_email_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:padding="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -163,6 +181,7 @@
                             android:includeFontPadding="false"
                             android:inputType="textEmailAddress"
                             android:singleLine="true"
+                            android:text="@={viewModel.email}"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -172,7 +191,7 @@
                     android:id="@+id/sign_up_email_confirm_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:padding="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -214,9 +233,9 @@
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:inputType="text"
+                            android:inputType="textEmailAddress"
                             android:singleLine="true"
-                            android:text=""
+                            android:text="@={viewModel.emailConfirm}"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -232,10 +251,10 @@
                             android:fontFamily="@font/noto_regular"
                             android:gravity="center"
                             android:includeFontPadding="false"
-                            android:padding="3dp"
+                            android:padding="4dp"
                             android:text="@string/sign_up_email_confirm_btn"
                             android:textColor="@color/white"
-                            android:textSize="10dp"
+                            android:textSize="10sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -262,6 +281,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="27dp"
+                android:backgroundTint="@{viewModel.canSecondRegister ? @color/black_0000 : @color/gray_eded}"
+                android:clickable="@{viewModel.canSecondRegister ? true : false}"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:insetTop="0dp"

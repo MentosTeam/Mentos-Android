@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.DialogSearchDetailBinding
 import com.mentos.mentosandroid.util.DialogUtil
 import com.mentos.mentosandroid.util.navigateWithData
@@ -64,7 +63,7 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
 
     private fun setDeleteBtnClickListener() {
         binding.searchDetailBtnX.setOnClickListener {
-            DialogUtil(R.string.dialog_post_delete) {
+            DialogUtil(4) {
                 // 글 삭제 api
             }.show(childFragmentManager, "my_post_list_delete")
         }

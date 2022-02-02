@@ -5,7 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
 
+        <variable
+            name="viewModel"
+            type="com.mentos.mentosandroid.ui.signup.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -113,6 +117,7 @@
                             android:inputType="textPassword"
                             android:maxLength="20"
                             android:singleLine="true"
+                            android:text="@={viewModel.password}"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -126,9 +131,9 @@
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
                     android:text="@string/sign_up_password_hint"
-                    android:textColor="@color/gray_7070"
+                    android:textColor="@color/red_alert"
                     android:textSize="10sp"
-                    android:visibility="visible"
+                    android:visibility="@{viewModel.passwordValid ? View.GONE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="@id/sign_up_password_layout"
                     app:layout_constraintTop_toBottomOf="@id/sign_up_password_layout" />
 
@@ -179,6 +184,7 @@
                             android:inputType="textPassword"
                             android:maxLength="20"
                             android:singleLine="true"
+                            android:text="@={viewModel.passwordCheck}"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -194,7 +200,35 @@
                     android:text="@string/sign_up_password_check_hint"
                     android:textColor="@color/gray_7070"
                     android:textSize="10sp"
-                    android:visibility="visible"
+                    android:visibility="@{viewModel.passwordCheck.length() == 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@id/sign_up_password_check_layout"
+                    app:layout_constraintTop_toBottomOf="@id/sign_up_password_check_layout" />
+
+                <TextView
+                    android:id="@+id/sign_up_password_success_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="82dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/sign_up_password_success"
+                    android:textColor="@color/green_alert"
+                    android:textSize="10sp"
+                    android:visibility="@{viewModel.isSamePasswordFinal ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@id/sign_up_password_check_layout"
+                    app:layout_constraintTop_toBottomOf="@id/sign_up_password_check_layout" />
+
+                <TextView
+                    android:id="@+id/sign_up_password_fail_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="82dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/sign_up_password_fail"
+                    android:textColor="@color/red_alert"
+                    android:textSize="10sp"
+                    android:visibility="@{viewModel.isSamePassword ? View.GONE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="@id/sign_up_password_check_layout"
                     app:layout_constraintTop_toBottomOf="@id/sign_up_password_check_layout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -214,7 +248,8 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:background="@drawable/selector_terms_checkbox"
-                    android:button="@null" />
+                    android:button="@null"
+                    android:onClick="@{() -> viewModel.setTermsCheck()}" />
 
                 <TextView
                     android:id="@+id/sign_up_terms_tv"
@@ -233,10 +268,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="27dp"
+                android:backgroundTint="@{viewModel.canFourthRegister ? @color/black_0000 : @color/gray_eded}"
+                android:clickable="@{viewModel.canFourthRegister ? true : false}"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:onClick="@{() -> viewModel.setPostSignUp()}"
                 android:paddingVertical="13dp"
                 android:stateListAnimator="@null"
                 android:text="@string/sign_up_fourth_btn"

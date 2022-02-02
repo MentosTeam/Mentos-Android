@@ -1,5 +1,7 @@
 package com.mentos.mentosandroid.ui.signin
 
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSignInBinding
+import com.mentos.mentosandroid.ui.main.MainActivity
+import com.mentos.mentosandroid.util.DialogUtil
 import com.mentos.mentosandroid.util.navigate
 
 class SignInFragment : Fragment() {
@@ -19,7 +23,10 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignInBinding.inflate(layoutInflater, container, false)
+        binding.viewModel = signInViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         setBtnFindPwClickListener()
+        setSuccessSignInObserve()
         return binding.root
     }
 
@@ -27,5 +34,20 @@ class SignInFragment : Fragment() {
         binding.signInBtnFindPasswordTv.setOnClickListener {
             navigate(R.id.action_signInFragment_to_findPwFragment)
         }
+    }
+
+    private fun setSuccessSignInObserve() {
+        signInViewModel.isSuccessSignIn.observe(viewLifecycleOwner) { isSuccess ->
+            when (isSuccess) {
+                true -> {
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
+                }
+                false -> {
+                    DialogUtil(0) {}.show(childFragmentManager, "sign_in_fail")
+                }
+            }
+        }
+
     }
 }

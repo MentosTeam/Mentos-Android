@@ -19,6 +19,8 @@ class SignUpThirdFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignUpThirdBinding.inflate(layoutInflater, container, false)
+        binding.viewModel = signUpViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         setCompleteBtnClickListener()
         return binding.root
     }
