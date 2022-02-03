@@ -5,7 +5,9 @@
 
     <data>
 
-
+        <variable
+            name="settingViewModel"
+            type="com.mentos.mentosandroid.ui.setting.SettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +24,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/change_major_back_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="37dp"
+            android:background="@android:color/transparent"
+            android:padding="6dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -73,35 +89,22 @@
                     app:neumorph_strokeColor="@color/gray_eded"
                     app:neumorph_strokeWidth="1dp">
 
-                    <LinearLayout
+                    <EditText
+                        android:id="@+id/change_major_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="7dp"
                         android:layout_marginVertical="5dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_medium"
-                            android:includeFontPadding="false"
-                            android:text="@string/sign_up_major"
-                            android:textColor="@color/black_3333"
-                            android:textSize="16sp" />
-
-                        <EditText
-                            android:id="@+id/change_major_et"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:background="@android:color/transparent"
-                            android:fontFamily="@font/noto_regular"
-                            android:includeFontPadding="false"
-                            android:inputType="text"
-                            android:singleLine="true"
-                            android:textColor="@color/black_3333"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/noto_regular"
+                        android:hint="@string/sign_up_major"
+                        android:includeFontPadding="false"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={settingViewModel.major}"
+                        android:textColor="@color/black_3333"
+                        android:textColorHint="@color/gray_c7c6"
+                        android:textSize="16sp" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -110,6 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:padding="12dp"
+                    android:textColorHint="@color/gray_c7c6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/change_major_layout"
@@ -120,41 +124,25 @@
                     app:neumorph_shadowElevation="3dp"
                     app:neumorph_shapeAppearance="@style/shadow_round_20"
                     app:neumorph_shapeType="flat"
-                    app:neumorph_strokeColor="@color/gray_eded"
                     app:neumorph_strokeWidth="1dp">
 
-                    <LinearLayout
+                    <EditText
+                        android:id="@+id/change_year_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="7dp"
                         android:layout_marginVertical="5dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_medium"
-                            android:includeFontPadding="false"
-                            android:text="@string/sign_up_year"
-                            android:textColor="@color/black_3333"
-                            android:textSize="16sp" />
-
-                        <EditText
-                            android:id="@+id/change_year_et"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:background="@android:color/transparent"
-                            android:fontFamily="@font/noto_regular"
-                            android:hint="22"
-                            android:includeFontPadding="false"
-                            android:inputType="number"
-                            android:maxLength="2"
-                            android:singleLine="true"
-                            android:textColor="@color/black_3333"
-                            android:textColorHint="@color/gray_eded"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/noto_regular"
+                        android:hint="@string/sign_up_year"
+                        android:includeFontPadding="false"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:singleLine="true"
+                        android:text="@={settingViewModel.year}"
+                        android:textColor="@color/black_3333"
+                        android:textColorHint="@color/gray_c7c6"
+                        android:textSize="16sp" />
                 </soup.neumorphism.NeumorphCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -163,13 +151,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="27dp"
-                android:background="@drawable/shape_gray_fill_8"
+                android:background="@{settingViewModel.canMajorRegister ? @drawable/shape_black_fill_8 : @drawable/shape_gray_fill_8}"
+                android:clickable="@{settingViewModel.canMajorRegister ? true : false}"
                 android:fontFamily="@font/noto_regular"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:onClick="@{() -> settingViewModel.setPostMajor()}"
                 android:paddingVertical="13dp"
                 android:text="@string/setting_change_complete"
-                android:textColor="@color/gray_c7c6"
+                android:textColor="@{settingViewModel.canMajorRegister ? @color/white : @color/gray_c7c6}"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
