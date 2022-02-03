@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/first_account_nav_graph"
+    app:startDestination="@id/accountDialogFragment">
+
+    <fragment
+        android:id="@+id/accountIntroFragment"
+        android:name="com.mentos.mentosandroid.ui.account.AccountIntroFragment"
+        android:label="AccountIntroFragment"
+        tools:layout="@layout/fragment_account_intro">
+        <argument
+            android:name="state"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_accountIntroFragment_to_accountPhotoFragment"
+            app:destination="@id/accountPhotoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountMentosFragment"
+        android:name="com.mentos.mentosandroid.ui.account.AccountMentosFragment"
+        android:label="AccountMentosFragment"
+        tools:layout="@layout/fragment_account_mentos">
+        <argument
+            android:name="state"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_accountMentosFragment_to_accountIntroFragment"
+            app:destination="@id/accountIntroFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountPhotoFragment"
+        android:name="com.mentos.mentosandroid.ui.account.AccountPhotoFragment"
+        android:label="AccountPhotoFragment"
+        tools:layout="@layout/fragment_account_photo" />
+
+    <fragment
+        android:id="@+id/accountDialogFragment"
+        android:name="com.mentos.mentosandroid.ui.account.AccountDialogFragment"
+        android:label="AccountDialogFragment"
+        tools:layout="@layout/fragment_account_dialog">
+        <action
+            android:id="@+id/action_firstAccountDialog_to_accountMentosFragment"
+            app:destination="@id/accountMentosFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mentos.mentosandroid.ui.account.AccountViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/account_btn_back_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginBottom="9dp"
+            android:background="@android:color/transparent"
+            android:padding="6dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/account_mentos_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="84dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/account_mentos_title_mentor"
+            android:textColor="@color/black_3333"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/account_btn_back_ib" />
+
+        <TextView
+            android:id="@+id/account_mentos_sub_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/account_mentos_sub_title_mentor"
+            android:textColor="@color/gray_7070"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/account_mentos_title_tv"
+            app:layout_constraintTop_toBottomOf="@id/account_mentos_title_tv" />
+
+        <GridLayout
+            android:id="@+id/mentos_category_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:columnCount="4"
+            android:orientation="horizontal"
+            android:rowCount="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/account_mentos_sub_title_tv">
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_red_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_red_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_red_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_red_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_red"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_red_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_orange_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_orange_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_orange_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_orange_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_orange"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_orange_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_yellow_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_yellow_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_yellow_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_yellow_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_yellow"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_yellow_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_green_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_green_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_green_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_green_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_green"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_green_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_green_dark_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_green_dark_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_green_dark_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_green_dark_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_green_dark"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_green_dark_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_sky_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_sky_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_sky_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_sky_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_sky"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_sky_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_blue_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_blue_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_blue_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_blue_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_blue"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_blue_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_pink_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_pink_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_pink_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_pink_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_pink"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_pink_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_purple_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_purple_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_purple_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_purple_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_purple"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_purple_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_brown_light_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_brown_light_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_brown_light_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_brown_light_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_brown_light"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_brown_light_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_brown_red_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_brown_red_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_brown_red_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_brown_red_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_brown_red"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_brown_red_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mentos_category_gray_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_gray_stroke_20"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_mentos_gray_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_mentos_gray_41"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bottom_sheet_mentos_gray_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/mentos_gray"
+                        android:textColor="@color/black_3333"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_gray_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </soup.neumorphism.NeumorphCardView>
+        </GridLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/account_mentos_btn_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="27dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingVertical="13dp"
+            android:stateListAnimator="@null"
+            android:text="@string/account_mentos_btn"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mentos_category_layout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

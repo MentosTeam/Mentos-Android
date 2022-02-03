@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.databinding.FragmentSignUpFourthBinding
+import com.mentos.mentosandroid.ui.main.FirstAccountActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
 
 class SignUpFourthFragment : Fragment() {
@@ -29,7 +30,7 @@ class SignUpFourthFragment : Fragment() {
         signUpViewModel.isSuccessSignUp.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
                 true -> {
-                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    startActivity(Intent(requireContext(), FirstAccountActivity::class.java))
                     requireActivity().finish()
                 }
                 false -> {
