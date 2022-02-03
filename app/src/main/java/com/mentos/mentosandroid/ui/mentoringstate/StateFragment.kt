@@ -16,6 +16,7 @@ class StateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentStateBinding.inflate(inflater, container, false)
+        // binding.searchBarLayout.setStrokeColor(resources.getColorStateList(R.color.red_alert, null))
         return binding.root
     }
 }

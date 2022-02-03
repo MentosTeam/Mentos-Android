@@ -102,4 +102,38 @@ object MentosImgUtil {
             12 -> this.setImageResource(R.drawable.img_mentos_gray_71)
         }
     }
+
+    fun ImageView.setMentosImg59(category: Int) {
+        when (category) {
+            1 -> this.setImageResource(R.drawable.img_mentos_red_59)
+            2 -> this.setImageResource(R.drawable.img_mentos_orange_59)
+            3 -> this.setImageResource(R.drawable.img_mentos_yellow_59)
+            4 -> this.setImageResource(R.drawable.img_mentos_green_59)
+            5 -> this.setImageResource(R.drawable.img_mentos_green_dark_59)
+            6 -> this.setImageResource(R.drawable.img_mentos_sky_59)
+            7 -> this.setImageResource(R.drawable.img_mentos_blue_59)
+            8 -> this.setImageResource(R.drawable.img_mentos_pink_59)
+            9 -> this.setImageResource(R.drawable.img_mentos_purple_59)
+            10 -> this.setImageResource(R.drawable.img_mentos_brown_light_59)
+            11 -> this.setImageResource(R.drawable.img_mentos_brown_red_59)
+            12 -> this.setImageResource(R.drawable.img_mentos_gray_59)
+        }
+    }
+
+    fun ImageView.setMentosImg55(category: Int) {
+        when (category) {
+            1 -> this.setImageResource(R.drawable.img_mentos_red_55)
+            2 -> this.setImageResource(R.drawable.img_mentos_orange_55)
+            3 -> this.setImageResource(R.drawable.img_mentos_yellow_55)
+            4 -> this.setImageResource(R.drawable.img_mentos_green_55)
+            5 -> this.setImageResource(R.drawable.img_mentos_green_dark_55)
+            6 -> this.setImageResource(R.drawable.img_mentos_sky_55)
+            7 -> this.setImageResource(R.drawable.img_mentos_blue_55)
+            8 -> this.setImageResource(R.drawable.img_mentos_pink_55)
+            9 -> this.setImageResource(R.drawable.img_mentos_purple_55)
+            10 -> this.setImageResource(R.drawable.img_mentos_brown_light_55)
+            11 -> this.setImageResource(R.drawable.img_mentos_brown_red_55)
+            12 -> this.setImageResource(R.drawable.img_mentos_gray_55)
+        }
+    }
 }
