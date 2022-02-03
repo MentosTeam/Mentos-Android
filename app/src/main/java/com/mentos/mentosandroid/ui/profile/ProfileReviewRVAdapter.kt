@@ -3,17 +3,18 @@ package com.mentos.mentosandroid.ui.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mentos.mentosandroid.data.Review
 import com.mentos.mentosandroid.databinding.ItemProfileReviewBinding
 
 class ProfileReviewRVAdapter :
     RecyclerView.Adapter<ProfileReviewRVAdapter.ReviewViewHolder>() {
 
-    var reviewList = mutableListOf<String>()
+    var reviewList = mutableListOf<Review>()
 
     inner class ReviewViewHolder(
         val binding: ItemProfileReviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentReview: String) {
+        fun bind(currentReview: Review) {
             binding.review = currentReview
 
         }

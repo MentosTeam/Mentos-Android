@@ -6,7 +6,7 @@
 
         <variable
             name="review"
-            type="String" />
+            type="com.mentos.mentosandroid.data.Review" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +47,7 @@
                 android:paddingTop="1dp"
                 android:paddingEnd="16dp"
                 android:paddingBottom="8dp"
-                android:text="@{review}"
+                android:text="@{review.reviewText}"
                 android:textColor="@color/black_3333"
                 android:textSize="11sp" />
         </soup.neumorphism.NeumorphCardView>
