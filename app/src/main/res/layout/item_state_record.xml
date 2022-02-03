@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.mentos.mentosandroid.data.StateRecord" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +28,9 @@
             app:neumorph_shadowColorLight="@android:color/transparent"
             app:neumorph_shadowElevation="3dp"
             app:neumorph_shapeAppearance="@style/shadow_round_20"
-            app:neumorph_shapeType="flat">
+            app:neumorph_shapeType="flat"
+            app:neumorph_strokeColor="@color/gray_eded"
+            app:neumorph_strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -36,10 +41,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:text="중어중문학개론 1과 성조 관련 멘토링을 진행했습니다. 그리고 ㅓㅇ쩌구 저쩌구 ㅓㅇ쩌구 저쩌구 ㅓㅇ쩌구 저쩌구 ㅓㅇ쩌구 저쩌구 ㅓㅇ쩌구 저쩌구 ㅓㅇ쩌구 저쩌구 ㅓㅇ쩌구 저쩌구"
+                    android:text="@{data.recordContent}"
                     android:textColor="@color/black_3333"
                     android:textSize="11sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -51,10 +56,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="6dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:text="5"
                     android:textColor="@color/gray_7070"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -77,10 +81,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="6dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:text="22/1/13"
+                    android:text="@{data.date}"
                     android:textColor="@color/gray_7070"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"

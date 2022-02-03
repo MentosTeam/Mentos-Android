@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.mentos.mentosandroid.data.StateEnd" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,30 +18,32 @@
             android:id="@+id/state_end_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/state_end_review_write_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:neumorph_backgroundColor="@color/mentos_pink"
             app:neumorph_inset="4dp"
             app:neumorph_shadowColorDark="@color/gray_shadow"
             app:neumorph_shadowColorLight="@android:color/transparent"
-            app:neumorph_shadowElevation="3dp"
+            app:neumorph_shadowElevation="2dp"
             app:neumorph_shapeAppearance="@style/shadow_round_20"
             app:neumorph_shapeType="flat">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/state_end_container_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/mentos_pink">
 
                 <ImageView
                     android:id="@+id/state_end_mentos_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="1dp"
+                    android:layout_marginVertical="4dp"
                     android:layout_marginStart="8dp"
                     android:src="@drawable/img_mentos_pink_59"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
@@ -47,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="3dp"
                     android:gravity="start"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="@id/state_end_mentos_iv"
@@ -63,25 +68,123 @@
                         android:textColor="@color/gray_7070"
                         android:textSize="13sp" />
 
-                    <TextView
-                        android:id="@+id/state_end_count"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_regular"
-                        android:includeFontPadding="false"
-                        android:text="1회 / 2회(멘토-쓰 2개)"
-                        android:textColor="@color/gray_7070"
-                        android:textSize="10sp" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/state_end_info"
+                        <TextView
+                            android:id="@+id/state_end_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp"
+                            tools:text="2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/state_one_count"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/state_end_count_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp"
+                            tools:text="2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/state_count"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/state_mentos_count"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/state_end_mentos_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp"
+                            tools:text="2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/state_mentos_count_2"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_regular"
-                        android:includeFontPadding="false"
-                        android:text="홍길동 멘토 / 홍길동 멘티"
-                        android:textColor="@color/gray_7070"
-                        android:textSize="10sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/state_end_nickname_mentor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@{data.mentoNickname}"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp"
+                            tools:text="가은" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/state_one_nickname_mentor"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/state_end_nickname_mentee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@{data.mentiNickname}"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp"
+                            tools:text="가은" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/state_one_nickname_mentee"
+                            android:textColor="@color/gray_7070"
+                            android:textSize="10sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -118,29 +221,29 @@
             android:id="@+id/state_end_review_write_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="4dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/state_end_layout"
             app:layout_constraintTop_toTopOf="parent"
             app:neumorph_backgroundColor="@color/white"
-            app:neumorph_inset="6dp"
+            app:neumorph_inset="4dp"
             app:neumorph_shadowColorDark="@color/gray_shadow"
             app:neumorph_shadowColorLight="@android:color/transparent"
             app:neumorph_shadowElevation="3dp"
             app:neumorph_shapeAppearance="@style/shadow_round_20"
-            app:neumorph_shapeType="flat"
-            app:neumorph_strokeColor="@color/mentos_pink"
-            app:neumorph_strokeWidth="1dp">
+            app:neumorph_shapeType="flat">
 
             <LinearLayout
+                android:id="@+id/state_end_review_write_container_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="4dp"
-                android:layout_marginVertical="6dp"
+                android:background="@drawable/shape_mentos_pink_stroke_20"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="9dp"
+                android:paddingVertical="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
