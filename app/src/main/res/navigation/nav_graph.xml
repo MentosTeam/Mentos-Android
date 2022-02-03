@@ -122,6 +122,11 @@
         android:name="com.mentos.mentosandroid.ui.mentoringstate.StateOneFragment"
         android:label="StateOneFragment"
         tools:layout="@layout/fragment_state_one">
+        <argument
+            android:name="nowMentoring"
+            android:defaultValue="@null"
+            app:argType="com.mentos.mentosandroid.data.StateNow"
+            app:nullable="true" />
         <action
             android:id="@+id/action_stateOneFragment_to_stateRecordFragment"
             app:destination="@id/stateRecordFragment" />

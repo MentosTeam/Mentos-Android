@@ -202,4 +202,9 @@
     <string name="state_content_btn">기록하기</string>
     <string name="state_content_btn_hint">삭제는 불가능하니 신중하게 적어주세요!</string>
     <string name="state_count">회</string>
+    <string name="state_mentos_count">(멘토-쓰 "</string>
+    <string name="state_mentos_count_2">개)</string>
+    <string name="state_one_count">회 / "</string>
+    <string name="state_one_nickname_mentor">" 멘토 / "</string>
+    <string name="state_one_nickname_mentee">" 멘티</string>
 </resources>

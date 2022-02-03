@@ -26,11 +26,13 @@ class SignUpFourthFragment : Fragment() {
     }
 
     private fun setSuccessSignUpObserve() {
-        signUpViewModel.isSuccessSignUp.observe(viewLifecycleOwner) { isSuccess->
-            when(isSuccess) {
+        signUpViewModel.isSuccessSignUp.observe(viewLifecycleOwner) { isSuccess ->
+            when (isSuccess) {
                 true -> {
                     startActivity(Intent(requireContext(), MainActivity::class.java))
                     requireActivity().finish()
+                }
+                false -> {
                 }
             }
         }

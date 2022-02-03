@@ -1,5 +1,6 @@
 package com.mentos.mentosandroid.util
 
+import android.content.Context
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -56,6 +57,23 @@ object MentosCategoryUtil {
             10 -> this.setBackgroundResource(R.color.mentos_brown_light)
             11 -> this.setBackgroundResource(R.color.mentos_brown_red)
             12 -> this.setBackgroundResource(R.color.mentos_gray)
+        }
+    }
+
+    fun View.setMentosBgStroke(category: Int?) {
+        when (category) {
+            1 -> this.setBackgroundResource(R.drawable.shape_mentos_red_stroke_20)
+            2 -> this.setBackgroundResource(R.drawable.shape_mentos_orange_stroke_20)
+            3 -> this.setBackgroundResource(R.drawable.shape_mentos_yellow_stroke_20)
+            4 -> this.setBackgroundResource(R.drawable.shape_mentos_green_stroke_20)
+            5 -> this.setBackgroundResource(R.drawable.shape_mentos_green_dark_stroke_20)
+            6 -> this.setBackgroundResource(R.drawable.shape_mentos_sky_stroke_20)
+            7 -> this.setBackgroundResource(R.drawable.shape_mentos_blue_stroke_20)
+            8 -> this.setBackgroundResource(R.drawable.shape_mentos_pink_stroke_20)
+            9 -> this.setBackgroundResource(R.drawable.shape_mentos_purple_stroke_20)
+            10 -> this.setBackgroundResource(R.drawable.shape_mentos_brown_light_stroke_20)
+            11 -> this.setBackgroundResource(R.drawable.shape_mentos_brown_red_stroke_20)
+            12 -> this.setBackgroundResource(R.drawable.shape_mentos_gray_stroke_20)
         }
     }
 }
