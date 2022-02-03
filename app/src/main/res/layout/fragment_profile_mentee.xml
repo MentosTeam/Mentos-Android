@@ -91,7 +91,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_bold"
                                 android:includeFontPadding="false"
-                                android:text="홍길동 멘티"
+                                android:text="@{profileViewModel.menteeProfileData.basicInformation.nickname + ` 멘티`}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="15sp" />
 
@@ -101,7 +101,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_medium"
                                 android:includeFontPadding="false"
-                                android:text="0000대학교 / 22학번"
+                                android:text="@{profileViewModel.menteeProfileData.schoolName + ` / ` + profileViewModel.menteeProfileData.basicInformation.studentId + `학번`}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="11sp" />
 
@@ -111,7 +111,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_medium"
                                 android:includeFontPadding="false"
-                                android:text="중어중문, 경영학 전공"
+                                android:text="@{profileViewModel.menteeProfileData.basicInformation.major}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="11sp" />
                         </LinearLayout>
@@ -178,7 +178,7 @@
                                     android:layout_marginStart="4dp"
                                     android:fontFamily="@font/noto_bold"
                                     android:includeFontPadding="false"
-                                    android:text="3회"
+                                    android:text="@{String.valueOf(profileViewModel.menteeProfileData.numOfMentoring) + `회`}"
                                     android:textColor="@color/black_3333"
                                     android:textSize="10sp" />
                             </LinearLayout>
@@ -256,7 +256,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/mentee_profile_major_mentos_rv"
-                        majorItems="@{profileViewModel.majorList}"
+                        majorItems="@{profileViewModel.menteeMajorList}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="19dp"
@@ -302,7 +302,7 @@
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:text="22학번 새내기입니다,,,,! 경제학과인데 경제학원론1 시험은 어떻게 대비해야할까요? 따라가기 힘들어요ㅠ\n기숙사나 학생회 등의 정보도 함께 얻고 싶어요!"
+                            android:text="@{profileViewModel.menteeProfileData.basicInformation.intro}"
                             android:textColor="@color/black_3333"
                             android:textSize="11sp" />
                     </soup.neumorphism.NeumorphCardView>

@@ -328,7 +328,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/mentor_profile_major_mentos_rv"
-                        majorItems="@{profileViewModel.majorList}"
+                        majorItems="@{profileViewModel.mentorMajorList}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="19dp"
@@ -417,7 +417,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/mentor_profile_detail_rv"
-                        majorDetailItems="@{profileViewModel.majorDetailList}"
+                        majorDetailItems="@{profileViewModel.mentorPost2}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
@@ -468,7 +468,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/mentor_profile_review_rv"
-                        reviewItems="@{profileViewModel.reviewList}"
+                        reviewItems="@{profileViewModel.mentorReview2}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
@@ -538,7 +538,7 @@
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/mentor_profile_mentoring_mentos_rv"
-                                mentosItems="@{profileViewModel.mentosList}"
+                                mentosItems="@{profileViewModel.mentorMentosList}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="9dp"
@@ -563,7 +563,7 @@
                                 android:layout_marginBottom="28dp"
                                 android:fontFamily="@font/noto_medium"
                                 android:includeFontPadding="false"
-                                android:text="@{profileViewModel.strMentosCount}"
+                                android:text="@{profileViewModel.mentorProfileData.numOfMentoring + `/10`}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="12sp"
                                 app:layout_constraintBottom_toBottomOf="parent"

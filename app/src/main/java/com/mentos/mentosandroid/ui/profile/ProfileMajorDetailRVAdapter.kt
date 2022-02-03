@@ -3,20 +3,24 @@ package com.mentos.mentosandroid.ui.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mentos.mentosandroid.data.MyPost
+import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.databinding.ItemMajorDetailBinding
+import com.mentos.mentosandroid.ui.home.HomeFragmentDirections
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
+import com.mentos.mentosandroid.util.navigateWithData
 
 class ProfileMajorDetailRVAdapter :
     RecyclerView.Adapter<ProfileMajorDetailRVAdapter.MajorDetailViewHolder>() {
 
-    var majorDetailList = mutableListOf<MajorDetail>()
+    var majorDetailList = mutableListOf<MyPost>()
 
     inner class MajorDetailViewHolder(
         val binding: ItemMajorDetailBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentMajorDetail: MajorDetail) {
-            binding.itemMajorDetailTitleTv.text = currentMajorDetail.title
-            binding.itemMajorDetailMentosIv.setMentosImg17(currentMajorDetail.category)
+        fun bind(currentMajorDetail: MyPost) {
+            binding.itemMajorDetailTitleTv.text = currentMajorDetail.postTitle
+            binding.itemMajorDetailMentosIv.setMentosImg17(currentMajorDetail.majorCategoryId)
         }
     }
 
@@ -34,8 +38,3 @@ class ProfileMajorDetailRVAdapter :
         return majorDetailList.size
     }
 }
-
-data class MajorDetail(
-    val category: Int,
-    val title: String
-)

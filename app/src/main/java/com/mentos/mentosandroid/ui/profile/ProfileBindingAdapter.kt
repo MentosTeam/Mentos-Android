@@ -2,6 +2,9 @@ package com.mentos.mentosandroid.ui.profile
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.mentos.mentosandroid.data.MyPost
+import com.mentos.mentosandroid.data.NumOfMento
+import com.mentos.mentosandroid.data.Review
 
 object ProfileBindingAdapter {
     @BindingAdapter("majorItems")
@@ -24,7 +27,7 @@ object ProfileBindingAdapter {
 
     @BindingAdapter("majorDetailItems")
     @JvmStatic
-    fun setMajorDetailItems(recyclerView: RecyclerView, items: ArrayList<MajorDetail>) {
+    fun setMajorDetailItems(recyclerView: RecyclerView, items: ArrayList<MyPost>) {
         if (recyclerView.adapter == null) {
             val adapter = ProfileMajorDetailRVAdapter()
             //깜빡임 방지
@@ -42,7 +45,7 @@ object ProfileBindingAdapter {
 
     @BindingAdapter("reviewItems")
     @JvmStatic
-    fun setReviewItems(recyclerView: RecyclerView, items: ArrayList<String>) {
+    fun setReviewItems(recyclerView: RecyclerView, items: ArrayList<Review>) {
         if (recyclerView.adapter == null) {
             val adapter = ProfileReviewRVAdapter()
             //깜빡임 방지
