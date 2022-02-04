@@ -206,6 +206,7 @@
     <string name="change_now_pw">현재 비밀번호</string>
     <string name="change_new_pw_">새 비밀번호</string>
     <string name="change_chk_new_pw">새 비밀번호 재입력</string>
+    <string name="change_chk_current_pw">비밀번호를 올바르게 입력해주세요!</string>
 
     <string name="change_profile_img"><b>프로필 이미지</b>를 넣어주세요!</string>
 
