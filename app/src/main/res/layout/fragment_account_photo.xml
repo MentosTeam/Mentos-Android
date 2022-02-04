@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.mentos.mentosandroid.ui.account.AccountViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,7 +91,9 @@
                         android:id="@+id/account_photo_img_iv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/shape_white_fill_20"
                         android:scaleType="centerCrop"
+                        android:src="@{viewModel.image}"
                         tools:ignore="ContentDescription" />
                 </soup.neumorphism.NeumorphCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>

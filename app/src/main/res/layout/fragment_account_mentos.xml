@@ -90,7 +90,7 @@
                         android:id="@+id/mentos_category_red_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
+                        android:clickable="false"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -118,8 +118,15 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_red_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </soup.neumorphism.NeumorphCardView>
 
+                    <CheckBox
+                        android:id="@+id/mentos_red_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
+                </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
                     android:layout_width="wrap_content"
@@ -137,7 +144,6 @@
                         android:id="@+id/mentos_category_orange_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -165,6 +171,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_orange_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_orange_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -183,7 +197,6 @@
                         android:id="@+id/mentos_category_yellow_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -211,6 +224,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_yellow_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_yellow_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -229,7 +250,6 @@
                         android:id="@+id/mentos_category_green_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -257,6 +277,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_green_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_green_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -275,7 +303,6 @@
                         android:id="@+id/mentos_category_green_dark_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -303,6 +330,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_green_dark_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_green_dark_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -321,7 +356,6 @@
                         android:id="@+id/mentos_category_sky_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -349,6 +383,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_sky_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_sky_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -367,7 +409,6 @@
                         android:id="@+id/mentos_category_blue_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -395,6 +436,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_blue_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_blue_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -413,7 +462,6 @@
                         android:id="@+id/mentos_category_pink_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -441,6 +489,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_pink_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_pink_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -459,7 +515,6 @@
                         android:id="@+id/mentos_category_purple_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -487,6 +542,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_purple_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_purple_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -505,7 +568,6 @@
                         android:id="@+id/mentos_category_brown_light_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -533,6 +595,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_brown_light_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_brown_light_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -551,7 +621,6 @@
                         android:id="@+id/mentos_category_brown_red_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -579,6 +648,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_brown_red_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_brown_red_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphCardView
@@ -597,7 +674,6 @@
                         android:id="@+id/mentos_category_gray_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_gray_stroke_20"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="12dp">
 
@@ -625,6 +701,14 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_gray_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <CheckBox
+                        android:id="@+id/mentos_gray_cb"
+                        android:layout_width="76dp"
+                        android:layout_height="81dp"
+                        android:background="@drawable/selector_trans_stoke_round_20"
+                        android:button="@null"
+                        android:checked="false" />
                 </soup.neumorphism.NeumorphCardView>
             </GridLayout>
 
@@ -634,6 +718,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="27dp"
                 android:layout_marginTop="50dp"
+                android:backgroundTint="@{viewModel.selectedCategory.size != 0 ? @color/black_0000 : @color/gray_eded}"
+                android:clickable="@{viewModel.selectedCategory.size != 0 ? true : false}"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:insetTop="0dp"
