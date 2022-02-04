@@ -286,7 +286,11 @@
         android:id="@+id/changeMentosFragment"
         android:name="com.mentos.mentosandroid.ui.setting.ChangeMentosFragment"
         android:label="ChangeMentosFragment"
-        tools:layout="@layout/fragment_change_mentos" />
+        tools:layout="@layout/fragment_change_mentos" >
+        <action
+            android:id="@+id/action_changeMentosFragment_to_changeIntroFragment"
+            app:destination="@id/changeIntroFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/changeNicknameFragment"
@@ -305,4 +309,9 @@
         android:name="com.mentos.mentosandroid.ui.setting.ChangeProfileImgFragment"
         android:label="ChangeProfileImgFragment"
         tools:layout="@layout/fragment_change_profile_img" />
+    <fragment
+        android:id="@+id/changeIntroFragment"
+        android:name="com.mentos.mentosandroid.ui.setting.ChangeIntroFragment"
+        android:label="ChangeIntroFragment"
+        tools:layout="@layout/fragment_change_intro"/>
 </navigation>

@@ -106,44 +106,6 @@
                         android:textColorHint="@color/gray_c7c6"
                         android:textSize="16sp" />
                 </soup.neumorphism.NeumorphCardView>
-
-                <soup.neumorphism.NeumorphCardView
-                    android:id="@+id/change_year_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:padding="12dp"
-                    android:textColorHint="@color/gray_c7c6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/change_major_layout"
-                    app:neumorph_backgroundColor="@color/white"
-                    app:neumorph_inset="5dp"
-                    app:neumorph_shadowColorDark="@color/gray_shadow"
-                    app:neumorph_shadowColorLight="@android:color/transparent"
-                    app:neumorph_shadowElevation="3dp"
-                    app:neumorph_shapeAppearance="@style/shadow_round_20"
-                    app:neumorph_shapeType="flat"
-                    app:neumorph_strokeWidth="1dp">
-
-                    <EditText
-                        android:id="@+id/change_year_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="7dp"
-                        android:layout_marginVertical="5dp"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/noto_regular"
-                        android:hint="@string/sign_up_year"
-                        android:includeFontPadding="false"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:singleLine="true"
-                        android:text="@={settingViewModel.year}"
-                        android:textColor="@color/black_3333"
-                        android:textColorHint="@color/gray_c7c6"
-                        android:textSize="16sp" />
-                </soup.neumorphism.NeumorphCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
