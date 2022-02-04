@@ -34,10 +34,12 @@ class AccountIntroFragment : Fragment() {
             2 -> {
                 binding.accountIntroTitleTv.setText(R.string.account_intro_title_mentee)
                 binding.accountIntroSubTitleTv.setText(R.string.account_intro_sub_title_mentee)
+                accountViewModel.setState(2)
             }
             1 -> {
                 binding.accountIntroTitleTv.setText(R.string.account_intro_title_mentor)
                 binding.accountIntroSubTitleTv.setText(R.string.account_intro_sub_title_mentor)
+                accountViewModel.setState(1)
             }
         }
     }
