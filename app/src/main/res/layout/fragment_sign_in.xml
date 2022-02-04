@@ -176,7 +176,7 @@
                 android:paddingVertical="13dp"
                 android:stateListAnimator="@null"
                 android:text="@string/sign_in_btn"
-                android:textColor="@color/white"
+                android:textColor="@{viewModel.canSignIn ? @color/white : @color/gray_c7c6}"
                 android:textSize="16sp"
                 app:cornerRadius="8dp"
                 app:layout_constraintBottom_toTopOf="@id/sign_in_btn_find_password_tv"

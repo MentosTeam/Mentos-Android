@@ -28,7 +28,7 @@ class StateFragment : Fragment() {
 
     private fun setStateAdapter() {
         binding.stateNowRv.adapter = StateNowAdapter()
-        binding.stateEndRv.adapter = StateEndAdapter()
+        binding.stateEndRv.adapter = StateEndAdapter(childFragmentManager)
     }
 
     private fun setStateNowObserver() {

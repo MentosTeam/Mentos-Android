@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_bg_mentos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/bg_red_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/img_mentos_red_dialog"
+            app:layout_constraintBottom_toTopOf="@id/bg_green_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/bg_green_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:src="@drawable/img_mentos_green_dialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/bg_orange_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/img_mentos_orange_dialog"
+            app:layout_constraintBottom_toTopOf="@id/bg_green_iv"
+            app:layout_constraintStart_toStartOf="@id/bg_green_iv"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/bg_blue_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="11dp"
+            android:src="@drawable/img_mentos_blue_dialog"
+            app:layout_constraintEnd_toStartOf="@id/bg_green_iv"
+            app:layout_constraintTop_toTopOf="@id/bg_green_iv"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/bg_yellow_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="34dp"
+            android:src="@drawable/img_mentos_yellow_dialog"
+            app:layout_constraintEnd_toStartOf="@id/bg_blue_iv"
+            app:layout_constraintTop_toTopOf="@id/bg_blue_iv"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_review_complete_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
+        app:layout_constraintBottom_toTopOf="@id/dialog_btn_complete_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dialog_review_complete_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="46dp"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:text="@string/dialog_record_complete_title"
+            android:textColor="@color/black_3333"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/dialog_review_complete_sub_title"
+            android:textColor="@color/gray_7070"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@id/dialog_review_complete_title_tv"
+            app:layout_constraintTop_toBottomOf="@id/dialog_review_complete_title_tv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_record_complete_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="54dp"
+        app:layout_constraintBottom_toTopOf="@id/dialog_btn_complete_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dialog_record_complete_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="43dp"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:text="@string/dialog_record_complete_title"
+            android:textColor="@color/black_3333"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dialog_record_complete_sub_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/dialog_record_complete_sub_title"
+            android:textColor="@color/gray_7070"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@id/dialog_record_complete_title_tv"
+            app:layout_constraintTop_toBottomOf="@id/dialog_record_complete_title_tv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_withdrawal_complete_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dialog_withdrawal_complete_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="46dp"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:text="@string/dialog_withdrawal_complete_title"
+            android:textColor="@color/black_3333"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="61dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/dialog_withdrawal_complete_sub_title"
+            android:textColor="@color/gray_7070"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@id/dialog_btn_withdrawal_complete_tv"
+            app:layout_constraintStart_toStartOf="@id/dialog_withdrawal_complete_title_tv"
+            app:layout_constraintTop_toBottomOf="@id/dialog_withdrawal_complete_title_tv" />
+
+        <TextView
+            android:id="@+id/dialog_btn_withdrawal_complete_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/shape_black_fill_8"
+            android:fontFamily="@font/noto_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingHorizontal="102dp"
+            android:paddingVertical="14dp"
+            android:text="@string/dialog_withdrawal_complete_btn"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_review_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dialog_review_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="46dp"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:text="@string/dialog_review_title"
+            android:textColor="@color/black_3333"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/dialog_review_rating_bar"
+            style="@style/review_star_ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="40dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="0.5"
+            app:layout_constraintBottom_toTopOf="@id/dialog_btn_star_complete_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_review_title_tv" />
+
+        <TextView
+            android:id="@+id/dialog_btn_star_complete_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/shape_black_fill_8"
+            android:fontFamily="@font/noto_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingHorizontal="94dp"
+            android:paddingVertical="14dp"
+            android:text="@string/dialog_review_btn"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/dialog_btn_complete_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/shape_black_fill_8"
+        android:fontFamily="@font/noto_regular"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="122dp"
+        android:paddingVertical="14dp"
+        android:text="@string/dialog_record_complete_btn"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

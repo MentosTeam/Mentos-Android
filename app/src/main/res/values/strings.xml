@@ -21,6 +21,27 @@
     <string name="dialog_email_confirm_fail">인증번호를 다시 확인해 주세요</string>
     <string name="dialog_find_password">해당 이메일로 임시 비밀번호가 발급되었습니다</string>
     <string name="dialog_find_password_fail">임시 비밀번호 발급에 오류가 발생했습니다. 다시 시도해 주세요</string>
+    <string name="dialog_withdrawal_password">😢\n<b>탈퇴</b>전, <b>계정 비밀번호</b>를 입력해주세요</string>
+    <string name="dialog_withdrawal_password_btn">멘토-쓰 이용 종료</string>
+    <string name="dialog_review_et_title">\n📝<b>간단한 후기를 적어주세요!</b></string>
+    <string name="dialog_review_et_sub_title">멘토의 프로필에 기록되는 내용이니 신중하게 적어주세요!</string>
+    <string name="dialog_review_et_btn">최종 등록하기</string>
+    <string name="dialog_review_title">멘토링의 별점을 매겨주세요!</string>
+    <string name="dialog_review_btn">다음 단계로(1/2)</string>
+    <string name="dialog_record_alert_title">⚠️\n기록을 남기기 전에...</string>
+    <string name="dialog_record_alert_sub_title">글 1회 작성 시 멘토링이 1회 진행된 것으로 간주됩니다!\n삭제는 불가능하니 신중하게 적어주세요 :)</string>
+    <string name="dialog_record_btn_1">기록하기</string>
+    <string name="dialog_record_btn_2">한 번 더 확인하기</string>
+    <string name="dialog_withdrawal_title"><b>멘토-쓰 회원 탈퇴</b>를 위해\n들어오셨나요?😭</string>
+    <string name="dialog_withdrawal_complete_title"><b>탈퇴</b>가 완료되었어요😢</string>
+    <string name="dialog_withdrawal_complete_sub_title">멘토-쓰는 언제든 열려있으니,\n생각나면 다시 찾아주세요 :)</string>
+    <string name="dialog_withdrawal_complete_btn">멘토-쓰 종료</string>
+    <string name="dialog_withdrawal_btn_1">😢네,탈퇴하기</string>
+    <string name="dialog_withdrawal_btn_2">😀아니요,계속 이용하기</string>
+    <string name="dialog_record_complete_title">성공적으로 기록되었어요!😊</string>
+    <string name="dialog_record_complete_sub_title">멘토링 현황에서 확인 가능합니다!</string>
+    <string name="dialog_review_complete_sub_title">멘토의 프로필에서 확인 가능합니다</string>
+    <string name="dialog_record_complete_btn">확인</string>
 
     <!--First Account Dialog-->
     <string name="dialog_account_title">본격적인 이용 전, <b>역할 설정</b>이 필요해요!</string>

@@ -118,7 +118,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_red_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                  
+
                     <CheckBox
                         android:id="@+id/mentos_red_cb"
                         android:layout_width="76dp"
@@ -277,7 +277,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_green_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                  
+
                     <CheckBox
                         android:id="@+id/mentos_green_cb"
                         android:layout_width="76dp"
@@ -383,7 +383,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_sky_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                  
+
                     <CheckBox
                         android:id="@+id/mentos_sky_cb"
                         android:layout_width="76dp"
@@ -436,7 +436,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_blue_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                  
+
                     <CheckBox
                         android:id="@+id/mentos_blue_cb"
                         android:layout_width="76dp"
@@ -542,7 +542,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_purple_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                  
+
                     <CheckBox
                         android:id="@+id/mentos_purple_cb"
                         android:layout_width="76dp"
@@ -701,7 +701,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/bottom_sheet_mentos_gray_iv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                  
+
                     <CheckBox
                         android:id="@+id/mentos_gray_cb"
                         android:layout_width="76dp"
@@ -727,7 +727,7 @@
                 android:paddingVertical="13dp"
                 android:stateListAnimator="@null"
                 android:text="@string/account_mentos_btn"
-                android:textColor="@color/white"
+                android:textColor="@{viewModel.selectedCategory.size != 0 ? @color/white : @color/gray_c7c6}"
                 android:textSize="16sp"
                 app:cornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"

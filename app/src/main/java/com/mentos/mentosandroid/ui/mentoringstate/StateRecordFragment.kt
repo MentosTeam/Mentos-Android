@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.databinding.FragmentStateRecordBinding
-import com.mentos.mentosandroid.util.popBackStack
+import com.mentos.mentosandroid.util.*
 
 class StateRecordFragment : Fragment() {
     private lateinit var binding: FragmentStateRecordBinding
@@ -36,7 +36,9 @@ class StateRecordFragment : Fragment() {
         stateViewModel.canRecord.observe(viewLifecycleOwner) { canRecord ->
             when (canRecord) {
                 true -> {
-                    // 입력된 글 있으면 dialog
+                    DialogUtil(5) {
+                        popBackStack()
+                    }.show(childFragmentManager, "record_stop_write")
                 }
                 false -> popBackStack()
             }
@@ -47,7 +49,11 @@ class StateRecordFragment : Fragment() {
         stateViewModel.isSuccessRecord.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
                 true -> {
-                    popBackStack()
+                    TwoButtonDialog(0) {
+                        OneButtonDialog(0) {
+                            popBackStack()
+                        }.show(childFragmentManager, "record_complete")
+                    }.show(childFragmentManager, "record_confirm")
                 }
                 false -> {
                 }
