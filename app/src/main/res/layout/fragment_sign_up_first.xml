@@ -264,7 +264,7 @@
                     <soup.neumorphism.NeumorphCardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
+                        android:layout_marginStart="10dp"
                         android:padding="6dp"
                         app:neumorph_backgroundColor="@color/white"
                         app:neumorph_inset="6dp"
@@ -283,7 +283,7 @@
                             android:fontFamily="@font/noto_regular"
                             android:gravity="center"
                             android:includeFontPadding="false"
-                            android:paddingHorizontal="56dp"
+                            android:paddingHorizontal="50dp"
                             android:paddingVertical="6dp"
                             android:text="@string/sign_up_sex_men"
                             android:textColor="@color/black_3333"
@@ -311,15 +311,13 @@
                             android:fontFamily="@font/noto_regular"
                             android:gravity="center"
                             android:includeFontPadding="false"
-                            android:paddingHorizontal="56dp"
+                            android:paddingHorizontal="50dp"
                             android:paddingVertical="6dp"
                             android:text="@string/sign_up_sex_women"
                             android:textColor="@color/black_3333"
                             android:textSize="16sp" />
                     </soup.neumorphism.NeumorphCardView>
                 </LinearLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.button.MaterialButton

@@ -23,7 +23,7 @@ class SignUpViewModel : ViewModel() {
     val isNickNameValid: LiveData<Boolean> = _isNickNameValid
 
     private val _canFirstRegister = MediatorLiveDataUtil.initMediatorLiveData(
-        listOf(name, nowNickName, isNickNameValid)
+        listOf(name, nowNickName, isNickNameValid, sex)
     ) { canFirstRegisterCheck() }
     val canFirstRegister: LiveData<Boolean> = _canFirstRegister
 
@@ -31,6 +31,7 @@ class SignUpViewModel : ViewModel() {
         requireNotNull(name.value).isNotBlank()
                 && requireNotNull(nowNickName.value).isNotBlank()
                 && requireNotNull(isNickNameValid.value)
+                && requireNotNull(sex.value).isNotBlank()
 
     fun getNickNameValid() {
         // 닉네임 중복 서버 api 연결
