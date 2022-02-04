@@ -40,8 +40,6 @@ class ChangePasswordFragment : Fragment() {
     }
 
     private fun setSuccessChangePasswordObserve() {
-        val currentPW = "mentos123!"
-        settingViewModel.currentPassword = currentPW
         settingViewModel.isSuccessChangePW.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
                 true -> {
