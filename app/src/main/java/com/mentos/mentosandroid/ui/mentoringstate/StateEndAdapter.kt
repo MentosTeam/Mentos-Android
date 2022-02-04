@@ -3,16 +3,19 @@ package com.mentos.mentosandroid.ui.mentoringstate
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.StateEnd
 import com.mentos.mentosandroid.databinding.ItemStateEndBinding
+import com.mentos.mentosandroid.util.EditTextDialog
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosBgStroke
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosColor
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg59
+import com.mentos.mentosandroid.util.OneButtonDialog
 
-class StateEndAdapter :
+class StateEndAdapter(val fragmentManager: FragmentManager) :
     ListAdapter<StateEnd, StateEndAdapter.StateEndViewHolder>(StateEndDiffUtil()) {
 
     inner class StateEndViewHolder(
@@ -27,6 +30,19 @@ class StateEndAdapter :
                 stateEndCount.text = item.mentoringCount1.toString()
                 stateEndCount2.text = item.mentoringCount2.toString()
                 stateEndMentosCount.text = item.mentos.toString()
+            }
+
+            binding.stateEndReviewWriteLayout.setOnClickListener {
+                OneButtonDialog(3) { rating ->
+                    val rating = rating
+                    // rating Float 값임
+                    EditTextDialog(0) { reviewText ->
+                        val reviewText = reviewText
+                        // 별점 등록 서버 연결
+                        OneButtonDialog(2) {
+                        }.show(fragmentManager, "review")
+                    }.show(fragmentManager, "review_text")
+                }.show(fragmentManager, "review_star")
             }
 
             when (item.review) {

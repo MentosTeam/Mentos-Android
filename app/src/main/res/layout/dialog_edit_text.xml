@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dialog_et_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:text="@string/dialog_withdrawal_password"
+        android:textColor="@color/black_3333"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_et_sub_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:text="@string/dialog_review_et_sub_title"
+        android:textColor="@color/gray_7070"
+        android:textSize="10sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/dialog_et_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/dialog_et_title_tv" />
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/dialog_et_password_layout"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="26dp"
+        android:padding="12dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/dialog_btn_complete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_et_title_tv"
+        app:neumorph_backgroundColor="@color/white"
+        app:neumorph_inset="5dp"
+        app:neumorph_shadowColorDark="@color/gray_shadow"
+        app:neumorph_shadowColorLight="@android:color/transparent"
+        app:neumorph_shadowElevation="3dp"
+        app:neumorph_shapeAppearance="@style/shadow_round_20"
+        app:neumorph_shapeType="flat"
+        app:neumorph_strokeColor="@color/gray_eded"
+        app:neumorph_strokeWidth="1dp">
+
+        <EditText
+            android:id="@+id/dialog_et_password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="7dp"
+            android:layout_marginVertical="5dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/noto_regular"
+            android:hint="@string/sign_up_password"
+            android:includeFontPadding="false"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@color/black_3333"
+            android:textColorHint="@color/gray_c7c6"
+            android:textSize="16sp" />
+    </soup.neumorphism.NeumorphCardView>
+
+    <TextView
+        android:id="@+id/dialog_password_fail_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:text="@string/sign_up_password_fail"
+        android:textColor="@color/red_alert"
+        android:textSize="10sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/dialog_btn_complete"
+        app:layout_constraintEnd_toEndOf="@id/dialog_btn_complete"
+        app:layout_constraintStart_toStartOf="@id/dialog_btn_complete"
+        app:layout_constraintTop_toBottomOf="@id/dialog_et_password_layout" />
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/dialog_et_review_layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="9dp"
+        android:padding="12dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/dialog_btn_complete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_et_title_tv"
+        app:neumorph_backgroundColor="@color/white"
+        app:neumorph_inset="5dp"
+        app:neumorph_shadowColorDark="@color/gray_shadow"
+        app:neumorph_shadowColorLight="@android:color/transparent"
+        app:neumorph_shadowElevation="3dp"
+        app:neumorph_shapeAppearance="@style/shadow_round_20"
+        app:neumorph_shapeType="flat"
+        app:neumorph_strokeColor="@color/gray_eded"
+        app:neumorph_strokeWidth="1dp">
+
+        <EditText
+            android:id="@+id/dialog_et_review_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="7dp"
+            android:layout_marginVertical="5dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:inputType="none"
+            android:maxLength="100"
+            android:maxLines="2"
+            android:minLines="2"
+            android:textColor="@color/black_3333"
+            android:textSize="10sp" />
+    </soup.neumorphism.NeumorphCardView>
+
+    <TextView
+        android:id="@+id/dialog_btn_complete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/shape_gray_fill_8"
+        android:fontFamily="@font/noto_regular"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingVertical="13dp"
+        android:stateListAnimator="@null"
+        android:text="@string/dialog_withdrawal_password_btn"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

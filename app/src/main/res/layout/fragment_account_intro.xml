@@ -115,7 +115,7 @@
                 android:paddingVertical="13dp"
                 android:stateListAnimator="@null"
                 android:text="@string/account_intro_btn"
-                android:textColor="@color/white"
+                android:textColor="@{viewModel.canRegister ? @color/white : @color/gray_c7c6}"
                 android:textSize="16sp"
                 app:cornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSettingBinding
+import com.mentos.mentosandroid.util.EditTextDialog
+import com.mentos.mentosandroid.util.OneButtonDialog
+import com.mentos.mentosandroid.util.TwoButtonDialog
 import com.mentos.mentosandroid.util.navigate
 
 class SettingFragment : Fragment() {
@@ -51,6 +54,15 @@ class SettingFragment : Fragment() {
         }
         binding.settingPolicyLayout.setOnClickListener {
             //약관으로 이동
+        }
+        binding.settingWithdrawalTv.setOnClickListener {
+            TwoButtonDialog(1) {
+                EditTextDialog(1) {
+                    OneButtonDialog(1) {
+                        //탈퇴후 처리
+                    }.show(childFragmentManager, "withdrawal")
+                }.show(childFragmentManager, "withdrawal")
+            }.show(childFragmentManager, "withdrawal")
         }
     }
 }
