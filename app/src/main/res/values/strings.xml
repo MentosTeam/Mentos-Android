@@ -234,6 +234,9 @@
 
     <string name="change_nickname_title"><b>새로운 별명</b>을 입력해주세요</string>
 
+    <string name="change_mentos_btn">멘토-쓰 선택 완료(1/2)</string>
+    <string name="change_intro_btn">내용 작성 완료(2/2)</string>
+
     <!--State Fragment-->
     <string name="state_title_mentor">멘토링 현황(멘토)</string>
     <string name="state_title_mentee">멘토링 현황(멘티)</string>

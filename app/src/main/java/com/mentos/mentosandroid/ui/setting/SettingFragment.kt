@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSettingBinding
-import com.mentos.mentosandroid.util.EditTextDialog
-import com.mentos.mentosandroid.util.OneButtonDialog
-import com.mentos.mentosandroid.util.TwoButtonDialog
-import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.*
 
 class SettingFragment : Fragment() {
     private lateinit var binding: FragmentSettingBinding
@@ -27,8 +24,19 @@ class SettingFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         setBtnClickListener()
-
+        setCurrentOpenSex()
+        setOpenSexObserve()
         return binding.root
+    }
+
+    private fun setCurrentOpenSex() {
+        settingViewModel.openSex.value = SharedPreferenceController.getOpenSex(requireContext())
+    }
+
+    private fun setOpenSexObserve() {
+        settingViewModel.openSex.observe(viewLifecycleOwner) { isOpen ->
+            SharedPreferenceController.setOpenSex(requireContext(), isOpen)
+        }
     }
 
     private fun setBtnClickListener() {
