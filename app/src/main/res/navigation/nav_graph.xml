@@ -227,6 +227,21 @@
         android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringStart4Fragment"
         android:label="MentoringStart4Fragment"
         tools:layout="@layout/fragment_mentoring_start4">
+        <action
+            android:id="@+id/action_mentoringStart4Fragment_to_mentoringStart5Fragment"
+            app:destination="@id/mentoringStart5Fragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false"/>
+        <argument
+            android:name="mentoringStart"
+            app:argType="com.mentos.mentosandroid.data.MentoringStart" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mentoringStart5Fragment"
+        android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringStart5Fragment"
+        android:label="MentoringStart5Fragment"
+        tools:layout="@layout/fragment_mentoring_start5">
         <argument
             android:name="mentoringStart"
             app:argType="com.mentos.mentosandroid.data.MentoringStart" />

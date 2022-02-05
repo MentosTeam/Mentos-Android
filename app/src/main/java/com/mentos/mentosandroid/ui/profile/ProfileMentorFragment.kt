@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMentorBinding
+import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 
 class ProfileMentorFragment : Fragment() {
@@ -23,11 +24,22 @@ class ProfileMentorFragment : Fragment() {
 
         //뷰모델 연결
         initViewModel()
-
+        initSex()
         setPostMoreClickListener()
         setReviewMoreClickListener()
 
         return binding.root
+    }
+
+    private fun initSex() {
+        val isOpen = SharedPreferenceController.getOpenSex(requireContext())
+        if (isOpen) {
+            binding.mentorProfileOpenSexLayout.visibility = View.VISIBLE
+            binding.mentorProfilePrivateSexLayout.visibility = View.GONE
+        } else {
+            binding.mentorProfileOpenSexLayout.visibility = View.GONE
+            binding.mentorProfilePrivateSexLayout.visibility = View.VISIBLE
+        }
     }
 
     private fun setReviewMoreClickListener() {

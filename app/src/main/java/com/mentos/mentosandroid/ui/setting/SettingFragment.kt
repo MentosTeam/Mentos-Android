@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSettingBinding
-import com.mentos.mentosandroid.util.EditTextDialog
-import com.mentos.mentosandroid.util.OneButtonDialog
-import com.mentos.mentosandroid.util.TwoButtonDialog
-import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.*
 
 class SettingFragment : Fragment() {
     private lateinit var binding: FragmentSettingBinding
@@ -27,25 +24,32 @@ class SettingFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         setBtnClickListener()
-
+        setCurrentOpenSex()
+        setOpenSexObserve()
         return binding.root
+    }
+
+    private fun setCurrentOpenSex() {
+        settingViewModel.openSex.value = SharedPreferenceController.getOpenSex(requireContext())
+    }
+
+    private fun setOpenSexObserve() {
+        settingViewModel.openSex.observe(viewLifecycleOwner) { isOpen ->
+            SharedPreferenceController.setOpenSex(requireContext(), isOpen)
+        }
     }
 
     private fun setBtnClickListener() {
         binding.settingNicknameLayout.setOnClickListener {
-            //기존 닉네임 전달 필요
             navigate(R.id.action_settingFragment_to_changeNicknameFragment)
         }
         binding.settingImageLayout.setOnClickListener {
-            //기존 이미지 전달 필요
             navigate(R.id.action_settingFragment_to_changeProfileImgFragment)
         }
         binding.settingMajorLayout.setOnClickListener {
-            //기존 전공, 학번 전달 필요
             navigate(R.id.action_settingFragment_to_changeMajorFragment)
         }
         binding.settingMentosLayout.setOnClickListener {
-            //기존 멘토스, 자기소개 전달 필요
             navigate(R.id.action_settingFragment_to_changeMentosFragment)
         }
         binding.settingPwLayout.setOnClickListener {
@@ -54,6 +58,11 @@ class SettingFragment : Fragment() {
         }
         binding.settingPolicyLayout.setOnClickListener {
             //약관으로 이동
+        }
+        binding.settingLogoutTv.setOnClickListener {
+            TwoButtonDialog(2) {
+                //로그아웃 후 처리
+            }.show(childFragmentManager, "logout")
         }
         binding.settingWithdrawalTv.setOnClickListener {
             TwoButtonDialog(1) {
