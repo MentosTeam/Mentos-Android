@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mentos.mentosandroid.databinding.FragmentProfileMenteeBinding
+import com.mentos.mentosandroid.util.SharedPreferenceController
 
 class ProfileMenteeFragment : Fragment() {
     private lateinit var binding: FragmentProfileMenteeBinding
@@ -21,8 +22,20 @@ class ProfileMenteeFragment : Fragment() {
 
         //뷰모델 연결
         initViewModel()
+        initSex()
 
         return binding.root
+    }
+
+    private fun initSex() {
+        val isOpen = SharedPreferenceController.getOpenSex(requireContext())
+        if (isOpen) {
+            binding.menteeProfileOpenSexLayout.visibility = View.VISIBLE
+            binding.menteeProfilePrivateSexLayout.visibility = View.GONE
+        } else {
+            binding.menteeProfileOpenSexLayout.visibility = View.GONE
+            binding.menteeProfilePrivateSexLayout.visibility = View.VISIBLE
+        }
     }
 
     private fun initViewModel() {

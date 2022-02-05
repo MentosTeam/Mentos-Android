@@ -91,7 +91,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_bold"
                                 android:includeFontPadding="false"
-                                android:text="@{profileViewModel.menteeProfileData.basicInformation.nickname + ` 멘티`}"
+                                android:text="@{profileViewModel.menteeProfileData.basicInformation.nickname + `(` + profileViewModel.menteeProfileData.basicInformation.name + `) 멘티`}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="15sp" />
 
@@ -140,7 +140,7 @@
 
                             <LinearLayout
                                 android:id="@+id/mentee_profile_mentoring_count_layout"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:layout_marginBottom="2dp"
@@ -155,7 +155,7 @@
                                     android:id="@+id/mentee_profile_mentoring_count_img"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_profile_mentoring_count"
+                                    android:src="@drawable/ic_profile_certification"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/mentee_profile_view1" />
@@ -190,41 +190,51 @@
                                 android:background="@color/gray_eded" />
 
                             <LinearLayout
-                                android:id="@+id/mentee_profile_certification_layout"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/mentee_profile_open_sex_layout"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:id="@+id/mentee_profile_certification_img"
+                                    android:id="@+id/mentee_profile_sex_img"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_profile_certification" />
+                                    android:src="@drawable/ic_profile_mentoring_count" />
 
                                 <TextView
-                                    android:id="@+id/mentee_profile_certification_tv1"
+                                    android:id="@+id/mentee_profile_open_sex_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="4dp"
                                     android:fontFamily="@font/noto_regular"
                                     android:includeFontPadding="false"
-                                    android:text="@string/profile_info_certification_title"
-                                    android:textColor="@color/black_3333"
-                                    android:textSize="10sp" />
-
-                                <TextView
-                                    android:id="@+id/mentee_profile_certification_tv2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="4dp"
-                                    android:fontFamily="@font/noto_bold"
-                                    android:includeFontPadding="false"
-                                    android:text="@string/profile_info_certification_finish"
+                                    android:text="@{profileViewModel.menteeProfileData.basicInformation.sex == `F` ? @string/profile_info_female : @string/profile_info_male}"
                                     android:textColor="@color/black_3333"
                                     android:textSize="10sp" />
                             </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/mentee_profile_private_sex_layout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/mentee_profile_private_sex_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/noto_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/profile_info_open_private_sex"
+                                    android:textColor="@color/gray_bbbb"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
+
                         </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,50 +9,40 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mentoring_start5_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/mentoring_start3_background_img"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_main_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+        android:layout_height="match_parent"
+        android:background="@color/mentos_green">
 
         <ImageButton
-            android:id="@+id/mentoring_start3_back_ib"
+            android:id="@+id/mentoring_start5_close_ib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginBottom="9dp"
-            android:background="@android:color/transparent"
+            android:layout_marginEnd="21dp"
+            android:layout_marginTop="39dp"
             android:padding="6dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_x_16"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/mentoring_start3_title_tv"
+            android:id="@+id/mentoring_start5_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_bold"
             android:includeFontPadding="false"
-            android:text="@string/mentoring_start3_title"
+            android:text="@string/mentoring_start4_title"
             android:textColor="@color/black_0000"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/mentoring_start3_back_ib"
+            app:layout_constraintBottom_toBottomOf="@id/mentoring_start5_close_ib"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/mentoring_start3_back_ib" />
+            app:layout_constraintTop_toTopOf="@id/mentoring_start5_close_ib" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mentoring_start5_inner_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,30 +51,43 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/mentoring_start3_subtitle1_tv"
+                android:id="@+id/mentoring_start5_subtitle1_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="27dp"
                 android:fontFamily="@font/noto_bold"
                 android:includeFontPadding="false"
-                android:text="@string/mentoring_start3_subtitle1"
+                android:text="@string/mentoring_start5_subtitle1"
                 android:textColor="@color/black_0000"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-            <soup.neumorphism.NeumorphCardView
-                android:id="@+id/mentoring_start3_choose_mentos_layout"
+            <TextView
+                android:id="@+id/mentoring_start5_subtitle2_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="62dp"
-                android:background="@color/white"
+                android:layout_marginStart="27dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/mentoring_start5_subtitle2"
+                android:textColor="@color/gray_7070"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mentoring_start5_subtitle1_tv" />
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/mentoring_start5_mentos_complete_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginTop="88dp"
+                android:layout_marginBottom="88dp"
                 android:padding="10dp"
-                app:layout_constraintBottom_toTopOf="@id/mentoring_start3_button_tv"
+                app:layout_constraintBottom_toTopOf="@id/mentoring_start5_button_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mentoring_start3_subtitle1_tv"
+                app:layout_constraintTop_toBottomOf="@id/mentoring_start5_subtitle2_tv"
                 app:neumorph_backgroundColor="@color/white"
                 app:neumorph_inset="10dp"
                 app:neumorph_shadowColorDark="@color/gray_shadow"
@@ -96,65 +99,60 @@
                 app:neumorph_strokeWidth="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="43dp"
-                    android:layout_marginVertical="35dp">
-
-                    <TextView
-                        android:id="@+id/mentoring_start3_select_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="13dp"
-                        android:layout_marginVertical="40dp"
-                        android:fontFamily="@font/noto_regular"
-                        android:includeFontPadding="false"
-                        android:text="@string/mentoring_start3_select"
-                        android:textColor="@color/gray_7070"
-                        android:textSize="12sp"
-                        android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="25dp">
 
                     <ImageView
-                        android:id="@+id/mentoring_start3_selected_Img"
+                        android:id="@+id/mentoring_start5_mentos_complete_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toTopOf="@+id/mentoring_start3_selected_tv"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/img_mentos_green_41"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/mentoring_start3_selected_tv"
+                        android:id="@+id/mentoring_start5_mentos_complete_number_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/noto_regular"
                         android:includeFontPadding="false"
+                        android:text="6회"
                         android:textColor="@color/black_3333"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mentoring_start3_selected_Img" />
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toEndOf="@id/mentoring_start5_mentos_complete_iv"
+                        app:layout_constraintTop_toTopOf="@id/mentoring_start5_mentos_complete_iv" />
+
+                    <TextView
+                        android:id="@+id/mentoring_start5_mentos_complete_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="홍길동 멘토 / 홍길동 멘티"
+                        android:textColor="@color/black_3333"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@id/mentoring_start5_mentos_complete_iv"
+                        app:layout_constraintStart_toEndOf="@id/mentoring_start5_mentos_complete_iv"
+                        app:layout_constraintTop_toBottomOf="@id/mentoring_start5_mentos_complete_number_tv" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </soup.neumorphism.NeumorphCardView>
 
             <TextView
-                android:id="@+id/mentoring_start3_button_tv"
+                android:id="@+id/mentoring_start5_button_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="27dp"
-                android:layout_marginTop="62dp"
                 android:background="@drawable/shape_gray_fill_8"
                 android:fontFamily="@font/noto_regular"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:paddingVertical="13dp"
-                android:text="@string/mentoring_start3_next_button"
+                android:text="@string/mentoring_start4_next_button"
                 android:textColor="@color/gray_c7c6"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

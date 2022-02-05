@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mentos.mentosandroid.databinding.FragmentOneMenteeProfileBinding
 import com.mentos.mentosandroid.ui.profile.ProfileViewModel
+import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.popBackStack
 
 class OneMenteeProfileFragment : Fragment() {
@@ -21,6 +22,7 @@ class OneMenteeProfileFragment : Fragment() {
     ): View {
         binding = FragmentOneMenteeProfileBinding.inflate(inflater, container, false)
         initViewModel()
+        initSex()
         setBackBtnClickListener()
         return binding.root
     }
@@ -34,6 +36,17 @@ class OneMenteeProfileFragment : Fragment() {
     private fun setBackBtnClickListener() {
         binding.oneMenteeBtnBackIb.setOnClickListener {
             popBackStack()
+        }
+    }
+
+    private fun initSex() {
+        val isOpen = SharedPreferenceController.getOpenSex(requireContext())
+        if (isOpen) {
+            binding.menteeProfileOpenSexLayout.visibility = View.VISIBLE
+            binding.menteeProfilePrivateSexLayout.visibility = View.GONE
+        } else {
+            binding.menteeProfileOpenSexLayout.visibility = View.GONE
+            binding.menteeProfilePrivateSexLayout.visibility = View.VISIBLE
         }
     }
 }

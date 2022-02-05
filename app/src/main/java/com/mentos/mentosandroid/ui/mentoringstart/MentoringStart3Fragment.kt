@@ -11,9 +11,7 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringStart3Binding
 import com.mentos.mentosandroid.util.MentosCategoryDialog
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosText
-import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg71
-import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
@@ -47,6 +45,7 @@ class MentoringStart3Fragment : Fragment() {
             binding.mentoringStart3SelectTv.visibility = View.GONE
             binding.mentoringStart3ButtonTv.setBackgroundResource(R.drawable.shape_black_fill_8)
             binding.mentoringStart3ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            binding.mentoringStart3BackgroundImg.visibility = View.GONE
         }
     }
 
@@ -72,8 +71,10 @@ class MentoringStart3Fragment : Fragment() {
                     binding.mentoringStart3SelectedImg.setMentosImg71(category)
                     binding.mentoringStart3SelectedTv.setMentosText(category)
                     binding.mentoringStart3SelectTv.visibility = View.GONE
+                    binding.mentoringStart3ButtonTv.text = getString(R.string.mentoring_start3_complete_next_button)
                     binding.mentoringStart3ButtonTv.setBackgroundResource(R.drawable.shape_black_fill_8)
                     binding.mentoringStart3ButtonTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    binding.mentoringStart3BackgroundImg.visibility = View.GONE
                 }
             }.show(childFragmentManager, "SELECT_MENTORING_START")
         }

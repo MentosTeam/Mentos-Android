@@ -44,6 +44,8 @@ class TwoButtonDialog(
                     dialogWithdrawalTitleTv.visibility = View.GONE
                     dialogWithdrawalBtnLayout.visibility = View.GONE
                     dialogRecordBtnLayout.visibility = View.VISIBLE
+                    dialogLogoutBtnLayout.visibility = View.GONE
+                    dialogLogoutTitleTv.visibility = View.GONE
                 }
                 WITHDRAWAL -> {
                     dialogRecordTitleTv.visibility = View.GONE
@@ -51,6 +53,17 @@ class TwoButtonDialog(
                     dialogWithdrawalTitleTv.visibility = View.VISIBLE
                     dialogWithdrawalBtnLayout.visibility = View.VISIBLE
                     dialogRecordBtnLayout.visibility = View.GONE
+                    dialogLogoutBtnLayout.visibility = View.GONE
+                    dialogLogoutTitleTv.visibility = View.GONE
+                }
+                LOGOUT -> {
+                    dialogRecordTitleTv.visibility = View.GONE
+                    dialogSubTitleTv.visibility = View.GONE
+                    dialogWithdrawalTitleTv.visibility = View.GONE
+                    dialogWithdrawalBtnLayout.visibility = View.GONE
+                    dialogRecordBtnLayout.visibility = View.GONE
+                    dialogLogoutBtnLayout.visibility = View.VISIBLE
+                    dialogLogoutTitleTv.visibility = View.VISIBLE
                 }
                 else -> throw IllegalStateException()
             }
@@ -75,10 +88,18 @@ class TwoButtonDialog(
         binding.dialogWithdrawalSecondBtnTv.setOnClickListener {
             dismiss()
         }
+        binding.dialogLogoutFirstBtnTv.setOnClickListener {
+            dismiss()
+        }
+
+        binding.dialogLogoutSecondBtnTv.setOnClickListener {
+            dismiss()
+        }
     }
 
     companion object {
         const val RECORD = 0
         const val WITHDRAWAL = 1
+        const val LOGOUT = 2
     }
 }

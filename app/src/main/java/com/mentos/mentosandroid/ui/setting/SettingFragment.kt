@@ -41,19 +41,15 @@ class SettingFragment : Fragment() {
 
     private fun setBtnClickListener() {
         binding.settingNicknameLayout.setOnClickListener {
-            //기존 닉네임 전달 필요
             navigate(R.id.action_settingFragment_to_changeNicknameFragment)
         }
         binding.settingImageLayout.setOnClickListener {
-            //기존 이미지 전달 필요
             navigate(R.id.action_settingFragment_to_changeProfileImgFragment)
         }
         binding.settingMajorLayout.setOnClickListener {
-            //기존 전공, 학번 전달 필요
             navigate(R.id.action_settingFragment_to_changeMajorFragment)
         }
         binding.settingMentosLayout.setOnClickListener {
-            //기존 멘토스, 자기소개 전달 필요
             navigate(R.id.action_settingFragment_to_changeMentosFragment)
         }
         binding.settingPwLayout.setOnClickListener {
@@ -62,6 +58,11 @@ class SettingFragment : Fragment() {
         }
         binding.settingPolicyLayout.setOnClickListener {
             //약관으로 이동
+        }
+        binding.settingLogoutTv.setOnClickListener {
+            TwoButtonDialog(2) {
+                //로그아웃 후 처리
+            }.show(childFragmentManager, "logout")
         }
         binding.settingWithdrawalTv.setOnClickListener {
             TwoButtonDialog(1) {

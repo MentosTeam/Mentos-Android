@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.databinding.FragmentOneMentorProfileBinding
 import com.mentos.mentosandroid.ui.profile.ProfileViewModel
+import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
@@ -24,6 +25,7 @@ class OneMentorProfileFragment : Fragment() {
     ): View {
         binding = FragmentOneMentorProfileBinding.inflate(inflater, container, false)
         initViewModel()
+        initSex()
         setBackBtnClickListener()
         setNavigateWithMentorId()
         return binding.root
@@ -33,6 +35,17 @@ class OneMentorProfileFragment : Fragment() {
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         binding.profileViewModel = profileViewModel
         binding.lifecycleOwner = this
+    }
+
+    private fun initSex() {
+        val isOpen = SharedPreferenceController.getOpenSex(requireContext())
+        if (isOpen) {
+            binding.mentorProfileOpenSexLayout.visibility = View.VISIBLE
+            binding.mentorProfilePrivateSexLayout.visibility = View.GONE
+        } else {
+            binding.mentorProfileOpenSexLayout.visibility = View.GONE
+            binding.mentorProfilePrivateSexLayout.visibility = View.VISIBLE
+        }
     }
 
     private fun setBackBtnClickListener() {
