@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="profileViewModel"
             type="com.mentos.mentosandroid.ui.profile.ProfileViewModel" />
@@ -418,6 +420,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4dp"
                         android:src="@drawable/ic_home_more"
+                        android:visibility="@{profileViewModel.mentorPost2.size() == 0 ? View.GONE : View.VISIBLE}"
                         app:layout_constraintBottom_toBottomOf="@+id/mentor_profile_detail_title_tv"
                         app:layout_constraintStart_toEndOf="@+id/mentor_profile_detail_title_tv"
                         app:layout_constraintTop_toTopOf="@+id/mentor_profile_detail_title_tv"
@@ -469,6 +472,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4dp"
                         android:src="@drawable/ic_home_more"
+                        android:visibility="@{profileViewModel.mentorReview2.size() == 0 ? View.GONE : View.VISIBLE}"
                         app:layout_constraintBottom_toBottomOf="@+id/mentor_profile_review_title_tv"
                         app:layout_constraintStart_toEndOf="@+id/mentor_profile_review_title_tv"
                         app:layout_constraintTop_toTopOf="@+id/mentor_profile_review_title_tv"
@@ -514,71 +518,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <soup.neumorphism.NeumorphCardView
-                        android:id="@+id/mentor_profile_mentoring_mentos_layout"
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/mentor_profile_mentoring_mentos_vp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="19dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="1dp"
-                        android:padding="10dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mentor_profile_mentoring_title_tv"
-                        app:neumorph_backgroundColor="@color/white"
-                        app:neumorph_insetBottom="10dp"
-                        app:neumorph_insetEnd="10dp"
-                        app:neumorph_insetStart="1dp"
-                        app:neumorph_insetTop="1dp"
-                        app:neumorph_shadowColorDark="@color/gray_shadow"
-                        app:neumorph_shadowColorLight="@android:color/transparent"
-                        app:neumorph_shadowElevation="4dp"
-                        app:neumorph_shapeAppearance="@style/shadow_round_20"
-                        app:neumorph_shapeType="flat"
-                        app:neumorph_strokeColor="@color/gray_eded"
-                        app:neumorph_strokeWidth="1dp">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/mentor_profile_mentoring_mentos_rv"
-                                mentosItems="@{profileViewModel.mentorMentosList}"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="9dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="4dp"
-                                android:overScrollMode="never"
-                                android:scrollbars="none"
-                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/mentor_profile_mentoring_mentos_count_tv"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:spanCount="5"
-                                tools:itemCount="10"
-                                tools:listitem="@layout/item_mentos" />
-
-                            <TextView
-                                android:id="@+id/mentor_profile_mentoring_mentos_count_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="20dp"
-                                android:layout_marginBottom="28dp"
-                                android:fontFamily="@font/noto_medium"
-                                android:includeFontPadding="false"
-                                android:text="@{profileViewModel.mentorProfileData.numOfMentoring + `/10`}"
-                                android:textColor="@color/black_3333"
-                                android:textSize="12sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/mentor_profile_mentoring_mentos_rv" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </soup.neumorphism.NeumorphCardView>
+                        app:layout_constraintTop_toBottomOf="@+id/mentor_profile_mentoring_title_tv" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

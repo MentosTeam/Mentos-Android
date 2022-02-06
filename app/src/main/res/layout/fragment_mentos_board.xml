@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/mentor_profile_mentoring_mentos_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="1dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:neumorph_backgroundColor="@color/white"
+        app:neumorph_insetBottom="10dp"
+        app:neumorph_insetEnd="10dp"
+        app:neumorph_insetStart="1dp"
+        app:neumorph_insetTop="1dp"
+        app:neumorph_shadowColorDark="@color/gray_shadow"
+        app:neumorph_shadowColorLight="@android:color/transparent"
+        app:neumorph_shadowElevation="4dp"
+        app:neumorph_shapeAppearance="@style/shadow_round_20"
+        app:neumorph_shapeType="flat"
+        app:neumorph_strokeColor="@color/gray_eded"
+        app:neumorph_strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mentor_profile_mentoring_mentos_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="4dp"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/mentor_profile_mentoring_mentos_count_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:spanCount="5"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_mentos" />
+
+            <TextView
+                android:id="@+id/mentor_profile_mentoring_mentos_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="28dp"
+                android:fontFamily="@font/noto_medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/black_3333"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mentor_profile_mentoring_mentos_rv" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </soup.neumorphism.NeumorphCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -103,7 +103,7 @@ class ProfileViewModel() : ViewModel() {
             ),
             arrayListOf(
                 NumOfMento(
-                    6, 12, 2
+                    6, 12, 20
                 ),
                 NumOfMento(
                     7, 14, 3
@@ -116,17 +116,21 @@ class ProfileViewModel() : ViewModel() {
         _mentorProfileData.value = mentorProfileDataItem
 
         //프로필에서는 2개씩만 보여줌
-        if(mentorProfileDataItem.posts.size >= 3){
+        if (mentorProfileDataItem.posts.size >= 3) {
             _mentorPost2.value = arrayListOf(
                 mentorProfileDataItem.posts[0],
                 mentorProfileDataItem.posts[1]
             )
+        } else {
+            _mentorPost2.value = mentorProfileDataItem.posts
         }
-        if(mentorProfileDataItem.reviews.size >= 3){
+        if (mentorProfileDataItem.reviews.size >= 3) {
             _mentorReview2.value = arrayListOf(
                 mentorProfileDataItem.reviews[0],
                 mentorProfileDataItem.reviews[1]
             )
+        } else {
+            _mentorReview2.value = mentorProfileDataItem.reviews
         }
 
         mentorMajorItems =
@@ -142,20 +146,9 @@ class ProfileViewModel() : ViewModel() {
 
         //진행한 멘토링-멘토스 리스트
         mentorProfileDataItem.numOfMentos.forEach { it ->
-            mentorMentosItems.add(it.majorCategoryId)
+            for (i in 1..it.mentoringMentos)
+                mentorMentosItems.add(it.majorCategoryId)
         }
-
-        if(mentorMentosItems.size < 10){
-            for(i in mentorMentosItems.size until 10){
-                mentorMentosItems.add(i, 0)
-            }
-        }else{
-            //10개 이상이면 최근 10개만 보여줌 -> api 받아올 때 최신순인지 확인 필요
-            while(mentorMentosItems.size > 10){
-                mentorMentosItems.removeAt(0)
-            }
-        }
-
         _mentorMentosList.value = mentorMentosItems
     }
 
