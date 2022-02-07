@@ -104,6 +104,8 @@
     <string name="mentoring_accept_subtitle2">멘토가 최종 수락하면 멘토링이 바로 시작돼요</string>
     <string name="mentoring_accept_yes">멘토링 수락하기</string>
     <string name="mentoring_accept_no">멘토링 거절하기</string>
+    <string name="mentoring_accepted_subtitle1">멘토의 수락이 완료되었어요</string>
+    <string name="mentoring_accepted_subtitle2">멘토링 현황 칸에서 확인할 수 있어요!</string>
 
     <!--Home Fragment for mentee-->
     <string name="mentee_home_search_main">멘토-쓰를 통해\n더욱 발전된 하루를 만들어 볼까요?</string>
@@ -111,6 +113,11 @@
     <string name="mentee_home_category_main">나에게 필요한 멘토-쓰를 찾아볼까요?</string>
     <string name="mentee_home_category_sub">도움이 필요한 영역을 바탕으로 우리학교의 멘토를 소개할게요.</string>
     <string name="mentee_home_other">다른 영역에도 이렇게 다양한 멘토가 있어요!</string>
+
+    <string name="mentee_home_category_empty">멘토가 아직 소개 글을 작성하지 않았어요.\n그동안 필요한 영역을 프로필에 더 상세하게 적어볼까요?</string>
+    <string name="mentee_home_other_empty">멘토가 멘티의 프로필을 보고\n더욱 정확한 도움을 줄 수 있어요!</string>
+    <string name="mentor_home_category_empty">아직 가입완료한 멘티가 없어요!\n그동안 멘토링 가능한 내용을 글로 적어 볼까요?\n(내정보 - 우측 상단 아이콘)</string>
+    <string name="mentor_home_other_empty">멘티는 멘토가 쓴 글을 읽고 멘토링을 요청할 거예요!</string>
 
     <!--Home Fragment for mentor-->
     <string name="mentor_home_search_main">이곳에서\n당신의 정보가 가치있게 쓰이길 바라며!</string>
@@ -279,5 +286,8 @@
     <string name="state_both_empty_now_mentor">아직 멘토-쓰를 얻을 기회가 없었네요!</string>
     <string name="state_both_empty_now_mentee">아직 멘토-쓰를 한 번도 사용하지 않으셨네요!</string>
     <string name="state_empty_end">진행 중인 멘토링을 성공적으로 완료하길 바랍니다!</string>
+
+    <!--Notification Fragment-->
+    <string name="notification_title">알림</string>
 
 </resources>

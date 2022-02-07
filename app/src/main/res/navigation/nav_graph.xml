@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_oneMentorProfileFragment"
             app:destination="@id/oneMentorProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
 
     <fragment
@@ -333,4 +336,10 @@
         android:name="com.mentos.mentosandroid.ui.setting.ChangeIntroFragment"
         android:label="ChangeIntroFragment"
         tools:layout="@layout/fragment_change_intro"/>
+
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.mentos.mentosandroid.ui.notification.NotificationFragment"
+        android:label="NotificationFragment"
+        tools:layout="@layout/fragment_notification"/>
 </navigation>
