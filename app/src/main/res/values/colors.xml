@@ -10,6 +10,8 @@
     <color name="gray_eded">#ededed</color>
     <color name="gray_c7c6">#c7c6c6</color>
     <color name="gray_bbbb">#bbbbbb</color>
+    <color name="gray_9797">#979797</color>
+    <color name="gray_d8d8">#d8d8d8</color>
     <color name="gray_shadow">#0A000000</color>
     <color name="mentos_red">#f7c5cc</color>
     <color name="mentos_orange">#ffd1b4</color>
@@ -32,8 +34,5 @@
     <color name="bg_purple">#edc3e7</color>
     <color name="red_alert">#e50000</color>
     <color name="green_alert">#02a147</color>
-    <color name="red_e500">#e50000</color>
-    <color name="gray_9797">#979797</color>
-    <color name="gray_d8d8">#d8d8d8</color>
     <color name="pink_ffba">#ffbaba</color>
 </resources>

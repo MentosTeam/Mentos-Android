@@ -12,6 +12,7 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentHomeMentorBinding
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 
 class MentorHomeFragment(): Fragment() {
     lateinit var binding: FragmentHomeMentorBinding
@@ -68,7 +69,7 @@ class MentorHomeFragment(): Fragment() {
 
     private fun setMenteeMoreClickListener() {
         binding.homeOtherMoreImg.setOnClickListener {
-            it.navigate(R.id.action_homeFragment_to_searchFragment)
+            navigateWithData(HomeFragmentDirections.actionHomeFragmentToSearchFragment(3))
         }
     }
 }

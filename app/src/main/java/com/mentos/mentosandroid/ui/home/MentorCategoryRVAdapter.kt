@@ -3,10 +3,9 @@ package com.mentos.mentosandroid.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.MentorCategory
 import com.mentos.mentosandroid.databinding.ItemMenteeHomeCategoryBinding
-import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 
 class MentorCategoryRVAdapter() :
     RecyclerView.Adapter<MentorCategoryRVAdapter.MentorCategoryViewHolder>() {
@@ -17,7 +16,7 @@ class MentorCategoryRVAdapter() :
         RecyclerView.ViewHolder(
             binding.root
         ) {
-        fun bind(currentMentorCategory: MentorCategory) {
+        fun bind(currentMentorCategory: MentorCategory, position: Int) {
             binding.mentorCategory = currentMentorCategory
 
             val innerMentorRVAdapter = MentorPostRVAdapter()
@@ -26,12 +25,12 @@ class MentorCategoryRVAdapter() :
             binding.menteeHomeCategoryMentorRv.adapter = innerMentorRVAdapter
 
             //더보기 이미지 클릭 시 멘토스 찾기 화면으로 이동
-            setMentorMoreClickListener()
+            setMentorMoreClickListener(position)
         }
 
-        private fun setMentorMoreClickListener() {
+        private fun setMentorMoreClickListener(position: Int) {
             binding.menteeHomeCategoryMoreImg.setOnClickListener {
-                it.navigate(R.id.action_homeFragment_to_searchFragment)
+                it.navigateWithData(HomeFragmentDirections.actionHomeFragmentToSearchFragment(position))
             }
         }
     }
@@ -46,7 +45,7 @@ class MentorCategoryRVAdapter() :
     }
 
     override fun onBindViewHolder(holder: MentorCategoryViewHolder, position: Int) {
-        holder.bind(mentorCategoryList[position])
+        holder.bind(mentorCategoryList[position],position)
     }
 
     override fun getItemCount(): Int {

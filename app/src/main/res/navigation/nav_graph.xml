@@ -32,6 +32,10 @@
         android:name="com.mentos.mentosandroid.ui.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search">
+        <argument
+            android:name="homeCategory"
+            android:defaultValue="0"
+            app:argType="integer" />
         <action
             android:id="@+id/action_searchFragment_to_searchCreateFragment"
             app:destination="@id/searchCreateFragment" />

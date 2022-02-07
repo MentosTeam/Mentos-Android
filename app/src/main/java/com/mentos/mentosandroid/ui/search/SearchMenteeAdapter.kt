@@ -24,8 +24,8 @@ class SearchMenteeAdapter :
             binding.itemHomeMenteeTv.text =
                 item.nickName + "/" + item.menteeMajor + "/" + item.mentorYear
             binding.itemHomeMenteeTagTv.text =
-                "#" + MentosCategoryUtil.geMentosText(item.firstMajorCategory) +
-                        ", #" + MentosCategoryUtil.geMentosText(item.secondMajorCategory)
+                "#" + MentosCategoryUtil.getMentosText(item.firstMajorCategory) +
+                        ", #" + MentosCategoryUtil.getMentosText(item.secondMajorCategory)
 
 
             binding.itemHomeMenteeLayout.setOnClickListener {

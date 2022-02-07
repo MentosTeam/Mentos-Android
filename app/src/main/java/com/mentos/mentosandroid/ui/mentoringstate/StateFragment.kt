@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentStateBinding
+import com.mentos.mentosandroid.util.SharedPreferenceController
 
 class StateFragment : Fragment() {
     private lateinit var binding: FragmentStateBinding
@@ -20,15 +22,30 @@ class StateFragment : Fragment() {
         binding = FragmentStateBinding.inflate(inflater, container, false)
         stateViewModel.requestEndList()
         stateViewModel.requestNowList()
+        initLayout()
         setStateAdapter()
         setStateNowObserver()
         setStateEndObserver()
         return binding.root
     }
 
+    private fun initLayout() {
+        when (SharedPreferenceController.getNowState(requireContext())) {
+            0 -> {
+                binding.stateTitleTv.setText(R.string.state_title_mentor)
+                binding.stateBeforeTitleTv.setText(R.string.state_before_confirm_mentee)
+            }
+            1 -> {
+                binding.stateTitleTv.setText(R.string.state_title_mentee)
+                binding.stateBeforeTitleTv.setText(R.string.state_before_confirm_mentor)
+            }
+        }
+    }
+
     private fun setStateAdapter() {
         binding.stateNowRv.adapter = StateNowAdapter()
         binding.stateEndRv.adapter = StateEndAdapter(childFragmentManager)
+        binding.stateBeforeRv.adapter = StateBeforeAdapter()
     }
 
     private fun setStateNowObserver() {

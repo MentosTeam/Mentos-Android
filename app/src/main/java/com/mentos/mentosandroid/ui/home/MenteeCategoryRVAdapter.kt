@@ -3,10 +3,9 @@ package com.mentos.mentosandroid.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.MenteeCategory
 import com.mentos.mentosandroid.databinding.ItemMentorHomeCategoryBinding
-import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 
 class MenteeCategoryRVAdapter(): RecyclerView.Adapter<MenteeCategoryRVAdapter.MenteeCategoryViewHolder>() {
 
@@ -14,7 +13,7 @@ class MenteeCategoryRVAdapter(): RecyclerView.Adapter<MenteeCategoryRVAdapter.Me
 
     inner class MenteeCategoryViewHolder(val binding: ItemMentorHomeCategoryBinding) : RecyclerView.ViewHolder(
         binding.root){
-        fun bind(currentMenteeCategory: MenteeCategory){
+        fun bind(currentMenteeCategory: MenteeCategory, position: Int){
             binding.menteeCategory = currentMenteeCategory
 
             val innerMenteeRVAdapter = MenteeRVAdapter()
@@ -22,12 +21,12 @@ class MenteeCategoryRVAdapter(): RecyclerView.Adapter<MenteeCategoryRVAdapter.Me
 
             binding.mentorHomeCategoryMenteeRv.adapter = innerMenteeRVAdapter
 
-            setMenteeMoreClickListener()
+            setMenteeMoreClickListener(position)
         }
 
-        private fun setMenteeMoreClickListener() {
+        private fun setMenteeMoreClickListener(position: Int) {
             binding.mentorHomeCategoryMoreImg.setOnClickListener {
-                it.navigate(R.id.action_homeFragment_to_searchFragment)
+                it.navigateWithData(HomeFragmentDirections.actionHomeFragmentToSearchFragment(position))
             }
         }
     }
@@ -38,7 +37,7 @@ class MenteeCategoryRVAdapter(): RecyclerView.Adapter<MenteeCategoryRVAdapter.Me
     }
 
     override fun onBindViewHolder(holder: MenteeCategoryViewHolder, position: Int) {
-        holder.bind(menteeCategoryList[position])
+        holder.bind(menteeCategoryList[position], position)
     }
 
     override fun getItemCount(): Int {
