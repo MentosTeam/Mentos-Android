@@ -30,10 +30,17 @@ class MentorHomeFragment(): Fragment() {
         setSearchBarClickListener()
         setRainbowBackground()
         setMenteeMoreClickListener()
+        setBtnNotiClickListener()
 
         //가지고 있는 멘토스 개수 저장
         SharedPreferenceController.setMyMentos(requireContext(), homeViewModel.mentorHomeData.value?.mentos)
         return binding.root
+    }
+
+    private fun setBtnNotiClickListener() {
+        binding.homeAlarmLayout.setOnClickListener {
+            navigate(R.id.action_homeFragment_to_notificationFragment)
+        }
     }
 
     private fun initViewModel() {
