@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="menteeCategory"
             type="com.mentos.mentosandroid.data.MenteeCategory" />
@@ -13,8 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_gray_stroke_rec"
-        android:paddingBottom="11dp">
+        android:background="@drawable/shape_gray_stroke_rec">
 
         <ImageView
             android:id="@+id/mentor_home_category_img"
@@ -58,13 +59,32 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="11dp"
             android:overScrollMode="never"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_img"
             tools:itemCount="3"
             tools:listitem="@layout/item_home_mentee" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_gray_stroke_rec"
+            android:fontFamily="@font/noto_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/mentor_home_category_empty"
+            android:textColor="@color/gray_7070"
+            android:textSize="10sp"
+            android:visibility="@{menteeCategory.mentee.size() == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mentor_home_category_img" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

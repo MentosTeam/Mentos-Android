@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMentorBinding
@@ -42,8 +43,8 @@ class ProfileMentorFragment : Fragment() {
         val mentosVP = binding.mentorProfileMentoringMentosVp
 
         // 좌/우 노출되는 크기를 크게하려면 offsetPx 증가
-        val leftOffsetPx = 30.dpToPx(resources.displayMetrics)
-        val rightOffsetPx = 21.dpToPx(resources.displayMetrics)
+        val leftOffsetPx = 27.dpToPx(resources.displayMetrics)
+        val rightOffsetPx = 18.dpToPx(resources.displayMetrics)
         mentosVP.setPadding(leftOffsetPx, 0, rightOffsetPx, 0)
 
         // 페이지간 마진 크게하려면 pageMarginPx 증가
@@ -52,7 +53,7 @@ class ProfileMentorFragment : Fragment() {
         mentosVP.setPageTransformer(marginTransformer)
 
         mentosVP.offscreenPageLimit = 3
-
+        mentosVP.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         mentosVP.adapter = mentosVPAdapter
         mentosVP.currentItem = mentosVPAdapter.itemCount
     }

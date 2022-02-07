@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringAcceptBinding
 import com.mentos.mentosandroid.databinding.FragmentMentoringStart5Binding
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosColor
@@ -28,18 +29,20 @@ class MentoringAcceptFragment : Fragment() {
 
         //수락
         binding.mentoringAcceptYesTv.setOnClickListener {
+            //서버
+
             binding.mentoringAcceptButtonTv.visibility = View.VISIBLE
             binding.mentoringAcceptYesNoLayout.visibility = View.GONE
-
-            //서버
+            binding.mentoringAcceptSubtitle1Tv.setText(R.string.mentoring_accepted_subtitle1)
+            binding.mentoringAcceptSubtitle2Tv.setText(R.string.mentoring_accepted_subtitle2)
         }
         //거절
         binding.mentoringAcceptNoTv.setOnClickListener {
-            binding.mentoringAcceptButtonTv.visibility = View.VISIBLE
-            binding.mentoringAcceptYesNoLayout.visibility = View.GONE
-
             //서버
+
+            popBackStack()
         }
+
         //확인
         binding.mentoringAcceptButtonTv.setOnClickListener {
             popBackStack()

@@ -391,6 +391,23 @@
                     app:layout_constraintTop_toBottomOf="@id/mentor_profile_detail_title_tv"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_major_detail" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/shape_gray_stroke_rec"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text=""
+                    android:textColor="@color/gray_7070"
+                    android:textSize="10sp"
+                    android:visibility="@{profileViewModel.mentorPost2.size() == 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mentor_profile_detail_title_tv" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -444,6 +461,23 @@
                     app:layout_constraintTop_toBottomOf="@id/mentor_profile_review_title_tv"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_profile_review" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/shape_gray_stroke_rec"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text=""
+                    android:textColor="@color/gray_7070"
+                    android:textSize="10sp"
+                    android:visibility="@{profileViewModel.mentorReview2.size() == 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mentor_profile_review_title_tv" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -478,6 +512,8 @@
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
