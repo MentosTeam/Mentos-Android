@@ -28,7 +28,6 @@ class MenteeHomeFragment(): Fragment() {
         initViewModel()
         setSearchBarClickListener()
         setRainbowBackground()
-        setMentorMoreClickListener()
 
         //가지고 있는 멘토스 개수 저장
         SharedPreferenceController.setMyMentos(requireContext(), homeViewModel.menteeHomeData.value?.mentos)
@@ -64,11 +63,5 @@ class MenteeHomeFragment(): Fragment() {
             )
         )
         bgHomeTopLayout.orientation = GradientDrawable.Orientation.TL_BR
-    }
-
-    private fun setMentorMoreClickListener() {
-        binding.homeOtherMoreImg.setOnClickListener {
-            it.navigate(R.id.action_homeFragment_to_searchFragment)
-        }
     }
 }

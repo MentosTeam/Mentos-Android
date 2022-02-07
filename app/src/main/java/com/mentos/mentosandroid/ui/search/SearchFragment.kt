@@ -6,15 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSearchBinding
 import com.mentos.mentosandroid.util.KeyBoardUtil
+import com.mentos.mentosandroid.util.MentosCategoryUtil.getMentosText
+import com.mentos.mentosandroid.util.MentosCategoryUtil.setSearchCategoryBg
+import com.mentos.mentosandroid.util.MentosCategoryUtil.setSearchCategoryTextSize
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private val searchViewModel by viewModels<SearchViewModel>()
+    private val args by navArgs<SearchFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +30,8 @@ class SearchFragment : Fragment() {
         searchViewModel.requestEvent()
         searchViewModel.requestMenteeList()
         initLayout()
+        setHomeSelectedCategory()
+        setCategoryBtnLayout()
         setBtnWriteClickListener()
         setKeyBoardVisible()
         setSearchListAdapter()
@@ -47,6 +54,24 @@ class SearchFragment : Fragment() {
                 binding.searchMentorTitleSubIv.setText(R.string.search_title_sub)
             }
         }
+    }
+
+    private fun setHomeSelectedCategory() {
+        when(args.homeCategory) {
+            0 -> binding.searchCategoryFirstRb.isChecked = true
+            1 -> binding.searchCategorySecondRb.isChecked = true
+            3 -> binding.searchCategoryAllRb.isChecked = true
+        }
+    }
+
+    private fun setCategoryBtnLayout() {
+        binding.searchCategoryFirstRb.setSearchCategoryBg(1)
+        binding.searchCategoryFirstRb.text = getMentosText(1)
+        binding.searchCategoryFirstRb.setSearchCategoryTextSize(1)
+
+        binding.searchCategorySecondRb.setSearchCategoryBg(2)
+        binding.searchCategorySecondRb.text = getMentosText(2)
+        binding.searchCategorySecondRb.setSearchCategoryTextSize(2)
     }
 
     private fun setBtnWriteClickListener() {

@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="mentorContentListSize"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,15 +140,17 @@
                 android:layout_marginStart="31dp"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_bar_layout">
 
                 <RadioButton
+                    android:id="@+id/search_category_all_rb"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/selector_search_all_category"
+                    android:background="@drawable/selector_search_category_all"
                     android:button="@null"
                     android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
@@ -153,29 +160,30 @@
                     android:textSize="8sp" />
 
                 <RadioButton
+                    android:id="@+id/search_category_first_rb"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/selector_search_all_category"
+                    android:checked="true"
                     android:button="@null"
                     android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
                     android:text="@string/search_title_all_category"
                     android:textAlignment="center"
                     android:textColor="@color/black_1c1d"
-                    android:textSize="8sp" />
+                    android:textSize="10sp" />
 
                 <RadioButton
+                    android:id="@+id/search_category_second_rb"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
-                    android:background="@drawable/selector_search_all_category"
                     android:button="@null"
                     android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
                     android:text="@string/search_title_all_category"
                     android:textAlignment="center"
                     android:textColor="@color/black_1c1d"
-                    android:textSize="8sp" />
+                    android:textSize="10sp" />
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -194,12 +202,24 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:overScrollMode="never"
+            android:visibility="@{mentorContentListSize == 0 ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_divider"
             tools:listitem="@layout/item_search_list" />
+
+        <View
+            android:id="@+id/search_mentor_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white_opacity"
+            android:visibility="@{mentorContentListSize == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_divider" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_mentee_list_rv"
@@ -215,6 +235,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_divider"
+            tools:itemCount="6"
             tools:listitem="@layout/item_home_mentee" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

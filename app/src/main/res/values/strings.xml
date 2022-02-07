@@ -271,4 +271,13 @@
     <string name="state_one_count">회 / "</string>
     <string name="state_one_nickname_mentor">" 멘토 / "</string>
     <string name="state_one_nickname_mentee">" 멘티</string>
+    <string name="state_before_confirm_item_title">수락 진행 중</string>
+    <string name="state_before_confirm_mentor">멘토가 확인 중이에요!</string>
+    <string name="state_before_confirm_mentee">멘티의 요청을 확인해 주세요!</string>
+    <string name="state_empty_find_mentor">멘토-쓰 찾기에서 나에게 맞는 멘토를 찾아볼까요?</string>
+    <string name="state_empty_find_mentee">멘토-쓰 찾기에서 도움이 필요한 멘티를 찾아볼까요?</string>
+    <string name="state_both_empty_now_mentor">아직 멘토-쓰를 얻을 기회가 없었네요!</string>
+    <string name="state_both_empty_now_mentee">아직 멘토-쓰를 한 번도 사용하지 않으셨네요!</string>
+    <string name="state_empty_end">진행 중인 멘토링을 성공적으로 완료하길 바랍니다!</string>
+
 </resources>
