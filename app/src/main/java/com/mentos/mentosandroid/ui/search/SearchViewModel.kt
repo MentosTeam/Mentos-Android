@@ -1,18 +1,32 @@
 package com.mentos.mentosandroid.ui.search
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mentos.mentosandroid.data.Mentee
-import com.mentos.mentosandroid.data.Search
+import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
+import com.mentos.mentosandroid.util.SharedPreferenceController
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class SearchViewModel : ViewModel() {
 
-    //searchCreate
     val createTitle = MutableLiveData("")
     val createContent = MutableLiveData("")
+
+    private val _searchMentorList = MutableLiveData<List<SearchMentor>>()
+    val searchMentorList: LiveData<List<SearchMentor>> = _searchMentorList
+
+    private val _searchCategory = MutableLiveData<List<Int>>()
+    val searchCategory: LiveData<List<Int>> = _searchCategory
+
+    private val _dummyMenteeList = MutableLiveData<List<Mentee>>()
+    val dummyMenteeList: LiveData<List<Mentee>> = _dummyMenteeList
 
     private val _isCategorySelected = MutableLiveData(false)
     val isCategorySelected: LiveData<Boolean> = _isCategorySelected
@@ -51,33 +65,21 @@ class SearchViewModel : ViewModel() {
                 || requireNotNull(createTitle.value).isNotBlank()
                 || requireNotNull(isCategorySelected.value)
 
-    private val _dummyList = MutableLiveData<List<Search>>()
-    val dummyList: LiveData<List<Search>> = _dummyList
-
-    private val _dummyMenteeList = MutableLiveData<List<Mentee>>()
-    val dummyMenteeList: LiveData<List<Mentee>> = _dummyMenteeList
-
-    fun requestEvent() {
-        _dummyList.value = listOf(
-            Search("제목 1", 0, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 2", 1, 1, "dd", "가은", "내용입니다1내용입니다1내용입니다1", 1),
-            Search("제목 2", 3, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 31", 4, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 3", 5, 1, null, "태현", "내용입니다1", 1),
-            Search(
-                "프랑스어과 17학번 재학생입니다. 프랑스 문화, 회화, 쓰기, 읽기 관련 강의 모읽기 관련 강의 모읽기 관련 강의 모읽기 관련 강의 모",
-                6,
-                1,
-                null,
-                "태현",
-                "내용입니다1",
-                1
-            ),
-            Search("제목 2", 10, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 31", 11, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 3", 12, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 14", 13, 1, null, "태현", "내용입니다1", 1)
-        )
+    fun getMentorPostList(searchText: String) {
+        Log.d("찾기", SharedPreferenceController.getJwtToken().toString())
+        viewModelScope.launch {
+            try {
+                val responseSearchMentor = ServiceBuilder.searchService.getSearchMentor(
+                    majorFlag = mutableListOf(1),
+                    searchText = searchText
+                )
+                _searchMentorList.postValue(responseSearchMentor.result.postArr)
+            } catch (e: HttpException) {
+                _searchMentorList.postValue(listOf())
+                Log.d("찾기", e.message().toString())
+                Log.d("찾기", e.code().toString())
+            }
+        }
     }
 
     fun requestMenteeList() {

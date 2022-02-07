@@ -5,9 +5,6 @@
 
     <data>
 
-        <variable
-            name="data"
-            type="com.mentos.mentosandroid.data.Search" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,7 +52,6 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="2"
-            android:text="@{data.postTitle}"
             android:textColor="@color/black_3333"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

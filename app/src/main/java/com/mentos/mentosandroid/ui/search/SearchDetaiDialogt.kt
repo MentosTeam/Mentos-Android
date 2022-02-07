@@ -40,6 +40,7 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
                 searchDetailMentosIv.setMentosImg17(args.postMento?.majorCategoryId!!)
                 searchDetailContentTv.text = args.postMento?.postContents
                 searchDetailTitleTv.text = args.postMento?.postTitle
+                searchDetailMentorMajorTv.text = args.postMento?.memberMajor
                 if (args.postMento?.imageUrl == null) {
                     searchDetailPhotoLayout.visibility = View.GONE
                 } else {
