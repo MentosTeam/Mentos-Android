@@ -56,7 +56,7 @@
         <argument
             android:name="postMento"
             android:defaultValue="@null"
-            app:argType="com.mentos.mentosandroid.data.Search"
+            app:argType="com.mentos.mentosandroid.data.response.SearchMentor"
             app:nullable="true" />
     </fragment>
 
@@ -75,7 +75,7 @@
         <argument
             android:name="postMento"
             android:defaultValue="@null"
-            app:argType="com.mentos.mentosandroid.data.Search"
+            app:argType="com.mentos.mentosandroid.data.response.SearchMentor"
             app:nullable="true" />
         <action
             android:id="@+id/action_searchDetailDialog_to_oneMentorProfileFragment"

@@ -1,10 +1,10 @@
 package com.mentos.mentosandroid.ui.signup
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.mentos.mentosandroid.data.api.ServiceBuilder
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {
@@ -34,9 +34,15 @@ class SignUpViewModel : ViewModel() {
                 && requireNotNull(sex.value).isNotBlank()
 
     fun getNickNameValid() {
-        // 닉네임 중복 서버 api 연결
-        setNickNameValid(true)
-        // _savedNickName.value = nowNickName.value!!
+        viewModelScope.launch {
+            try {
+                ServiceBuilder.authService.getNickNameCheck(
+                    requireNotNull(nowNickName.value)
+                )
+                setNickNameValid(true)
+            } catch (e: HttpException) {
+            }
+        }
     }
 
     fun setNickNameValid(valid: Boolean) {

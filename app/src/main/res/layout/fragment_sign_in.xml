@@ -93,14 +93,14 @@
                             android:textSize="16sp" />
 
                         <EditText
-                            android:id="@+id/sign_in_password_et"
+                            android:id="@+id/sign_in_email_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="14dp"
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:inputType="textPassword"
+                            android:inputType="textEmailAddress"
                             android:singleLine="true"
                             android:text="@={viewModel.email}"
                             android:textColor="@color/black_3333"
@@ -144,7 +144,7 @@
                             android:textSize="16sp" />
 
                         <EditText
-                            android:id="@+id/sign_up_password_et"
+                            android:id="@+id/sign_in_password_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="9dp"

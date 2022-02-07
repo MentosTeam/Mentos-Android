@@ -18,7 +18,6 @@ class MentorPostListAdapter :
         private val binding: ItemSearchListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Search) {
-            binding.data = item
             binding.searchMentosIv.setMentosImg17(item.majorCategoryId)
 
             if (item.imageUrl == null) {
@@ -28,12 +27,12 @@ class MentorPostListAdapter :
             }
 
             binding.searchListLayout.setOnClickListener {
-                it.navigateWithData(
-                    MentorPostListFragmentDirections.actionMentorPostListFragmentToSearchDetailDialog(
-                        myList = false,
-                        postMento = item
-                    )
-                )
+//                it.navigateWithData(
+//                    MentorPostListFragmentDirections.actionMentorPostListFragmentToSearchDetailDialog(
+//                        myList = false,
+//                        postMento = item
+//                    )
+//                )
             }
         }
     }

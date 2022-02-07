@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.MentorPost
-import com.mentos.mentosandroid.data.Search
+import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemHomeMentorPostBinding
 import com.mentos.mentosandroid.util.navigateWithData
 
@@ -24,14 +24,15 @@ class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostV
                 it.navigateWithData(
                     HomeFragmentDirections.actionHomeFragmentToSearchDetailDialog(
                         myList = false,
-                        postMento = Search(
-                            currentMentorPost.postTitle,
+                        postMento = SearchMentor(
+                            currentMentorPost.postImgUrl.toString(),
                             currentMentorPost.postCategoryId,
+                            currentMentorPost.mentorMajor,
                             currentMentorPost.mentorStudentId,
-                            currentMentorPost.postImgUrl,
                             currentMentorPost.nickName,
                             currentMentorPost.postContents,
-                            currentMentorPost.postId
+                            currentMentorPost.postId,
+                            currentMentorPost.postTitle
                         )
                     )
                 )

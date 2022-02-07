@@ -1,6 +1,8 @@
 package com.mentos.mentosandroid.ui.search
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,11 +29,11 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
-        searchViewModel.requestEvent()
         searchViewModel.requestMenteeList()
         initLayout()
         setHomeSelectedCategory()
         setCategoryBtnLayout()
+        setSearchTextChangeListener()
         setBtnWriteClickListener()
         setKeyBoardVisible()
         setSearchListAdapter()
@@ -57,7 +59,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun setHomeSelectedCategory() {
-        when(args.homeCategory) {
+        when (args.homeCategory) {
             0 -> binding.searchCategoryFirstRb.isChecked = true
             1 -> binding.searchCategorySecondRb.isChecked = true
             3 -> binding.searchCategoryAllRb.isChecked = true
@@ -72,6 +74,20 @@ class SearchFragment : Fragment() {
         binding.searchCategorySecondRb.setSearchCategoryBg(2)
         binding.searchCategorySecondRb.text = getMentosText(2)
         binding.searchCategorySecondRb.setSearchCategoryTextSize(2)
+    }
+
+    private fun setSearchTextChangeListener() {
+        binding.searchMainEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchViewModel.getMentorPostList(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
     }
 
     private fun setBtnWriteClickListener() {
@@ -96,7 +112,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun setSearchMentorObserver() {
-        searchViewModel.dummyList.observe(viewLifecycleOwner) { list ->
+        searchViewModel.searchMentorList.observe(viewLifecycleOwner) { list ->
+            binding.mentorContentListSize = list.size
             list?.let {
                 with(binding.searchMentorListRv.adapter as SearchMentorAdapter) { submitList(list) }
             }

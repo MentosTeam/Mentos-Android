@@ -2,11 +2,23 @@ package com.mentos.mentosandroid.util
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 
 object SharedPreferenceController {
+    private const val STORAGE_KEY = "user_auth"
     private const val NOW_STATE = "NOW_STATE"
     private const val MY_MENTOS = "MY_MENTOS"
     private const val OPEN_SEX = "OPEN_SEX"
+    private const val JWT_TOKEN = "JWT_TOKEN"
+
+    private lateinit var sharedPreferences: SharedPreferences
+
+    fun init(context: Context) {
+        sharedPreferences = context.getSharedPreferences(
+            "${context.packageName}.$STORAGE_KEY",
+            Context.MODE_PRIVATE
+        )
+    }
 
     //멘토 <-> 멘티
     fun getNowState(context: Context): Int {
@@ -60,6 +72,21 @@ object SharedPreferenceController {
     fun clearOpenSex(context: Context) {
         val sdf = context.getSharedPreferences(OPEN_SEX, MODE_PRIVATE)
         sdf.edit().clear().apply()
+    }
+
+    // jwt 토큰
+    fun getJwtToken(): String? {
+        return sharedPreferences.getString(JWT_TOKEN, "")
+    }
+
+    fun setJwtToken(jwt: String) {
+        sharedPreferences.edit()
+            .putString(JWT_TOKEN, jwt)
+            .apply()
+    }
+
+    fun clearJwtToken(context: Context) {
+        sharedPreferences.edit().clear().apply()
     }
 
 }
