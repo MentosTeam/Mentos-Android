@@ -1,43 +1,77 @@
 package com.mentos.mentosandroid.ui.setting
 
 import android.net.Uri
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import com.mentos.mentosandroid.data.Setting
+import android.util.Log
+import androidx.lifecycle.*
+import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.request.RequestChangeMentos
+import com.mentos.mentosandroid.data.request.RequestChangePW
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
+import com.mentos.mentosandroid.util.SharedPreferenceController
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.util.regex.Pattern
 
 class SettingViewModel : ViewModel() {
 
-    val memberData = Setting(
-        "와죠스키",
-        1,
-        "데이터사이언스",
-        1, 2,
-        null,
-        "기존 자기소개 입니다 입니다 입니다"
-    )
+    fun getMentorData() {
+        Log.d("설정 멘토", SharedPreferenceController.getJwtToken())
+        viewModelScope.launch {
+            try {
+                val responseSetting =
+                    //멘토
+                    if (SharedPreferenceController.getNowState() == 0) {
+                        ServiceBuilder.settingService.getSettingMentor()
+                    } else {
+                        ServiceBuilder.settingService.getSettingMentee()
+                    }
 
+                Log.d("설정 데이터", responseSetting.message)
+                newNickName.value = responseSetting.result.memberNickName
+                major.value = responseSetting.result.memberMajor
+                _image.value =
+                    if (responseSetting.result.memberImage == null) {
+                        null
+                    } else {
+                        Uri.parse(responseSetting.result.memberImage)
+                    }
+                introduce.value = responseSetting.result.memberIntro
+                tempCategory = mutableListOf()
+                tempCategory.add(responseSetting.result.memberMajorFirst)
+                if (responseSetting.result.memberMajorSecond != 0) {
+                    tempCategory.add(responseSetting.result.memberMajorSecond)
+                }
+            } catch (e: HttpException) {
+                Log.d("설정 데이터", e.message().toString())
+                Log.d("설정 데이터", e.code().toString())
+            }
+        }
+    }
 
     //닉네임 관련
-    private val currentNickName = memberData.memberNickName
     val newNickName = MutableLiveData("")
-
-//    private val _savedNickName = MutableLiveData("")
-//    var savedNickName: LiveData<String> = _savedNickName
 
     private val _isNickNameValid = MutableLiveData(false)
     val isNickNameValid: LiveData<Boolean> = _isNickNameValid
 
-    private val _isSuccessNickName = MutableLiveData<Boolean>()
-    val isSuccessNickName: LiveData<Boolean> = _isSuccessNickName
+    private var _isSuccessNickName = MutableLiveData<Boolean>()
+    var isSuccessNickName: LiveData<Boolean> = _isSuccessNickName
 
     fun getNickNameValid() {
-        // 닉네임 중복 서버 api 연결
-        setNickNameValid(true)
-        // _savedNickName.value = nowNickName.value!!
+        viewModelScope.launch {
+            try {
+                val response = ServiceBuilder.authService.getNickNameCheck(
+                    requireNotNull(newNickName.value)
+                )
+                Log.d("중복 확인", response.message)
+                if (response.isSuccess) {
+                    setNickNameValid(true)
+                } else {
+                    setNickNameValid(false)
+                }
+            } catch (e: HttpException) {
+            }
+        }
     }
 
     fun setNickNameValid(valid: Boolean) {
@@ -52,22 +86,35 @@ class SettingViewModel : ViewModel() {
     private fun canNickNameRegisterCheck() =
         requireNotNull(newNickName.value).isNotBlank()
                 && requireNotNull(isNickNameValid.value)
-                && currentNickName != newNickName.value
 
-    fun setPostNickName() {
-        setSuccessNickName(true)
+    fun postNickName() {
+        viewModelScope.launch {
+            try {
+                val response = ServiceBuilder.settingService.postNickName(
+                    requireNotNull(newNickName.value)
+                )
+                Log.d("닉네임 변경", response.message)
+                setSuccessNickName(true)
+            } catch (e: HttpException) {
+                setSuccessNickName(false)
+            }
+        }
     }
 
-    fun setSuccessNickName(isSuccess: Boolean) {
+    private fun setSuccessNickName(isSuccess: Boolean) {
         _isSuccessNickName.value = isSuccess
     }
 
+    fun initSuccessNickName() {
+        _isSuccessNickName = MutableLiveData<Boolean>()
+        isSuccessNickName = _isSuccessNickName
+    }
+
     //전공 관련
-    private val currentMajor = memberData.memberMajor
     val major = MutableLiveData("")
 
-    private val _isSuccessMajor = MutableLiveData<Boolean>()
-    val isSuccessMajor: LiveData<Boolean> = _isSuccessMajor
+    private var _isSuccessMajor = MutableLiveData<Boolean>()
+    var isSuccessMajor: LiveData<Boolean> = _isSuccessMajor
 
     private val _canMajorRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(major)
@@ -76,42 +123,58 @@ class SettingViewModel : ViewModel() {
 
     private fun canMajorRegisterCheck() =
         requireNotNull(major.value).isNotBlank()
-                && currentMajor != major.value
 
-    fun setPostMajor() {
-        setSuccessMajor(true)
+    fun postMajor() {
+        viewModelScope.launch {
+            try {
+                val response = ServiceBuilder.settingService.postMajor(
+                    requireNotNull(major.value)
+                )
+                Log.d("전공 변경", response.message)
+                setSuccessMajor(true)
+            } catch (e: HttpException) {
+                setSuccessMajor(false)
+            }
+        }
     }
 
-    fun setSuccessMajor(isSuccess: Boolean) {
+    private fun setSuccessMajor(isSuccess: Boolean) {
         _isSuccessMajor.value = isSuccess
     }
 
+    fun initSuccessMajor() {
+        _isSuccessMajor = MutableLiveData<Boolean>()
+        isSuccessMajor = _isSuccessMajor
+    }
 
     //성별 공개 설정
     val openSex = MutableLiveData<Boolean>()
 
 
     //프로필 사진 설정
-    private val currentImage: Uri? = //현재 사진
-        if (memberData.memberImage == null) {
-            null
-        } else {
-            Uri.parse(memberData.memberImage)
-        }
+//    private val currentImage: Uri? = //현재 사진
+//        if (memberData.value?.memberImage == null) {
+//            null
+//        } else {
+//            Uri.parse(memberData.value?.memberImage)
+//        }
     private val _image = MutableLiveData<Uri?>()
     val image: MutableLiveData<Uri?> = _image
 
+    private val _newImage = MutableLiveData<Uri?>()
+    val newImage: MutableLiveData<Uri?> = _newImage
+
     fun setImage(imgUri: Uri) {
-        _image.value = imgUri
+        _newImage.value = imgUri
     }
 
     private val _canImageRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(image)
-    ) { canMajorImageCheck() }
+    ) { true }
     val canImageRegister: LiveData<Boolean> = _canImageRegister
 
-    private fun canMajorImageCheck() =
-        currentImage != image.value
+//    private fun canMajorImageCheck() =
+//        currentImage != image.value
 
     private val _isSuccessImage = MutableLiveData<Boolean>()
     val isSuccessImage: LiveData<Boolean> = _isSuccessImage
@@ -126,7 +189,7 @@ class SettingViewModel : ViewModel() {
 
 
     //비밀번호 변경 설정
-    private var currentPassword = "mentos123!"
+    private var currentPassword = SharedPreferenceController.getUserPw()
     val nowPassword = MutableLiveData("")
 
     private val _isNowPasswordCorrect = MediatorLiveDataUtil.initMediatorLiveData(
@@ -135,8 +198,8 @@ class SettingViewModel : ViewModel() {
     val isNowPasswordCorrect: LiveData<Boolean> = _isNowPasswordCorrect
 
     private fun isSameCurrentPasswordCheck() =
-        requireNotNull(nowPassword.value).isBlank() ||
-                currentPassword == nowPassword.value
+        requireNotNull(nowPassword.value).isBlank()
+                || currentPassword == nowPassword.value
 
     val newPassword = MutableLiveData("")
     val newPasswordCheck = MutableLiveData("")
@@ -165,8 +228,8 @@ class SettingViewModel : ViewModel() {
     val isDiffCurrentNew: LiveData<Boolean> = _isDiffCurrentNew
 
     private fun isDiffCurrentNewCheck() =
-        requireNotNull(newPassword.value).isBlank() ||
-                currentPassword != newPassword.value
+        requireNotNull(newPassword.value).isBlank()
+                || currentPassword != newPassword.value
 
     private val _canPasswordRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(
@@ -201,34 +264,42 @@ class SettingViewModel : ViewModel() {
                 && isDiffCurrentNew.value == true
 
     //최종 비밀번호 변경
-    private val _isSuccessChangePW = MutableLiveData<Boolean>()
-    val isSuccessChangePW: LiveData<Boolean> = _isSuccessChangePW
+    private var _isSuccessChangePW = MutableLiveData<Boolean>()
+    var isSuccessChangePW: LiveData<Boolean> = _isSuccessChangePW
 
-    fun setPostChangePW() {
-        setSuccessChangePW(true)
+    fun postChangePW() {
+        viewModelScope.launch {
+            try {
+                val response = ServiceBuilder.settingService.postPW(
+                    RequestChangePW(
+                        currentPassword,
+                        requireNotNull(newPassword.value)
+                    )
+                )
+                Log.d("비번 변경", response.message)
+                setSuccessChangePW(true)
+            } catch (e: HttpException) {
+                setSuccessChangePW(false)
+            }
+        }
     }
 
-    fun setSuccessChangePW(isSuccess: Boolean) {
+    private fun setSuccessChangePW(isSuccess: Boolean) {
         _isSuccessChangePW.value = isSuccess
+    }
+
+    fun initSuccesChangePW() {
+        _isSuccessChangePW = MutableLiveData<Boolean>()
+        isSuccessChangePW = _isSuccessChangePW
     }
 
 
     //멘토스, 자기소개 변경 설정
-    private val currentIntroduce = memberData.memberIntro
-    val introduce = MutableLiveData(currentIntroduce)
+    val introduce = MutableLiveData("")
+    var tempCategory = mutableListOf<Int>()
 
-
-    var currentMentos =
-        if (memberData.memberMajorSecond == 0) {
-            listOf(memberData.memberMajorFirst)
-        } else {
-            listOf(memberData.memberMajorFirst, memberData.memberMajorSecond)
-        }
-    private var tempCategory = currentMentos.toMutableList()
-
-    private val _selectedCategory = MutableLiveData<List<Int>>()
-    val selectedCategory: LiveData<List<Int>> = _selectedCategory
-
+    private var _selectedCategory = MutableLiveData<List<Int>>()
+    var selectedCategory: LiveData<List<Int>> = _selectedCategory
 
     private val _canIntroRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(introduce)
@@ -249,43 +320,62 @@ class SettingViewModel : ViewModel() {
 
     fun setCategory(category: Int) {
         tempCategory.add(category)
-        _selectedCategory.value = tempCategory.toMutableList()
+        _selectedCategory.value = tempCategory
     }
 
     fun removeCategory(category: Int) {
         tempCategory.remove(category)
-        _selectedCategory.value = tempCategory.toMutableList()
+        _selectedCategory.value = tempCategory
     }
 
     fun clearCategory() {
         tempCategory.clear()
-        _selectedCategory.value = tempCategory.toMutableList()
+        _selectedCategory.value = tempCategory
     }
 
     fun setTempCategory() {
-        _selectedCategory.value = tempCategory.toMutableList()
+        _selectedCategory.value = tempCategory
     }
 
-    private val _isSuccessMentosIntro = MutableLiveData<Boolean>()
-    val isSuccessMentosIntro: LiveData<Boolean> = _isSuccessMentosIntro
+    private var _isSuccessMentosIntro = MutableLiveData<Boolean>()
+    var isSuccessMentosIntro: LiveData<Boolean> = _isSuccessMentosIntro
 
-    fun setPostMentosIntro() {
-        setSuccessMentosIntro(true)
+    fun postMentosIntro() {
+        val requestChangeMentos =
+            if (selectedCategory.value!!.size == 2) {
+                RequestChangeMentos(
+                    requireNotNull(introduce.value),
+                    selectedCategory.value!![0],
+                    selectedCategory.value!![1],
+                    SharedPreferenceController.getNowState() + 1
+                )
+            } else {
+                RequestChangeMentos(
+                    kotlin.requireNotNull(introduce.value),
+                    selectedCategory.value!![0],
+                    0,
+                    SharedPreferenceController.getNowState() + 1
+                )
+            }
+        viewModelScope.launch {
+            try {
+                val response = ServiceBuilder.settingService.postMentosIntro(
+                    requestChangeMentos
+                )
+                Log.d("멘토스, 소개 변경", response.message)
+                setSuccessMentosIntro(true)
+            } catch (e: HttpException) {
+                setSuccessMentosIntro(false)
+            }
+        }
     }
 
-    fun setSuccessMentosIntro(isSuccess: Boolean) {
+    private fun setSuccessMentosIntro(isSuccess: Boolean) {
         _isSuccessMentosIntro.value = isSuccess
     }
 
-
-    //로그아웃
-    fun logout() {
-
-    }
-
-    //회원탈퇴
-
-    fun withdraw() {
-
+    fun initSuccessMentosIntro() {
+        _isSuccessMentosIntro = MutableLiveData<Boolean>()
+        isSuccessMentosIntro = _isSuccessMentosIntro
     }
 }

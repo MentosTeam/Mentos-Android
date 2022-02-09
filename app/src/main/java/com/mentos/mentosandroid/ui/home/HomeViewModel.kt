@@ -1,103 +1,91 @@
 package com.mentos.mentosandroid.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mentos.mentosandroid.data.*
+import androidx.lifecycle.viewModelScope
+import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.response.HomeMenteeResult
+import com.mentos.mentosandroid.data.response.HomeMentorResult
+import com.mentos.mentosandroid.data.response.MenteeCategory
+import com.mentos.mentosandroid.data.response.MentorCategory
+import com.mentos.mentosandroid.util.SharedPreferenceController
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 const val ONLY_MENTOR = 1
 const val ONLY_MENTEE = 2
 const val BOTH = 3
 
 class HomeViewModel() : ViewModel() {
-    private val _menteeHomeData = MutableLiveData<MenteeHome>()
-    val menteeHomeData: LiveData<MenteeHome>
+    private val _menteeHomeData = MutableLiveData<HomeMenteeResult>()
+    val menteeHomeData: LiveData<HomeMenteeResult>
         get() = _menteeHomeData
-    private lateinit var menteeHomeDataItem: MenteeHome
+    private lateinit var menteeHomeDataItem: HomeMenteeResult
 
-    private val _mentorHomeData = MutableLiveData<MentorHome>()
-    val mentorHomeData: LiveData<MentorHome>
+    private val _mentorHomeData = MutableLiveData<HomeMentorResult>()
+    val mentorHomeData: LiveData<HomeMentorResult>
         get() = _mentorHomeData
-    private lateinit var mentorHomeDataItem: MentorHome
+    private lateinit var mentorHomeDataItem: HomeMentorResult
 
     init {
 //        //프로필 종류 검사 후 데이터 적용
-//        chkProfile()
-        getMentorData()
-        getMenteeData()
+////        chkProfile()
+//        getMentorData()
+//        getMenteeData()
     }
 
-    private fun chkProfile() {
-        val profileState = 3
-        when (profileState) {
-            ONLY_MENTOR -> {
+    private fun chkState(nowState: Int) {
+        when (nowState) {
+            1 -> {
                 getMentorData()
             }
-            ONLY_MENTEE -> {
-                getMenteeData()
-            }
-            BOTH -> {
-                getMentorData()
+            2 -> {
                 getMenteeData()
             }
         }
     }
 
-    private fun getMenteeData() {
-        menteeHomeDataItem =
-            MenteeHome(
-                5,
-                arrayListOf(
-                    MentorCategory(
-                        3,
-                        arrayListOf(
-                            MentorPost(1, "현진", "소프트웨어", "", 10, 3, "C언어 알려드려요", "C언어 본문1", null),
-                            MentorPost(2, "가은", "소프트웨어", "", 11, 3, "JAVA 알려드려요", "JAVA 본문1", null)
-                        )
-                    ),
-                    MentorCategory(
-                        4,
-                        arrayListOf(
-                            MentorPost(3, "현진", "소프트웨어", "", 12, 4, "C언어 알려드려요", "C언어 본문1", null),
-                            MentorPost(4, "가은", "소프트웨어", "", 13, 4, "JAVA 알려드려요", "JAVA 본문1", null)
-                        )
-                    )
-                ),
-                arrayListOf(
-                    OtherMentor(5, "준원", "컴퓨터공학", "18학번", "", 1, 2),
-                    OtherMentor(6, "준원", "컴퓨터공학", "18학번", "", 5, 6)
+    fun getMentorData() {
+        Log.d("홈 멘토", SharedPreferenceController.getJwtToken())
+        viewModelScope.launch() {
+            try {
+                val responseHomeMentor = ServiceBuilder.homeService.getHomeMentor()
+                Log.d("홈 멘토", responseHomeMentor.message)
+                mentorHomeDataItem = responseHomeMentor.result
+                _mentorHomeData.value = mentorHomeDataItem
+            } catch (e: HttpException) {
+                mentorHomeDataItem = HomeMentorResult(
+                    arrayListOf(MenteeCategory(arrayListOf(), 1)),
+                    10,
+                    arrayListOf()
                 )
-            )
-
-        _menteeHomeData.value = menteeHomeDataItem
+                _mentorHomeData.value = mentorHomeDataItem
+                Log.d("홈 멘토", e.message().toString())
+                Log.d("홈 멘토", e.code().toString())
+            }
+        }
     }
 
-    private fun getMentorData() {
-        mentorHomeDataItem =
-            MentorHome(
-                7,
-                arrayListOf(
-                    MenteeCategory(
-                        3,
-                        arrayListOf(
-                            Mentee(1, "현진", "소프트웨어", "18학번", "", 3, 4),
-                            Mentee(2, "가은", "소프트웨어", "18학번", "", 3, 5)
-                        )
-                    ),
-                    MenteeCategory(
-                        4,
-                        arrayListOf(
-                            Mentee(1, "현진", "소프트웨어", "18학번", "", 4, 5),
-                            Mentee(2, "가은", "소프트웨어", "18학번", "", 4, 6)
-                        )
-                    )
-                ),
-                arrayListOf(
-                    Mentee(5, "준원", "컴퓨터공학", "18학번", "", 1, 2),
-                    Mentee(6, "준원", "컴퓨터공학", "18학번", "", 5, 6)
+    fun getMenteeData() {
+        Log.d("홈 멘티", SharedPreferenceController.getJwtToken())
+        viewModelScope.launch() {
+            try {
+                val responseHomeMentee = ServiceBuilder.homeService.getHomeMentee()
+                Log.d("홈 멘티", responseHomeMentee.message)
+                menteeHomeDataItem = responseHomeMentee.result
+                _menteeHomeData.value = menteeHomeDataItem
+            } catch (e: HttpException) {
+                menteeHomeDataItem = HomeMenteeResult(
+                    arrayListOf(MentorCategory(1, arrayListOf())),
+                    3,
+                    arrayListOf()
                 )
-            )
-
-        _mentorHomeData.value = mentorHomeDataItem
+                _mentorHomeData.value = mentorHomeDataItem
+                Log.d("홈 멘티", e.message().toString())
+                Log.d("홈 멘티", e.code().toString())
+            }
+        }
     }
 }

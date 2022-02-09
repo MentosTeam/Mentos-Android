@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.databinding.FragmentChangeProfileImgBinding
 import com.mentos.mentosandroid.util.popBackStack
@@ -19,7 +20,7 @@ import java.io.ByteArrayOutputStream
 
 class ChangeProfileImgFragment : Fragment() {
     private lateinit var binding: FragmentChangeProfileImgBinding
-    private val settingViewModel by viewModels<SettingViewModel>()
+    private val settingViewModel by activityViewModels<SettingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

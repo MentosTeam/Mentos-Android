@@ -6,7 +6,7 @@
 
         <variable
             name="mentorPost"
-            type="com.mentos.mentosandroid.data.MentorPost" />
+            type="com.mentos.mentosandroid.data.response.MentorPost" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

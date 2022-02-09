@@ -1,9 +1,15 @@
 package com.mentos.mentosandroid.ui.profile
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mentos.mentosandroid.data.*
+//import com.mentos.mentosandroid.data.response.*
+import com.mentos.mentosandroid.data.api.ServiceBuilder
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class ProfileViewModel() : ViewModel() {
 
@@ -41,12 +47,96 @@ class ProfileViewModel() : ViewModel() {
         get() = _mentorReview2
 
 
+
+
+//    private val _myProfileData = MutableLiveData<MyProfileResult>()
+//    val myProfileData: LiveData<MyProfileResult>
+//        get() = _myProfileData
+//    private lateinit var myProfileDataItem: MyProfileResult
+
+
     init {
         getMentorData()
         getMenteeData()
+
+//        getMyProfileData()
     }
 
-    private fun getMenteeData() {
+//    private fun getMyProfileData() {
+//        viewModelScope.launch {
+//            try {
+//                val responseMyProfile = ServiceBuilder.profileService.getMyProfile()
+//                Log.d("내 정보", responseMyProfile.message)
+//                myProfileDataItem = responseMyProfile.result
+//                _myProfileData.value = myProfileDataItem
+//            } catch (e: HttpException) {
+//
+//            }
+//        }
+//
+//    }
+//
+//    fun getMenteeData() {
+//        menteeProfileDataItem = myProfileDataItem.menteeProfile
+//        _menteeProfileData.value = menteeProfileDataItem
+//
+//
+//        //Major
+//        menteeMajorItems =
+//            if (menteeProfileDataItem.basicInformation.majorSecond == 0) {
+//                arrayListOf(menteeProfileDataItem.basicInformation.majorFirst)
+//            } else {
+//                arrayListOf(
+//                    menteeProfileDataItem.basicInformation.majorFirst,
+//                    menteeProfileDataItem.basicInformation.majorSecond
+//                )
+//            }
+//        _menteeMajorList.value = menteeMajorItems
+//    }
+//
+//        fun getMentorData() {
+//        mentorProfileDataItem = myProfileDataItem.mentorProfile
+//        _mentorProfileData.value = mentorProfileDataItem
+//
+//        //프로필에서는 2개씩만 보여줌
+//        if (mentorProfileDataItem.posts.size >= 3) {
+//            _mentorPost2.value = arrayListOf(
+//                mentorProfileDataItem.posts[0],
+//                mentorProfileDataItem.posts[1]
+//            )
+//        } else {
+//            _mentorPost2.value = mentorProfileDataItem.posts
+//        }
+//        if (mentorProfileDataItem.reviews.size >= 3) {
+//            _mentorReview2.value = arrayListOf(
+//                mentorProfileDataItem.reviews[0],
+//                mentorProfileDataItem.reviews[1]
+//            )
+//        } else {
+//            _mentorReview2.value = mentorProfileDataItem.reviews
+//        }
+//
+//        mentorMajorItems =
+//            if (mentorProfileDataItem.basicInformation.majorSecond == 0) {
+//                arrayListOf(mentorProfileDataItem.basicInformation.majorFirst)
+//            } else {
+//                arrayListOf(
+//                    mentorProfileDataItem.basicInformation.majorFirst,
+//                    mentorProfileDataItem.basicInformation.majorSecond
+//                )
+//            }
+//        _mentorMajorList.value = mentorMajorItems
+//
+//        //진행한 멘토링-멘토스 리스트
+//        mentorProfileDataItem.numOfMentos.forEach { it ->
+//            for (i in 1..it.mentoringMentos)
+//                mentorMentosItems.add(it.majorCategoryId)
+//        }
+//        _mentorMentosList.value = mentorMentosItems
+//    }
+//
+
+    fun getMenteeData() {
         menteeProfileDataItem = MenteeProfile(
             "세종대학교",
             3,
@@ -71,7 +161,7 @@ class ProfileViewModel() : ViewModel() {
         _menteeMajorList.value = menteeMajorItems
     }
 
-    private fun getMentorData() {
+    fun getMentorData() {
         mentorProfileDataItem = MentorProfile(
             "세종대학교",
             9,
@@ -102,13 +192,13 @@ class ProfileViewModel() : ViewModel() {
                 )
             ),
             arrayListOf(
-                NumOfMento(
+                NumOfMentos(
                     6, 12, 20
                 ),
-                NumOfMento(
+                NumOfMentos(
                     7, 14, 3
                 ),
-                NumOfMento(
+                NumOfMentos(
                     6, 15, 1
                 )
             )

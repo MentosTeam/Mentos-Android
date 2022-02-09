@@ -9,7 +9,7 @@
 
         <variable
             name="mentorCategory"
-            type="com.mentos.mentosandroid.data.MentorCategory" />
+            type="com.mentos.mentosandroid.data.response.MentorCategory" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

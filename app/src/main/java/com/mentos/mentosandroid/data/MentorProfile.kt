@@ -10,7 +10,7 @@ data class MentorProfile(
     val basicInformation: MentorBasicInformation,
     val posts: ArrayList<MyPost>,
     val reviews: ArrayList<Review>,
-    val numOfMentos: ArrayList<NumOfMento>
+    val numOfMentos: ArrayList<NumOfMentos>
 ) : Parcelable
 
 @Parcelize
@@ -48,7 +48,7 @@ data class Review(
 ) : Parcelable
 
 @Parcelize
-data class NumOfMento(
+data class NumOfMentos(
     val majorCategoryId: Int,
     val mentoringId: Int,
     val mentoringMentos: Int

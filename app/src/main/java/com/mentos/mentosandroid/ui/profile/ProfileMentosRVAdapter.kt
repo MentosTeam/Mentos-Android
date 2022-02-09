@@ -3,7 +3,6 @@ package com.mentos.mentosandroid.ui.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.NumOfMento
 import com.mentos.mentosandroid.databinding.ItemMentosBinding
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg37
 

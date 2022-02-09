@@ -9,7 +9,7 @@
 
         <variable
             name="menteeCategory"
-            type="com.mentos.mentosandroid.data.MenteeCategory" />
+            type="com.mentos.mentosandroid.data.response.MenteeCategory" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

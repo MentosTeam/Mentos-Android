@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.R
-import com.mentos.mentosandroid.data.Mentee
+import com.mentos.mentosandroid.data.response.Mentee
 import com.mentos.mentosandroid.databinding.ItemHomeMenteeBinding
 import com.mentos.mentosandroid.util.MentosCategoryUtil.getMentosText
 import com.mentos.mentosandroid.util.navigate
@@ -20,7 +20,7 @@ class MenteeRVAdapter() : RecyclerView.Adapter<MenteeRVAdapter.MenteeViewHolder>
             binding.mentee = currentMentee
 
             binding.itemHomeMenteeTv.text =
-                currentMentee.nickName + "/" + currentMentee.menteeMajor + "/" + currentMentee.mentorYear
+                currentMentee.nickName + "/" + currentMentee.menteeMajor + "/" + currentMentee.menteeYear + "학번"
             binding.itemHomeMenteeTagTv.text =
                 "#" + getMentosText(currentMentee.firstMajorCategory) +
                         ", #" + getMentosText(currentMentee.secondMajorCategory)
