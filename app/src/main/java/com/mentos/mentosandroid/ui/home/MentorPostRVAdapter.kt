@@ -3,7 +3,7 @@ package com.mentos.mentosandroid.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.MentorPost
+import com.mentos.mentosandroid.data.response.MentorPost
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemHomeMentorPostBinding
 import com.mentos.mentosandroid.util.navigateWithData

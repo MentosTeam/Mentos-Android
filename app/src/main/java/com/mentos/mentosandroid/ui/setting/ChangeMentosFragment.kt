@@ -1,11 +1,13 @@
 package com.mentos.mentosandroid.ui.setting
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangeMentosBinding
@@ -15,7 +17,7 @@ import com.mentos.mentosandroid.util.popBackStack
 
 class ChangeMentosFragment : Fragment() {
     private lateinit var binding: FragmentChangeMentosBinding
-    private val settingViewModel by viewModels<SettingViewModel>()
+    private val settingViewModel by activityViewModels<SettingViewModel>()
     private lateinit var category: ArrayList<CheckBox>
 
     override fun onCreateView(
@@ -56,7 +58,7 @@ class ChangeMentosFragment : Fragment() {
     }
 
     private fun initClickedCategory() {
-        settingViewModel.currentMentos.forEach { categoryIdx ->
+        settingViewModel.tempCategory.forEach { categoryIdx ->
             category[categoryIdx - 1].isChecked = true
         }
         settingViewModel.setTempCategory()

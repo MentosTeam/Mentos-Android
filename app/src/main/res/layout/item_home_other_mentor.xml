@@ -7,7 +7,7 @@
 
         <variable
             name="otherMentor"
-            type="com.mentos.mentosandroid.data.OtherMentor" />
+            type="com.mentos.mentosandroid.data.response.OtherMentor" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

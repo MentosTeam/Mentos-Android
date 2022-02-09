@@ -156,6 +156,9 @@
     <string name="mentor_profile_mentoring_title">지금까지 진행한 멘토링</string>
     <string name="mentor_profile_add_mentee_button">멘티로도 참여하고 싶어요!(프로필 생성하기)</string>
 
+    <string name="mentor_profile_post_empty">아직 멘토의 글이 올라오지 않았어요!</string>
+    <string name="mentor_profile_review_empty">멘토-쓰를 교환할 기회가 없었네요!\n멘토와 첫 멘토링을 진행해 볼까요?</string>
+
     <string name="my_post_list_title">내가 쓴 글</string>
     <string name="mentor_post_list_title">멘토 글 모음</string>
     <string name="review_list_title">멘티들의 후기</string>
@@ -240,7 +243,7 @@
     <string name="setting_image">프로필 사진</string>
     <string name="setting_sex">성별 공개 설정</string>
     <string name="setting_mentos">멘토-쓰 및 자기소개</string>
-    <string name="setting_major">전공 및 학번</string>
+    <string name="setting_major">전공</string>
     <string name="setting_etc_title">기타</string>
     <string name="setting_pw">비밀번호 변경</string>
     <string name="setting_policy">이용약관 / 개인처리정보지침</string>
@@ -256,6 +259,8 @@
     <string name="change_chk_current_pw">비밀번호를 올바르게 입력해주세요!</string>
 
     <string name="change_profile_img"><b>프로필 이미지</b>를 넣어주세요!</string>
+
+    <string name="change_profile_major"><b>전공</b>을 적어주세요!</string>
 
     <string name="change_nickname_title"><b>새로운 별명</b>을 입력해주세요</string>
 

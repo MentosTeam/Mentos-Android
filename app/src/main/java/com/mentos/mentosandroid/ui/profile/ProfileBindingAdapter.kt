@@ -3,7 +3,6 @@ package com.mentos.mentosandroid.ui.profile
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.MyPost
-import com.mentos.mentosandroid.data.NumOfMento
 import com.mentos.mentosandroid.data.Review
 
 object ProfileBindingAdapter {

@@ -30,8 +30,6 @@ class MenteeHomeFragment(): Fragment() {
         setRainbowBackground()
         setBtnNotiClickListener()
 
-        //가지고 있는 멘토스 개수 저장
-        SharedPreferenceController.setMyMentos(requireContext(), homeViewModel.menteeHomeData.value?.mentos)
         return binding.root
     }
 
@@ -45,9 +43,21 @@ class MenteeHomeFragment(): Fragment() {
         //뷰모델 연결
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.homeViewModel = homeViewModel
-
         //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
         binding.lifecycleOwner = this
+
+        //데이터 가져옴
+        homeViewModel.getMenteeData()
+
+        //가지고 있는 멘토스 개수 저장
+        homeViewModel.menteeHomeData.observe(viewLifecycleOwner) { menteeHomeData ->
+            if(menteeHomeData.mentos != null){
+                SharedPreferenceController.setMyMentos(
+                    requireContext(),
+                    homeViewModel.menteeHomeData.value?.mentos
+                )
+            }
+        }
     }
 
     private fun setSearchBarClickListener() {

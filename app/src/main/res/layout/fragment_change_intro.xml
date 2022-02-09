@@ -125,7 +125,7 @@
                 android:includeFontPadding="false"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:onClick="@{() -> settingViewModel.setPostMentosIntro()}"
+                android:onClick="@{() -> settingViewModel.postMentosIntro()}"
                 android:paddingVertical="13dp"
                 android:stateListAnimator="@null"
                 android:text="@string/change_intro_btn"

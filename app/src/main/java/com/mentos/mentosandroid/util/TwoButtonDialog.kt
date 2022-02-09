@@ -89,6 +89,7 @@ class TwoButtonDialog(
             dismiss()
         }
         binding.dialogLogoutFirstBtnTv.setOnClickListener {
+            doAfterConfirm()
             dismiss()
         }
 

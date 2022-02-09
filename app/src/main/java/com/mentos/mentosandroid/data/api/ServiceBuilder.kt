@@ -30,4 +30,7 @@ object ServiceBuilder {
 
     val authService: AuthService = retrofit.create(AuthService::class.java)
     val searchService: SearchService = retrofit.create(SearchService::class.java)
+    val homeService: HomeService = retrofit.create(HomeService::class.java)
+    val settingService: SettingService = retrofit.create(SettingService::class.java)
+    val profileService: ProfileService = retrofit.create(ProfileService::class.java)
 }

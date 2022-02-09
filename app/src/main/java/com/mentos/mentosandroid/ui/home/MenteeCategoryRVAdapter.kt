@@ -3,7 +3,7 @@ package com.mentos.mentosandroid.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.MenteeCategory
+import com.mentos.mentosandroid.data.response.MenteeCategory
 import com.mentos.mentosandroid.databinding.ItemMentorHomeCategoryBinding
 import com.mentos.mentosandroid.util.navigateWithData
 

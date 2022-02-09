@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.R
-import com.mentos.mentosandroid.data.Mentee
+import com.mentos.mentosandroid.data.response.Mentee
 import com.mentos.mentosandroid.databinding.ItemHomeMenteeBinding
 import com.mentos.mentosandroid.util.MentosCategoryUtil
 import com.mentos.mentosandroid.util.navigate
@@ -22,7 +22,7 @@ class SearchMenteeAdapter :
 
             //프로필 텍스트 적용
             binding.itemHomeMenteeTv.text =
-                item.nickName + "/" + item.menteeMajor + "/" + item.mentorYear
+                item.nickName + "/" + item.menteeMajor + "/" + item.menteeYear + "학번"
             binding.itemHomeMenteeTagTv.text =
                 "#" + MentosCategoryUtil.getMentosText(item.firstMajorCategory) +
                         ", #" + MentosCategoryUtil.getMentosText(item.secondMajorCategory)

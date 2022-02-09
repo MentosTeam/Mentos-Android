@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mentos.mentosandroid.data.Mentee
+import com.mentos.mentosandroid.data.response.Mentee
 import com.mentos.mentosandroid.data.api.ServiceBuilder
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
@@ -84,13 +84,12 @@ class SearchViewModel : ViewModel() {
 
     fun requestMenteeList() {
         _dummyMenteeList.value = arrayListOf(
-            Mentee(1, "홍길동", "경영학과", "18학번", "", 1, 2),
-            Mentee(1, "홍길동", "경영학과", "18학번", "", 1, 2),
-            Mentee(1, "홍길동", "경영학과", "18학번", "", 1, 2),
-            Mentee(1, "홍길동", "경영학과", "18학번", "", 1, 2),
-            Mentee(1, "홍길동", "경영학과", "18학번", "", 1, 2),
-            Mentee(1, "홍길동", "경영학과", "18학번", "", 1, 2),
-            Mentee(1, "홍길동", "경영학과", "18학번", "", 1, 2),
+            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
+            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
+            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
+            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
+            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
+            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2)
         )
     }
 

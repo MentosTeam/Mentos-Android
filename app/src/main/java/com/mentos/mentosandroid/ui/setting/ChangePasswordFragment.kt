@@ -4,20 +4,26 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangePasswordBinding
+import com.mentos.mentosandroid.ui.main.AuthActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
+import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.popBackStack
 
 class ChangePasswordFragment : Fragment() {
     private lateinit var binding: FragmentChangePasswordBinding
-    private val settingViewModel by viewModels<SettingViewModel>()
+    private val settingViewModel by activityViewModels<SettingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,13 +49,29 @@ class ChangePasswordFragment : Fragment() {
         settingViewModel.isSuccessChangePW.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
                 true -> {
-                   //변경 성공 시 해야할 것 -> post, 로그아웃, 로그인 참
-                    popBackStack() //일단 설정화면으로 돌아가게 함
+                    Log.d("비번 변경", "isSuccessChangePW true")
+                    Toast.makeText(requireContext(), "비밀번호가 변경되었습니다!", Toast.LENGTH_SHORT).show()
+                    settingViewModel.initSuccesChangePW()
+
+                    clearSDF()
+                    startActivity(Intent(requireContext(), AuthActivity::class.java))
+                    requireActivity().finish()
                 }
                 false -> {
-                    //변경 실패 시 해야할 것
+                    Log.d("비번 변경", "isSuccessChangePW false")
+                    Toast.makeText(requireContext(), "비밀번호 변경을 실패했습니다", Toast.LENGTH_SHORT).show()
+                    popBackStack()
+                    settingViewModel.initSuccessNickName()
+                    settingViewModel.setNickNameValid(false)
                 }
             }
         }
+    }
+
+    private fun clearSDF() {
+        SharedPreferenceController.clearNowState(requireContext())
+        SharedPreferenceController.clearMyMentos(requireContext())
+        SharedPreferenceController.clearOpenSex(requireContext())
+        SharedPreferenceController.clearJwtToken()
     }
 }

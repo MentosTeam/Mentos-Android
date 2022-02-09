@@ -7,7 +7,7 @@
 
         <variable
             name="mentee"
-            type="com.mentos.mentosandroid.data.Mentee" />
+            type="com.mentos.mentosandroid.data.response.Mentee" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
