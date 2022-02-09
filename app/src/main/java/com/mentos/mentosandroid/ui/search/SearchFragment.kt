@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun initLayout() {
-        when (SharedPreferenceController.getNowState(requireContext())) {
+        when (SharedPreferenceController.getNowState()) {
             0 -> {
                 binding.searchMentorListRv.visibility = View.GONE
                 binding.searchMenteeListRv.visibility = View.VISIBLE

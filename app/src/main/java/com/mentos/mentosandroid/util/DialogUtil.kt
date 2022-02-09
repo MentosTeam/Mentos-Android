@@ -27,7 +27,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
     private fun setMessage() {
         binding.dialogUtilMessageTv.text = when (dialogMode) {
             SIGN_IN_FAIL -> getString(R.string.dialog_sign_in_fail)
-            SCHOOL_FAIL -> getString(R.string.dialog_school_fail)
+            SCHOOL_SEND -> getString(R.string.dialog_school_email_send)
             EMAIL_CONFIRM_FAIL -> getString(R.string.dialog_email_confirm_fail)
             FIND_PASSWORD -> getString(R.string.dialog_find_password)
             POST_DELETE -> getString(R.string.dialog_post_delete)
@@ -39,7 +39,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
 
     private fun setCancelVisibility() {
         binding.dialogUtilCancelTv.visibility = when (dialogMode) {
-            SIGN_IN_FAIL, SCHOOL_FAIL, EMAIL_CONFIRM_FAIL, FIND_PASSWORD, FIND_PASSWORD_FAIL -> View.GONE
+            SIGN_IN_FAIL, SCHOOL_SEND, EMAIL_CONFIRM_FAIL, FIND_PASSWORD, FIND_PASSWORD_FAIL -> View.GONE
             else -> View.VISIBLE
         }
     }
@@ -57,7 +57,7 @@ class DialogUtil(private val dialogMode: Int, private val doAfterConfirm: () -> 
 
     companion object {
         const val SIGN_IN_FAIL = 0
-        const val SCHOOL_FAIL = 1
+        const val SCHOOL_SEND = 1
         const val EMAIL_CONFIRM_FAIL = 2
         const val FIND_PASSWORD = 3
         const val POST_DELETE = 4

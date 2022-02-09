@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
 
     private fun initLayout() {
         val transaction = childFragmentManager.beginTransaction()
-        when (SharedPreferenceController.getNowState(requireContext())) {
+        when (SharedPreferenceController.getNowState()) {
             //멘토
             0 -> {
                 val mentorHomeFragment = MentorHomeFragment()

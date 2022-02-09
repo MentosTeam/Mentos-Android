@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.mentos.mentosandroid.databinding.FragmentSignUpFourthBinding
 import com.mentos.mentosandroid.ui.main.FirstAccountActivity
-import com.mentos.mentosandroid.ui.main.MainActivity
 
 class SignUpFourthFragment : Fragment() {
     private lateinit var binding: FragmentSignUpFourthBinding
-    private val signUpViewModel by viewModels<SignUpViewModel>()
+    private val signUpViewModel by activityViewModels<SignUpViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +27,9 @@ class SignUpFourthFragment : Fragment() {
 
     private fun setSuccessSignUpObserve() {
         signUpViewModel.isSuccessSignUp.observe(viewLifecycleOwner) { isSuccess ->
-            when (isSuccess) {
-                true -> {
-                    startActivity(Intent(requireContext(), FirstAccountActivity::class.java))
-                    requireActivity().finish()
-                }
-                false -> {
-                }
+            if (isSuccess) {
+                startActivity(Intent(requireContext(), FirstAccountActivity::class.java))
+                requireActivity().finish()
             }
         }
     }

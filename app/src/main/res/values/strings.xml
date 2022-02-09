@@ -16,8 +16,9 @@
     <string name="dialog_util_cancel">취소</string>
     <string name="dialog_stop_write">작성된 내용이 저장되지 않습니다. 취소하시겠습니까?</string>
     <string name="dialog_post_delete">작성된 글이 삭제됩니다. 삭제하시겠습니까?</string>
-    <string name="dialog_sign_in_fail">아이디, 비밀번호를 다시 확인해주세요</string>
+    <string name="dialog_sign_in_fail">아이디, 비밀번호를 다시 확인해 주세요</string>
     <string name="dialog_school_fail">학교명과 도메인을 확인해 주세요!</string>
+    <string name="dialog_school_email_send">해당 이메일로 인증번호가 전송되었습니다!</string>
     <string name="dialog_email_confirm_fail">인증번호를 다시 확인해 주세요</string>
     <string name="dialog_find_password">해당 이메일로 임시 비밀번호가 발급되었습니다</string>
     <string name="dialog_find_password_fail">임시 비밀번호 발급에 오류가 발생했습니다. 다시 시도해 주세요</string>
@@ -173,8 +174,9 @@
     <string name="sign_up_sex">성별</string>
     <string name="sign_up_sex_men">남</string>
     <string name="sign_up_sex_women">여</string>
+    <string name="sign_up_name_message">특수문자 사용은 불가능합니다.</string>
     <string name="sign_up_nick_name_success">사용 가능한 별명입니다</string>
-    <string name="sign_up_nick_name_fail">사용할 수 없는 별명입니다</string>
+    <string name="sign_up_nick_name_fail">중복된 별명입니다</string>
     <string name="sign_up_first_btn">다음 단계로 넘어가기(1/4)</string>
 
     <string name="sign_up_second_title"><b>학교 인증</b>이 필요해요!</string>
@@ -186,6 +188,7 @@
     <string name="sign_up_email_confirm_btn">인증받기</string>
     <string name="sign_up_email_message">(3분 내에 입력해주세요)</string>
     <string name="sign_up_second_btn">다음 단계로 넘어가기(2/4)</string>
+    <string name="sign_up_email_duplicate">중복된 이메일입니다.</string>
 
     <string name="sign_up_third_title"><b>전공</b>과 <b>학번</b>을 적어주세요</string>
     <string name="sign_up_third_sub_title">다·부전공 포함한 전공을 직접 입력해 주세요!</string>
@@ -289,5 +292,8 @@
 
     <!--Notification Fragment-->
     <string name="notification_title">알림</string>
+
+    <!--Toast Message-->
+    <string name="toast_auto_login">자동로그인 되었습니다.</string>
 
 </resources>

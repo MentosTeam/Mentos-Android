@@ -7,12 +7,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
-    private const val BASE_URL = "http://13.124.36.33:8080"
+    private const val BASE_URL = "http://52.78.127.160:8080"
 
     private val interceptor = Interceptor { chain ->
         with(chain) {
             val newRequest = request().newBuilder()
-                .addHeader("X-ACCESS-TOKEN", SharedPreferenceController.getJwtToken()!!)
+                .addHeader("X-ACCESS-TOKEN", SharedPreferenceController.getJwtToken())
                 .build()
             proceed(newRequest)
         }

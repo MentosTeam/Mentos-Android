@@ -121,6 +121,20 @@
                     </LinearLayout>
                 </soup.neumorphism.NeumorphCardView>
 
+                <TextView
+                    android:id="@+id/sign_up_name_message_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="52dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/sign_up_name_message"
+                    android:textColor="@color/red_alert"
+                    android:textSize="10sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/sign_up_name_layout"
+                    app:layout_constraintTop_toBottomOf="@id/sign_up_name_layout" />
+
                 <soup.neumorphism.NeumorphCardView
                     android:id="@+id/sign_up_nick_name_layout"
                     android:layout_width="match_parent"
@@ -182,13 +196,14 @@
                             android:id="@+id/sign_up_nick_name_check_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_black_fill_8"
+                            android:background="@{viewModel.isNickNameValid ? @drawable/shape_black_fill_8 : @drawable/shape_gray_fill_8}"
+                            android:clickable="@{viewModel.isNickNameValid ? true : false}"
                             android:fontFamily="@font/noto_regular"
                             android:gravity="center"
                             android:includeFontPadding="false"
                             android:padding="4dp"
                             android:text="@string/sign_up_nick_name_check"
-                            android:textColor="@color/white"
+                            android:textColor="@{viewModel.isNickNameValid ? @color/white : @color/gray_c7c6}"
                             android:textSize="10sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

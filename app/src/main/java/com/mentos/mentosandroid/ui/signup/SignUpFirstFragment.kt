@@ -5,15 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSignUpFirstBinding
 import com.mentos.mentosandroid.util.navigate
 
 class SignUpFirstFragment : Fragment() {
     private lateinit var binding: FragmentSignUpFirstBinding
-    private val signUpViewModel by viewModels<SignUpViewModel>()
+    private val signUpViewModel by activityViewModels<SignUpViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +26,7 @@ class SignUpFirstFragment : Fragment() {
         setNickNameCheckClickListener()
         setCheckBoxChangedListener()
         setNickNameObserve()
+        setNameValidObserve()
         return binding.root
     }
 
@@ -60,8 +60,7 @@ class SignUpFirstFragment : Fragment() {
     }
 
     private fun setNickNameValidObserve() {
-        // nickName 중복 api를 호출 했을때만 이 함수 호출
-        signUpViewModel.isNickNameValid.observe(viewLifecycleOwner) { isNickNameValid ->
+        signUpViewModel.isNickNameCheck.observe(viewLifecycleOwner) { isNickNameValid ->
             when (isNickNameValid) {
                 true -> {
                     binding.signUpNickNameSuccessTv.visibility = View.VISIBLE
@@ -79,6 +78,15 @@ class SignUpFirstFragment : Fragment() {
         signUpViewModel.nowNickName.observe(viewLifecycleOwner) { nowNickName ->
             if (nowNickName.isNullOrEmpty()) {
                 signUpViewModel.setNickNameValid(false)
+            }
+        }
+    }
+
+    private fun setNameValidObserve() {
+        signUpViewModel.isNameValid.observe(viewLifecycleOwner) { isNameValid ->
+            when (isNameValid) {
+                true -> binding.signUpNameMessageTv.visibility = View.GONE
+                false -> binding.signUpNameMessageTv.visibility = View.VISIBLE
             }
         }
     }

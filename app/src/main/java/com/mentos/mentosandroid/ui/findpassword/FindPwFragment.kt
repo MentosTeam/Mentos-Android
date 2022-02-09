@@ -23,6 +23,7 @@ class FindPwFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         setGoToSignInClickListener()
         setSuccessFindPwObserve()
+        setLoadingObserve()
         return binding.root
     }
 
@@ -41,6 +42,16 @@ class FindPwFragment : Fragment() {
                 false -> {
                     DialogUtil(6) {}.show(childFragmentManager, "find_pw_fail")
                 }
+            }
+        }
+    }
+
+
+    private fun setLoadingObserve() {
+        findPwViewModel.setLoading.observe(viewLifecycleOwner) { isLoading ->
+            when (isLoading) {
+                true -> binding.findPasswordLoadingPb.visibility = View.VISIBLE
+                else -> binding.findPasswordLoadingPb.visibility = View.GONE
             }
         }
     }

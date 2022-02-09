@@ -9,5 +9,5 @@ data class ResponseSignUp(
 
 data class SignUp(
     val memberId: Int,
-    val jwt: String
+    val memberJwt: String
 )

@@ -30,7 +30,7 @@ class StateFragment : Fragment() {
     }
 
     private fun initLayout() {
-        when (SharedPreferenceController.getNowState(requireContext())) {
+        when (SharedPreferenceController.getNowState()) {
             0 -> {
                 binding.stateTitleTv.setText(R.string.state_title_mentor)
                 binding.stateBeforeTitleTv.setText(R.string.state_before_confirm_mentee)

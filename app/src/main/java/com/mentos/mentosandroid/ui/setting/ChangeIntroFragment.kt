@@ -31,7 +31,7 @@ class ChangeIntroFragment : Fragment() {
     }
 
     private fun initView() {
-        when (SharedPreferenceController.getNowState(requireContext())) {
+        when (SharedPreferenceController.getNowState()) {
             //멘토
             0 -> {
                 binding.accountIntroTitleTv.setText(R.string.account_intro_title_mentor)

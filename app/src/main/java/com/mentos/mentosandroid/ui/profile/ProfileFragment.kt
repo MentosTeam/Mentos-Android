@@ -89,11 +89,11 @@ class ProfileFragment : Fragment() {
         profileViewPager: ViewPager2,
         tabLayout: TabLayout
     ) {
-        profileViewPager.currentItem = SharedPreferenceController.getNowState(requireContext())
+        profileViewPager.currentItem = SharedPreferenceController.getNowState()
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                SharedPreferenceController.setNowState(requireContext(), tab?.position)
+                SharedPreferenceController.setNowState(tab?.position!!)
                 initLayout()
             }
 
@@ -112,7 +112,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initLayout() {
-        when (SharedPreferenceController.getNowState(requireContext())) {
+        when (SharedPreferenceController.getNowState()) {
             //멘토
             0 -> {
                 binding.profileWriteIb.visibility = View.VISIBLE
