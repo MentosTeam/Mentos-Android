@@ -7,5 +7,6 @@ data class RequestSignUp(
     val memberPw: String,
     val memberSchoolName: String,
     val memberSex: String,
-    val memberStudentId: Int
+    val memberStudentId: Int,
+    val memberMajor: String
 )

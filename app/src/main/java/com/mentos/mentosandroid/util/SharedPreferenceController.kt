@@ -3,6 +3,7 @@ package com.mentos.mentosandroid.util
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.util.Log
 
 object SharedPreferenceController {
     private const val STORAGE_KEY = "user_auth"
@@ -10,27 +11,27 @@ object SharedPreferenceController {
     private const val MY_MENTOS = "MY_MENTOS"
     private const val OPEN_SEX = "OPEN_SEX"
     private const val JWT_TOKEN = "JWT_TOKEN"
+    private const val USER_EMAIL = "USER_EMAIL"
+    private const val USER_PW = "USER_PW"
 
     private lateinit var sharedPreferences: SharedPreferences
 
     fun init(context: Context) {
         sharedPreferences = context.getSharedPreferences(
             "${context.packageName}.$STORAGE_KEY",
-            Context.MODE_PRIVATE
+            MODE_PRIVATE
         )
     }
 
     //멘토 <-> 멘티
-    fun getNowState(context: Context): Int {
-        val sdf = context.getSharedPreferences(NOW_STATE, MODE_PRIVATE)
-        return sdf!!.getInt(NOW_STATE, 0)
+    fun getNowState(): Int {
+        return sharedPreferences.getInt(NOW_STATE, 0)
     }
 
-    fun setNowState(context: Context, state: Int?) {
-        val sdf = context.getSharedPreferences(NOW_STATE, MODE_PRIVATE)
-        val editor = sdf.edit()
-        editor.putInt(NOW_STATE, state!!)
-        editor.apply()
+    fun setNowState(state: Int) {
+        sharedPreferences.edit()
+            .putInt(NOW_STATE, state)
+            .apply()
     }
 
     fun clearNowState(context: Context) {
@@ -75,8 +76,8 @@ object SharedPreferenceController {
     }
 
     // jwt 토큰
-    fun getJwtToken(): String? {
-        return sharedPreferences.getString(JWT_TOKEN, "")
+    fun getJwtToken(): String {
+        return sharedPreferences.getString(JWT_TOKEN, "") ?: ""
     }
 
     fun setJwtToken(jwt: String) {
@@ -85,8 +86,23 @@ object SharedPreferenceController {
             .apply()
     }
 
-    fun clearJwtToken(context: Context) {
+    fun clearJwtToken() {
         sharedPreferences.edit().clear().apply()
     }
 
+    // AutoLogin
+    fun setAutoLogin(email: String, pw: String) {
+        sharedPreferences.edit()
+            .putString(USER_EMAIL, email)
+            .putString(USER_PW, pw)
+            .apply()
+    }
+
+    fun getUserPw(): String {
+        return sharedPreferences.getString(USER_PW, "") ?: ""
+    }
+
+    fun getUserEmail(): String {
+        return sharedPreferences.getString(USER_EMAIL, "") ?: ""
+    }
 }

@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="22dp"
                 android:layout_marginTop="60dp"
-                android:layout_marginBottom="65dp"
+                android:layout_marginBottom="70dp"
                 app:layout_constraintBottom_toTopOf="@id/sign_up_btn_second_complete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -187,6 +187,34 @@
                     </LinearLayout>
                 </soup.neumorphism.NeumorphCardView>
 
+                <TextView
+                    android:id="@+id/sign_up_domain_fail_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="52dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/dialog_school_fail"
+                    android:textColor="@color/red_alert"
+                    android:textSize="10sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/sign_up_email_layout"
+                    app:layout_constraintTop_toBottomOf="@id/sign_up_email_layout" />
+
+                <TextView
+                    android:id="@+id/sign_up_email_message_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="88dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/dialog_school_email_send"
+                    android:textColor="@color/green_alert"
+                    android:textSize="10sp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="@id/sign_up_email_layout"
+                    app:layout_constraintTop_toBottomOf="@id/sign_up_email_layout" />
+
                 <soup.neumorphism.NeumorphCardView
                     android:id="@+id/sign_up_email_confirm_layout"
                     android:layout_width="match_parent"
@@ -233,7 +261,7 @@
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:inputType="textEmailAddress"
+                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@={viewModel.emailConfirm}"
                             android:textColor="@color/black_3333"
@@ -260,20 +288,6 @@
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </soup.neumorphism.NeumorphCardView>
-
-                <TextView
-                    android:id="@+id/sign_up_email_message_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="88dp"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:text="@string/sign_up_email_message"
-                    android:textColor="@color/gray_7070"
-                    android:textSize="10sp"
-                    android:visibility="visible"
-                    app:layout_constraintStart_toStartOf="@id/sign_up_email_confirm_layout"
-                    app:layout_constraintTop_toBottomOf="@id/sign_up_email_confirm_layout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -297,5 +311,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/sign_up_loading_pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:indeterminateTint="@color/gray_7070"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

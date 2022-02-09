@@ -1,56 +1,84 @@
 package com.mentos.mentosandroid.ui.signup
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.request.RequestSchoolCheck
+import com.mentos.mentosandroid.data.request.RequestSignUp
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
+import com.mentos.mentosandroid.util.SharedPreferenceController
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import java.lang.Integer.parseInt
 import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {
 
-    // signUpFirst
     val name = MutableLiveData("")
     val nowNickName = MutableLiveData("")
 
     private val _sex = MutableLiveData("")
     val sex: LiveData<String> = _sex
 
-//    private val _savedNickName = MutableLiveData("")
-//    var savedNickName: LiveData<String> = _savedNickName
+    private val _setLoading = MutableLiveData<Boolean>()
+    val setLoading: LiveData<Boolean> = _setLoading
 
-    private val _isNickNameValid = MutableLiveData(false)
+    private val _isNameValid = Transformations.map(name) { name ->
+        Pattern.matches(
+            "^(?=.*[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]).{1,10}+$",
+            name
+        ) || name.isBlank()
+    }
+    val isNameValid: LiveData<Boolean> = _isNameValid
+
+    private val _isNickNameValid = Transformations.map(nowNickName) { nickname ->
+        Pattern.matches(
+            "^(?=.*[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]).{1,10}+$",
+            nickname
+        )
+    }
     val isNickNameValid: LiveData<Boolean> = _isNickNameValid
 
+    private val _isNickNameCheck = MutableLiveData(false)
+    val isNickNameCheck: LiveData<Boolean> = _isNickNameCheck
+
     private val _canFirstRegister = MediatorLiveDataUtil.initMediatorLiveData(
-        listOf(name, nowNickName, isNickNameValid, sex)
+        listOf(name, nowNickName, isNickNameCheck, sex, isNameValid)
     ) { canFirstRegisterCheck() }
     val canFirstRegister: LiveData<Boolean> = _canFirstRegister
 
     private fun canFirstRegisterCheck() =
         requireNotNull(name.value).isNotBlank()
                 && requireNotNull(nowNickName.value).isNotBlank()
-                && requireNotNull(isNickNameValid.value)
+                && requireNotNull(isNickNameCheck.value)
                 && requireNotNull(sex.value).isNotBlank()
+                && isNameValid.value == true
 
     fun getNickNameValid() {
         viewModelScope.launch {
             try {
-                ServiceBuilder.authService.getNickNameCheck(
+                val response = ServiceBuilder.authService.getNickNameCheck(
                     requireNotNull(nowNickName.value)
                 )
-                setNickNameValid(true)
+                when (response.code) {
+                    3402 -> setNickNameValid(true)
+                    else -> setNickNameValid(false)
+                }
             } catch (e: HttpException) {
             }
         }
     }
 
     fun setNickNameValid(valid: Boolean) {
-        _isNickNameValid.value = valid
+        _isNickNameCheck.value = valid
     }
 
     fun setSex(sex: String) {
         _sex.value = sex
+    }
+
+    fun setLoadingState(isLoading: Boolean) {
+        _setLoading.value = isLoading
     }
 
 
@@ -58,8 +86,10 @@ class SignUpViewModel : ViewModel() {
     val school = MutableLiveData("")
     val email = MutableLiveData("")
     val emailConfirm = MutableLiveData("")
+    val isEmailDuplicate = MutableLiveData(false)
+    var emailConfirmNumber = ""
 
-    private val _isDomainValid = MutableLiveData(false)
+    private val _isDomainValid = MutableLiveData<Boolean>()
     val isDomainValid: LiveData<Boolean> = _isDomainValid
 
     private val _isEmailConfirmValid = MutableLiveData<Boolean>()
@@ -71,18 +101,43 @@ class SignUpViewModel : ViewModel() {
     val canSecondRegister: LiveData<Boolean> = _canSecondRegister
 
     private fun canSecondRegisterCheck() =
-        requireNotNull(school.value).isNotBlank()
-                && requireNotNull(email.value).isNotBlank()
-                && requireNotNull(emailConfirm.value).isNotBlank()
-                && requireNotNull(isDomainValid.value)
+        if (isDomainValid.value != null) {
+            requireNotNull(school.value).isNotBlank()
+                    && requireNotNull(email.value).isNotBlank()
+                    && requireNotNull(emailConfirm.value).isNotBlank()
+                    && isDomainValid.value!!
+        } else {
+            requireNotNull(school.value).isNotBlank()
+                    && requireNotNull(email.value).isNotBlank()
+                    && requireNotNull(emailConfirm.value).isNotBlank()
+        }
 
     fun postEmailConfirm() {
-        // 학교 인증 api
-        // 도메인 ( 리턴값이 참일 경루 -> setDomainValid(ture) 아니면 false -> > Fragment에서 다이얼로그
-        setDomainValid(true)
-
-        // 인증번호를 받아오는 변수, emailConfirm이랑 비교 -> 일치 시 setEmailConfirm(true) 아니면 false -> Fragment에서 다이얼로그
-        setEmailConfirm(true)
+        setLoadingState(true)
+        viewModelScope.launch {
+            try {
+                val response = ServiceBuilder.authService.postSchoolCheck(
+                    RequestSchoolCheck(
+                        requireNotNull(school.value),
+                        requireNotNull(email.value)
+                    )
+                )
+                setLoadingState(false)
+                when (response.code) {
+                    1000 -> {
+                        Log.d("학교인증번호", response.result.certificationNumber)
+                        setDomainValid(true)
+                        emailConfirmNumber = response.result.certificationNumber
+                    }
+                    2021 -> {
+                        setDomainValid(false)
+                        isEmailDuplicate.value = true
+                    }
+                    else -> setDomainValid(false)
+                }
+            } catch (e: HttpException) {
+            }
+        }
     }
 
     fun setDomainValid(valid: Boolean) {
@@ -162,7 +217,35 @@ class SignUpViewModel : ViewModel() {
     }
 
     fun setPostSignUp() {
-        setSuccessSignUp(true)
+        viewModelScope.launch {
+            try {
+                val responseSignUp = ServiceBuilder.authService.postSignUp(
+                    RequestSignUp(
+                        memberEmail = requireNotNull(email.value),
+                        memberName = requireNotNull(name.value),
+                        memberNickName = requireNotNull(nowNickName.value),
+                        memberPw = requireNotNull(password.value),
+                        memberSchoolName = requireNotNull(school.value),
+                        memberSex = requireNotNull(sex.value),
+                        memberStudentId = parseInt(year.value!!),
+                        memberMajor = requireNotNull(major.value)
+                    )
+                )
+
+                when (responseSignUp.isSuccess) {
+                    true -> {
+                        setSuccessSignUp(true)
+                        SharedPreferenceController.setJwtToken(responseSignUp.result.memberJwt)
+                        SharedPreferenceController.setAutoLogin(
+                            email.value.toString(),
+                            password.value.toString()
+                        )
+                    }
+                    false -> setSuccessSignUp(false)
+                }
+            } catch (e: HttpException) {
+            }
+        }
     }
 
     fun setSuccessSignUp(isSuccess: Boolean) {

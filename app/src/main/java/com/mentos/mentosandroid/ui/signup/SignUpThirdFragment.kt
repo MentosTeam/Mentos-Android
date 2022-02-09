@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSignUpThirdBinding
 import com.mentos.mentosandroid.util.navigate
 
 class SignUpThirdFragment : Fragment() {
     private lateinit var binding: FragmentSignUpThirdBinding
-    private val signUpViewModel by viewModels<SignUpViewModel>()
+    private val signUpViewModel by activityViewModels<SignUpViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
