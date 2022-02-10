@@ -30,6 +30,7 @@ class SplashFragment : Fragment() {
         setClickListener()
         setSuccessSignInObserve()
         setIsEmptyProfileObserve()
+        setLoadingObserve()
         return binding.root
     }
 
@@ -64,6 +65,15 @@ class SplashFragment : Fragment() {
                     .show()
                 startActivity(Intent(requireContext(), FirstAccountActivity::class.java))
                 requireActivity().finish()
+            }
+        }
+    }
+
+    private fun setLoadingObserve() {
+        signInViewModel.setLoading.observe(viewLifecycleOwner) { isLoading ->
+            when (isLoading) {
+                true -> binding.splashLoadingPb.visibility = View.VISIBLE
+                else -> binding.splashLoadingPb.visibility = View.GONE
             }
         }
     }

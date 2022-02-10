@@ -1,9 +1,9 @@
 package com.mentos.mentosandroid.data.api
 
-import com.mentos.mentosandroid.data.response.ResponseSearchMentee
-import com.mentos.mentosandroid.data.response.ResponseSearchMentor
-import retrofit2.http.GET
-import retrofit2.http.Query
+import com.mentos.mentosandroid.data.response.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface SearchService {
 
@@ -19,4 +19,16 @@ interface SearchService {
         @Query("majorFlag") majorFlag: List<Int>,
         @Query("searchText") searchText: String?
     ): ResponseSearchMentee
+
+    @GET("/category")
+    suspend fun getSearchCategory(
+        @Query("flag") flag : Int
+    ) : ResponseSearchCategory
+
+    @Multipart
+    @POST("/posts")
+    suspend fun postSearchCreate(
+        @PartMap map: Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part imageFile: MultipartBody.Part?
+    ): ResponseSearchCreate
 }

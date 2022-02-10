@@ -3,9 +3,11 @@ package com.mentos.mentosandroid.ui.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -29,10 +31,17 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
-        searchViewModel.requestMenteeList()
         initLayout()
+        if (args.homeCategory == -1) {
+            binding.searchCategoryFirstRb.isChecked = true
+            binding.searchCategorySecondRb.isChecked = false
+            binding.searchCategoryAllRb.isChecked = false
+            searchViewModel.getMentosCategoryForFirst()
+        }
+        setIsChecked()
+        setCategoryClickObserve()
+        initCategoryBtnLayout()
         setHomeSelectedCategory()
-        setCategoryBtnLayout()
         setSearchTextChangeListener()
         setBtnWriteClickListener()
         setKeyBoardVisible()
@@ -66,14 +75,85 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setCategoryBtnLayout() {
-        binding.searchCategoryFirstRb.setSearchCategoryBg(1)
-        binding.searchCategoryFirstRb.text = getMentosText(1)
-        binding.searchCategoryFirstRb.setSearchCategoryTextSize(1)
+    private fun initCategoryBtnLayout() {
+        searchViewModel.firstCategory.observe(viewLifecycleOwner) {
+            when (it) {
+                0 -> binding.searchCategoryFirstRb.visibility = View.INVISIBLE
+                else -> {
+                    binding.searchCategoryFirstRb.initCategoryView(it)
+                }
+            }
+        }
 
-        binding.searchCategorySecondRb.setSearchCategoryBg(2)
-        binding.searchCategorySecondRb.text = getMentosText(2)
-        binding.searchCategorySecondRb.setSearchCategoryTextSize(2)
+        searchViewModel.secondCategory.observe(viewLifecycleOwner) {
+            when (it) {
+                0 -> binding.searchCategorySecondRb.visibility = View.INVISIBLE
+                else -> {
+                    binding.searchCategorySecondRb.initCategoryView(it)
+                }
+            }
+        }
+    }
+
+    private fun setIsChecked() {
+        binding.searchCategoryFirstRb.setOnCheckedChangeListener { _, isCheck ->
+            if (isCheck) {
+                searchViewModel.getMentosCategoryForFirst()
+            }
+        }
+
+        binding.searchCategorySecondRb.setOnCheckedChangeListener { _, isCheck ->
+            if (isCheck) {
+                searchViewModel.getMentosCategoryForSecond()
+            }
+        }
+
+        binding.searchCategoryAllRb.setOnCheckedChangeListener { _, isCheck ->
+            if (isCheck) {
+                searchViewModel.getMentosCategoryForAll()
+            }
+        }
+    }
+
+    private fun RadioButton.initCategoryView(category: Int) {
+        this.visibility = View.VISIBLE
+        this.text = getMentosText(category)
+        this.setSearchCategoryBg(category)
+        this.setSearchCategoryTextSize(category)
+    }
+
+    private fun setCategoryClickObserve() {
+        searchViewModel.firstCategoryClicked.observe(viewLifecycleOwner) { isClick ->
+            if (isClick) {
+                searchViewModel.clearSearchCategory()
+                searchViewModel.setSearchCategory(searchViewModel.firstCategory.value!!)
+                Log.d("검색first 결과", searchViewModel.searchCategory.value.toString())
+            } else {
+                searchViewModel.clearSearchCategory()
+            }
+        }
+
+        searchViewModel.secondCategoryClicked.observe(viewLifecycleOwner) { isClick ->
+            if (isClick) {
+                searchViewModel.clearSearchCategory()
+                searchViewModel.setSearchCategory(searchViewModel.secondCategory.value!!)
+                Log.d("검색secodn 결과", searchViewModel.searchCategory.value.toString())
+            } else {
+                searchViewModel.clearSearchCategory()
+            }
+        }
+
+        searchViewModel.allCategoryClicked.observe(viewLifecycleOwner) { isClick ->
+            if (isClick) {
+                searchViewModel.clearSearchCategory()
+                for (i in 1..12) {
+                    searchViewModel.setSearchCategory(i)
+                }
+                Log.d("검색all", searchViewModel.searchCategory.value.toString())
+            } else {
+                searchViewModel.clearSearchCategory()
+            }
+        }
     }
 
     private fun setSearchTextChangeListener() {
@@ -82,7 +162,10 @@ class SearchFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                searchViewModel.getMentorPostList(s.toString())
+                when (SharedPreferenceController.getNowState()) {
+                    0 -> searchViewModel.requestMenteeList(s.toString())
+                    1 -> searchViewModel.getMentorPostList(s.toString())
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -121,7 +204,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun setSearchMenteeObserver() {
-        searchViewModel.dummyMenteeList.observe(viewLifecycleOwner) { list ->
+        searchViewModel.searchMenteeList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 with(binding.searchMenteeListRv.adapter as SearchMenteeAdapter) { submitList((list)) }
             }

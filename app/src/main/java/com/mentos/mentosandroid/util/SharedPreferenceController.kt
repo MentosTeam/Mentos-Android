@@ -86,7 +86,7 @@ object SharedPreferenceController {
             .apply()
     }
 
-    fun clearJwtToken() {
+    fun clearAuthData() {
         sharedPreferences.edit().clear().apply()
     }
 

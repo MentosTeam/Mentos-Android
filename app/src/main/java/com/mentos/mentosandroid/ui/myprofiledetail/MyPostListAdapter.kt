@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.Search
+import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemSearchListBinding
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 import com.mentos.mentosandroid.util.navigateWithData
 
 class MyPostListAdapter :
-    ListAdapter<Search, MyPostListAdapter.PostListViewHolder>(SearchDiffUtil()) {
+    ListAdapter<SearchMentor, MyPostListAdapter.PostListViewHolder>(SearchDiffUtil()) {
 
     inner class PostListViewHolder(
         private val binding: ItemSearchListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Search) {
+        fun bind(item: SearchMentor) {
             binding.searchMentosIv.setMentosImg17(item.majorCategoryId)
 
             if (item.imageUrl == null) {
@@ -27,12 +27,12 @@ class MyPostListAdapter :
             }
 
             binding.searchListLayout.setOnClickListener {
-//                it.navigateWithData(
-//                    MyPostListFragmentDirections.actionPostListFragmentToSearchDetailDialog(
-//                        myList = true,
-//                        postMento = item
-//                    )
-//                )
+                it.navigateWithData(
+                    MyPostListFragmentDirections.actionPostListFragmentToSearchDetailDialog(
+                        myList = true,
+                        postMento = item
+                    )
+                )
             }
         }
     }
@@ -51,12 +51,18 @@ class MyPostListAdapter :
         holder.bind(getItem(position))
     }
 
-    private class SearchDiffUtil : DiffUtil.ItemCallback<Search>() {
-        override fun areContentsTheSame(oldItem: Search, newItem: Search): Boolean {
+    private class SearchDiffUtil : DiffUtil.ItemCallback<SearchMentor>() {
+        override fun areContentsTheSame(
+            oldItem: SearchMentor,
+            newItem: SearchMentor
+        ): Boolean {
             return oldItem == newItem
         }
 
-        override fun areItemsTheSame(oldItem: Search, newItem: Search): Boolean {
+        override fun areItemsTheSame(
+            oldItem: SearchMentor,
+            newItem: SearchMentor
+        ): Boolean {
             return oldItem.postTitle == newItem.postTitle
         }
     }

@@ -4,11 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.MyPost
-import com.mentos.mentosandroid.data.Search
 import com.mentos.mentosandroid.databinding.ItemMajorDetailBinding
-import com.mentos.mentosandroid.ui.home.HomeFragmentDirections
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
-import com.mentos.mentosandroid.util.navigateWithData
 
 class ProfileMajorDetailRVAdapter :
     RecyclerView.Adapter<ProfileMajorDetailRVAdapter.MajorDetailViewHolder>() {

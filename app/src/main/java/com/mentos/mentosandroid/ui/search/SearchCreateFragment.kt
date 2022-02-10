@@ -3,8 +3,6 @@ package com.mentos.mentosandroid.ui.search
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -12,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -22,7 +21,6 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSearchCreateBinding
 import com.mentos.mentosandroid.util.*
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
-import java.io.ByteArrayOutputStream
 
 class SearchCreateFragment : Fragment() {
     private lateinit var binding: FragmentSearchCreateBinding
@@ -61,7 +59,7 @@ class SearchCreateFragment : Fragment() {
             setCategory(true)
         }
         // 사진 관련 수정 필요
-        Glide.with(requireContext())
+        Glide.with(this)
             .load(args.postMento?.imageUrl)
             .into(binding.searchCreatePhotoIv)
         binding.searchCreateMentosIv.setMentosImg17(args.postMento?.majorCategoryId!!)
@@ -72,11 +70,12 @@ class SearchCreateFragment : Fragment() {
         binding.searchCreateMentosIv.setOnClickListener {
             MentosCategoryDialog { category ->
                 binding.searchCreateMentosIv.setMentosImg17(category)
+                searchViewModel.createCategory.value = category
                 when (category) {
                     -1 -> searchViewModel.setCategory(false)
                     else -> searchViewModel.setCategory(true)
                 }
-            }.show(childFragmentManager, "SELECT_MENTO_POST")
+            }.show(childFragmentManager, "SELECT_MENTOR_POST")
         }
     }
 
@@ -103,19 +102,14 @@ class SearchCreateFragment : Fragment() {
         if (result.data != null) {
             val imageUri = result.data?.data
             searchViewModel.setImage(requireNotNull(imageUri))
-            setImgMultiPart()
+            searchViewModel.imageMultiPart =
+                MultiPartResolver(requireContext()).createImgMultiPart(
+                    requireNotNull(searchViewModel.image.value)
+                )
+            Glide.with(this)
+                .load(searchViewModel.image.value)
+                .into(binding.searchCreatePhotoIv)
         }
-    }
-
-    private fun setImgMultiPart() {
-        val imageUri = requireNotNull(searchViewModel.image.value)
-        val options = BitmapFactory.Options()
-        val inputStream =
-            requireContext().contentResolver.openInputStream(imageUri)
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        BitmapFactory.decodeStream(inputStream, null, options)
-            ?.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
-        // val file = File(imageUri.toString())
     }
 
     private fun hideKeyBoard() {
@@ -167,6 +161,8 @@ class SearchCreateFragment : Fragment() {
         searchViewModel.isRegister.observe(viewLifecycleOwner) { isRegister ->
             if (isRegister) {
                 popBackStack()
+                Toast.makeText(requireContext(), "글 등록이 완료되었습니다.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
