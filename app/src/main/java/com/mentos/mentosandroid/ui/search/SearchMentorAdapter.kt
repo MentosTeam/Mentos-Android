@@ -18,7 +18,7 @@ class SearchMentorAdapter :
         private val binding: ItemSearchListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SearchMentor) {
-            binding.searchListTitle.text = item.postTitle
+            binding.data = item
             binding.searchMentosIv.setMentosImg17(item.majorCategoryId)
 
             if (item.imageUrl == null) {
