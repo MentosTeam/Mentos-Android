@@ -60,7 +60,9 @@ class SignInViewModel : ViewModel() {
                         setSuccessSignIn(true)
 
                         if (responseSignIn.result.mentor == 1) {
-                            SharedPreferenceController.setNowState(0)
+                            if (SharedPreferenceController.getNowState() == -1) {
+                                SharedPreferenceController.setNowState(0)
+                            }
                             setIsEmptyProfile(false)
                         } else if (responseSignIn.result.mentee == 1) {
                             SharedPreferenceController.setNowState(1)

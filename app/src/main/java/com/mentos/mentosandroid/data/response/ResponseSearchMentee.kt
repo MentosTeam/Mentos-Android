@@ -10,13 +10,3 @@ data class ResponseSearchMentee(
 data class SearchMenteeResult(
     val mentiArr: List<Mentee>
 )
-
-//@Parcelize
-//data class SearchMentee(
-//    val mentiId: Int,
-//    val mentiImage: String,
-//    val mentiIntro: String,
-//    val mentiMajorFirst: Int,
-//    val mentiMajorSecond: Int,
-//    val mentiNickName: String
-//) : Parcelable

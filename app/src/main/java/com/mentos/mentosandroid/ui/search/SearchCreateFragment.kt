@@ -41,14 +41,19 @@ class SearchCreateFragment : Fragment() {
         searchViewModel.setIsWritten(false)
         if (args.postMento != null) {
             initModifyView()
+            setModifyImageDeleteClickListener()
+        } else {
+            setImageObserve()
         }
+        setCompleteBtnClickListener()
         setMentosBtnClickListener()
         setNewPhotoClickListener()
         hideKeyBoard()
         setEtScroll()
         setIsWrittenObserve()
-        setImageObserve()
         setIsRegisterObserve()
+        setISModifyObserve()
+        setModifyHasImageObserve()
         return binding.root
     }
 
@@ -57,13 +62,38 @@ class SearchCreateFragment : Fragment() {
             setCreateTitle(args.postMento?.postTitle!!)
             setCreateContent(args.postMento?.postContents!!)
             setCategory(true)
+            setModifyHasImage(true)
+            searchViewModel.createCategory.value = args.postMento?.majorCategoryId
         }
-        // 사진 관련 수정 필요
         Glide.with(this)
             .load(args.postMento?.imageUrl)
-            .into(binding.searchCreatePhotoIv)
+            .into(binding.searchCreateModifyPhotoIv)
         binding.searchCreateMentosIv.setMentosImg17(args.postMento?.majorCategoryId!!)
         binding.searchCreateBtnComplete.setText(R.string.search_create_modify_complete)
+    }
+
+    private fun setModifyImageDeleteClickListener() {
+        binding.searchBtnDeleteModifyPhotoIb.setOnClickListener {
+            searchViewModel.setModifyHasImage(false)
+        }
+    }
+
+    private fun setCompleteBtnClickListener() {
+        binding.searchCreateBtnComplete.setOnClickListener {
+            if (args.postMento != null) {
+                if (args.postMento?.imageUrl.equals("null") || args.postMento?.imageUrl == null || searchViewModel.hasImage.value == false) {
+                    searchViewModel.modifyContent(args.postMento!!.postId, false, "")
+                } else {
+                    searchViewModel.modifyContent(
+                        args.postMento!!.postId,
+                        true,
+                        requireNotNull(args.postMento!!.imageUrl)
+                    )
+                }
+            } else {
+                searchViewModel.postContent()
+            }
+        }
     }
 
     private fun setMentosBtnClickListener() {
@@ -153,7 +183,6 @@ class SearchCreateFragment : Fragment() {
                     }
                 }
             }
-
         }
     }
 
@@ -163,6 +192,34 @@ class SearchCreateFragment : Fragment() {
                 popBackStack()
                 Toast.makeText(requireContext(), "글 등록이 완료되었습니다.", Toast.LENGTH_SHORT)
                     .show()
+            }
+        }
+    }
+
+    private fun setISModifyObserve() {
+        searchViewModel.isModifySuccess.observe(viewLifecycleOwner) { isModify ->
+            if (isModify) {
+                popBackStack()
+                Toast.makeText(requireContext(), "글 수정이 완료되었습니다.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun setModifyHasImageObserve() {
+        searchViewModel.hasImage.observe(viewLifecycleOwner) {
+            when (it) {
+                true -> {
+                    binding.searchBtnDeleteModifyPhotoIb.visibility = View.VISIBLE
+                    binding.searchCreateModifyPhotoIv.visibility = View.VISIBLE
+                    binding.searchCreateNewPhotoIb.isClickable = false
+                }
+                false -> {
+                    binding.searchBtnDeleteModifyPhotoIb.visibility = View.GONE
+                    binding.searchCreateModifyPhotoIv.visibility = View.GONE
+                    binding.searchCreateNewPhotoIb.isClickable = true
+                    setImageObserve()
+                }
             }
         }
     }

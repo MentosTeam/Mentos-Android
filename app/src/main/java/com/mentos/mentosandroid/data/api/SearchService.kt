@@ -22,8 +22,8 @@ interface SearchService {
 
     @GET("/category")
     suspend fun getSearchCategory(
-        @Query("flag") flag : Int
-    ) : ResponseSearchCategory
+        @Query("flag") flag: Int
+    ): ResponseSearchCategory
 
     @Multipart
     @POST("/posts")
@@ -31,4 +31,17 @@ interface SearchService {
         @PartMap map: Map<String, @JvmSuppressWildcards RequestBody>,
         @Part imageFile: MultipartBody.Part?
     ): ResponseSearchCreate
+
+    @DELETE("/posts/{postId}")
+    suspend fun deleteMentorPost(
+        @Path("postId") postId: Int
+    ): BaseResponse
+
+    @Multipart
+    @PATCH("/posts/{postId}")
+    suspend fun modifyMentorPost(
+        @Path("postId") postId: Int,
+        @PartMap map: Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part imageFile: MultipartBody.Part?
+    ): BaseResponse
 }

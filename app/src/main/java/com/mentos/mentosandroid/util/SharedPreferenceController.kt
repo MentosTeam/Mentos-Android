@@ -25,7 +25,7 @@ object SharedPreferenceController {
 
     //멘토 <-> 멘티
     fun getNowState(): Int {
-        return sharedPreferences.getInt(NOW_STATE, 0)
+        return sharedPreferences.getInt(NOW_STATE, -1)
     }
 
     fun setNowState(state: Int) {
