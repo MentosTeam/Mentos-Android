@@ -58,6 +58,15 @@ class SearchViewModel : ViewModel() {
     private val _isRegister = MutableLiveData<Boolean>()
     val isRegister: LiveData<Boolean> = _isRegister
 
+    private val _isDeletedSuccess = MutableLiveData<Boolean>()
+    val isDeletedSuccess: LiveData<Boolean> = _isDeletedSuccess
+
+    private val _isModifySuccess = MutableLiveData<Boolean>()
+    val isModifySuccess: LiveData<Boolean> = _isModifySuccess
+
+    private val _hasImage = MutableLiveData(false)
+    val hasImage: LiveData<Boolean> = _hasImage
+
     private val _image = MutableLiveData<Uri?>()
     val image: MutableLiveData<Uri?> = _image
 
@@ -206,10 +215,11 @@ class SearchViewModel : ViewModel() {
                             )
                         }
                     }
-                if(responseSearchCreate.isSuccess) {
+                if (responseSearchCreate.isSuccess) {
                     _isRegister.postValue(true)
                 }
-            } catch (e: HttpException) { }
+            } catch (e: HttpException) {
+            }
         }
     }
 
@@ -218,9 +228,68 @@ class SearchViewModel : ViewModel() {
             RequestBody.create(MediaType.parse("text/plain"), createCategory.value.toString())
         map["postTitle"] =
             RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createTitle.value))
-
         map["postContents"] =
             RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createContent.value))
+    }
+
+    private fun setMultiPartForModify(imageUrl: String) {
+        map["majorCategoryId"] =
+            RequestBody.create(MediaType.parse("text/plain"), createCategory.value.toString())
+        map["postTitle"] =
+            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createTitle.value))
+        map["postContents"] =
+            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createContent.value))
+        map["imageUrl"] = RequestBody.create(MediaType.parse("text/plain"), imageUrl)
+    }
+
+    fun deleteContent(postId: Int) {
+        viewModelScope.launch {
+            try {
+                val responseDeleteContent = ServiceBuilder.searchService.deleteMentorPost(
+                    postId
+                )
+                when (responseDeleteContent.isSuccess) {
+                    true -> _isDeletedSuccess.postValue(true)
+                    false -> _isDeletedSuccess.postValue(false)
+                }
+            } catch (e: HttpException) {
+                Log.d("글 삭제", e.message.toString())
+            }
+        }
+    }
+
+    fun modifyContent(postId: Int, hasImage: Boolean, imageUrl: String) {
+        viewModelScope.launch {
+            try {
+                when (hasImage) {
+                    true -> setMultiPartForModify(imageUrl)
+                    false -> setMultiPart()
+                }
+
+                val responseModifyContent = when (image.value == null) {
+                    true -> {
+                        ServiceBuilder.searchService.modifyMentorPost(
+                            postId,
+                            map,
+                            null
+                        )
+                    }
+                    false -> {
+                        ServiceBuilder.searchService.modifyMentorPost(
+                            postId,
+                            map,
+                            imageMultiPart
+                        )
+                    }
+                }
+                when (responseModifyContent.isSuccess) {
+                    true -> _isModifySuccess.postValue(true)
+                    false -> _isModifySuccess.postValue(false)
+                }
+            } catch (e: HttpException) {
+                Log.d("글 수정", e.message.toString())
+            }
+        }
     }
 
     fun resetIsRegister() {
@@ -241,6 +310,10 @@ class SearchViewModel : ViewModel() {
 
     fun resetImage() {
         _image.value = null
+    }
+
+    fun setModifyHasImage(state: Boolean) {
+        _hasImage.value = state
     }
 
     fun setCategory(isSelected: Boolean) {

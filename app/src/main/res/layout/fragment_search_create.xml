@@ -229,6 +229,31 @@
                         app:layout_constraintBottom_toBottomOf="@id/search_create_photo_iv"
                         app:layout_constraintStart_toStartOf="@id/search_create_photo_iv"
                         tools:ignore="ContentDescription" />
+
+                    <ImageView
+                        android:id="@+id/search_create_modify_photo_iv"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="12dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/search_divider_2"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageButton
+                        android:id="@+id/search_btn_delete_modify_photo_ib"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:src="@drawable/ic_search_delete_photo"
+                        app:layout_constraintBottom_toBottomOf="@id/search_create_photo_iv"
+                        app:layout_constraintStart_toStartOf="@id/search_create_photo_iv"
+                        tools:ignore="ContentDescription" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.button.MaterialButton
@@ -243,7 +268,6 @@
                     android:includeFontPadding="false"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
-                    android:onClick="@{() -> viewModel.postContent()}"
                     android:paddingVertical="13dp"
                     android:stateListAnimator="@null"
                     android:text="@string/search_create_button"

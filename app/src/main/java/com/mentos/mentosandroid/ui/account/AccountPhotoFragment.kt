@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.databinding.FragmentAccountPhotoBinding
 import com.mentos.mentosandroid.ui.main.MainActivity
 import com.mentos.mentosandroid.util.MultiPartResolver
+import com.mentos.mentosandroid.util.SharedPreferenceController
 
 class AccountPhotoFragment : Fragment() {
     private lateinit var binding: FragmentAccountPhotoBinding
@@ -70,6 +71,10 @@ class AccountPhotoFragment : Fragment() {
     private fun setIsSuccessCreateObserve() {
         accountViewModel.isSuccessCreate.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
+                when (accountViewModel.selectedState.value) {
+                    2 -> SharedPreferenceController.setNowState(1)
+                    1 -> SharedPreferenceController.setNowState(0)
+                }
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 requireActivity().finish()
             }
