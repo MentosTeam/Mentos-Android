@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.bumptech.glide.Glide
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMentorBinding
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigateWithData
@@ -27,6 +29,7 @@ class ProfileMentorFragment : Fragment() {
         //뷰모델 연결
         initViewModel()
         initSex()
+        initImg()
         setPostMoreClickListener()
         setReviewMoreClickListener()
 
@@ -77,17 +80,21 @@ class ProfileMentorFragment : Fragment() {
 
     private fun setReviewMoreClickListener() {
         binding.mentorProfileReviewMoreImg.setOnClickListener {
-            navigateWithData(ProfileFragmentDirections.actionProfileFragmentToReviewListFragment(
-                profileViewModel.mentorProfileData.value!!.reviews.toTypedArray()
-            ))
+            navigateWithData(
+                ProfileFragmentDirections.actionProfileFragmentToReviewListFragment(
+                    profileViewModel.mentorProfileData.value!!.reviews.toTypedArray()
+                )
+            )
         }
     }
 
     private fun setPostMoreClickListener() {
         binding.mentorProfileDetailMoreImg.setOnClickListener {
-            navigateWithData(ProfileFragmentDirections.actionProfileFragmentToPostListFragment(
-                profileViewModel.mentorProfileData.value!!.postArr.toTypedArray()
-            ))
+            navigateWithData(
+                ProfileFragmentDirections.actionProfileFragmentToPostListFragment(
+                    profileViewModel.mentorProfileData.value!!.postArr.toTypedArray()
+                )
+            )
         }
     }
 
@@ -96,5 +103,21 @@ class ProfileMentorFragment : Fragment() {
         binding.profileViewModel = profileViewModel
         //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
         binding.lifecycleOwner = this
+    }
+
+    private fun initImg() {
+        profileViewModel.mentorProfileData.observe(viewLifecycleOwner) { mentorProfileData ->
+            if (mentorProfileData == null) {
+                binding.mentorProfileImg.setImageResource(R.drawable.img_home_user)
+            } else {
+                if (mentorProfileData.basicInformation.profileImage == null) {
+                    binding.mentorProfileImg.setImageResource(R.drawable.img_home_user)
+                } else {
+                    Glide.with(requireContext())
+                        .load(mentorProfileData.basicInformation.profileImage)
+                        .into(binding.mentorProfileImg)
+                }
+            }
+        }
     }
 }

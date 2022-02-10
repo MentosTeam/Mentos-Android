@@ -117,6 +117,10 @@
         <action
             android:id="@+id/action_oneMentorProfileFragment_to_reviewListFragment"
             app:destination="@id/reviewListFragment" />
+        <action
+            android:id="@+id/action_oneMentorProfileFragment_to_searchDetailDialog"
+            app:destination="@id/searchDetailDialog" />
+
     </fragment>
 
     <fragment
@@ -164,6 +168,9 @@
         <action
             android:id="@+id/action_profileFragment_to_reviewListFragment"
             app:destination="@id/reviewListFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_searchDetailDialog"
+            app:destination="@id/searchDetailDialog" />
     </fragment>
 
     <fragment
@@ -212,7 +219,7 @@
             app:destination="@id/mentoringStart3Fragment2" />
         <argument
             android:name="mentoringStart"
-            app:argType="com.mentos.mentosandroid.data.MentoringStart" />
+            app:argType="com.mentos.mentosandroid.data.request.RequestMentoringStart" />
     </fragment>
 
     <fragment
@@ -225,7 +232,7 @@
             app:destination="@id/mentoringStart4Fragment" />
         <argument
             android:name="mentoringStart"
-            app:argType="com.mentos.mentosandroid.data.MentoringStart" />
+            app:argType="com.mentos.mentosandroid.data.request.RequestMentoringStart" />
     </fragment>
 
     <dialog
@@ -246,7 +253,7 @@
             app:popUpToInclusive="false"/>
         <argument
             android:name="mentoringStart"
-            app:argType="com.mentos.mentosandroid.data.MentoringStart" />
+            app:argType="com.mentos.mentosandroid.data.request.RequestMentoringStart" />
     </fragment>
 
     <fragment
@@ -256,7 +263,7 @@
         tools:layout="@layout/fragment_mentoring_start5">
         <argument
             android:name="mentoringStart"
-            app:argType="com.mentos.mentosandroid.data.MentoringStart" />
+            app:argType="com.mentos.mentosandroid.data.request.RequestMentoringStart" />
     </fragment>
 
     <fragment

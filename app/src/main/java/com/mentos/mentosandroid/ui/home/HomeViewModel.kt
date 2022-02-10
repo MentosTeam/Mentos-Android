@@ -29,23 +29,6 @@ class HomeViewModel() : ViewModel() {
         get() = _mentorHomeData
     private lateinit var mentorHomeDataItem: HomeMentorResult
 
-    init {
-//        //프로필 종류 검사 후 데이터 적용
-////        chkProfile()
-//        getMentorData()
-//        getMenteeData()
-    }
-
-    private fun chkState(nowState: Int) {
-        when (nowState) {
-            1 -> {
-                getMentorData()
-            }
-            2 -> {
-                getMenteeData()
-            }
-        }
-    }
 
     fun getMentorData() {
         Log.d("홈 멘토", SharedPreferenceController.getJwtToken())
