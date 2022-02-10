@@ -2,13 +2,15 @@ package com.mentos.mentosandroid.ui.profile
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.MyPost
-import com.mentos.mentosandroid.data.Review
+import com.mentos.mentosandroid.data.response.Review
+import com.mentos.mentosandroid.data.response.SearchMentor
 
 object ProfileBindingAdapter {
     @BindingAdapter("majorItems")
     @JvmStatic
-    fun setMajorItems(recyclerView: RecyclerView, items: ArrayList<Int>) {
+    fun setMajorItems(recyclerView: RecyclerView, items: ArrayList<Int>?) {
+        if (items == null)
+            return
         if (recyclerView.adapter == null) {
             val adapter = ProfileMajorRVAdapter()
             //깜빡임 방지
@@ -26,7 +28,9 @@ object ProfileBindingAdapter {
 
     @BindingAdapter("majorDetailItems")
     @JvmStatic
-    fun setMajorDetailItems(recyclerView: RecyclerView, items: ArrayList<MyPost>) {
+    fun setMajorDetailItems(recyclerView: RecyclerView, items: ArrayList<SearchMentor>?) {
+        if (items == null)
+            return
         if (recyclerView.adapter == null) {
             val adapter = ProfileMajorDetailRVAdapter()
             //깜빡임 방지
@@ -44,7 +48,9 @@ object ProfileBindingAdapter {
 
     @BindingAdapter("reviewItems")
     @JvmStatic
-    fun setReviewItems(recyclerView: RecyclerView, items: ArrayList<Review>) {
+    fun setReviewItems(recyclerView: RecyclerView, items: ArrayList<Review>?) {
+        if (items == null)
+            return
         if (recyclerView.adapter == null) {
             val adapter = ProfileReviewRVAdapter()
             //깜빡임 방지
@@ -62,7 +68,9 @@ object ProfileBindingAdapter {
 
     @BindingAdapter("mentosItems")
     @JvmStatic
-    fun setMentosItems(recyclerView: RecyclerView, items: ArrayList<Int>) {
+    fun setMentosItems(recyclerView: RecyclerView, items: ArrayList<Int>?) {
+        if (items == null)
+            return
         if (recyclerView.adapter == null) {
             val adapter = ProfileMentosRVAdapter()
             //깜빡임 방지

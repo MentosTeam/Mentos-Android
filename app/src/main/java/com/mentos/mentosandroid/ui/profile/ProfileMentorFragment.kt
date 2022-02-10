@@ -6,17 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.MarginPageTransformer
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMentorBinding
 import com.mentos.mentosandroid.util.SharedPreferenceController
-import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 
 class ProfileMentorFragment : Fragment() {
     private lateinit var binding: FragmentProfileMentorBinding
-    lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel by activityViewModels<ProfileViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +37,12 @@ class ProfileMentorFragment : Fragment() {
 
     private fun initMentosVP() {
         val mentosVPAdapter = ProfileMentosVPAdapter(this)
-        mentosVPAdapter.mentosList = profileViewModel.mentorMentosList.value!!
+        mentosVPAdapter.mentosList =
+            if (profileViewModel.mentorMentosList.value == null) {
+                ArrayList()
+            } else {
+                profileViewModel.mentorMentosList.value!!
+            }
 
         val mentosVP = binding.mentorProfileMentoringMentosVp
 
@@ -73,21 +77,23 @@ class ProfileMentorFragment : Fragment() {
 
     private fun setReviewMoreClickListener() {
         binding.mentorProfileReviewMoreImg.setOnClickListener {
-            navigate(R.id.action_profileFragment_to_reviewListFragment)
+            navigateWithData(ProfileFragmentDirections.actionProfileFragmentToReviewListFragment(
+                profileViewModel.mentorProfileData.value!!.reviews.toTypedArray()
+            ))
         }
     }
 
     private fun setPostMoreClickListener() {
         binding.mentorProfileDetailMoreImg.setOnClickListener {
-            navigate(R.id.action_profileFragment_to_postListFragment)
+            navigateWithData(ProfileFragmentDirections.actionProfileFragmentToPostListFragment(
+                profileViewModel.mentorProfileData.value!!.postArr.toTypedArray()
+            ))
         }
     }
 
     private fun initViewModel() {
         //뷰모델 연결
-        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         binding.profileViewModel = profileViewModel
-
         //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
         binding.lifecycleOwner = this
     }

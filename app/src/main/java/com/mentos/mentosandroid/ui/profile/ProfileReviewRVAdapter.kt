@@ -3,7 +3,7 @@ package com.mentos.mentosandroid.ui.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.Review
+import com.mentos.mentosandroid.data.response.Review
 import com.mentos.mentosandroid.databinding.ItemProfileReviewBinding
 
 class ProfileReviewRVAdapter :

@@ -7,7 +7,7 @@
 
         <variable
             name="profileViewModel"
-            type="com.mentos.mentosandroid.ui.profile.ProfileViewModel" />
+            type="com.mentos.mentosandroid.ui.otherprofile.OneProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -139,7 +139,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_medium"
                                 android:includeFontPadding="false"
-                                android:text="@{profileViewModel.menteeProfileData.schoolName + ` / ` + profileViewModel.menteeProfileData.basicInformation.studentId + `학번`}"
+                                android:text="@{profileViewModel.menteeProfileData.schoolName + `대학교 / ` + profileViewModel.menteeProfileData.basicInformation.studentId + `학번`}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="11sp" />
 

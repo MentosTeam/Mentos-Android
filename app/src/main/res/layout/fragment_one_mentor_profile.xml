@@ -9,7 +9,7 @@
 
         <variable
             name="profileViewModel"
-            type="com.mentos.mentosandroid.ui.profile.ProfileViewModel" />
+            type="com.mentos.mentosandroid.ui.otherprofile.OneProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -130,7 +130,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_bold"
                                 android:includeFontPadding="false"
-                                android:text="홍길동 멘토"
+                                android:text="@{profileViewModel.mentorProfileData.basicInformation.nickname + `(` + profileViewModel.mentorProfileData.basicInformation.name + `) 멘토`}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="15sp" />
 
@@ -140,7 +140,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_medium"
                                 android:includeFontPadding="false"
-                                android:text="0000대학교 / 22학번"
+                                android:text="@{profileViewModel.mentorProfileData.schoolName + `대학교 / ` + profileViewModel.mentorProfileData.basicInformation.studentId + `학번`}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="11sp" />
 
@@ -150,7 +150,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/noto_medium"
                                 android:includeFontPadding="false"
-                                android:text="중어중문, 경영학 전공"
+                                android:text="@{profileViewModel.mentorProfileData.basicInformation.major}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="11sp" />
                         </LinearLayout>
@@ -218,7 +218,7 @@
                                     android:layout_marginStart="4dp"
                                     android:fontFamily="@font/noto_bold"
                                     android:includeFontPadding="false"
-                                    android:text="3회"
+                                    android:text="@{String.valueOf(profileViewModel.mentorProfileData.numOfMentoring) + `회`}"
                                     android:textColor="@color/black_3333"
                                     android:textSize="10sp" />
                             </LinearLayout>
@@ -252,7 +252,7 @@
                                     android:layout_marginStart="5dp"
                                     android:fontFamily="@font/noto_regular"
                                     android:includeFontPadding="false"
-                                    android:text="4.5/5"
+                                    android:text="@{String.valueOf(profileViewModel.mentorProfileData.basicInformation.mentoScore) + `/5`}"
                                     android:textColor="@color/black_3333"
                                     android:textSize="10sp" />
                             </LinearLayout>
