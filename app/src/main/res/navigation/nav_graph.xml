@@ -92,7 +92,12 @@
         android:id="@+id/oneMenteeProfileFragment"
         android:name="com.mentos.mentosandroid.ui.otherprofile.OneMenteeProfileFragment"
         android:label="OneMenteeProfileFragment"
-        tools:layout="@layout/fragment_one_mentee_profile" />
+        tools:layout="@layout/fragment_one_mentee_profile" >
+        <argument
+            android:name="menteeId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/oneMentorProfileFragment"
@@ -265,6 +270,9 @@
         android:name="com.mentos.mentosandroid.ui.myprofiledetail.MyPostListFragment"
         android:label="PostListFragment"
         tools:layout="@layout/fragment_my_post_list">
+        <argument
+            android:name="myPostList"
+            app:argType="com.mentos.mentosandroid.data.response.SearchMentor[]"/>
         <action
             android:id="@+id/action_postListFragment_to_searchCreateFragment"
             app:destination="@id/searchCreateFragment" />
@@ -277,13 +285,20 @@
         android:id="@+id/reviewListFragment"
         android:name="com.mentos.mentosandroid.ui.myprofiledetail.ReviewListFragment"
         android:label="ReviewListFragment"
-        tools:layout="@layout/fragment_review_list"/>
+        tools:layout="@layout/fragment_review_list">
+        <argument
+            android:name="reviewList"
+            app:argType="com.mentos.mentosandroid.data.response.Review[]"/>
+    </fragment>
 
     <fragment
         android:id="@+id/mentorPostListFragment"
         android:name="com.mentos.mentosandroid.ui.otherprofile.MentorPostListFragment"
         android:label="MentorPostListFragment"
         tools:layout="@layout/fragment_mentor_post_list">
+        <argument
+            android:name="mentorPostList"
+            app:argType="com.mentos.mentosandroid.data.response.SearchMentor[]"/>
         <action
             android:id="@+id/action_mentorPostListFragment_to_searchDetailDialog"
             app:destination="@id/searchDetailDialog" />

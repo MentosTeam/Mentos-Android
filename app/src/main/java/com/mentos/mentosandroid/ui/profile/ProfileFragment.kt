@@ -1,11 +1,13 @@
 package com.mentos.mentosandroid.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -19,6 +21,7 @@ import com.mentos.mentosandroid.util.navigate
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
+    private val profileViewModel by activityViewModels<ProfileViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,13 +30,18 @@ class ProfileFragment : Fragment() {
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
+        initViewModel()
         initLayout()
 
         val profileViewPager = binding.profileTabVp
         intiViewPager(profileViewPager)
 
         val tabLayout = binding.profileTab
-        initTab(tabLayout, profileViewPager)
+        profileViewModel.profileState.observe(viewLifecycleOwner){ profileState ->
+            if(profileState != null){
+                initTab(tabLayout, profileViewPager)
+            }
+        }
 
         //버튼 클릭리스너
         setBtnWriteClickListener()
@@ -47,8 +55,8 @@ class ProfileFragment : Fragment() {
     private fun initTab(tabLayout: TabLayout, profileViewPager: ViewPager2) {
         val tabTitle = arrayOf("멘토 프로필", "멘티 프로필")
         TabLayoutMediator(tabLayout, profileViewPager) { tab, position ->
-            val profileState = 3
-            when (profileState) {
+            Log.d("내 정보 탭", profileViewModel.profileState.value.toString())
+            when (profileViewModel.profileState.value) {
                 ONLY_MENTOR -> {
                     if(position == 0){
                         tab.view.isClickable = true
@@ -122,5 +130,14 @@ class ProfileFragment : Fragment() {
                 binding.profileWriteIb.visibility = View.GONE
             }
         }
+    }
+
+    private fun initViewModel() {
+        //뷰모델 연결
+        binding.profileViewModel = profileViewModel
+        //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
+        binding.lifecycleOwner = this
+
+        profileViewModel.getMyProfileData()
     }
 }

@@ -10,6 +10,7 @@ import com.mentos.mentosandroid.data.response.Mentee
 import com.mentos.mentosandroid.databinding.ItemHomeMenteeBinding
 import com.mentos.mentosandroid.util.MentosCategoryUtil
 import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 
 class SearchMenteeAdapter :
     ListAdapter<Mentee, SearchMenteeAdapter.SearchMenteeViewHolder>(SearchDiffUtil()) {
@@ -29,7 +30,7 @@ class SearchMenteeAdapter :
 
 
             binding.itemHomeMenteeLayout.setOnClickListener {
-                it.navigate(R.id.action_searchFragment_to_oneMenteeProfileFragment)
+                it.navigateWithData(SearchFragmentDirections.actionSearchFragmentToOneMenteeProfileFragment(item.menteeStudentId))
             }
         }
     }

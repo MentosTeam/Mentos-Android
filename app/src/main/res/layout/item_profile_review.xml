@@ -6,7 +6,7 @@
 
         <variable
             name="review"
-            type="com.mentos.mentosandroid.data.Review" />
+            type="com.mentos.mentosandroid.data.response.Review" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

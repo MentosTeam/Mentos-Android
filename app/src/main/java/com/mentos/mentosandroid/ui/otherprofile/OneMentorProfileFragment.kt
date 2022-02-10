@@ -10,18 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.MarginPageTransformer
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentOneMentorProfileBinding
 import com.mentos.mentosandroid.ui.profile.ProfileMentosVPAdapter
-import com.mentos.mentosandroid.ui.profile.ProfileViewModel
 import com.mentos.mentosandroid.util.SharedPreferenceController
-import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
 class OneMentorProfileFragment : Fragment() {
     private lateinit var binding: FragmentOneMentorProfileBinding
-    lateinit var profileViewModel: ProfileViewModel
+    lateinit var profileViewModel: OneProfileViewModel
     private val args by navArgs<OneMentorProfileFragmentArgs>()
 
     override fun onCreateView(
@@ -39,14 +36,20 @@ class OneMentorProfileFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        profileViewModel = ViewModelProvider(this).get(OneProfileViewModel::class.java)
+        profileViewModel.getMentorProfileData(args.mentorId)
         binding.profileViewModel = profileViewModel
         binding.lifecycleOwner = this
     }
 
     private fun initMentosVP() {
         val mentosVPAdapter = ProfileMentosVPAdapter(this)
-        mentosVPAdapter.mentosList = profileViewModel.mentorMentosList.value!!
+        mentosVPAdapter.mentosList =
+            if (profileViewModel.mentorMentosList.value == null) {
+                ArrayList()
+            } else {
+                profileViewModel.mentorMentosList.value!!
+            }
 
         val mentosVP = binding.mentorProfileMentoringMentosVp
 
@@ -88,7 +91,11 @@ class OneMentorProfileFragment : Fragment() {
 
     private fun setNavigateWithMentorId() {
         binding.mentorProfileDetailMoreIb.setOnClickListener {
-            it.navigate(R.id.action_oneMentorProfileFragment_to_mentorPostListFragment)
+            navigateWithData(
+                OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToMentorPostListFragment(
+                    profileViewModel.mentorProfileData.value!!.postArr.toTypedArray()
+                )
+            )
         }
 
         binding.mentorProfileBottomMentoringLayout.setOnClickListener {
@@ -100,7 +107,11 @@ class OneMentorProfileFragment : Fragment() {
         }
 
         binding.mentorProfileReviewMoreIb.setOnClickListener {
-            it.navigate(R.id.action_stateOneFragment_to_stateRecordFragment)
+            navigateWithData(
+                OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToReviewListFragment(
+                    profileViewModel.mentorProfileData.value!!.reviews.toTypedArray()
+                )
+            )
         }
     }
 }

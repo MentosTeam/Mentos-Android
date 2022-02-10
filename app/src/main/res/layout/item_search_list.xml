@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.mentos.mentosandroid.data.response.SearchMentor" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,6 +57,7 @@
             android:minLines="2"
             android:textColor="@color/black_3333"
             android:textSize="12sp"
+            android:text="@{data.postTitle}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_list_mentos_layout"

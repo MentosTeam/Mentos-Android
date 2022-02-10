@@ -8,6 +8,7 @@ import com.mentos.mentosandroid.data.response.Mentee
 import com.mentos.mentosandroid.databinding.ItemHomeMenteeBinding
 import com.mentos.mentosandroid.util.MentosCategoryUtil.getMentosText
 import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 
 class MenteeRVAdapter() : RecyclerView.Adapter<MenteeRVAdapter.MenteeViewHolder>() {
 
@@ -27,7 +28,7 @@ class MenteeRVAdapter() : RecyclerView.Adapter<MenteeRVAdapter.MenteeViewHolder>
 
 
             binding.itemHomeMenteeLayout.setOnClickListener {
-                it.navigate(R.id.action_homeFragment_to_oneMenteeProfileFragment)
+                it.navigateWithData(HomeFragmentDirections.actionHomeFragmentToOneMenteeProfileFragment(currentMentee.menteeStudentId))
             }
         }
     }

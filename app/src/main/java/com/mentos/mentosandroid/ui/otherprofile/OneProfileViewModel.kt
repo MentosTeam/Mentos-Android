@@ -1,16 +1,16 @@
-package com.mentos.mentosandroid.ui.profile
+package com.mentos.mentosandroid.ui.otherprofile
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mentos.mentosandroid.data.response.*
 import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.response.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class ProfileViewModel() : ViewModel() {
+class OneProfileViewModel: ViewModel() {
 
     private val _menteeMajorList = MutableLiveData<ArrayList<Int>>()
     val menteeMajorList: LiveData<ArrayList<Int>>
@@ -46,38 +46,14 @@ class ProfileViewModel() : ViewModel() {
         get() = _mentorReview2
 
 
-    private val _myProfileData = MutableLiveData<MyProfileResult>()
-    val myProfileData: LiveData<MyProfileResult>
-        get() = _myProfileData
-    private lateinit var myProfileDataItem: MyProfileResult
-
-
-    private var _profileState = MutableLiveData<Int>()
-    var profileState: LiveData<Int> = _profileState
-
-    fun getMyProfileData() {
+    fun getMentorProfileData(memberId: Int) {
         viewModelScope.launch {
             try {
-                val responseMyProfile = ServiceBuilder.profileService.getMyProfile()
-                Log.d("내 정보", responseMyProfile.message)
-                myProfileDataItem = responseMyProfile.result
-                _myProfileData.value = myProfileDataItem
-
-                when {
-                    responseMyProfile.result.menteeProfile == null -> {
-                        _profileState.value = 1
-                        getMentorData()
-                    }
-                    responseMyProfile.result.mentorProfile == null -> {
-                        _profileState.value = 2
-                        getMenteeData()
-                    }
-                    else -> {
-                        _profileState.value = 3
-                        getMentorData()
-                        getMenteeData()
-                    }
-                }
+                val responseMentorProfile = ServiceBuilder.profileService.getMentorProfile(memberId)
+                Log.d("멘토 정보", responseMentorProfile.message)
+                mentorProfileDataItem = responseMentorProfile.result
+                _mentorProfileData.value = mentorProfileDataItem
+                getMentorData()
             } catch (e: HttpException) {
                 Log.d("내 정보", e.message().toString())
                 Log.d("내 정보", e.code().toString())
@@ -85,26 +61,9 @@ class ProfileViewModel() : ViewModel() {
         }
     }
 
-    fun getMenteeData() {
-        menteeProfileDataItem = myProfileDataItem.menteeProfile!!
-        _menteeProfileData.value = menteeProfileDataItem
-
-        //Major
-        menteeMajorItems =
-            if (menteeProfileDataItem.basicInformation.majorSecond == 0) {
-                arrayListOf(menteeProfileDataItem.basicInformation.majorFirst)
-            } else {
-                arrayListOf(
-                    menteeProfileDataItem.basicInformation.majorFirst,
-                    menteeProfileDataItem.basicInformation.majorSecond
-                )
-            }
-        _menteeMajorList.value = menteeMajorItems
-    }
-
-    fun getMentorData() {
-        mentorProfileDataItem = myProfileDataItem.mentorProfile!!
-        _mentorProfileData.value = mentorProfileDataItem
+    private fun getMentorData() {
+//        mentorProfileDataItem = myProfileDataItem.mentorProfile!!
+//        _mentorProfileData.value = mentorProfileDataItem
 
         //프로필에서는 2개씩만 보여줌
         if (mentorProfileDataItem.postArr.size >= 3) {
@@ -143,4 +102,35 @@ class ProfileViewModel() : ViewModel() {
         _mentorMentosList.value = mentorMentosItems
     }
 
+    fun getMenteeProfileData(memberId: Int) {
+        viewModelScope.launch {
+            try {
+                val responseMenteeProfile = ServiceBuilder.profileService.getMenteeProfile(memberId)
+                Log.d("멘토 정보", responseMenteeProfile.message)
+                menteeProfileDataItem = responseMenteeProfile.result
+                _menteeProfileData.value = menteeProfileDataItem
+                getMenteeData()
+            } catch (e: HttpException) {
+                Log.d("내 정보", e.message().toString())
+                Log.d("내 정보", e.code().toString())
+            }
+        }
+    }
+
+    private fun getMenteeData() {
+//        menteeProfileDataItem = myProfileDataItem.menteeProfile!!
+//        _menteeProfileData.value = menteeProfileDataItem
+
+        //Major
+        menteeMajorItems =
+            if (menteeProfileDataItem.basicInformation.majorSecond == 0) {
+                arrayListOf(menteeProfileDataItem.basicInformation.majorFirst)
+            } else {
+                arrayListOf(
+                    menteeProfileDataItem.basicInformation.majorFirst,
+                    menteeProfileDataItem.basicInformation.majorSecond
+                )
+            }
+        _menteeMajorList.value = menteeMajorItems
+    }
 }

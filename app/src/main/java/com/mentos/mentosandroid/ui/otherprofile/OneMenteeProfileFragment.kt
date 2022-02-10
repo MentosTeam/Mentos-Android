@@ -6,14 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.databinding.FragmentOneMenteeProfileBinding
-import com.mentos.mentosandroid.ui.profile.ProfileViewModel
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.popBackStack
 
 class OneMenteeProfileFragment : Fragment() {
     private lateinit var binding: FragmentOneMenteeProfileBinding
-    lateinit var profileViewModel: ProfileViewModel
+    lateinit var profileViewModel: OneProfileViewModel
+    private val args by navArgs<OneMenteeProfileFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +29,8 @@ class OneMenteeProfileFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        profileViewModel = ViewModelProvider(this).get(OneProfileViewModel::class.java)
+        profileViewModel.getMenteeProfileData(args.menteeId)
         binding.profileViewModel = profileViewModel
         binding.lifecycleOwner = this
     }

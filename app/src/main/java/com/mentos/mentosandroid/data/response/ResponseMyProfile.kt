@@ -1,5 +1,8 @@
 package com.mentos.mentosandroid.data.response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 data class ResponseMyProfile(
     val code: Int,
     val isSuccess: Boolean,
@@ -8,8 +11,8 @@ data class ResponseMyProfile(
 )
 
 data class MyProfileResult(
-    val menteeProfile: MenteeProfile,
-    val mentorProfile: MentorProfile
+    val menteeProfile: MenteeProfile?,
+    val mentorProfile: MentorProfile?
 )
 
 data class MenteeProfile(
@@ -22,7 +25,7 @@ data class MentorProfile(
     val basicInformation: MentorBasicInformation,
     val numOfMentoring: Int,
     val numOfMentos: ArrayList<NumOfMentos>,
-    val posts: ArrayList<MyPost>,
+    val postArr: ArrayList<SearchMentor>,
     val reviews: ArrayList<Review>,
     val schoolName: String
 )
@@ -56,14 +59,24 @@ data class MentorBasicInformation(
     val studentId: Int
 )
 
+@Parcelize
 data class MyPost(
+//    val imageUrl: String?,
+//    val majorCategoryId: Int,
+//    val memberId: Int,
+//    val postContents: String,
+//    val postId: Int,
+//    val postTitle: String
+
     val imageUrl: String?,
     val majorCategoryId: Int,
-    val memberId: Int,
+    val memberMajor: String,
+    val mentoId: Int,
+    val mentoNickName: String,
     val postContents: String,
     val postId: Int,
     val postTitle: String
-)
+): Parcelable
 
 data class NumOfMentos(
     val majorCategoryId: Int,
@@ -71,9 +84,10 @@ data class NumOfMentos(
     val mentoringMentos: Int
 )
 
+@Parcelize
 data class Review(
     val reviewId: Int,
     val mentoringId: Int,
     val reviewScore: Double,
     val reviewText: String
-)
+): Parcelable

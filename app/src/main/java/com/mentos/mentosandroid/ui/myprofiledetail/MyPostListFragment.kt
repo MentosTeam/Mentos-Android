@@ -5,15 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
+import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.FragmentMyPostListBinding
 import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.popBackStack
 
 class MyPostListFragment : Fragment() {
     lateinit var binding: FragmentMyPostListBinding
-    private val postListViewModel by viewModels<PostListViewModel>()
+
+    private val args by navArgs<MyPostListFragmentArgs>()
+    private lateinit var myPostList: MutableLiveData<List<SearchMentor>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +25,7 @@ class MyPostListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMyPostListBinding.inflate(inflater, container, false)
-        postListViewModel.requestEvent()
+        myPostList = MutableLiveData(args.myPostList.toList())
         setBtnBackClickListener()
         setBtnWriteClickListener()
         setPostListAdapter()
@@ -46,7 +50,7 @@ class MyPostListFragment : Fragment() {
     }
 
     private fun setSearchMentorObserver() {
-        postListViewModel.dummyList.observe(viewLifecycleOwner) { list ->
+        myPostList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 with(binding.myPostRv.adapter as MyPostListAdapter) { submitList(list) }
             }
