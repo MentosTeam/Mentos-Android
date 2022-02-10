@@ -19,12 +19,12 @@ import retrofit2.HttpException
 
 class SearchViewModel : ViewModel() {
 
+    val searchText = MutableLiveData("")
     val createTitle = MutableLiveData("")
     val createContent = MutableLiveData("")
+    val createCategory = MutableLiveData<Int>()
     lateinit var imageMultiPart: MultipartBody.Part
     private val map = mutableMapOf<String, @JvmSuppressWildcards RequestBody>()
-
-    val createCategory = MutableLiveData<Int>()
 
     private val _firstCategory = MutableLiveData(0)
     val firstCategory: LiveData<Int> = _firstCategory
@@ -46,6 +46,9 @@ class SearchViewModel : ViewModel() {
 
     private val _allCategoryClicked = MutableLiveData<Boolean>()
     val allCategoryClicked: LiveData<Boolean> = _allCategoryClicked
+
+    private val _isCategoryClicked = MutableLiveData<Boolean>()
+    val isCategoryClicked: LiveData<Boolean> = _isCategoryClicked
 
     private val _searchMenteeList = MutableLiveData<List<Mentee>>()
     val searchMenteeList: LiveData<List<Mentee>> = _searchMenteeList
@@ -98,49 +101,43 @@ class SearchViewModel : ViewModel() {
                 || requireNotNull(createTitle.value).isNotBlank()
                 || requireNotNull(isCategorySelected.value)
 
-    fun getMentorPostList(searchText: String) {
+    fun getMentorPostList(searchChangeText: String?) {
         viewModelScope.launch {
             try {
                 val responseSearchMentor = ServiceBuilder.searchService.getSearchMentor(
                     majorFlag = requireNotNull(searchCategory.value),
-                    searchText = searchText
+                    searchText = when (isCategoryClicked.value) {
+                        true -> searchText.value
+                        else -> searchChangeText
+                    }
                 )
                 _searchMentorList.postValue(responseSearchMentor.result.postArr)
             } catch (e: HttpException) {
                 _searchMentorList.postValue(listOf())
                 Log.d("찾기", e.message().toString())
-                Log.d("찾기", e.code().toString())
             }
         }
     }
 
-    fun requestMenteeList(searchText: String) {
-        _searchMenteeList.value = arrayListOf(
-            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
-            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
-            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
-            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
-            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2),
-            Mentee(1, "", "경영학과", 4, "18", "호옹길도옹", 2)
-        )
+    fun getMenteeList(searchChangeText: String?) {
         viewModelScope.launch {
             try {
                 val responseSearchMentor = ServiceBuilder.searchService.getSearchMentee(
                     majorFlag = requireNotNull(searchCategory.value),
-                    searchText = searchText
+                    searchText = when (isCategoryClicked.value) {
+                        true -> searchText.value
+                        else -> searchChangeText
+                    }
                 )
                 _searchMenteeList.postValue(responseSearchMentor.result.mentiArr)
             } catch (e: HttpException) {
                 _searchMentorList.postValue(listOf())
                 Log.d("찾기", e.message().toString())
-                Log.d("찾기", e.code().toString())
             }
         }
-
     }
 
     fun getMentosCategoryForFirst() {
-        Log.d("검색-카테고리api", "first 호출됨")
         viewModelScope.launch {
             try {
                 val responseCategory = ServiceBuilder.searchService.getSearchCategory(
@@ -159,7 +156,6 @@ class SearchViewModel : ViewModel() {
     }
 
     fun getMentosCategoryForSecond() {
-        Log.d("검색-카테고리api", "second 호출됨")
         viewModelScope.launch {
             try {
                 val responseCategory = ServiceBuilder.searchService.getSearchCategory(
@@ -178,7 +174,6 @@ class SearchViewModel : ViewModel() {
     }
 
     fun getMentosCategoryForAll() {
-        Log.d("검색-카테고리api", "all 호출됨")
         viewModelScope.launch {
             try {
                 val responseCategory = ServiceBuilder.searchService.getSearchCategory(
@@ -200,46 +195,19 @@ class SearchViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 setMultiPart()
-                val responseSearchCreate =
+                val responseSearchCreate = ServiceBuilder.searchService.postSearchCreate(
+                    map,
                     when (image.value) {
-                        null -> {
-                            ServiceBuilder.searchService.postSearchCreate(
-                                map,
-                                null
-                            )
-                        }
-                        else -> {
-                            ServiceBuilder.searchService.postSearchCreate(
-                                map,
-                                imageMultiPart
-                            )
-                        }
+                        null -> null
+                        else -> imageMultiPart
                     }
+                )
                 if (responseSearchCreate.isSuccess) {
                     _isRegister.postValue(true)
                 }
             } catch (e: HttpException) {
             }
         }
-    }
-
-    fun setMultiPart() {
-        map["majorCategoryId"] =
-            RequestBody.create(MediaType.parse("text/plain"), createCategory.value.toString())
-        map["postTitle"] =
-            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createTitle.value))
-        map["postContents"] =
-            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createContent.value))
-    }
-
-    private fun setMultiPartForModify(imageUrl: String) {
-        map["majorCategoryId"] =
-            RequestBody.create(MediaType.parse("text/plain"), createCategory.value.toString())
-        map["postTitle"] =
-            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createTitle.value))
-        map["postContents"] =
-            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createContent.value))
-        map["imageUrl"] = RequestBody.create(MediaType.parse("text/plain"), imageUrl)
     }
 
     fun deleteContent(postId: Int) {
@@ -265,23 +233,14 @@ class SearchViewModel : ViewModel() {
                     true -> setMultiPartForModify(imageUrl)
                     false -> setMultiPart()
                 }
-
-                val responseModifyContent = when (image.value == null) {
-                    true -> {
-                        ServiceBuilder.searchService.modifyMentorPost(
-                            postId,
-                            map,
-                            null
-                        )
+                val responseModifyContent = ServiceBuilder.searchService.modifyMentorPost(
+                    postId,
+                    map,
+                    when (image.value) {
+                        null -> null
+                        else -> imageMultiPart
                     }
-                    false -> {
-                        ServiceBuilder.searchService.modifyMentorPost(
-                            postId,
-                            map,
-                            imageMultiPart
-                        )
-                    }
-                }
+                )
                 when (responseModifyContent.isSuccess) {
                     true -> _isModifySuccess.postValue(true)
                     false -> _isModifySuccess.postValue(false)
@@ -290,6 +249,25 @@ class SearchViewModel : ViewModel() {
                 Log.d("글 수정", e.message.toString())
             }
         }
+    }
+
+    fun setMultiPart() {
+        map["majorCategoryId"] =
+            RequestBody.create(MediaType.parse("text/plain"), createCategory.value.toString())
+        map["postTitle"] =
+            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createTitle.value))
+        map["postContents"] =
+            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createContent.value))
+    }
+
+    private fun setMultiPartForModify(imageUrl: String) {
+        map["majorCategoryId"] =
+            RequestBody.create(MediaType.parse("text/plain"), createCategory.value.toString())
+        map["postTitle"] =
+            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createTitle.value))
+        map["postContents"] =
+            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(createContent.value))
+        map["imageUrl"] = RequestBody.create(MediaType.parse("text/plain"), imageUrl)
     }
 
     fun resetIsRegister() {
@@ -344,5 +322,9 @@ class SearchViewModel : ViewModel() {
 
     fun setAllCategoryClick(isClick: Boolean) {
         _allCategoryClicked.value = isClick
+    }
+
+    fun isCategoryClicked(isClick: Boolean) {
+        _isCategoryClicked.value = isClick
     }
 }

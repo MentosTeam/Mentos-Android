@@ -31,6 +31,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         initLayout()
         if (args.homeCategory == -1) {
             binding.searchCategoryFirstRb.isChecked = true
@@ -58,11 +59,15 @@ class SearchFragment : Fragment() {
                 binding.searchMenteeListRv.visibility = View.VISIBLE
                 binding.searchMentorTitleSubIv.setText(R.string.search_mentee_title_sub)
                 binding.searchWriteIb.visibility = View.GONE
+                binding.searchMenteeListRv.visibility = View.VISIBLE
+                binding.searchMentorListRv.visibility = View.GONE
             }
             1 -> {
                 binding.searchMentorListRv.visibility = View.VISIBLE
                 binding.searchMenteeListRv.visibility = View.GONE
                 binding.searchMentorTitleSubIv.setText(R.string.search_title_sub)
+                binding.searchMenteeListRv.visibility = View.GONE
+                binding.searchMentorListRv.visibility = View.VISIBLE
             }
         }
     }
@@ -79,18 +84,14 @@ class SearchFragment : Fragment() {
         searchViewModel.firstCategory.observe(viewLifecycleOwner) {
             when (it) {
                 0 -> binding.searchCategoryFirstRb.visibility = View.INVISIBLE
-                else -> {
-                    binding.searchCategoryFirstRb.initCategoryView(it)
-                }
+                else -> binding.searchCategoryFirstRb.initCategoryView(it)
             }
         }
 
         searchViewModel.secondCategory.observe(viewLifecycleOwner) {
             when (it) {
                 0 -> binding.searchCategorySecondRb.visibility = View.INVISIBLE
-                else -> {
-                    binding.searchCategorySecondRb.initCategoryView(it)
-                }
+                else -> binding.searchCategorySecondRb.initCategoryView(it)
             }
         }
     }
@@ -128,8 +129,9 @@ class SearchFragment : Fragment() {
                 searchViewModel.clearSearchCategory()
                 searchViewModel.setSearchCategory(searchViewModel.firstCategory.value!!)
                 Log.d("검색first 결과", searchViewModel.searchCategory.value.toString())
+                searchByCategory()
             } else {
-                searchViewModel.clearSearchCategory()
+                searchViewModel.isCategoryClicked(false)
             }
         }
 
@@ -137,9 +139,10 @@ class SearchFragment : Fragment() {
             if (isClick) {
                 searchViewModel.clearSearchCategory()
                 searchViewModel.setSearchCategory(searchViewModel.secondCategory.value!!)
+                searchByCategory()
                 Log.d("검색secodn 결과", searchViewModel.searchCategory.value.toString())
             } else {
-                searchViewModel.clearSearchCategory()
+                searchViewModel.isCategoryClicked(false)
             }
         }
 
@@ -149,9 +152,10 @@ class SearchFragment : Fragment() {
                 for (i in 1..12) {
                     searchViewModel.setSearchCategory(i)
                 }
+                searchByCategory()
                 Log.d("검색all", searchViewModel.searchCategory.value.toString())
             } else {
-                searchViewModel.clearSearchCategory()
+                searchViewModel.isCategoryClicked(false)
             }
         }
     }
@@ -163,7 +167,7 @@ class SearchFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 when (SharedPreferenceController.getNowState()) {
-                    0 -> searchViewModel.requestMenteeList(s.toString())
+                    0 -> searchViewModel.getMenteeList(s.toString())
                     1 -> searchViewModel.getMentorPostList(s.toString())
                 }
             }
@@ -171,6 +175,14 @@ class SearchFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {
             }
         })
+    }
+
+    private fun searchByCategory() {
+        searchViewModel.isCategoryClicked(true)
+        when (SharedPreferenceController.getNowState()) {
+            0 -> searchViewModel.getMenteeList(null)
+            1 -> searchViewModel.getMentorPostList(null)
+        }
     }
 
     private fun setBtnWriteClickListener() {
