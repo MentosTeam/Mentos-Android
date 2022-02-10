@@ -1,4 +1,4 @@
-package com.mentos.mentosandroid.ui.profile
+package com.mentos.mentosandroid.ui.otherprofile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,8 +11,8 @@ import com.mentos.mentosandroid.ui.home.HomeFragmentDirections
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 import com.mentos.mentosandroid.util.navigateWithData
 
-class ProfileMajorDetailRVAdapter :
-    RecyclerView.Adapter<ProfileMajorDetailRVAdapter.MajorDetailViewHolder>() {
+class MentorProfilePostRVAdapter :
+    RecyclerView.Adapter<MentorProfilePostRVAdapter.MajorDetailViewHolder>() {
 
     var majorDetailList = mutableListOf<SearchMentor>()
 
@@ -26,8 +26,8 @@ class ProfileMajorDetailRVAdapter :
             //글 상세보기 다이얼로그 이동
             binding.itemMajorDetailLayout.setOnClickListener {
                 it.navigateWithData(
-                    ProfileFragmentDirections.actionProfileFragmentToSearchDetailDialog(
-                        myList = true,
+                    OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToSearchDetailDialog(
+                        myList = false,
                         postMento = currentMajorDetail
                     )
                 )

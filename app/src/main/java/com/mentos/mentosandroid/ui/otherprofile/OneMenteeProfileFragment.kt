@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentOneMenteeProfileBinding
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.popBackStack
@@ -24,6 +26,7 @@ class OneMenteeProfileFragment : Fragment() {
         binding = FragmentOneMenteeProfileBinding.inflate(inflater, container, false)
         initViewModel()
         initSex()
+        initImg()
         setBackBtnClickListener()
         return binding.root
     }
@@ -49,6 +52,22 @@ class OneMenteeProfileFragment : Fragment() {
         } else {
             binding.menteeProfileOpenSexLayout.visibility = View.GONE
             binding.menteeProfilePrivateSexLayout.visibility = View.VISIBLE
+        }
+    }
+
+    private fun initImg() {
+        profileViewModel.menteeProfileData.observe(viewLifecycleOwner) { menteeProfileData ->
+            if (menteeProfileData == null) {
+                binding.menteeProfileImg.setImageResource(R.drawable.img_home_user)
+            } else {
+                if (menteeProfileData.basicInformation.profileImage == null) {
+                    binding.menteeProfileImg.setImageResource(R.drawable.img_home_user)
+                } else {
+                    Glide.with(requireContext())
+                        .load(menteeProfileData.basicInformation.profileImage)
+                        .into(binding.menteeProfileImg)
+                }
+            }
         }
     }
 }

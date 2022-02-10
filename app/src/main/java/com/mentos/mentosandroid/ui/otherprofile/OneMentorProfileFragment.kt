@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.bumptech.glide.Glide
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentOneMentorProfileBinding
 import com.mentos.mentosandroid.ui.profile.ProfileMentosVPAdapter
 import com.mentos.mentosandroid.util.SharedPreferenceController
@@ -30,6 +32,7 @@ class OneMentorProfileFragment : Fragment() {
         initViewModel()
         initMentosVP()
         initSex()
+        initImg()
         setBackBtnClickListener()
         setNavigateWithMentorId()
         return binding.root
@@ -112,6 +115,22 @@ class OneMentorProfileFragment : Fragment() {
                     profileViewModel.mentorProfileData.value!!.reviews.toTypedArray()
                 )
             )
+        }
+    }
+
+    private fun initImg() {
+        profileViewModel.mentorProfileData.observe(viewLifecycleOwner) { mentorProfileData ->
+            if (mentorProfileData == null) {
+                binding.mentorProfileImg.setImageResource(R.drawable.img_home_user)
+            } else {
+                if (mentorProfileData.basicInformation.profileImage == null) {
+                    binding.mentorProfileImg.setImageResource(R.drawable.img_home_user)
+                } else {
+                    Glide.with(requireContext())
+                        .load(mentorProfileData.basicInformation.profileImage)
+                        .into(binding.mentorProfileImg)
+                }
+            }
         }
     }
 }

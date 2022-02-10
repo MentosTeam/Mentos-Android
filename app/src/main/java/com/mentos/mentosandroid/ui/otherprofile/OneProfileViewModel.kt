@@ -62,9 +62,6 @@ class OneProfileViewModel: ViewModel() {
     }
 
     private fun getMentorData() {
-//        mentorProfileDataItem = myProfileDataItem.mentorProfile!!
-//        _mentorProfileData.value = mentorProfileDataItem
-
         //프로필에서는 2개씩만 보여줌
         if (mentorProfileDataItem.postArr.size >= 3) {
             _mentorPost2.value = arrayListOf(
@@ -118,9 +115,6 @@ class OneProfileViewModel: ViewModel() {
     }
 
     private fun getMenteeData() {
-//        menteeProfileDataItem = myProfileDataItem.menteeProfile!!
-//        _menteeProfileData.value = menteeProfileDataItem
-
         //Major
         menteeMajorItems =
             if (menteeProfileDataItem.basicInformation.majorSecond == 0) {

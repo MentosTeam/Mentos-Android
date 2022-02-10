@@ -1,9 +1,13 @@
 package com.mentos.mentosandroid.ui.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.response.MentorPost
+import com.mentos.mentosandroid.data.response.OtherMentor
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemHomeMentorPostBinding
 import com.mentos.mentosandroid.util.navigateWithData
@@ -12,7 +16,7 @@ class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostV
 
     var mentorList = mutableListOf<MentorPost>()
 
-    inner class MentorPostViewHolder(val binding: ItemHomeMentorPostBinding) :
+    inner class MentorPostViewHolder(val binding: ItemHomeMentorPostBinding, val context: Context) :
         RecyclerView.ViewHolder(
             binding.root
         ) {
@@ -37,13 +41,25 @@ class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostV
                     )
                 )
             }
+
+            initImg(currentMentorPost)
+        }
+
+        private fun initImg(currentMentorPost: MentorPost) {
+            if (currentMentorPost.mentorImage == null) {
+                binding.itemHomeMentorImg.setImageResource(R.drawable.img_home_user)
+            } else {
+                Glide.with(context)
+                    .load(currentMentorPost.mentorImage)
+                    .into(binding.itemHomeMentorImg)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MentorPostViewHolder {
         val binding =
             ItemHomeMentorPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MentorPostViewHolder(binding)
+        return MentorPostViewHolder(binding, parent.context)
     }
 
     override fun onBindViewHolder(holder: MentorPostViewHolder, position: Int) {

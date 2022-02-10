@@ -235,7 +235,7 @@
                                 android:layout_marginStart="4dp"
                                 android:fontFamily="@font/noto_regular"
                                 android:includeFontPadding="false"
-                                android:text="@{profileViewModel.mentorProfileData.basicInformation.sex == `F` ? @string/profile_info_female : @string/profile_info_male}"
+                                android:text="@{profileViewModel.mentorProfileData.basicInformation.sex.equalsIgnoreCase(`F`) ? @string/profile_info_female : @string/profile_info_male}"
                                 android:textColor="@color/black_3333"
                                 android:textSize="10sp" />
                         </LinearLayout>

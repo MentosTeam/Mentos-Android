@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.mentoringstart
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
-import com.mentos.mentosandroid.data.MentoringStart
+import com.mentos.mentosandroid.data.request.RequestMentoringStart
 import com.mentos.mentosandroid.databinding.FragmentMentoringStart1Binding
-import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
@@ -50,7 +47,7 @@ class MentoringStart1Fragment : Fragment() {
             }else{
                 navigateWithData(
                     MentoringStart1FragmentDirections.actionMentoringStart1FragmentToMentoringStart2Fragment22(
-                        MentoringStart(null, args.mentorId, Integer.parseInt(mentoringCount), null)
+                        RequestMentoringStart(args.mentorId, Integer.parseInt(mentoringCount), null, null)
                     )
                 )
             }

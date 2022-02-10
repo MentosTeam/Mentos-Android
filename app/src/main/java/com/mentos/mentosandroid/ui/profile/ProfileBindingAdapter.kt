@@ -4,6 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.response.Review
 import com.mentos.mentosandroid.data.response.SearchMentor
+import com.mentos.mentosandroid.ui.otherprofile.MentorProfilePostRVAdapter
 
 object ProfileBindingAdapter {
     @BindingAdapter("majorItems")
@@ -41,6 +42,26 @@ object ProfileBindingAdapter {
         }
         //어댑터 연결
         val majorDetailAdapter = recyclerView.adapter as ProfileMajorDetailRVAdapter
+
+        majorDetailAdapter.majorDetailList = items
+        majorDetailAdapter.notifyDataSetChanged()
+    }
+
+    @BindingAdapter("mentorProfilePostItems")
+    @JvmStatic
+    fun setMentorProfilePostItems(recyclerView: RecyclerView, items: ArrayList<SearchMentor>?) {
+        if (items == null)
+            return
+        if (recyclerView.adapter == null) {
+            val adapter = MentorProfilePostRVAdapter()
+            //깜빡임 방지
+            adapter.setHasStableIds(true)
+
+            recyclerView.adapter = adapter
+
+        }
+        //어댑터 연결
+        val majorDetailAdapter = recyclerView.adapter as MentorProfilePostRVAdapter
 
         majorDetailAdapter.majorDetailList = items
         majorDetailAdapter.notifyDataSetChanged()

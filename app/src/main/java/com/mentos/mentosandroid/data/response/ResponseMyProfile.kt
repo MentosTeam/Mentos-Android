@@ -53,30 +53,11 @@ data class MentorBasicInformation(
     val mentoScore: Double,
     val name: String,
     val nickname: String,
-    val profileImage: String,
+    val profileImage: String?,
     val schoolId: Int,
     val sex: String,
     val studentId: Int
 )
-
-@Parcelize
-data class MyPost(
-//    val imageUrl: String?,
-//    val majorCategoryId: Int,
-//    val memberId: Int,
-//    val postContents: String,
-//    val postId: Int,
-//    val postTitle: String
-
-    val imageUrl: String?,
-    val majorCategoryId: Int,
-    val memberMajor: String,
-    val mentoId: Int,
-    val mentoNickName: String,
-    val postContents: String,
-    val postId: Int,
-    val postTitle: String
-): Parcelable
 
 data class NumOfMentos(
     val majorCategoryId: Int,

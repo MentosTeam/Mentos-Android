@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringStart4Binding
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosColor
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg41
@@ -17,6 +17,7 @@ import com.mentos.mentosandroid.util.popBackStack
 class MentoringStart4Fragment : Fragment() {
     private lateinit var binding: FragmentMentoringStart4Binding
     private val args by navArgs<MentoringStart4FragmentArgs>()
+    private val mentoringStartViewModel by viewModels<MentoringStartViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,30 +35,39 @@ class MentoringStart4Fragment : Fragment() {
     private fun setBtnRequestClickListener() {
         binding.mentoringStart4ButtonTv.setOnClickListener {
             //+서버 전송
-
-            //start5로 이동
-            navigateWithData(
-                MentoringStart4FragmentDirections.actionMentoringStart4FragmentToMentoringStart5Fragment(
-                    args.mentoringStart
+            val isSuccessPost = mentoringStartViewModel.postMentoringStart(args.mentoringStart)
+            if (isSuccessPost) {
+                //start5로 이동
+                navigateWithData(
+                    MentoringStart4FragmentDirections.actionMentoringStart4FragmentToMentoringStart5Fragment(
+                        args.mentoringStart
+                    )
                 )
-            )
+            } else {
+                Toast.makeText(requireContext(), "멘토링 요청을 실패했습니다", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private fun setBtnBackClickListener() {
         binding.mentoringStart4BackIb.setOnClickListener {
-                popBackStack()
+            popBackStack()
         }
     }
 
     private fun initLayout() {
         val mentoringStart = args.mentoringStart
 
-        binding.mentoringStart4Layout.setMentosColor(mentoringStart.majorCategoryId)
-        binding.mentoringStart4MentosCompleteIv.setMentosImg41(mentoringStart.majorCategoryId)
-        binding.mentoringStart4MentosCompleteNumberTv.text =
-            "멘토링 ${mentoringStart.mentoringCount.toString()}회(멘토-쓰 ${mentoringStart.mentos}개)"
-        binding.mentoringStart4MentosCompleteNameTv.text =
-            "${mentoringStart.mentoId.toString()} 멘토 / ~~ 멘티"
+        val nickName = mentoringStartViewModel.getNickName(mentoringStart.mentoId!!)
+        if(nickName != null){
+            binding.mentoringStart4MentosCompleteNameTv.text = "${nickName.mentoNickname} 멘토 / ${nickName.mentiNickname} 멘티"
+
+            binding.mentoringStart4Layout.setMentosColor(mentoringStart.majorCategoryId)
+            binding.mentoringStart4MentosCompleteIv.setMentosImg41(mentoringStart.majorCategoryId)
+            binding.mentoringStart4MentosCompleteNumberTv.text =
+                "멘토링 ${mentoringStart.mentoringCount.toString()}회(멘토-쓰 ${mentoringStart.mentos}개)"
+            binding.mentoringStart4MentosCompleteNameTv.text =
+                "${mentoringStart.mentoId.toString()} 멘토 / ~~ 멘티"
+        }
     }
 }
