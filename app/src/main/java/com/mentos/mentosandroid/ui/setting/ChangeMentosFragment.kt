@@ -31,7 +31,7 @@ class ChangeMentosFragment : Fragment() {
 
         initCategoryArray()
         setBtnCategoryClickListener()
-        setKeepInCategoryObserve()
+        setCategoryObserve()
         setBtnCompleteClickListener()
         initView()
         setBtnBackClickListener()
@@ -70,7 +70,7 @@ class ChangeMentosFragment : Fragment() {
         }
     }
 
-    private fun setKeepInCategoryObserve() {
+    private fun setCategoryObserve() {
         settingViewModel.selectedCategory.observe(viewLifecycleOwner) { categoryList ->
             when (categoryList.size) {
                 2 -> {

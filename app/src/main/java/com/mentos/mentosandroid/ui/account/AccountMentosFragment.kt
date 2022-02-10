@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentAccountMentosBinding
@@ -14,7 +14,7 @@ import com.mentos.mentosandroid.util.navigateWithData
 
 class AccountMentosFragment : Fragment() {
     private lateinit var binding: FragmentAccountMentosBinding
-    private val accountViewModel by viewModels<AccountViewModel>()
+    private val accountViewModel by activityViewModels<AccountViewModel>()
     private val args by navArgs<AccountMentosFragmentArgs>()
     private lateinit var category: ArrayList<CheckBox>
 
@@ -28,7 +28,7 @@ class AccountMentosFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         initCategoryArray()
         setBtnCategoryClickListener()
-        setKeepInCategoryObserve()
+        setCategoryObserve()
         setBtnCompleteClickListener()
         initView()
         return binding.root
@@ -57,7 +57,7 @@ class AccountMentosFragment : Fragment() {
         }
     }
 
-    private fun setKeepInCategoryObserve() {
+    private fun setCategoryObserve() {
         accountViewModel.selectedCategory.observe(viewLifecycleOwner) { categoryList ->
             when (categoryList.size) {
                 2 -> {

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSettingBinding
 import com.mentos.mentosandroid.ui.main.AuthActivity
@@ -87,6 +86,6 @@ class SettingFragment : Fragment() {
         SharedPreferenceController.clearNowState(requireContext())
         SharedPreferenceController.clearMyMentos(requireContext())
         SharedPreferenceController.clearOpenSex(requireContext())
-        SharedPreferenceController.clearJwtToken()
+        SharedPreferenceController.clearAuthData()
     }
 }

@@ -21,7 +21,7 @@
     <string name="dialog_school_email_send">해당 이메일로 인증번호가 전송되었습니다!</string>
     <string name="dialog_email_confirm_fail">인증번호를 다시 확인해 주세요</string>
     <string name="dialog_find_password">해당 이메일로 임시 비밀번호가 발급되었습니다</string>
-    <string name="dialog_find_password_fail">임시 비밀번호 발급에 오류가 발생했습니다. 다시 시도해 주세요</string>
+    <string name="dialog_find_password_fail">이메일을 다시 확인해 주세요!</string>
     <string name="dialog_withdrawal_password">😢\n<b>탈퇴</b>전, <b>계정 비밀번호</b>를 입력해주세요</string>
     <string name="dialog_withdrawal_password_btn">멘토-쓰 이용 종료</string>
     <string name="dialog_review_et_title">\n📝<b>간단한 후기를 적어주세요!</b></string>

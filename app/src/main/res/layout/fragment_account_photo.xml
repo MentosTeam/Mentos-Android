@@ -93,7 +93,6 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/shape_white_fill_20"
                         android:scaleType="centerCrop"
-                        android:src="@{viewModel.image}"
                         tools:ignore="ContentDescription" />
                 </soup.neumorphism.NeumorphCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -104,10 +103,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="27dp"
                 android:layout_marginTop="50dp"
+                android:backgroundTint="@{viewModel.image != null ?  @color/black_0000 : @color/gray_eded}"
+                android:clickable="@{viewModel.image != null? true : false}"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:onClick="@{() -> viewModel.postCreateProfile()}"
                 android:paddingVertical="13dp"
                 android:stateListAnimator="@null"
                 android:text="@string/account_photo_btn"
@@ -125,6 +127,7 @@
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
+                android:onClick="@{() -> viewModel.postCreateProfile()}"
                 android:padding="4dp"
                 android:text="@string/account_photo_next_btn"
                 android:textColor="@color/gray_7070"

@@ -37,7 +37,7 @@
         tools:layout="@layout/fragment_search">
         <argument
             android:name="homeCategory"
-            android:defaultValue="0"
+            android:defaultValue="-1"
             app:argType="integer" />
         <action
             android:id="@+id/action_searchFragment_to_searchCreateFragment"
@@ -277,22 +277,13 @@
         android:id="@+id/reviewListFragment"
         android:name="com.mentos.mentosandroid.ui.myprofiledetail.ReviewListFragment"
         android:label="ReviewListFragment"
-        tools:layout="@layout/fragment_review_list">
-        <argument
-            android:name="mentorId"
-            android:defaultValue="0"
-            app:argType="integer" />
-    </fragment>
+        tools:layout="@layout/fragment_review_list"/>
 
     <fragment
         android:id="@+id/mentorPostListFragment"
         android:name="com.mentos.mentosandroid.ui.otherprofile.MentorPostListFragment"
         android:label="MentorPostListFragment"
         tools:layout="@layout/fragment_mentor_post_list">
-        <argument
-            android:name="mentorId"
-            android:defaultValue="0"
-            app:argType="integer" />
         <action
             android:id="@+id/action_mentorPostListFragment_to_searchDetailDialog"
             app:destination="@id/searchDetailDialog" />

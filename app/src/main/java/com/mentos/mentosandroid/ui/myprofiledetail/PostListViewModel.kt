@@ -3,33 +3,25 @@ package com.mentos.mentosandroid.ui.myprofiledetail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mentos.mentosandroid.data.Search
+import com.mentos.mentosandroid.data.response.SearchMentor
 
 class PostListViewModel : ViewModel() {
 
-    private val _dummyList = MutableLiveData<List<Search>>()
-    val dummyList: LiveData<List<Search>> = _dummyList
+    private val _dummyList = MutableLiveData<List<SearchMentor>>()
+    val dummyList: LiveData<List<SearchMentor>> = _dummyList
 
     fun requestEvent() {
         _dummyList.value = listOf(
-            Search("제목 1", 0, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 2", 1, 1, "dd", "가은", "내용입니다1내용입니다1내용입니다1", 1),
-            Search("제목 2", 3, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 31", 4, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 3", 5, 1, null, "태현", "내용입니다1", 1),
-            Search(
-                "프랑스어과 17학번 재학생입니다. 프랑스 문화, 회화, 쓰기, 읽기 관련 강의 모읽기 관련 강의 모읽기 관련 강의 모읽기 관련 강의 모",
-                6,
-                1,
-                null,
-                "태현",
-                "내용입니다1",
-                1
-            ),
-            Search("제목 2", 10, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 31", 11, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 3", 12, 1, null, "태현", "내용입니다1", 1),
-            Search("제목 14", 13, 1, null, "태현", "내용입니다1", 1)
+            SearchMentor(null, 0, "사회학과", 2, "태현", "내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 1, "사회학과", 2, "가은", "내용입니다1내용입니다1내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 3, "사회학과", 2, "태현", "내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 4, "사회학과", 2, "태현", "내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 5, "사회학과", 2, "태현", "내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 6, "사회학과", 1, "태현", "내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 10, "사회학과", 2, "태현", "내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 11, "사회학과", 2, "태현", "내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 12, "사회학과", 2, "태현", "내용입니다1", 1, "제목입니다"),
+            SearchMentor(null, 13, "사회학과", 2, "태현", "내용입니다1", 1, "제목입니다")
         )
     }
 }

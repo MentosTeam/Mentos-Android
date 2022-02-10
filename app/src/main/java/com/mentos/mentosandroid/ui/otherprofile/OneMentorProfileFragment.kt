@@ -10,10 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentOneMentorProfileBinding
 import com.mentos.mentosandroid.ui.profile.ProfileMentosVPAdapter
 import com.mentos.mentosandroid.ui.profile.ProfileViewModel
 import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
@@ -86,11 +88,7 @@ class OneMentorProfileFragment : Fragment() {
 
     private fun setNavigateWithMentorId() {
         binding.mentorProfileDetailMoreIb.setOnClickListener {
-            it.navigateWithData(
-                OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToMentorPostListFragment(
-                    args.mentorId
-                )
-            )
+            it.navigate(R.id.action_oneMentorProfileFragment_to_mentorPostListFragment)
         }
 
         binding.mentorProfileBottomMentoringLayout.setOnClickListener {
@@ -102,11 +100,7 @@ class OneMentorProfileFragment : Fragment() {
         }
 
         binding.mentorProfileReviewMoreIb.setOnClickListener {
-            it.navigateWithData(
-                OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToReviewListFragment(
-                    args.mentorId
-                )
-            )
+            it.navigate(R.id.action_stateOneFragment_to_stateRecordFragment)
         }
     }
 }

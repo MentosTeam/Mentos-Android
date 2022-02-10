@@ -2,23 +2,16 @@ package com.mentos.mentosandroid.ui.setting
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangePasswordBinding
 import com.mentos.mentosandroid.ui.main.AuthActivity
-import com.mentos.mentosandroid.ui.main.MainActivity
 import com.mentos.mentosandroid.util.SharedPreferenceController
-import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.popBackStack
 
 class ChangePasswordFragment : Fragment() {
@@ -72,6 +65,6 @@ class ChangePasswordFragment : Fragment() {
         SharedPreferenceController.clearNowState(requireContext())
         SharedPreferenceController.clearMyMentos(requireContext())
         SharedPreferenceController.clearOpenSex(requireContext())
-        SharedPreferenceController.clearJwtToken()
+        SharedPreferenceController.clearAuthData()
     }
 }

@@ -6,17 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.databinding.FragmentMentorPostListBinding
 import com.mentos.mentosandroid.ui.myprofiledetail.PostListViewModel
-import com.mentos.mentosandroid.ui.search.SearchMentorAdapter
-import com.mentos.mentosandroid.ui.search.SearchViewModel
 import com.mentos.mentosandroid.util.popBackStack
 
 class MentorPostListFragment : Fragment() {
     lateinit var binding: FragmentMentorPostListBinding
     private val postListViewModel by viewModels<PostListViewModel>()
-    private val args by navArgs<MentorPostListFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
