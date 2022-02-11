@@ -2,6 +2,7 @@ package com.mentos.mentosandroid.ui.setting
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mentos.mentosandroid.R
+import com.mentos.mentosandroid.data.request.RequestChangePW
 import com.mentos.mentosandroid.databinding.FragmentSettingBinding
 import com.mentos.mentosandroid.ui.main.AuthActivity
 import com.mentos.mentosandroid.util.*
@@ -26,7 +28,7 @@ class SettingFragment : Fragment() {
         binding.settingViewModel = settingViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        settingViewModel.getMentorData()
+        settingViewModel.getSettingData()
 
         setBtnClickListener()
         setCurrentOpenSex()
@@ -74,15 +76,24 @@ class SettingFragment : Fragment() {
         binding.settingWithdrawalTv.setOnClickListener {
             TwoButtonDialog(1) {
                 EditTextDialog(1) {
-                    OneButtonDialog(1) {
-                        //탈퇴후 처리
-                    }.show(childFragmentManager, "withdrawal")
+                    settingViewModel.postWithdrawal(password = it)
+                    settingViewModel.isSuccessWithdrawal.observe(viewLifecycleOwner) { isSuccess ->
+                        Log.d("탈퇴", isSuccess.toString())
+                        if (isSuccess != null && isSuccess) {
+                            OneButtonDialog(1) {
+                                clearSDF()
+                                startActivity(Intent(requireContext(), AuthActivity::class.java))
+                                requireActivity().finish()
+                                Toast.makeText(requireContext(), "회원탈퇴 되었습니다", Toast.LENGTH_SHORT).show()
+                            }.show(childFragmentManager, "withdrawal")
+                        }
+                    }
                 }.show(childFragmentManager, "withdrawal")
             }.show(childFragmentManager, "withdrawal")
         }
     }
 
-    private fun clearSDF(){
+    private fun clearSDF() {
         SharedPreferenceController.clearNowState(requireContext())
         SharedPreferenceController.clearMyMentos(requireContext())
         SharedPreferenceController.clearOpenSex(requireContext())

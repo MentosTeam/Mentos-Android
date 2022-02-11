@@ -108,7 +108,7 @@
                 android:fontFamily="@font/noto_regular"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:onClick="@{()->settingViewModel.setPostImage()}"
+                android:onClick="@{()->settingViewModel.postImage()}"
                 android:paddingVertical="13dp"
                 android:text="@string/setting_change_complete"
                 android:textColor="@{settingViewModel.canImageRegister ? @color/white : @color/gray_c7c6}"

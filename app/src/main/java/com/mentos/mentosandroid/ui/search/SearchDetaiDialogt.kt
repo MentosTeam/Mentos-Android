@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mentos.mentosandroid.databinding.DialogSearchDetailBinding
+import com.mentos.mentosandroid.ui.myprofiledetail.PostListViewModel
 import com.mentos.mentosandroid.util.DialogUtil
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
@@ -18,6 +20,8 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
     lateinit var binding: DialogSearchDetailBinding
     private val searchViewModel by viewModels<SearchViewModel>()
     private val args by navArgs<SearchDetailDialogArgs>()
+
+    private val postListViewModel by activityViewModels<PostListViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -107,6 +111,7 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         searchViewModel.isDeletedSuccess.observe(viewLifecycleOwner) { isDeleted ->
             if (isDeleted) {
                 Toast.makeText(requireContext(), "글 삭제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                postListViewModel.getMyPostList()
                 this.dismiss()
             }
         }

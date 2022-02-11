@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMentorBinding
 import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 
 class ProfileMentorFragment : Fragment() {
@@ -90,10 +91,8 @@ class ProfileMentorFragment : Fragment() {
 
     private fun setPostMoreClickListener() {
         binding.mentorProfileDetailMoreImg.setOnClickListener {
-            navigateWithData(
-                ProfileFragmentDirections.actionProfileFragmentToPostListFragment(
-                    profileViewModel.mentorProfileData.value!!.postArr.toTypedArray()
-                )
+            navigate(
+                R.id.action_profileFragment_to_postListFragment
             )
         }
     }
