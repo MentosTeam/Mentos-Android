@@ -73,6 +73,7 @@
                                 android:id="@+id/mentee_profile_img"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
+                                android:scaleType="centerCrop"
                                 android:src="@drawable/img_home_user" />
                         </soup.neumorphism.NeumorphCardView>
 

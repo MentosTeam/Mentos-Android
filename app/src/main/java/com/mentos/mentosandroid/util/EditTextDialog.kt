@@ -43,6 +43,7 @@ class EditTextDialog(
         with(binding) {
             when (dialogMode) {
                 REVIEW_TEXT -> {
+                    dialogBtnComplete.isClickable = false
                     dialogEtTitleTv.setText(R.string.dialog_review_et_title)
                     dialogEtSubTitleTv.setText(R.string.dialog_review_et_sub_title)
                     dialogEtSubTitleTv.visibility = View.VISIBLE
@@ -50,29 +51,30 @@ class EditTextDialog(
                     dialogEtReviewLayout.visibility = View.VISIBLE
                     dialogBtnComplete.setText(R.string.dialog_review_et_btn)
                     dialogPasswordFailTv.visibility = View.GONE
-                    dialogEtReviewEt.setEditTextChangeListener()
+                    setEditReviewChangeListener()
                 }
                 WITHDRAWAL -> {
+                    dialogBtnComplete.isClickable = false
                     dialogEtTitleTv.setText(R.string.dialog_withdrawal_password)
                     dialogEtSubTitleTv.visibility = View.GONE
                     dialogEtPasswordLayout.visibility = View.VISIBLE
                     dialogEtReviewLayout.visibility = View.GONE
                     dialogBtnComplete.setText(R.string.dialog_withdrawal_password_btn)
-                    dialogEtPasswordEt.setEditTextChangeListener()
+                    setEditPWChangeListener()
                 }
                 else -> throw IllegalStateException()
             }
         }
     }
 
-    private fun EditText.setEditTextChangeListener() {
-        this.addTextChangedListener(object : TextWatcher {
+    private fun setEditReviewChangeListener() {
+        binding.dialogEtReviewEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                chkTextValidation(count)
+                chkReviewValidation(count)
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -81,7 +83,7 @@ class EditTextDialog(
         })
     }
 
-    private fun chkTextValidation(count: Int) {
+    private fun chkReviewValidation(count: Int) {
         if (count == 0) {
             binding.dialogBtnComplete.setBackgroundResource(R.drawable.shape_gray_fill_8)
             binding.dialogBtnComplete.setTextColor(
@@ -103,6 +105,57 @@ class EditTextDialog(
         }
     }
 
+    private fun setEditPWChangeListener() {
+        binding.dialogEtPasswordEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val password = binding.dialogEtPasswordEt.text.toString()
+                chkPWValidation(count, password)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
+    }
+
+    private fun chkPWValidation(count: Int, password: String) {
+        if (count == 0) {
+            binding.dialogPasswordFailTv.visibility = View.GONE
+            binding.dialogBtnComplete.setBackgroundResource(R.drawable.shape_gray_fill_8)
+            binding.dialogBtnComplete.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.gray_c7c6
+                )
+            )
+            binding.dialogBtnComplete.isClickable = false
+        } else if (password != SharedPreferenceController.getUserPw()) {
+            binding.dialogPasswordFailTv.visibility = View.VISIBLE
+            binding.dialogBtnComplete.setBackgroundResource(R.drawable.shape_gray_fill_8)
+            binding.dialogBtnComplete.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.gray_c7c6
+                )
+            )
+            binding.dialogBtnComplete.isClickable = false
+        } else {
+            binding.dialogPasswordFailTv.visibility = View.GONE
+            binding.dialogBtnComplete.setBackgroundResource(R.drawable.shape_black_fill_8)
+            binding.dialogBtnComplete.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.white
+                )
+            )
+            binding.dialogBtnComplete.isClickable = true
+        }
+    }
+
     private fun setClickListener() {
         binding.dialogBtnComplete.setOnClickListener {
             when (dialogMode) {
@@ -112,8 +165,8 @@ class EditTextDialog(
                 WITHDRAWAL -> {
                     // 서버연결
                     // 비밀번호 불일치 시
-                    // binding.dialogPasswordFailTv.visibility = View.VISIBLE
-                    doAfterConfirm(binding.dialogEtPasswordEt.text.toString())
+                    val password = binding.dialogEtPasswordEt.text.toString()
+                    doAfterConfirm(password)
                 }
             }
             dismiss()

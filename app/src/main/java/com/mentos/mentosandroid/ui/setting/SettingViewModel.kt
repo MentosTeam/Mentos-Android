@@ -6,15 +6,19 @@ import androidx.lifecycle.*
 import com.mentos.mentosandroid.data.api.ServiceBuilder
 import com.mentos.mentosandroid.data.request.RequestChangeMentos
 import com.mentos.mentosandroid.data.request.RequestChangePW
+import com.mentos.mentosandroid.data.request.RequestWithdrawal
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.HttpException
 import java.util.regex.Pattern
 
 class SettingViewModel : ViewModel() {
 
-    fun getMentorData() {
+    fun getSettingData() {
         Log.d("설정 멘토", SharedPreferenceController.getJwtToken())
         viewModelScope.launch {
             try {
@@ -29,12 +33,15 @@ class SettingViewModel : ViewModel() {
                 Log.d("설정 데이터", responseSetting.message)
                 newNickName.value = responseSetting.result.memberNickName
                 major.value = responseSetting.result.memberMajor
+                currentImage = responseSetting.result.memberImage
                 _image.value =
                     if (responseSetting.result.memberImage == null) {
                         null
                     } else {
                         Uri.parse(responseSetting.result.memberImage)
                     }
+                Log.d("프로필 데이터 current", currentImage.toString())
+                Log.d("프로필 데이터 _image", _image.value.toString())
                 introduce.value = responseSetting.result.memberIntro
                 tempCategory = mutableListOf()
                 tempCategory.add(responseSetting.result.memberMajorFirst)
@@ -152,40 +159,74 @@ class SettingViewModel : ViewModel() {
 
 
     //프로필 사진 설정
-//    private val currentImage: Uri? = //현재 사진
-//        if (memberData.value?.memberImage == null) {
-//            null
-//        } else {
-//            Uri.parse(memberData.value?.memberImage)
-//        }
+    //현재 사진
+    private var currentImage: String? = ""
+
+    //새로운 사진
     private val _image = MutableLiveData<Uri?>()
     val image: MutableLiveData<Uri?> = _image
 
-    private val _newImage = MutableLiveData<Uri?>()
-    val newImage: MutableLiveData<Uri?> = _newImage
+    lateinit var imageMultiPart: MultipartBody.Part
+    private val map = mutableMapOf<String, @JvmSuppressWildcards RequestBody>()
 
     fun setImage(imgUri: Uri) {
-        _newImage.value = imgUri
+        _image.value = imgUri
     }
 
     private val _canImageRegister = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(image)
-    ) { true }
+    ) { canMajorImageCheck() }
     val canImageRegister: LiveData<Boolean> = _canImageRegister
 
-//    private fun canMajorImageCheck() =
-//        currentImage != image.value
+    private fun canMajorImageCheck() =
+        currentImage != image.value.toString()
 
-    private val _isSuccessImage = MutableLiveData<Boolean>()
-    val isSuccessImage: LiveData<Boolean> = _isSuccessImage
+    private var _isSuccessImage = MutableLiveData<Boolean>()
+    var isSuccessImage: LiveData<Boolean> = _isSuccessImage
 
-    fun setPostImage() {
-        setSuccessImage(true)
+    fun postImage() {
+        viewModelScope.launch {
+            try {
+                setMultiPart()
+                val responseImage = ServiceBuilder.settingService.postImage(
+                    map,
+                    when (image.value) {
+                        null -> null
+                        else -> imageMultiPart
+                    }
+                )
+                Log.d("설정 사진 변경", responseImage.message)
+                if (responseImage.isSuccess) {
+                    setSuccessImage(true)
+                } else {
+                    setSuccessImage(false)
+                }
+            } catch (e: HttpException) {
+                setSuccessImage(false)
+            }
+        }
+
     }
 
-    fun setSuccessImage(isSuccess: Boolean) {
+    private fun setMultiPart() {
+        map["role"] =
+            RequestBody.create(
+                MediaType.parse("text/plain"),
+                (SharedPreferenceController.getNowState() + 1).toString()
+            )
+        map["imageUrl"] =
+            RequestBody.create(MediaType.parse("text/plain"), currentImage)
+    }
+
+    private fun setSuccessImage(isSuccess: Boolean) {
         _isSuccessImage.value = isSuccess
     }
+
+    fun initSuccessImage() {
+        _isSuccessImage = MutableLiveData<Boolean>()
+        isSuccessImage = _isSuccessImage
+    }
+
 
 
     //비밀번호 변경 설정
@@ -377,5 +418,27 @@ class SettingViewModel : ViewModel() {
     fun initSuccessMentosIntro() {
         _isSuccessMentosIntro = MutableLiveData<Boolean>()
         isSuccessMentosIntro = _isSuccessMentosIntro
+    }
+
+    //회원탈퇴
+    private var _isSuccessWithdrawal = MutableLiveData<Boolean>()
+    var isSuccessWithdrawal: LiveData<Boolean> = _isSuccessWithdrawal
+
+    fun postWithdrawal(password: String){
+        viewModelScope.launch {
+            try {
+                Log.d("회원 탈퇴", "000000000000000000000000")
+                Log.d("회원 탈퇴", password)
+                val responseWithdrawal = ServiceBuilder.settingService.postWithdrawal(
+                    RequestWithdrawal(password)
+                )
+                Log.d("회원 탈퇴", responseWithdrawal.message)
+                Log.d("회원 탈퇴", "탈퇴 $password")
+                _isSuccessWithdrawal.value = responseWithdrawal.isSuccess
+            }catch (e:HttpException){
+                Log.d("회원 탈퇴", e.message())
+                Log.d("회원 탈퇴", e.code().toString())
+            }
+        }
     }
 }

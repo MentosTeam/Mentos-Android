@@ -3,12 +3,13 @@ package com.mentos.mentosandroid.data.api
 import com.mentos.mentosandroid.data.request.RequestChangeMentos
 import com.mentos.mentosandroid.data.request.RequestChangeProfileImg
 import com.mentos.mentosandroid.data.request.RequestChangePW
+import com.mentos.mentosandroid.data.request.RequestWithdrawal
 import com.mentos.mentosandroid.data.response.BaseResponse
 import com.mentos.mentosandroid.data.response.ResponseSetting
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import com.mentos.mentosandroid.data.response.ResponseWithdrawal
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface SettingService {
     @GET("/settings/mento")
@@ -32,13 +33,20 @@ interface SettingService {
         @Body body: RequestChangeMentos
     ): BaseResponse
 
+    @Multipart
     @POST("/settings/profile/image")
     suspend fun postImage(
-        @Body body: RequestChangeProfileImg
+        @PartMap map: Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part imageFile: MultipartBody.Part?
     ): BaseResponse
 
     @POST("/members/pwChange")
     suspend fun postPW(
         @Body body: RequestChangePW
     ): BaseResponse
+
+    @PATCH("/setting/member-leave")
+    suspend fun postWithdrawal(
+        @Body body: RequestWithdrawal
+    ): ResponseWithdrawal
 }

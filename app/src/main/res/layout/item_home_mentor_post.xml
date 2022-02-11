@@ -46,7 +46,7 @@
                 android:id="@+id/item_home_mentor_img"
                 android:layout_width="30dp"
                 android:layout_height="29dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/img_home_user" />
         </soup.neumorphism.NeumorphCardView>
 

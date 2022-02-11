@@ -277,9 +277,6 @@
         android:name="com.mentos.mentosandroid.ui.myprofiledetail.MyPostListFragment"
         android:label="PostListFragment"
         tools:layout="@layout/fragment_my_post_list">
-        <argument
-            android:name="myPostList"
-            app:argType="com.mentos.mentosandroid.data.response.SearchMentor[]"/>
         <action
             android:id="@+id/action_postListFragment_to_searchCreateFragment"
             app:destination="@id/searchCreateFragment" />

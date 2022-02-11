@@ -1,9 +1,6 @@
 package com.mentos.mentosandroid.data.api
 
-import com.mentos.mentosandroid.data.response.ResponseCreateProfile
-import com.mentos.mentosandroid.data.response.ResponseMenteeProfile
-import com.mentos.mentosandroid.data.response.ResponseMentorProfile
-import com.mentos.mentosandroid.data.response.ResponseMyProfile
+import com.mentos.mentosandroid.data.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -12,6 +9,9 @@ interface ProfileService {
 
     @GET("/profile/mypage")
     suspend fun getMyProfile(): ResponseMyProfile
+
+    @GET("/profile/myposts")
+    suspend fun getMyPostList(): ResponseMyPostList
 
     @GET("/profile/mentor")
     suspend fun getMentorProfile(
