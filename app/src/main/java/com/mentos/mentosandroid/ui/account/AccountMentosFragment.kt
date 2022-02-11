@@ -95,11 +95,11 @@ class AccountMentosFragment : Fragment() {
         when (args.state) {
             2 -> {
                 binding.accountMentosTitleTv.setText(R.string.account_intro_title_mentee)
-                binding.accountMentosSubTitleTv.setText(R.string.account_intro_sub_title_mentee)
+                binding.accountMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentee)
             }
             1 -> {
                 binding.accountMentosTitleTv.setText(R.string.account_intro_title_mentor)
-                binding.accountMentosSubTitleTv.setText(R.string.account_intro_sub_title_mentor)
+                binding.accountMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentor)
             }
         }
     }

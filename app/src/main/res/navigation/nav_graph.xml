@@ -92,7 +92,7 @@
         android:id="@+id/oneMenteeProfileFragment"
         android:name="com.mentos.mentosandroid.ui.otherprofile.OneMenteeProfileFragment"
         android:label="OneMenteeProfileFragment"
-        tools:layout="@layout/fragment_one_mentee_profile" >
+        tools:layout="@layout/fragment_one_mentee_profile">
         <argument
             android:name="menteeId"
             android:defaultValue="0"
@@ -141,7 +141,7 @@
         <argument
             android:name="nowMentoring"
             android:defaultValue="@null"
-            app:argType="com.mentos.mentosandroid.data.StateNow"
+            app:argType="com.mentos.mentosandroid.data.response.StateNow"
             app:nullable="true" />
         <action
             android:id="@+id/action_stateOneFragment_to_stateRecordFragment"
@@ -152,7 +152,12 @@
         android:id="@+id/stateRecordFragment"
         android:name="com.mentos.mentosandroid.ui.mentoringstate.StateRecordFragment"
         android:label="StateRecordFragment"
-        tools:layout="@layout/fragment_state_record" />
+        tools:layout="@layout/fragment_state_record">
+        <argument
+            android:name="mentoringId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -250,7 +255,7 @@
             android:id="@+id/action_mentoringStart4Fragment_to_mentoringStart5Fragment"
             app:destination="@id/mentoringStart5Fragment"
             app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="false"/>
+            app:popUpToInclusive="false" />
         <argument
             android:name="mentoringStart"
             app:argType="com.mentos.mentosandroid.data.request.RequestMentoringStart" />
@@ -292,7 +297,7 @@
         tools:layout="@layout/fragment_review_list">
         <argument
             android:name="reviewList"
-            app:argType="com.mentos.mentosandroid.data.response.Review[]"/>
+            app:argType="com.mentos.mentosandroid.data.response.Review[]" />
     </fragment>
 
     <fragment
@@ -302,7 +307,7 @@
         tools:layout="@layout/fragment_mentor_post_list">
         <argument
             android:name="mentorPostList"
-            app:argType="com.mentos.mentosandroid.data.response.SearchMentor[]"/>
+            app:argType="com.mentos.mentosandroid.data.response.SearchMentor[]" />
         <action
             android:id="@+id/action_mentorPostListFragment_to_searchDetailDialog"
             app:destination="@id/searchDetailDialog" />
@@ -318,7 +323,7 @@
         android:id="@+id/changeMentosFragment"
         android:name="com.mentos.mentosandroid.ui.setting.ChangeMentosFragment"
         android:label="ChangeMentosFragment"
-        tools:layout="@layout/fragment_change_mentos" >
+        tools:layout="@layout/fragment_change_mentos">
         <action
             android:id="@+id/action_changeMentosFragment_to_changeIntroFragment"
             app:destination="@id/changeIntroFragment" />
@@ -345,11 +350,11 @@
         android:id="@+id/changeIntroFragment"
         android:name="com.mentos.mentosandroid.ui.setting.ChangeIntroFragment"
         android:label="ChangeIntroFragment"
-        tools:layout="@layout/fragment_change_intro"/>
+        tools:layout="@layout/fragment_change_intro" />
 
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.mentos.mentosandroid.ui.notification.NotificationFragment"
         android:label="NotificationFragment"
-        tools:layout="@layout/fragment_notification"/>
+        tools:layout="@layout/fragment_notification" />
 </navigation>

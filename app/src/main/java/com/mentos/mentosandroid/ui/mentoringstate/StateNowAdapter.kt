@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.StateNow
+import com.mentos.mentosandroid.data.response.StateNow
 import com.mentos.mentosandroid.databinding.ItemStateNowBinding
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosBgStroke
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg55
@@ -23,9 +23,9 @@ class StateNowAdapter :
                 stateNowMentosIv.setMentosImg55(item.majorCategoryId)
                 stateNowLayout.setMentosBgStroke(item.majorCategoryId)
 
-                stateNowCount.text = item.mentoringCount1.toString()
-                stateNowCount2.text = item.mentoringCount2.toString()
-                stateNowMentosCount.text = item.mentos.toString()
+                stateNowCount.text = item.mentoringCount.toString()
+                stateNowCount2.text = item.mentoringCount.toString()
+                stateNowMentosCount.text = item.mentoringMentos.toString()
             }
 
             binding.stateNowLayout.setOnClickListener {

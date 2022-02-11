@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.mentos.mentosandroid.data.StateRecord" />
+            type="com.mentos.mentosandroid.data.response.StateRecord" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,37 +14,35 @@
         android:layout_height="wrap_content">
 
         <soup.neumorphism.NeumorphCardView
-            android:id="@+id/state_end_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:neumorph_backgroundColor="@color/white"
             app:neumorph_inset="4dp"
             app:neumorph_shadowColorDark="@color/gray_shadow"
             app:neumorph_shadowColorLight="@android:color/transparent"
             app:neumorph_shadowElevation="3dp"
             app:neumorph_shapeAppearance="@style/shadow_round_20"
-            app:neumorph_shapeType="flat"
-            app:neumorph_strokeColor="@color/gray_eded"
-            app:neumorph_strokeWidth="1dp">
+            app:neumorph_shapeType="flat">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/state_record_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_gray_stroke_20">
 
                 <TextView
                     android:id="@+id/state_record_title_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="14dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:text="@{data.recordContent}"
+                    android:text="@{data.report}"
                     android:textColor="@color/black_3333"
                     android:textSize="11sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:layout_marginBottom="6dp"
+                    android:layout_marginBottom="7dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
                     android:textColor="@color/gray_7070"
@@ -81,10 +79,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:layout_marginBottom="6dp"
+                    android:layout_marginBottom="7dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:text="@{data.date}"
+                    android:text="@{data.createAt}"
                     android:textColor="@color/gray_7070"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"

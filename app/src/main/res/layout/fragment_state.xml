@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="beforeListSize"
+            type="Integer" />
+
+        <variable
             name="nowListSize"
             type="Integer" />
 
@@ -63,7 +67,7 @@
                     android:id="@+id/state_before_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:visibility="@{beforeListSize == 0 ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -152,7 +156,7 @@
                         android:text="@string/state_both_empty_now_mentee"
                         android:textColor="@color/gray_7070"
                         android:textSize="10sp"
-                        android:visibility="@{nowListSize ==0 ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{nowListSize == 0 ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +186,27 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/state_end_rv"
+                        android:id="@+id/state_end_mentor_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="11dp"
+                        android:background="@drawable/shape_gray_stroke_rec"
+                        android:minHeight="300dp"
+                        android:overScrollMode="never"
+                        android:paddingHorizontal="14dp"
+                        android:paddingTop="4dp"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/state_end_title_tv"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_state_end" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/state_end_mentee_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
@@ -210,7 +234,7 @@
                         android:text="@string/state_empty_find_mentor"
                         android:textColor="@color/gray_7070"
                         android:textSize="10sp"
-                        android:visibility="@{endListSize ==0 ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{endListSize == 0 ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

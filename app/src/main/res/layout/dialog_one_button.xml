@@ -274,7 +274,7 @@
         android:id="@+id/dialog_mentoring_complete_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="54dp"
         app:layout_constraintBottom_toTopOf="@id/dialog_btn_complete_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -284,7 +284,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="43dp"
             android:fontFamily="@font/noto_bold"
             android:includeFontPadding="false"
             android:text="@string/dialog_mentoring_complete_title"

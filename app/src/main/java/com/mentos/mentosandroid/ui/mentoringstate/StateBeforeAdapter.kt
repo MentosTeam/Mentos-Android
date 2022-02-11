@@ -5,11 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.StateNow
+import com.mentos.mentosandroid.data.response.StateNow
 import com.mentos.mentosandroid.databinding.ItemStateBeforeConfirmBinding
-import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosBgStroke
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg55
-import com.mentos.mentosandroid.util.navigateWithData
 
 class StateBeforeAdapter :
     ListAdapter<StateNow, StateBeforeAdapter.StateBeforeViewHolder>(StateNowDiffUtil()) {
@@ -20,14 +18,14 @@ class StateBeforeAdapter :
         fun bind(item: StateNow) {
             with(binding) {
                 data = item
-                stateNowMentosIv.setMentosImg55(item.majorCategoryId)
+                stateBeforeMentosIv.setMentosImg55(item.majorCategoryId)
 
-                stateNowCount.text = item.mentoringCount1.toString()
-                stateNowCount2.text = item.mentoringCount2.toString()
-                stateNowMentosCount.text = item.mentos.toString()
+                stateBeforeCount.text = item.mentoringCount.toString()
+                stateBeforeCount2.text = item.mentoringCount.toString()
+                stateBeforeMentosCount.text = item.mentoringMentos.toString()
             }
 
-            binding.stateNowLayout.setOnClickListener {
+            binding.stateBeforeLayout.setOnClickListener {
             }
         }
     }

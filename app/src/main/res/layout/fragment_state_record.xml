@@ -140,7 +140,6 @@
                     android:includeFontPadding="false"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
-                    android:onClick="@{() -> viewModel.postRecord()}"
                     android:paddingVertical="13dp"
                     android:stateListAnimator="@null"
                     android:text="@string/state_content_btn"

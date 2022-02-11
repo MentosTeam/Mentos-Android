@@ -78,7 +78,6 @@ class OneButtonDialog(
                     dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
                     dialogReviewCompleteTitleLayout.visibility = View.GONE
                     dialogReviewLayout.visibility = View.GONE
-                    dialogBtnCompleteTv.visibility = View.GONE
                     dialogBgMentos.visibility = View.VISIBLE
                     dialogMentoringCompleteTitleLayout.visibility = View.VISIBLE
                 }

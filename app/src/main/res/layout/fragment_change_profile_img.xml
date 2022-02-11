@@ -80,14 +80,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:neumorph_backgroundColor="@color/white"
-                    app:neumorph_inset="5dp"
+                    app:neumorph_inset="6dp"
                     app:neumorph_shadowColorDark="@color/gray_shadow"
                     app:neumorph_shadowColorLight="@android:color/transparent"
                     app:neumorph_shadowElevation="3dp"
                     app:neumorph_shapeAppearance="@style/shadow_round_20"
                     app:neumorph_shapeType="flat"
                     app:neumorph_strokeColor="@color/gray_eded"
-                    app:neumorph_strokeWidth="1dp">
+                    app:neumorph_strokeWidth="2dp">
 
                     <ImageView
                         android:id="@+id/change_img_iv"

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentStateOneBinding
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg55
-import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
 class StateOneFragment : Fragment() {
@@ -24,7 +24,9 @@ class StateOneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentStateOneBinding.inflate(inflater, container, false)
-        stateViewModel.requestRecordList()
+        if (args.nowMentoring != null) {
+            stateViewModel.getRecordList(args.nowMentoring?.mentoringId!!)
+        }
         initView()
         setBackBtnClickListener()
         setWriteBtnClickListener()
@@ -36,13 +38,18 @@ class StateOneFragment : Fragment() {
     private fun initView() {
         if (args.nowMentoring != null) {
             with(binding) {
-                stateOneCount.text = args.nowMentoring?.mentoringCount1.toString()
-                stateOneCount2.text = args.nowMentoring?.mentoringCount2.toString()
-                stateOneMentosCount.text = args.nowMentoring?.mentos.toString()
-                stateOneNicknameMentee.text = args.nowMentoring?.mentiNickname
-                stateOneNicknameMentor.text = args.nowMentoring?.mentoNickname
+                stateOneCount.text = args.nowMentoring?.mentoringCount.toString()
+                stateOneCount2.text = args.nowMentoring?.mentoringCount.toString()
+                stateOneMentosCount.text = args.nowMentoring?.mentoringMentos.toString()
+                stateOneNicknameMentee.text = args.nowMentoring?.mentoringMenteeName
+                stateOneNicknameMentor.text = args.nowMentoring?.mentoringMentorName
                 stateOneMentosIv.setMentosImg55(args.nowMentoring?.majorCategoryId!!)
             }
+        }
+
+        when (SharedPreferenceController.getNowState()) {
+            0 -> binding.stateOneWriteIb.visibility = View.VISIBLE
+            1 -> binding.stateOneWriteIb.visibility = View.GONE
         }
     }
 
@@ -54,16 +61,20 @@ class StateOneFragment : Fragment() {
 
     private fun setWriteBtnClickListener() {
         binding.stateOneWriteIb.setOnClickListener {
-            navigate(R.id.action_stateOneFragment_to_stateRecordFragment)
+            navigateWithData(
+                StateOneFragmentDirections.actionStateOneFragmentToStateRecordFragment(
+                    args.nowMentoring?.majorCategoryId!!
+                )
+            )
         }
     }
 
     private fun setStateAdapter() {
-        binding.stateRecordRv.adapter = StateRecordAdapter()
+        binding.stateRecordRv.adapter = StateRecordAdapter(args.nowMentoring?.majorCategoryId!!)
     }
 
     private fun setStateNowObserver() {
-        stateViewModel.dummyRecordList.observe(viewLifecycleOwner) { list ->
+        stateViewModel.recordList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 with(binding.stateRecordRv.adapter as StateRecordAdapter) { submitList(list) }
             }

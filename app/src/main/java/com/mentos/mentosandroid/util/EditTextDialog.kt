@@ -163,8 +163,6 @@ class EditTextDialog(
                     doAfterConfirm(binding.dialogEtReviewEt.text.toString())
                 }
                 WITHDRAWAL -> {
-                    // 서버연결
-                    // 비밀번호 불일치 시
                     val password = binding.dialogEtPasswordEt.text.toString()
                     doAfterConfirm(password)
                 }
