@@ -413,6 +413,7 @@
                         android:src="@drawable/ic_profile_add_user" />
 
                     <TextView
+                        android:id="@+id/create_mentor_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"

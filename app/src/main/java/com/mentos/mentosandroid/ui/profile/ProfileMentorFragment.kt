@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMentorBinding
+import com.mentos.mentosandroid.ui.account.AccountDialogFragmentDirections
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
@@ -36,7 +37,35 @@ class ProfileMentorFragment : Fragment() {
 
         initMentosVP()
 
+        initCreateMenteeView()
+        setCreateMenteeClickListener()
         return binding.root
+    }
+
+    private fun setCreateMenteeClickListener() {
+        binding.createMenteeTv.setOnClickListener {
+            //멘티 프로필 생성
+            navigateWithData(
+                ProfileFragmentDirections.actionProfileFragmentToOtherAccountMentosFragment(
+                    2
+                )
+            )
+        }
+    }
+
+    private fun initCreateMenteeView() {
+        profileViewModel.profileState.observe(viewLifecycleOwner) { profileState ->
+            when (profileState) {
+                1 -> {
+                    //멘토만 존재
+                    binding.createMenteeTv.visibility = View.VISIBLE
+                }
+                3 -> {
+                    //멘토멘티 둘다 존재
+                    binding.createMenteeTv.visibility = View.GONE
+                }
+            }
+        }
     }
 
     private fun initMentosVP() {
