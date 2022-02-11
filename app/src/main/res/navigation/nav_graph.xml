@@ -171,6 +171,9 @@
         <action
             android:id="@+id/action_profileFragment_to_searchDetailDialog"
             app:destination="@id/searchDetailDialog" />
+        <action
+            android:id="@+id/action_profileFragment_to_otherAccountMentosFragment"
+            app:destination="@id/otherAccountMentosFragment" />
     </fragment>
 
     <fragment
@@ -352,4 +355,40 @@
         android:name="com.mentos.mentosandroid.ui.notification.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification"/>
+
+
+    <fragment
+        android:id="@+id/otherAccountIntroFragment"
+        android:name="com.mentos.mentosandroid.ui.otheraccount.OtherAccountIntroFragment"
+        android:label="otherAccountIntroFragment"
+        tools:layout="@layout/fragment_other_account_intro">
+        <argument
+            android:name="state"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_otherAccountIntroFragment_to_otherAccountPhotoFragment"
+            app:destination="@id/otherAccountPhotoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/otherAccountMentosFragment"
+        android:name="com.mentos.mentosandroid.ui.otheraccount.OtherAccountMentosFragment"
+        android:label="OtherAccountMentosFragment"
+        tools:layout="@layout/fragment_other_account_mentos">
+        <argument
+            android:name="state"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_otherAccountMentosFragment_to_otherAccountIntroFragment"
+            app:destination="@id/otherAccountIntroFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/otherAccountPhotoFragment"
+        android:name="com.mentos.mentosandroid.ui.otheraccount.OtherAccountPhotoFragment"
+        android:label="OtherAccountPhotoFragment"
+        tools:layout="@layout/fragment_other_account_photo" />
+
 </navigation>
