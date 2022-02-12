@@ -28,6 +28,7 @@ class StateEndAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: StateEnd) {
             with(binding) {
+                data = item
                 stateEndMentosIv.setMentosImg59(item.majorCategoryId)
                 stateEndContainerLayout.setMentosColor(item.majorCategoryId)
 
