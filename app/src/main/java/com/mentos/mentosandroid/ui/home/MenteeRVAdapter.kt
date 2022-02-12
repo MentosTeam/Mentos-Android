@@ -24,7 +24,7 @@ class MenteeRVAdapter() : RecyclerView.Adapter<MenteeRVAdapter.MenteeViewHolder>
             binding.mentee = currentMentee
 
             binding.itemHomeMenteeTv.text =
-                currentMentee.nickName + "/" + currentMentee.menteeMajor + "/" + currentMentee.menteeYear + "학번"
+                currentMentee.nickName + "/" + currentMentee.menteeMajor + "/" + currentMentee.menteeYear
             binding.itemHomeMenteeTagTv.text =
                 "#" + getMentosText(currentMentee.firstMajorCategory) +
                         ", #" + getMentosText(currentMentee.secondMajorCategory)

@@ -84,7 +84,7 @@ class EditTextDialog(
     }
 
     private fun chkReviewValidation(count: Int) {
-        if (count == 0) {
+        if (count == 0 || count < 10) {
             binding.dialogBtnComplete.setBackgroundResource(R.drawable.shape_gray_fill_8)
             binding.dialogBtnComplete.setTextColor(
                 ContextCompat.getColor(
@@ -163,8 +163,6 @@ class EditTextDialog(
                     doAfterConfirm(binding.dialogEtReviewEt.text.toString())
                 }
                 WITHDRAWAL -> {
-                    // 서버연결
-                    // 비밀번호 불일치 시
                     val password = binding.dialogEtPasswordEt.text.toString()
                     doAfterConfirm(password)
                 }

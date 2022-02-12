@@ -3,89 +3,122 @@ package com.mentos.mentosandroid.ui.mentoringstate
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mentos.mentosandroid.data.StateEnd
-import com.mentos.mentosandroid.data.StateNow
-import com.mentos.mentosandroid.data.StateRecord
+import androidx.lifecycle.viewModelScope
+import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.request.RequestReview
+import com.mentos.mentosandroid.data.request.RequestStateRecord
+import com.mentos.mentosandroid.data.response.*
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class StateViewModel : ViewModel() {
 
     val recordContent = MutableLiveData("")
 
-    private val _dummyNowList = MutableLiveData<List<StateNow>>()
-    val dummyNowList: LiveData<List<StateNow>> = _dummyNowList
+    private val _nowList = MutableLiveData<List<StateNow>>()
+    val nowList: LiveData<List<StateNow>> = _nowList
 
-    private val _dummyEndList = MutableLiveData<List<StateEnd>>()
-    val dummyEndList: LiveData<List<StateEnd>> = _dummyEndList
+    private val _endList = MutableLiveData<List<StateEnd>>()
+    val endList: LiveData<List<StateEnd>> = _endList
 
-    private val _dummyRecordList = MutableLiveData<List<StateRecord>>()
-    val dummyRecordList: LiveData<List<StateRecord>> = _dummyRecordList
+    private val _waitList = MutableLiveData<List<StateWait>>()
+    val waitList: LiveData<List<StateWait>> = _waitList
 
-    private val _isSuccessRecord = MutableLiveData<Boolean>()
-    val isSuccessRecord: LiveData<Boolean> = _isSuccessRecord
+    private val _recordList = MutableLiveData<List<StateRecord>>()
+    val recordList: LiveData<List<StateRecord>> = _recordList
+
+    private val _isLastRecord = MutableLiveData<Boolean>()
+    val isLastRecord: LiveData<Boolean> = _isLastRecord
+
+    private val tempRecordList = mutableListOf<StateRecord>()
 
     private val _canRecord = MediatorLiveDataUtil.initMediatorLiveData(
-        listOf(
-            recordContent
-        )
+        listOf(recordContent)
     ) { requireNotNull(recordContent.value).isNotBlank() }
     val canRecord: LiveData<Boolean> = _canRecord
 
-    fun postRecord() {
-        setIsSuccessRecord(true)
+    fun getStateMentorList() {
+        viewModelScope.launch {
+            try {
+                val responseMentor = ServiceBuilder.stateService.getMentorState()
+                _nowList.postValue(responseMentor.result.nowMentoring)
+                _endList.postValue(responseMentor.result.endMentoring)
+                _waitList.postValue(responseMentor.result.waitMentoring)
+            } catch (e: HttpException) {
+                _nowList.postValue(listOf())
+                _endList.postValue(listOf())
+                _waitList.postValue(listOf())
+            }
+        }
     }
 
-    fun setIsSuccessRecord(isSuccess: Boolean) {
-        _isSuccessRecord.value = isSuccess
+    fun getStateMenteeList() {
+        viewModelScope.launch {
+            try {
+                val responseMentee = ServiceBuilder.stateService.getMenteeState()
+                _nowList.postValue(responseMentee.result.nowMentoring)
+                _endList.postValue(responseMentee.result.endMentoring)
+                _waitList.postValue(responseMentee.result.waitMentoring)
+            } catch (e: HttpException) {
+                _nowList.postValue(listOf())
+                _endList.postValue(listOf())
+                _waitList.postValue(listOf())
+            }
+        }
     }
 
-    fun requestNowList() {
-        _dummyNowList.value = arrayListOf(
-            StateNow(0, 2, 3, 5, 7, "가은", "현진"),
-            StateNow(1, 9, 3, 5, 7, "가은", "현진"),
-            StateNow(2, 3, 3, 5, 7, "가은", "현진"),
-            StateNow(3, 2, 3, 5, 7, "가은", "현진"),
-            StateNow(4, 5, 3, 5, 7, "가은", "현진"),
-            StateNow(5, 11, 3, 5, 7, "가은", "현진"),
-            StateNow(6, 7, 3, 5, 7, "가은", "현진"),
-        )
+    fun getRecordList(mentoringId: Int) {
+        viewModelScope.launch {
+            try {
+                val responseGetRecord = ServiceBuilder.stateService.getRecord(mentoringId)
+                for (i in responseGetRecord.result.reports.indices) {
+                    tempRecordList.add(
+                        i,
+                        responseGetRecord.result.reports[responseGetRecord.result.reports.size - (1 + i)]
+                    )
+                }
+                _recordList.value = tempRecordList.toMutableList()
+
+            } catch (e: HttpException) {
+                _recordList.postValue(listOf())
+            }
+        }
     }
 
-    fun requestEndList() {
-        _dummyEndList.value = arrayListOf(
-            StateEnd(0, 2, 3, 5, 7, "가은", "현진", false),
-            StateEnd(1, 9, 3, 5, 7, "가은", "현진", false),
-            StateEnd(2, 3, 3, 5, 7, "가은", "현진", false),
-            StateEnd(3, 2, 3, 5, 7, "가은", "현진", true),
-            StateEnd(4, 5, 3, 5, 7, "가은", "현진", true),
-            StateEnd(5, 11, 3, 5, 7, "가은", "현진", true),
-            StateEnd(6, 7, 3, 5, 7, "가은", "현진", true),
-        )
+    fun postRecord(mentoringId: Int) {
+        viewModelScope.launch {
+            try {
+                val responsePostRecord = ServiceBuilder.stateService.postRecord(
+                    RequestStateRecord(
+                        mentoringId = mentoringId,
+                        report = requireNotNull(recordContent.value)
+                    )
+                )
+                if (responsePostRecord.isSuccess) {
+                    when (responsePostRecord.result) {
+                        1 -> _isLastRecord.postValue(false)
+                        2 -> _isLastRecord.postValue(true)
+                    }
+                }
+            } catch (e: HttpException) {
+            }
+        }
     }
 
-    fun requestRecordList() {
-        _dummyRecordList.value = arrayListOf(
-            StateRecord(
-                1,
-                2,
-                5,
-                "22/12/13",
-                "중어중문학과 16학번 홍길동입니다. 기초 중국어 영역에 도움을 줄 수 있어요!  3년 동안 학생회에 참여해 관련 정보도 드릴 수 있습니다! 멘토와 대화하기 버튼을 눌러서 편하게 대화해봐요! 언제든지 환영입니다~중어중문학과 16학번 홍길동입니다. 기초 중국어 영역에 도움을 줄 수 있어요!"
-            ),
-            StateRecord(
-                1,
-                2,
-                4,
-                "22/12/13",
-                "중어중문학과 16학번 홍길동입니다. 기초 중국어 영역에 도움을 줄 수 있어요!  3년 동안 학생회에 참여해 관련 정보도 드릴 수 있습니다! 멘토와 대화하기 버튼을 눌러서 편하게 대화해봐요! 언제든지 환영입니다~중어중문학과 16학번 홍길동입니다. 기초 중국어 영역에 도움을 줄 수 있어요!"
-            ),
-            StateRecord(
-                1,
-                2,
-                3,
-                "22/12/13",
-                "멘토링 완료"
-            )
-        )
+    fun postReview(mentoringId: Int, reviewScore: Double, reviewText: String) {
+        viewModelScope.launch {
+            try {
+                ServiceBuilder.stateService.postReview(
+                    mentoringId,
+                    RequestReview(
+                        mentoringId,
+                        reviewScore,
+                        reviewText
+                    )
+                )
+            } catch (e: HttpException) {
+            }
+        }
     }
 }

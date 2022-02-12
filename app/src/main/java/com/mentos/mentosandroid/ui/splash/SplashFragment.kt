@@ -2,6 +2,8 @@ package com.mentos.mentosandroid.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,10 +36,23 @@ class SplashFragment : Fragment() {
         return binding.root
     }
 
+    private fun setSplash() {
+        initSplashView(false)
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                binding.splashLayout.visibility = View.GONE
+                initSplashView(true)
+            }, 1000
+        )
+    }
+
     private fun setAutoLogin() {
         signInViewModel.canAutoSignIn.observe(viewLifecycleOwner) { canSignIn ->
             if (canSignIn) {
+                initSplashView(false)
                 signInViewModel.postSignIn()
+            } else {
+                setSplash()
             }
         }
     }
@@ -46,13 +61,26 @@ class SplashFragment : Fragment() {
         signInViewModel.isSuccessSignIn.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
                 true -> {
-                    startActivity(Intent(requireContext(), MainActivity::class.java))
-                    requireActivity().finish()
-                    Toast.makeText(requireContext(), R.string.toast_auto_login, Toast.LENGTH_SHORT)
-                        .show()
+                    Handler(Looper.getMainLooper()).postDelayed(
+                        {
+                            startActivity(Intent(requireContext(), MainActivity::class.java))
+                            requireActivity().finish()
+                            Toast.makeText(
+                                requireContext(),
+                                R.string.toast_auto_login,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }, 1000
+                    )
                 }
                 false -> {
-                    DialogUtil(0) {}.show(childFragmentManager, "sign_in_fail")
+                    DialogUtil(0) {
+                        binding.splashLayout.visibility = View.GONE
+                        initSplashView(true)
+                    }.show(
+                        childFragmentManager,
+                        "sign_in_fail"
+                    )
                 }
             }
         }
@@ -85,5 +113,10 @@ class SplashFragment : Fragment() {
         binding.splashBtnSignIn.setOnClickListener {
             navigate(R.id.action_splashFragment_to_signInFragment)
         }
+    }
+
+    private fun initSplashView(state: Boolean) {
+        binding.splashBtnSignUp.isClickable = state
+        binding.splashBtnSignIn.isClickable = state
     }
 }

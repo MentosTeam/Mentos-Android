@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.databinding.FragmentStateRecordBinding
 import com.mentos.mentosandroid.util.*
 
 class StateRecordFragment : Fragment() {
     private lateinit var binding: FragmentStateRecordBinding
     private val stateViewModel by viewModels<StateViewModel>()
+    private val args by navArgs<StateRecordFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,13 +24,22 @@ class StateRecordFragment : Fragment() {
         binding.viewModel = stateViewModel
         binding.lifecycleOwner = viewLifecycleOwner
         setBackBtnClickListener()
-        setIsSuccessRecordObserve()
+        setCompleteBtnClickListener()
+        setIsLastRecordObserve()
         return binding.root
     }
 
     private fun setBackBtnClickListener() {
         binding.stateRecordBackIb.setOnClickListener {
             setCanRecordObserve()
+        }
+    }
+
+    private fun setCompleteBtnClickListener() {
+        binding.stateRecordBtnComplete.setOnClickListener {
+            TwoButtonDialog(0) {
+                stateViewModel.postRecord(args.mentoringId)
+            }.show(childFragmentManager, "record_confirm")
         }
     }
 
@@ -45,18 +56,16 @@ class StateRecordFragment : Fragment() {
         }
     }
 
-    private fun setIsSuccessRecordObserve() {
-        stateViewModel.isSuccessRecord.observe(viewLifecycleOwner) { isSuccess ->
-            when (isSuccess) {
-                true -> {
-                    TwoButtonDialog(0) {
-                        OneButtonDialog(0) {
-                            popBackStack()
-                        }.show(childFragmentManager, "record_complete")
-                    }.show(childFragmentManager, "record_confirm")
-                }
-                false -> {
-                }
+    private fun setIsLastRecordObserve() {
+        stateViewModel.isLastRecord.observe(viewLifecycleOwner) { isLastRecord ->
+            if (isLastRecord) {
+                OneButtonDialog(4) {
+                    popBackStack()
+                }.show(childFragmentManager, "record_complete_last_record")
+            } else {
+                OneButtonDialog(0) {
+                    popBackStack()
+                }.show(childFragmentManager, "record_complete")
             }
         }
     }

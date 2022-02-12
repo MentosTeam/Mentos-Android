@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.mentos.mentosandroid.data.StateEnd" />
+            type="com.mentos.mentosandroid.data.response.StateEnd" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -151,7 +151,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:text="@{data.mentoNickname}"
+                            android:text="@{data.mentoringMentorName}"
                             android:textColor="@color/gray_7070"
                             android:textSize="10sp"
                             tools:text="가은" />
@@ -171,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:text="@{data.mentiNickname}"
+                            android:text="@{data.mentoringMenteeName}"
                             android:textColor="@color/gray_7070"
                             android:textSize="10sp"
                             tools:text="가은" />
@@ -222,7 +222,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/state_end_layout"

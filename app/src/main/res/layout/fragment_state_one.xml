@@ -69,6 +69,7 @@
                 android:paddingHorizontal="4dp"
                 android:paddingVertical="5dp"
                 android:src="@drawable/ic_search_write"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
@@ -107,6 +108,7 @@
                 app:layout_constraintTop_toTopOf="@id/state_one_mentos_iv">
 
                 <TextView
+                    android:id="@+id/state_now_sub_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_bold"

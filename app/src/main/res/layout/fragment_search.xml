@@ -5,12 +5,6 @@
 
     <data>
 
-        <import type="android.view.View" />
-
-        <variable
-            name="mentorContentListSize"
-            type="Integer" />
-
         <variable
             name="viewModel"
             type="com.mentos.mentosandroid.ui.search.SearchViewModel" />
@@ -206,7 +200,6 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:overScrollMode="never"
-            android:visibility="@{mentorContentListSize == 0 ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -219,7 +212,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/white_opacity"
-            android:visibility="@{mentorContentListSize == 0 ? View.VISIBLE : View.GONE}"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

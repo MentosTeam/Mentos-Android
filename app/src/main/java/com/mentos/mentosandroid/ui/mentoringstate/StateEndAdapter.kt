@@ -7,69 +7,82 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.StateEnd
+import com.mentos.mentosandroid.data.response.StateEnd
 import com.mentos.mentosandroid.databinding.ItemStateEndBinding
 import com.mentos.mentosandroid.util.EditTextDialog
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosBgStroke
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosColor
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg59
 import com.mentos.mentosandroid.util.OneButtonDialog
+import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigateWithData
 
-class StateEndAdapter(val fragmentManager: FragmentManager) :
-    ListAdapter<StateEnd, StateEndAdapter.StateEndViewHolder>(StateEndDiffUtil()) {
+class StateEndAdapter(
+    val fragmentManager: FragmentManager,
+    val stateViewModel: StateViewModel
+) :
+    ListAdapter<StateEnd, StateEndAdapter.StateEndMenteeViewHolder>(StateEndDiffUtil()) {
 
-    inner class StateEndViewHolder(
+    inner class StateEndMenteeViewHolder(
         private val binding: ItemStateEndBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: StateEnd) {
             with(binding) {
-                data = item
                 stateEndMentosIv.setMentosImg59(item.majorCategoryId)
                 stateEndContainerLayout.setMentosColor(item.majorCategoryId)
 
-                stateEndCount.text = item.mentoringCount1.toString()
-                stateEndCount2.text = item.mentoringCount2.toString()
-                stateEndMentosCount.text = item.mentos.toString()
+                stateEndCount.text = item.mentoringCount.toString()
+                stateEndCount2.text = item.mentoringCount.toString()
+                stateEndMentosCount.text = item.mentoringMentos.toString()
             }
 
             binding.stateEndReviewWriteLayout.setOnClickListener {
                 OneButtonDialog(3) { rating ->
-                    val rating = rating
-                    // rating Float 값임
                     EditTextDialog(0) { reviewText ->
-                        val reviewText = reviewText
-                        // 별점 등록 서버 연결
+                        stateViewModel.postReview(item.mentoringId, rating!!.toDouble(), reviewText)
                         OneButtonDialog(2) {
+                            stateViewModel.getStateMenteeList()
                         }.show(fragmentManager, "review")
                     }.show(fragmentManager, "review_text")
                 }.show(fragmentManager, "review_star")
             }
 
-            when (item.review) {
-                true -> {
-                    binding.stateEndReviewDoneLayout.visibility = View.VISIBLE
-                    binding.stateEndReviewWriteLayout.visibility = View.GONE
+            if(SharedPreferenceController.getNowState()==1){
+                when (item.reviewCheck ) {
+                    1 -> {
+                        binding.stateEndReviewDoneLayout.visibility = View.VISIBLE
+                        binding.stateEndReviewWriteLayout.visibility = View.GONE
+                    }
+                    0 -> {
+                        binding.stateEndReviewDoneLayout.visibility = View.GONE
+                        binding.stateEndReviewWriteLayout.visibility = View.VISIBLE
+                        binding.stateEndReviewWriteContainerLayout.setMentosBgStroke(item.majorCategoryId)
+                    }
                 }
-                false -> {
-                    binding.stateEndReviewDoneLayout.visibility = View.GONE
-                    binding.stateEndReviewWriteLayout.visibility = View.VISIBLE
-                    binding.stateEndReviewWriteContainerLayout.setMentosBgStroke(item.majorCategoryId)
-                }
+            }
+
+            binding.stateEndLayout.setOnClickListener {
+                it.navigateWithData(
+                    StateFragmentDirections.actionStateFragmentToStateOneFragment(
+                        nowMentoring = null,
+                        endMentoring = item
+                    )
+                )
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StateEndViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StateEndMenteeViewHolder {
         val binding: ItemStateEndBinding =
             ItemStateEndBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
-        return StateEndViewHolder(binding)
+        return StateEndMenteeViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: StateEndViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: StateEndMenteeViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 

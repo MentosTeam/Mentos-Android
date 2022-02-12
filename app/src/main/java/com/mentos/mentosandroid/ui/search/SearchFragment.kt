@@ -59,8 +59,8 @@ class SearchFragment : Fragment() {
                 binding.searchMenteeListRv.visibility = View.VISIBLE
                 binding.searchMentorTitleSubIv.setText(R.string.search_mentee_title_sub)
                 binding.searchWriteIb.visibility = View.GONE
-                binding.searchMenteeListRv.visibility = View.VISIBLE
                 binding.searchMentorListRv.visibility = View.GONE
+                binding.searchMenteeListRv.visibility = View.VISIBLE
             }
             1 -> {
                 binding.searchMentorListRv.visibility = View.VISIBLE
@@ -203,12 +203,23 @@ class SearchFragment : Fragment() {
 
     private fun setSearchListAdapter() {
         binding.searchMentorListRv.adapter = SearchMentorAdapter()
-        binding.searchMenteeListRv.adapter = SearchMenteeAdapter()
+        binding.searchMenteeListRv.adapter = SearchMenteeAdapter(requireContext())
     }
 
     private fun setSearchMentorObserver() {
         searchViewModel.searchMentorList.observe(viewLifecycleOwner) { list ->
-            binding.mentorContentListSize = list.size
+            if (SharedPreferenceController.getNowState() == 1) {
+                when (list.size) {
+                    0 -> {
+                        binding.searchMentorEmptyView.visibility = View.VISIBLE
+                        binding.searchMentorListRv.visibility = View.GONE
+                    }
+                    else -> {
+                        binding.searchMentorEmptyView.visibility = View.GONE
+                        binding.searchMentorListRv.visibility = View.VISIBLE
+                    }
+                }
+            }
             list?.let {
                 with(binding.searchMentorListRv.adapter as SearchMentorAdapter) { submitList(list) }
             }

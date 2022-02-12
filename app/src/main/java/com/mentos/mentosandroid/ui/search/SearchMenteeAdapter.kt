@@ -1,18 +1,19 @@
 package com.mentos.mentosandroid.ui.search
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.response.Mentee
 import com.mentos.mentosandroid.databinding.ItemHomeMenteeBinding
 import com.mentos.mentosandroid.util.MentosCategoryUtil
-import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 
-class SearchMenteeAdapter :
+class SearchMenteeAdapter(val context: Context) :
     ListAdapter<Mentee, SearchMenteeAdapter.SearchMenteeViewHolder>(SearchDiffUtil()) {
 
     inner class SearchMenteeViewHolder(
@@ -21,16 +22,29 @@ class SearchMenteeAdapter :
         fun bind(item: Mentee) {
             binding.mentee = item
 
-            //프로필 텍스트 적용
             binding.itemHomeMenteeTv.text =
-                item.nickName + "/" + item.menteeMajor + "/" + item.menteeYear + "학번"
+                item.nickName + "/" + item.menteeMajor + "/" + item.menteeYear
             binding.itemHomeMenteeTagTv.text =
                 "#" + MentosCategoryUtil.getMentosText(item.firstMajorCategory) +
                         ", #" + MentosCategoryUtil.getMentosText(item.secondMajorCategory)
 
-
             binding.itemHomeMenteeLayout.setOnClickListener {
-                it.navigateWithData(SearchFragmentDirections.actionSearchFragmentToOneMenteeProfileFragment(item.menteeStudentId))
+                it.navigateWithData(
+                    SearchFragmentDirections.actionSearchFragmentToOneMenteeProfileFragment(
+                        item.menteeStudentId
+                    )
+                )
+            }
+            initImg(item.menteeImage)
+        }
+
+        private fun initImg(menteeImage: String?) {
+            if (menteeImage == null || menteeImage == "null") {
+                binding.itemHomeMenteeImg.setImageResource(R.drawable.img_home_user)
+            } else {
+                Glide.with(context)
+                    .load(menteeImage)
+                    .into(binding.itemHomeMenteeImg)
             }
         }
     }

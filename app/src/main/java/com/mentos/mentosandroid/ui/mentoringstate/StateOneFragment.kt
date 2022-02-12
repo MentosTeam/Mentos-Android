@@ -10,13 +10,17 @@ import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentStateOneBinding
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg55
-import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
 class StateOneFragment : Fragment() {
     private lateinit var binding: FragmentStateOneBinding
     private val stateViewModel by viewModels<StateViewModel>()
     private val args by navArgs<StateOneFragmentArgs>()
+    private var mentoringId = 0
+    private var mentoringCategoryId = 0
+    private var listSize = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +28,14 @@ class StateOneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentStateOneBinding.inflate(inflater, container, false)
-        stateViewModel.requestRecordList()
+        if (args.nowMentoring != null) {
+            mentoringId = args.nowMentoring?.mentoringId!!
+            mentoringCategoryId = args.nowMentoring?.majorCategoryId!!
+        } else if (args.endMentoring != null) {
+            mentoringId = args.endMentoring?.mentoringId!!
+            mentoringCategoryId = args.endMentoring?.majorCategoryId!!
+        }
+        stateViewModel.getRecordList(mentoringId)
         initView()
         setBackBtnClickListener()
         setWriteBtnClickListener()
@@ -34,15 +45,27 @@ class StateOneFragment : Fragment() {
     }
 
     private fun initView() {
-        if (args.nowMentoring != null) {
-            with(binding) {
-                stateOneCount.text = args.nowMentoring?.mentoringCount1.toString()
-                stateOneCount2.text = args.nowMentoring?.mentoringCount2.toString()
-                stateOneMentosCount.text = args.nowMentoring?.mentos.toString()
-                stateOneNicknameMentee.text = args.nowMentoring?.mentiNickname
-                stateOneNicknameMentor.text = args.nowMentoring?.mentoNickname
+        with(binding) {
+            if (args.nowMentoring != null) {
+                stateOneCount2.text = args.nowMentoring?.mentoringCount.toString()
+                stateOneMentosCount.text = args.nowMentoring?.mentoringMentos.toString()
+                stateOneNicknameMentee.text = args.nowMentoring?.mentoringMenteeName
+                stateOneNicknameMentor.text = args.nowMentoring?.mentoringMentorName
                 stateOneMentosIv.setMentosImg55(args.nowMentoring?.majorCategoryId!!)
+
+            } else if (args.endMentoring != null) {
+                stateNowSubTitle.setText(R.string.state_sub_title_end)
+                stateOneCount2.text = args.endMentoring?.mentoringCount.toString()
+                stateOneMentosCount.text = args.endMentoring?.mentoringMentos.toString()
+                stateOneNicknameMentee.text = args.endMentoring?.mentoringMenteeName
+                stateOneNicknameMentor.text = args.endMentoring?.mentoringMentorName
+                stateOneMentosIv.setMentosImg55(args.endMentoring?.majorCategoryId!!)
             }
+        }
+
+        when (SharedPreferenceController.getNowState()) {
+            0 -> binding.stateTitleTv.setText(R.string.state_title_mentor)
+            1 -> binding.stateTitleTv.setText(R.string.state_title_mentee)
         }
     }
 
@@ -54,16 +77,25 @@ class StateOneFragment : Fragment() {
 
     private fun setWriteBtnClickListener() {
         binding.stateOneWriteIb.setOnClickListener {
-            navigate(R.id.action_stateOneFragment_to_stateRecordFragment)
+            navigateWithData(
+                StateOneFragmentDirections.actionStateOneFragmentToStateRecordFragment(
+                    args.nowMentoring?.mentoringId!!
+                )
+            )
         }
     }
 
     private fun setStateAdapter() {
-        binding.stateRecordRv.adapter = StateRecordAdapter()
+        binding.stateRecordRv.adapter = StateRecordAdapter(mentoringCategoryId)
     }
 
     private fun setStateNowObserver() {
-        stateViewModel.dummyRecordList.observe(viewLifecycleOwner) { list ->
+        stateViewModel.recordList.observe(viewLifecycleOwner) { list ->
+            listSize = list.size
+            if (SharedPreferenceController.getNowState() == 0 && list.size != args.nowMentoring!!.mentoringCount) {
+                binding.stateOneWriteIb.visibility = View.VISIBLE
+            }
+            binding.stateOneCount.text = list.size.toString()
             list?.let {
                 with(binding.stateRecordRv.adapter as StateRecordAdapter) { submitList(list) }
             }
