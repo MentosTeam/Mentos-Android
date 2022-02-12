@@ -35,7 +35,7 @@ class ProfileMenteeFragment : Fragment() {
     }
 
     private fun setCreateMentorClickListener() {
-        binding.createMentorTv.setOnClickListener {
+        binding.menteeProfileAddMentorLayout.setOnClickListener {
             //멘티 프로필 생성
             navigateWithData(
                 ProfileFragmentDirections.actionProfileFragmentToOtherAccountMentosFragment(
@@ -50,11 +50,11 @@ class ProfileMenteeFragment : Fragment() {
             when (profileState) {
                 2 -> {
                     //멘토만 존재
-                    binding.createMentorTv.visibility = View.VISIBLE
+                    binding.menteeProfileAddMentorLayout.visibility = View.VISIBLE
                 }
                 3 -> {
                     //멘토멘티 둘다 존재
-                    binding.createMentorTv.visibility = View.GONE
+                    binding.menteeProfileAddMentorLayout.visibility = View.GONE
                 }
             }
         }
