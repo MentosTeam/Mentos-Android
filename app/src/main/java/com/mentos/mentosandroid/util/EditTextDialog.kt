@@ -84,7 +84,7 @@ class EditTextDialog(
     }
 
     private fun chkReviewValidation(count: Int) {
-        if (count == 0 || count < 10) {
+        if (count == 0) {
             binding.dialogBtnComplete.setBackgroundResource(R.drawable.shape_gray_fill_8)
             binding.dialogBtnComplete.setTextColor(
                 ContextCompat.getColor(
