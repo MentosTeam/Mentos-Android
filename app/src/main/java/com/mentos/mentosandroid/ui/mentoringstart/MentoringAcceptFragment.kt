@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringAcceptBinding
@@ -15,7 +17,8 @@ import com.mentos.mentosandroid.util.popBackStack
 
 class MentoringAcceptFragment : Fragment() {
     private lateinit var binding: FragmentMentoringAcceptBinding
-//    private val args by navArgs<MentoringAcceptFragmentArgs>()
+    private val args by navArgs<MentoringAcceptFragmentArgs>()
+    private val mentoringStartViewModel by activityViewModels<MentoringStartViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,16 +33,27 @@ class MentoringAcceptFragment : Fragment() {
         //수락
         binding.mentoringAcceptYesTv.setOnClickListener {
             //서버
+            mentoringStartViewModel.patchMentoringAccept(args.stateWait.mentoringId, true)
+            mentoringStartViewModel.isSuccessAccept.observe(viewLifecycleOwner) { isSuccessAccept ->
+                if(isSuccessAccept != null){
+                    if(isSuccessAccept){
+                        binding.mentoringAcceptButtonTv.visibility = View.VISIBLE
+                        binding.mentoringAcceptYesNoLayout.visibility = View.GONE
+                        binding.mentoringAcceptSubtitle1Tv.setText(R.string.mentoring_accepted_subtitle1)
+                        binding.mentoringAcceptSubtitle2Tv.setText(R.string.mentoring_accepted_subtitle2)
+                    }else{
+                        Toast.makeText(requireContext(), "멘토링 수락을 실패했습니다", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
 
-            binding.mentoringAcceptButtonTv.visibility = View.VISIBLE
-            binding.mentoringAcceptYesNoLayout.visibility = View.GONE
-            binding.mentoringAcceptSubtitle1Tv.setText(R.string.mentoring_accepted_subtitle1)
-            binding.mentoringAcceptSubtitle2Tv.setText(R.string.mentoring_accepted_subtitle2)
         }
+
         //거절
         binding.mentoringAcceptNoTv.setOnClickListener {
             //서버
-
+            mentoringStartViewModel.patchMentoringAccept(args.stateWait.mentoringId, false)
+            Toast.makeText(requireContext(), "멘토링을 거절했습니다", Toast.LENGTH_SHORT).show()
             popBackStack()
         }
 
@@ -53,14 +67,14 @@ class MentoringAcceptFragment : Fragment() {
     private fun initLayout() {
         binding.mentoringAcceptButtonTv.visibility = View.GONE
 
-//        val mentoringStart = args.mentoringStart
-//
-//        binding.mentoringAcceptLayout.setMentosColor(mentoringStart.majorCategoryId)
-//        binding.mentoringAcceptMentosCompleteIv.setMentosImg41(mentoringStart.majorCategoryId)
-//        binding.mentoringAcceptMentosCompleteNumberTv.text =
-//            "멘토링 ${mentoringStart.mentoringCount.toString()}회(멘토-쓰 ${mentoringStart.mentos}개)"
-//        binding.mentoringAcceptMentosCompleteNameTv.text =
-//            "${mentoringStart.mentoId.toString()} 멘토 / ~~ 멘티"
+        val stateWait = args.stateWait
+
+        binding.mentoringAcceptLayout.setMentosColor(stateWait.majorCategoryId)
+        binding.mentoringAcceptMentosCompleteIv.setMentosImg41(stateWait.majorCategoryId)
+        binding.mentoringAcceptMentosCompleteNumberTv.text =
+            "멘토링 ${stateWait.mentoringCount.toString()}회(멘토-쓰 ${stateWait.mentoringMentos}개)"
+        binding.mentoringAcceptMentosCompleteNameTv.text =
+            "${stateWait.mentoringMentorName} 멘토 / ${stateWait.mentoringMenteeName} 멘티"
     }
 
     private fun setBtnBackClickListener() {

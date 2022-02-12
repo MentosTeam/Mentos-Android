@@ -124,6 +124,15 @@
     </fragment>
 
     <fragment
+        android:id="@+id/mentoringAcceptFragment"
+        android:name="com.mentos.mentosandroid.ui.mentoringstart.MentoringAcceptFragment"
+        android:label="MentoringAcceptFragment"
+        tools:layout="@layout/fragment_mentoring_accept">
+        <argument
+            android:name="stateWait"
+            app:argType="com.mentos.mentosandroid.data.response.StateWait"/>
+    </fragment>
+    <fragment
         android:id="@+id/stateFragment"
         android:name="com.mentos.mentosandroid.ui.mentoringstate.StateFragment"
         android:label="StateFragment"
@@ -131,6 +140,12 @@
         <action
             android:id="@+id/action_stateFragment_to_stateOneFragment"
             app:destination="@id/stateOneFragment" />
+        <action
+            android:id="@+id/action_stateFragment_to_mentoringAcceptFragment"
+            app:destination="@id/mentoringAcceptFragment" />
+        <action
+            android:id="@+id/action_stateFragment_to_mentoringStart5Fragment"
+            app:destination="@id/mentoringStart5Fragment" />
     </fragment>
 
     <fragment
@@ -276,7 +291,12 @@
         tools:layout="@layout/fragment_mentoring_start5">
         <argument
             android:name="mentoringStart"
+            app:nullable="true"
             app:argType="com.mentos.mentosandroid.data.request.RequestMentoringStart" />
+        <argument
+            android:name="stateWait"
+            app:nullable="true"
+            app:argType="com.mentos.mentosandroid.data.response.StateWait"/>
     </fragment>
 
     <fragment
