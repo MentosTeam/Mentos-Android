@@ -19,6 +19,9 @@ class MentoringStartViewModel : ViewModel() {
     private val _nickName = MutableLiveData<NickNameResult>()
     val nickName: LiveData<NickNameResult> = _nickName
 
+    private val _isSuccessAccept = MutableLiveData<Boolean>()
+    val isSuccessAccept: LiveData<Boolean> = _isSuccessAccept
+
     fun postMentoringStart(mentoringStart: RequestMentoringStart) {
         viewModelScope.launch {
             try {
@@ -56,6 +59,27 @@ class MentoringStartViewModel : ViewModel() {
             } catch (e: HttpException) {
                 Log.d("닉네임", e.code().toString())
                 Log.d("닉네임", e.message())
+            }
+        }
+    }
+
+    fun patchMentoringAccept(mentoringId: Int, accept: Boolean) {
+        viewModelScope.launch {
+            try {
+                val responseMentoringAccept =
+                    ServiceBuilder.mentoringStartService.patchMentoringAccept(mentoringId, accept)
+                Log.d("멘토링 수락", responseMentoringAccept.toString())
+                if (responseMentoringAccept.code == 1000) {
+                    _isSuccessAccept.value = true
+                } else {
+                    Log.d("멘토링 수락", responseMentoringAccept.code.toString())
+                    Log.d("멘토링 수락", responseMentoringAccept.message)
+                    _isSuccessAccept.value = false
+                }
+            } catch (e: HttpException) {
+                Log.d("멘토링 수락", e.code().toString())
+                Log.d("멘토링 수락", e.message())
+                _isSuccessAccept.value = false
             }
         }
     }

@@ -2,11 +2,9 @@ package com.mentos.mentosandroid.data.api
 
 import com.mentos.mentosandroid.data.request.RequestMentoringStart
 import com.mentos.mentosandroid.data.response.ResponseMentorNicName
+import com.mentos.mentosandroid.data.response.ResponseMentoringAccept
 import com.mentos.mentosandroid.data.response.ResponseMentoringStart
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface MentoringStartService {
 
@@ -19,4 +17,10 @@ interface MentoringStartService {
     suspend fun getMentorNickName(
         @Query("mentoId") mentoId: Int
     ): ResponseMentorNicName
+
+    @PATCH("/mentoring/acceptance")
+    suspend fun patchMentoringAccept(
+        @Query("mentoringId") mentoringId: Int,
+        @Query("accept") accept: Boolean
+    ): ResponseMentoringAccept
 }

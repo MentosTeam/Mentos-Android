@@ -31,18 +31,30 @@ class MentoringStart5Fragment : Fragment() {
 
     private fun initLayout() {
         val mentoringStart = args.mentoringStart
+        val stateWait = args.stateWait
 
-        mentoringStartViewModel.nickName.observe(viewLifecycleOwner) { nickName ->
-            if (nickName != null) {
-                binding.mentoringStart5MentosCompleteNameTv.text =
-                    "${nickName.mentoNickname} 멘토 / ${nickName.mentiNickname} 멘티"
+        if (mentoringStart != null) {
+            mentoringStartViewModel.nickName.observe(viewLifecycleOwner) { nickName ->
+                if (nickName != null) {
+                    binding.mentoringStart5MentosCompleteNameTv.text =
+                        "${nickName.mentoNickname} 멘토 / ${nickName.mentiNickname} 멘티"
 
-                binding.mentoringStart5Layout.setMentosColor(mentoringStart.majorCategoryId)
-                binding.mentoringStart5MentosCompleteIv.setMentosImg41(mentoringStart.majorCategoryId)
-                binding.mentoringStart5MentosCompleteNumberTv.text =
-                    "멘토링 ${mentoringStart.mentoringCount.toString()}회(멘토-쓰 ${mentoringStart.mentos}개)"
+                    binding.mentoringStart5Layout.setMentosColor(mentoringStart.majorCategoryId)
+                    binding.mentoringStart5MentosCompleteIv.setMentosImg41(mentoringStart.majorCategoryId)
+                    binding.mentoringStart5MentosCompleteNumberTv.text =
+                        "멘토링 ${mentoringStart.mentoringCount.toString()}회(멘토-쓰 ${mentoringStart.mentos}개)"
+                }
             }
+        } else if (stateWait != null) {
+            binding.mentoringStart5MentosCompleteNameTv.text =
+                "${stateWait.mentoringMentorName} 멘토 / ${stateWait.mentoringMenteeName} 멘티"
+
+            binding.mentoringStart5Layout.setMentosColor(stateWait.majorCategoryId)
+            binding.mentoringStart5MentosCompleteIv.setMentosImg41(stateWait.majorCategoryId)
+            binding.mentoringStart5MentosCompleteNumberTv.text =
+                "멘토링 ${stateWait.mentoringCount.toString()}회(멘토-쓰 ${stateWait.mentoringMentos}개)"
         }
+
     }
 
     private fun setBtnBackClickListener() {

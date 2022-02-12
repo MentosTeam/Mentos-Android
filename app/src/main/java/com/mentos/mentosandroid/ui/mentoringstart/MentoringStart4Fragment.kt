@@ -42,7 +42,8 @@ class MentoringStart4Fragment : Fragment() {
                         //start5로 이동
                         navigateWithData(
                             MentoringStart4FragmentDirections.actionMentoringStart4FragmentToMentoringStart5Fragment(
-                                args.mentoringStart
+                                mentoringStart = args.mentoringStart,
+                                stateWait = null
                             )
                         )
                     }else{
