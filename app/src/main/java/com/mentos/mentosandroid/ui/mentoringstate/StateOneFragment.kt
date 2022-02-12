@@ -20,6 +20,7 @@ class StateOneFragment : Fragment() {
     private val args by navArgs<StateOneFragmentArgs>()
     private var mentoringId = 0
     private var mentoringCategoryId = 0
+    private var mentoringCount = 0
     private var listSize = 0
 
     override fun onCreateView(
@@ -28,13 +29,7 @@ class StateOneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentStateOneBinding.inflate(inflater, container, false)
-        if (args.nowMentoring != null) {
-            mentoringId = args.nowMentoring?.mentoringId!!
-            mentoringCategoryId = args.nowMentoring?.majorCategoryId!!
-        } else if (args.endMentoring != null) {
-            mentoringId = args.endMentoring?.mentoringId!!
-            mentoringCategoryId = args.endMentoring?.majorCategoryId!!
-        }
+        initData()
         stateViewModel.getRecordList(mentoringId)
         initView()
         setBackBtnClickListener()
@@ -42,6 +37,18 @@ class StateOneFragment : Fragment() {
         setStateAdapter()
         setStateNowObserver()
         return binding.root
+    }
+
+    private fun initData() {
+        if (args.nowMentoring != null) {
+            mentoringId = args.nowMentoring?.mentoringId!!
+            mentoringCategoryId = args.nowMentoring?.majorCategoryId!!
+            mentoringCount = args.nowMentoring?.mentoringCount!!
+        } else if (args.endMentoring != null) {
+            mentoringId = args.endMentoring?.mentoringId!!
+            mentoringCategoryId = args.endMentoring?.majorCategoryId!!
+            mentoringCount = args.endMentoring?.mentoringCount!!
+        }
     }
 
     private fun initView() {
@@ -92,7 +99,7 @@ class StateOneFragment : Fragment() {
     private fun setStateNowObserver() {
         stateViewModel.recordList.observe(viewLifecycleOwner) { list ->
             listSize = list.size
-            if (SharedPreferenceController.getNowState() == 0 && list.size != args.nowMentoring!!.mentoringCount) {
+            if (SharedPreferenceController.getNowState() == 0 && list.size != mentoringCount) {
                 binding.stateOneWriteIb.visibility = View.VISIBLE
             }
             binding.stateOneCount.text = list.size.toString()
