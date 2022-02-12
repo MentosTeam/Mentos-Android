@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mentos.mentosandroid.ui.otheraccount.OtherAccountViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_main_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/account_intro_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/account_intro_title_mentor"
+                android:textColor="@color/black_3333"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/account_intro_sub_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/account_intro_sub_title_mentor"
+                android:textColor="@color/gray_7070"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/account_intro_title_tv"
+                app:layout_constraintTop_toBottomOf="@id/account_intro_title_tv" />
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/account_intro_container_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginTop="25dp"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_intro_sub_title_tv"
+                app:neumorph_backgroundColor="@color/white"
+                app:neumorph_inset="5dp"
+                app:neumorph_shadowColorDark="@color/gray_shadow"
+                app:neumorph_shadowColorLight="@android:color/transparent"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/shadow_round_20"
+                app:neumorph_shapeType="flat"
+                app:neumorph_strokeColor="@color/gray_eded"
+                app:neumorph_strokeWidth="1dp">
+
+                <EditText
+                    android:id="@+id/record_content_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/noto_regular"
+                    android:gravity="top"
+                    android:hint="@string/account_intro_hint"
+                    android:includeFontPadding="false"
+                    android:inputType="textMultiLine"
+                    android:maxLength="250"
+                    android:overScrollMode="always"
+                    android:scrollbars="vertical"
+                    android:text="@={viewModel.introduce}"
+                    android:textColor="@color/black_3333"
+                    android:textColorHint="@color/gray_c7c6"
+                    android:textSize="11sp" />
+            </soup.neumorphism.NeumorphCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/account_intro_btn_complete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="27dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@{viewModel.canRegister ? @color/black_0000 : @color/gray_eded}"
+                android:clickable="@{viewModel.canRegister ? true : false}"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingVertical="13dp"
+                android:stateListAnimator="@null"
+                android:text="@string/account_intro_btn"
+                android:textColor="@{viewModel.canRegister ? @color/white : @color/gray_c7c6}"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_intro_container_layout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

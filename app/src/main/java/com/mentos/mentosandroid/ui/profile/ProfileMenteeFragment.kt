@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMenteeBinding
 import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigateWithData
 
 class ProfileMenteeFragment : Fragment() {
     private lateinit var binding: FragmentProfileMenteeBinding
@@ -27,7 +28,36 @@ class ProfileMenteeFragment : Fragment() {
         initSex()
         initImg()
 
+        initCreateMentorView()
+        setCreateMentorClickListener()
+
         return binding.root
+    }
+
+    private fun setCreateMentorClickListener() {
+        binding.menteeProfileAddMentorLayout.setOnClickListener {
+            //멘티 프로필 생성
+            navigateWithData(
+                ProfileFragmentDirections.actionProfileFragmentToOtherAccountMentosFragment(
+                    1
+                )
+            )
+        }
+    }
+
+    private fun initCreateMentorView() {
+        profileViewModel.profileState.observe(viewLifecycleOwner) { profileState ->
+            when (profileState) {
+                2 -> {
+                    //멘토만 존재
+                    binding.menteeProfileAddMentorLayout.visibility = View.VISIBLE
+                }
+                3 -> {
+                    //멘토멘티 둘다 존재
+                    binding.menteeProfileAddMentorLayout.visibility = View.GONE
+                }
+            }
+        }
     }
 
     private fun initSex() {

@@ -427,13 +427,10 @@ class SettingViewModel : ViewModel() {
     fun postWithdrawal(password: String){
         viewModelScope.launch {
             try {
-                Log.d("회원 탈퇴", "000000000000000000000000")
-                Log.d("회원 탈퇴", password)
                 val responseWithdrawal = ServiceBuilder.settingService.postWithdrawal(
                     RequestWithdrawal(password)
                 )
                 Log.d("회원 탈퇴", responseWithdrawal.message)
-                Log.d("회원 탈퇴", "탈퇴 $password")
                 _isSuccessWithdrawal.value = responseWithdrawal.isSuccess
             }catch (e:HttpException){
                 Log.d("회원 탈퇴", e.message())

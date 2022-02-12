@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMentorBinding
+import com.mentos.mentosandroid.ui.account.AccountDialogFragmentDirections
 import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
@@ -34,19 +35,51 @@ class ProfileMentorFragment : Fragment() {
         setPostMoreClickListener()
         setReviewMoreClickListener()
 
-        initMentosVP()
-
+        initCreateMenteeView()
+        setCreateMenteeClickListener()
+        setMentorListObserve()
         return binding.root
     }
 
-    private fun initMentosVP() {
-        val mentosVPAdapter = ProfileMentosVPAdapter(this)
-        mentosVPAdapter.mentosList =
-            if (profileViewModel.mentorMentosList.value == null) {
-                ArrayList()
+    private fun setMentorListObserve() {
+        profileViewModel.mentorMentosList.observe(viewLifecycleOwner) { mentorMentosList ->
+            if (mentorMentosList != null) {
+                initMentosVP(mentorMentosList)
             } else {
-                profileViewModel.mentorMentosList.value!!
+                initMentosVP(ArrayList())
             }
+        }
+    }
+
+    private fun setCreateMenteeClickListener() {
+        binding.mentorProfileAddMenteeLayout.setOnClickListener {
+            //멘티 프로필 생성
+            navigateWithData(
+                ProfileFragmentDirections.actionProfileFragmentToOtherAccountMentosFragment(
+                    2
+                )
+            )
+        }
+    }
+
+    private fun initCreateMenteeView() {
+        profileViewModel.profileState.observe(viewLifecycleOwner) { profileState ->
+            when (profileState) {
+                1 -> {
+                    //멘토만 존재
+                    binding.mentorProfileAddMenteeLayout.visibility = View.VISIBLE
+                }
+                3 -> {
+                    //멘토멘티 둘다 존재
+                    binding.mentorProfileAddMenteeLayout.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun initMentosVP(mentosList: ArrayList<Int>) {
+        val mentosVPAdapter = ProfileMentosVPAdapter(this)
+        mentosVPAdapter.mentosList = mentosList
 
         val mentosVP = binding.mentorProfileMentoringMentosVp
 
