@@ -72,6 +72,7 @@ class StateViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val responseGetRecord = ServiceBuilder.stateService.getRecord(mentoringId)
+                tempRecordList.clear()
                 for (i in responseGetRecord.result.reports.indices) {
                     tempRecordList.add(
                         i,
