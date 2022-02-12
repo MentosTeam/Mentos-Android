@@ -23,7 +23,7 @@ class StateNowAdapter :
                 stateNowMentosIv.setMentosImg55(item.majorCategoryId)
                 stateNowLayout.setMentosBgStroke(item.majorCategoryId)
 
-                stateNowCount.text = item.mentoringCount.toString()
+                stateNowCount.text = item.currentCount.toString()
                 stateNowCount2.text = item.mentoringCount.toString()
                 stateNowMentosCount.text = item.mentoringMentos.toString()
             }
@@ -31,7 +31,8 @@ class StateNowAdapter :
             binding.stateNowLayout.setOnClickListener {
                 it.navigateWithData(
                     StateFragmentDirections.actionStateFragmentToStateOneFragment(
-                        item
+                        nowMentoring = item,
+                        endMentoring = null
                     )
                 )
             }

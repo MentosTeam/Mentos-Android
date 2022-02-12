@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.mentoringstate
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,10 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.mentos.mentosandroid.data.api.ServiceBuilder
 import com.mentos.mentosandroid.data.request.RequestReview
 import com.mentos.mentosandroid.data.request.RequestStateRecord
-import com.mentos.mentosandroid.data.response.StateEndMentee
-import com.mentos.mentosandroid.data.response.StateEndMentor
-import com.mentos.mentosandroid.data.response.StateNow
-import com.mentos.mentosandroid.data.response.StateRecord
+import com.mentos.mentosandroid.data.response.*
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -23,20 +19,19 @@ class StateViewModel : ViewModel() {
     private val _nowList = MutableLiveData<List<StateNow>>()
     val nowList: LiveData<List<StateNow>> = _nowList
 
-    private val _endMentorList = MutableLiveData<List<StateEndMentor>>()
-    val endMentorList: LiveData<List<StateEndMentor>> = _endMentorList
+    private val _endList = MutableLiveData<List<StateEnd>>()
+    val endList: LiveData<List<StateEnd>> = _endList
 
-    private val _endMenteeList = MutableLiveData<List<StateEndMentee>>()
-    val endMenteeList: LiveData<List<StateEndMentee>> = _endMenteeList
-
-    private val _beforeList = MutableLiveData<List<StateNow>>()
-    val beforeList: LiveData<List<StateNow>> = _beforeList
+    private val _waitList = MutableLiveData<List<StateWait>>()
+    val waitList: LiveData<List<StateWait>> = _waitList
 
     private val _recordList = MutableLiveData<List<StateRecord>>()
     val recordList: LiveData<List<StateRecord>> = _recordList
 
     private val _isLastRecord = MutableLiveData<Boolean>()
     val isLastRecord: LiveData<Boolean> = _isLastRecord
+
+    private val tempRecordList = mutableListOf<StateRecord>()
 
     private val _canRecord = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(recordContent)
@@ -47,15 +42,13 @@ class StateViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val responseMentor = ServiceBuilder.stateService.getMentorState()
-
                 _nowList.postValue(responseMentor.result.nowMentoring)
-                _endMentorList.postValue(responseMentor.result.endMentoring)
-                _beforeList.postValue(responseMentor.result.beforeMentoring)
+                _endList.postValue(responseMentor.result.endMentoring)
+                _waitList.postValue(responseMentor.result.waitMentoring)
             } catch (e: HttpException) {
                 _nowList.postValue(listOf())
-                _endMentorList.postValue(listOf())
-                _beforeList.postValue(listOf())
-                Log.d("현황-멘토 실패", e.message.toString())
+                _endList.postValue(listOf())
+                _waitList.postValue(listOf())
             }
         }
     }
@@ -64,15 +57,13 @@ class StateViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val responseMentee = ServiceBuilder.stateService.getMenteeState()
-
                 _nowList.postValue(responseMentee.result.nowMentoring)
-                _endMenteeList.postValue(responseMentee.result.endMentoring)
-                _beforeList.postValue(responseMentee.result.beforeMentoring)
+                _endList.postValue(responseMentee.result.endMentoring)
+                _waitList.postValue(responseMentee.result.waitMentoring)
             } catch (e: HttpException) {
                 _nowList.postValue(listOf())
-                _endMentorList.postValue(listOf())
-                _beforeList.postValue(listOf())
-                Log.d("현황-멘티 실패", e.message.toString())
+                _endList.postValue(listOf())
+                _waitList.postValue(listOf())
             }
         }
     }
@@ -81,10 +72,16 @@ class StateViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val responseGetRecord = ServiceBuilder.stateService.getRecord(mentoringId)
-                _recordList.postValue(responseGetRecord.result.reports)
+                for (i in responseGetRecord.result.reports.indices) {
+                    tempRecordList.add(
+                        i,
+                        responseGetRecord.result.reports[responseGetRecord.result.reports.size - (1 + i)]
+                    )
+                }
+                _recordList.value = tempRecordList.toMutableList()
+
             } catch (e: HttpException) {
                 _recordList.postValue(listOf())
-                Log.d("일지 조회-실패", e.message.toString())
             }
         }
     }
@@ -92,8 +89,6 @@ class StateViewModel : ViewModel() {
     fun postRecord(mentoringId: Int) {
         viewModelScope.launch {
             try {
-                Log.d("일지 등록-id", mentoringId.toString())
-                Log.d("일지 등록-기록", recordContent.value.toString())
                 val responsePostRecord = ServiceBuilder.stateService.postRecord(
                     RequestStateRecord(
                         mentoringId = mentoringId,
@@ -107,7 +102,6 @@ class StateViewModel : ViewModel() {
                     }
                 }
             } catch (e: HttpException) {
-                Log.d("일지 등록-실패", e.message.toString())
             }
         }
     }
@@ -115,9 +109,6 @@ class StateViewModel : ViewModel() {
     fun postReview(mentoringId: Int, reviewScore: Double, reviewText: String) {
         viewModelScope.launch {
             try {
-                Log.d("리뷰 등록- id", mentoringId.toString())
-                Log.d("리뷰 등록- 점수", reviewScore.toString())
-                Log.d("리뷰 등록- 내용", reviewText)
                 ServiceBuilder.stateService.postReview(
                     mentoringId,
                     RequestReview(
@@ -127,7 +118,6 @@ class StateViewModel : ViewModel() {
                     )
                 )
             } catch (e: HttpException) {
-                Log.d("리뷰 등록-실패", e.message.toString())
             }
         }
     }

@@ -8,7 +8,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="beforeListSize"
+            name="waitListSize"
             type="Integer" />
 
         <variable
@@ -64,16 +64,16 @@
                 android:layout_height="wrap_content">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/state_before_layout"
+                    android:id="@+id/state_wait_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="@{beforeListSize == 0 ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{waitListSize == 0 ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/state_before_title_tv"
+                        android:id="@+id/state_wait_title_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="19dp"
@@ -86,7 +86,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/state_before_rv"
+                        android:id="@+id/state_wait_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
@@ -101,9 +101,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/state_before_title_tv"
+                        app:layout_constraintTop_toBottomOf="@id/state_wait_title_tv"
                         tools:itemCount="1"
-                        tools:listitem="@layout/item_state_before_confirm" />
+                        tools:listitem="@layout/item_state_wait" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/state_before_layout">
+                    app:layout_constraintTop_toBottomOf="@id/state_wait_layout">
 
                     <TextView
                         android:id="@+id/state_now_title_tv"
@@ -186,27 +186,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/state_end_mentor_rv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginBottom="11dp"
-                        android:background="@drawable/shape_gray_stroke_rec"
-                        android:minHeight="300dp"
-                        android:overScrollMode="never"
-                        android:paddingHorizontal="14dp"
-                        android:paddingTop="4dp"
-                        android:scrollbars="none"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/state_end_title_tv"
-                        tools:itemCount="2"
-                        tools:listitem="@layout/item_state_end" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/state_end_mentee_rv"
+                        android:id="@+id/state_end_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"

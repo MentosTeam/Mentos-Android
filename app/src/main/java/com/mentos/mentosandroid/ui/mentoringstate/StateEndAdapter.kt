@@ -7,24 +7,26 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.response.StateEndMentee
+import com.mentos.mentosandroid.data.response.StateEnd
 import com.mentos.mentosandroid.databinding.ItemStateEndBinding
 import com.mentos.mentosandroid.util.EditTextDialog
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosBgStroke
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosColor
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg59
 import com.mentos.mentosandroid.util.OneButtonDialog
+import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.util.navigateWithData
 
-class StateEndMenteeAdapter(
+class StateEndAdapter(
     val fragmentManager: FragmentManager,
     val stateViewModel: StateViewModel
 ) :
-    ListAdapter<StateEndMentee, StateEndMenteeAdapter.StateEndMenteeViewHolder>(StateEndDiffUtil()) {
+    ListAdapter<StateEnd, StateEndAdapter.StateEndMenteeViewHolder>(StateEndDiffUtil()) {
 
     inner class StateEndMenteeViewHolder(
         private val binding: ItemStateEndBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: StateEndMentee) {
+        fun bind(item: StateEnd) {
             with(binding) {
                 stateEndMentosIv.setMentosImg59(item.majorCategoryId)
                 stateEndContainerLayout.setMentosColor(item.majorCategoryId)
@@ -32,30 +34,40 @@ class StateEndMenteeAdapter(
                 stateEndCount.text = item.mentoringCount.toString()
                 stateEndCount2.text = item.mentoringCount.toString()
                 stateEndMentosCount.text = item.mentoringMentos.toString()
-                stateEndNicknameMentee.text = item.mentoringMenteeName
-                stateEndNicknameMentor.text = item.mentoringMentorName
             }
 
             binding.stateEndReviewWriteLayout.setOnClickListener {
                 OneButtonDialog(3) { rating ->
                     EditTextDialog(0) { reviewText ->
                         stateViewModel.postReview(item.mentoringId, rating!!.toDouble(), reviewText)
-                        OneButtonDialog(2) {}.show(fragmentManager, "review")
+                        OneButtonDialog(2) {
+                            stateViewModel.getStateMenteeList()
+                        }.show(fragmentManager, "review")
                     }.show(fragmentManager, "review_text")
                 }.show(fragmentManager, "review_star")
             }
 
-            when (item.review) {
-                true -> {
-                    binding.stateEndReviewDoneLayout.visibility = View.VISIBLE
-                    binding.stateEndReviewWriteLayout.visibility = View.GONE
+            if(SharedPreferenceController.getNowState()==1){
+                when (item.reviewCheck ) {
+                    1 -> {
+                        binding.stateEndReviewDoneLayout.visibility = View.VISIBLE
+                        binding.stateEndReviewWriteLayout.visibility = View.GONE
+                    }
+                    0 -> {
+                        binding.stateEndReviewDoneLayout.visibility = View.GONE
+                        binding.stateEndReviewWriteLayout.visibility = View.VISIBLE
+                        binding.stateEndReviewWriteContainerLayout.setMentosBgStroke(item.majorCategoryId)
+                    }
                 }
-                false -> {
-                    // 리뷰 작성 아직 안함
-                    binding.stateEndReviewDoneLayout.visibility = View.GONE
-                    binding.stateEndReviewWriteLayout.visibility = View.VISIBLE
-                    binding.stateEndReviewWriteContainerLayout.setMentosBgStroke(item.majorCategoryId)
-                }
+            }
+
+            binding.stateEndLayout.setOnClickListener {
+                it.navigateWithData(
+                    StateFragmentDirections.actionStateFragmentToStateOneFragment(
+                        nowMentoring = null,
+                        endMentoring = item
+                    )
+                )
             }
         }
     }
@@ -74,12 +86,12 @@ class StateEndMenteeAdapter(
         holder.bind(getItem(position))
     }
 
-    private class StateEndDiffUtil : DiffUtil.ItemCallback<StateEndMentee>() {
-        override fun areContentsTheSame(oldItem: StateEndMentee, newItem: StateEndMentee): Boolean {
+    private class StateEndDiffUtil : DiffUtil.ItemCallback<StateEnd>() {
+        override fun areContentsTheSame(oldItem: StateEnd, newItem: StateEnd): Boolean {
             return oldItem == newItem
         }
 
-        override fun areItemsTheSame(oldItem: StateEndMentee, newItem: StateEndMentee): Boolean {
+        override fun areItemsTheSame(oldItem: StateEnd, newItem: StateEnd): Boolean {
             return oldItem.mentoringId == newItem.mentoringId
         }
     }

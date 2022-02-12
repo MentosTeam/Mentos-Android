@@ -143,6 +143,11 @@
             android:defaultValue="@null"
             app:argType="com.mentos.mentosandroid.data.response.StateNow"
             app:nullable="true" />
+        <argument
+            android:name="endMentoring"
+            android:defaultValue="@null"
+            app:argType="com.mentos.mentosandroid.data.response.StateEnd"
+            app:nullable="true" />
         <action
             android:id="@+id/action_stateOneFragment_to_stateRecordFragment"
             app:destination="@id/stateRecordFragment" />

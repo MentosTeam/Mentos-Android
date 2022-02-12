@@ -7,10 +7,10 @@ import retrofit2.http.*
 
 interface StateService {
 
-    @GET("/member/mentoring/mentor")
+    @GET("/members/mentoring/mentor")
     suspend fun getMentorState(): ResponseStateMentor
 
-    @GET("/member/mentoring/mentee")
+    @GET("/members/mentoring/mentee")
     suspend fun getMenteeState(): ResponseStateMentee
 
     @POST("/mentoring/review/{mentoringId}")

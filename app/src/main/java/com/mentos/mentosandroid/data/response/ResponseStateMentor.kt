@@ -11,9 +11,9 @@ data class ResponseStateMentor(
 )
 
 data class StateMentorResult(
-    val beforeMentoring: List<StateNow>,
+    val waitMentoring: List<StateWait>,
     val nowMentoring: List<StateNow>,
-    val endMentoring: List<StateEndMentor>
+    val endMentoring: List<StateEnd>
 )
 
 @Parcelize
@@ -21,23 +21,29 @@ data class StateNow(
     val mentoringId: Int,
     val majorCategoryId: Int,
     val mentoringCount: Int,
-    // val mentoringCount2: Int,
+    val currentCount: Int,
     val mentoringMentos: Int,
     val mentoringMentorName: String,
-    val mentoringMenteeName: String,
+    val mentoringMenteeName: String
 ) : Parcelable
 
-
 @Parcelize
-data class StateEndMentor(
+data class StateEnd(
     val mentoringId: Int,
     val majorCategoryId: Int,
     val mentoringCount: Int,
-    // val mentoringCount2: Int,
     val mentoringMentos: Int,
     val mentoringMentorName: String,
     val mentoringMenteeName: String,
-    // val mentoringCreateAt: String,
-    // val mentoringUpdateAt: String
-    //  val mentoringStatus: Int,
+    val reviewCheck: Int
+) : Parcelable
+
+@Parcelize
+data class StateWait(
+    val mentoringId: Int,
+    val majorCategoryId: Int,
+    val mentoringCount: Int,
+    val mentoringMentos: Int,
+    val mentoringMentorName: String,
+    val mentoringMenteeName: String
 ) : Parcelable
