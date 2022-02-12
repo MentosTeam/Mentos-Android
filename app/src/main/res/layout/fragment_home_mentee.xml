@@ -99,7 +99,7 @@
                                     android:layout_marginStart="3dp"
                                     android:fontFamily="@font/noto_regular"
                                     android:includeFontPadding="false"
-                                    android:text="10개"
+                                    android:text="@{String.valueOf(homeViewModel.menteeHomeData.mentos) + `개`}"
                                     android:textColor="@color/gray_7070"
                                     android:textSize="10sp"
                                     app:layout_constraintBottom_toBottomOf="@+id/home_mentos_img"

@@ -35,15 +35,24 @@ class ProfileMentorFragment : Fragment() {
         setPostMoreClickListener()
         setReviewMoreClickListener()
 
-        initMentosVP()
-
         initCreateMenteeView()
         setCreateMenteeClickListener()
+        setMentorListObserve()
         return binding.root
     }
 
+    private fun setMentorListObserve() {
+        profileViewModel.mentorMentosList.observe(viewLifecycleOwner) { mentorMentosList ->
+            if (mentorMentosList != null) {
+                initMentosVP(mentorMentosList)
+            } else {
+                initMentosVP(ArrayList())
+            }
+        }
+    }
+
     private fun setCreateMenteeClickListener() {
-        binding.createMenteeTv.setOnClickListener {
+        binding.mentorProfileAddMenteeLayout.setOnClickListener {
             //멘티 프로필 생성
             navigateWithData(
                 ProfileFragmentDirections.actionProfileFragmentToOtherAccountMentosFragment(
@@ -58,24 +67,19 @@ class ProfileMentorFragment : Fragment() {
             when (profileState) {
                 1 -> {
                     //멘토만 존재
-                    binding.createMenteeTv.visibility = View.VISIBLE
+                    binding.mentorProfileAddMenteeLayout.visibility = View.VISIBLE
                 }
                 3 -> {
                     //멘토멘티 둘다 존재
-                    binding.createMenteeTv.visibility = View.GONE
+                    binding.mentorProfileAddMenteeLayout.visibility = View.GONE
                 }
             }
         }
     }
 
-    private fun initMentosVP() {
+    private fun initMentosVP(mentosList: ArrayList<Int>) {
         val mentosVPAdapter = ProfileMentosVPAdapter(this)
-        mentosVPAdapter.mentosList =
-            if (profileViewModel.mentorMentosList.value == null) {
-                ArrayList()
-            } else {
-                profileViewModel.mentorMentosList.value!!
-            }
+        mentosVPAdapter.mentosList = mentosList
 
         val mentosVP = binding.mentorProfileMentoringMentosVp
 

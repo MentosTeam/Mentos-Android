@@ -30,12 +30,22 @@ class OneMentorProfileFragment : Fragment() {
     ): View {
         binding = FragmentOneMentorProfileBinding.inflate(inflater, container, false)
         initViewModel()
-        initMentosVP()
         initSex()
         initImg()
         setBackBtnClickListener()
         setNavigateWithMentorId()
+        setMentorListObserve()
         return binding.root
+    }
+
+    private fun setMentorListObserve() {
+        profileViewModel.mentorMentosList.observe(viewLifecycleOwner) { mentorMentosList ->
+            if (mentorMentosList != null) {
+                initMentosVP(mentorMentosList)
+            } else {
+                initMentosVP(ArrayList())
+            }
+        }
     }
 
     private fun initViewModel() {
@@ -45,14 +55,9 @@ class OneMentorProfileFragment : Fragment() {
         binding.lifecycleOwner = this
     }
 
-    private fun initMentosVP() {
+    private fun initMentosVP(mentosList: ArrayList<Int>) {
         val mentosVPAdapter = ProfileMentosVPAdapter(this)
-        mentosVPAdapter.mentosList =
-            if (profileViewModel.mentorMentosList.value == null) {
-                ArrayList()
-            } else {
-                profileViewModel.mentorMentosList.value!!
-            }
+        mentosVPAdapter.mentosList = mentosList
 
         val mentosVP = binding.mentorProfileMentoringMentosVp
 
