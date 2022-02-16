@@ -2,17 +2,15 @@ package com.mentos.mentosandroid.ui.home
 
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentHomeMentorBinding
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 

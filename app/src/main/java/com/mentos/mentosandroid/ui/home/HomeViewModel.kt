@@ -10,7 +10,7 @@ import com.mentos.mentosandroid.data.response.HomeMenteeResult
 import com.mentos.mentosandroid.data.response.HomeMentorResult
 import com.mentos.mentosandroid.data.response.MenteeCategory
 import com.mentos.mentosandroid.data.response.MentorCategory
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 

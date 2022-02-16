@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSignUpSecondBinding
-import com.mentos.mentosandroid.util.DialogUtil
+import com.mentos.mentosandroid.util.customdialog.DialogUtil
 import com.mentos.mentosandroid.util.navigate
 
 class SignUpSecondFragment : Fragment() {

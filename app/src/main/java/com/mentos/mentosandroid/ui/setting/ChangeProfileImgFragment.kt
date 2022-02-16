@@ -2,25 +2,21 @@ package com.mentos.mentosandroid.ui.setting
 
 import android.Manifest
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangeProfileImgBinding
 import com.mentos.mentosandroid.util.MultiPartResolver
+import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.popBackStack
-import java.io.ByteArrayOutputStream
 
 class ChangeProfileImgFragment : Fragment() {
     private lateinit var binding: FragmentChangeProfileImgBinding
@@ -88,30 +84,16 @@ class ChangeProfileImgFragment : Fragment() {
         }
     }
 
-//    private fun setImgMultiPart() {
-//        val imageUri = requireNotNull(settingViewModel.image.value)
-//        val options = BitmapFactory.Options()
-//        val inputStream =
-//            requireContext().contentResolver.openInputStream(imageUri)
-//        val byteArrayOutputStream = ByteArrayOutputStream()
-//        BitmapFactory.decodeStream(inputStream, null, options)
-//            ?.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
-//        // val file = File(imageUri.toString())
-//    }
-
     private fun setSuccessImageObserve() {
         settingViewModel.isSuccessImage.observe(viewLifecycleOwner) { isSuccess ->
-            when(isSuccess) {
+            when (isSuccess) {
                 true -> {
-                    // 등록 성공
-                    Log.d("사진 변경", "isSuccessImage true")
-                    Toast.makeText(requireContext(), "프로필 사진이 변경되었습니다!", Toast.LENGTH_SHORT).show()
+                    makeToast(requireContext(), R.string.toast_setting_img_success)
                     popBackStack()
                     settingViewModel.initSuccessImage()
                 }
                 false -> {
-                    Log.d("사진 변경", "isSuccessImage false")
-                    Toast.makeText(requireContext(), "프로필 사진 변경을 실패했습니다", Toast.LENGTH_SHORT).show()
+                    makeToast(requireContext(), R.string.toast_setting_img_fail)
                     popBackStack()
                     settingViewModel.initSuccessImage()
                 }

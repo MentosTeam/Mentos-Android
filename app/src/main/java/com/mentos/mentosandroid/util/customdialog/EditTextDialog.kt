@@ -1,4 +1,4 @@
-package com.mentos.mentosandroid.util
+package com.mentos.mentosandroid.util.customdialog
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,10 +6,10 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.mentos.mentosandroid.R
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.databinding.DialogEditTextBinding
 
 class EditTextDialog(

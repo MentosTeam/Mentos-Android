@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.response.StateWait
 import com.mentos.mentosandroid.databinding.ItemStateWaitBinding
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg55
-import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigateWithData
 
 class StateWaitAdapter :
@@ -26,15 +26,19 @@ class StateWaitAdapter :
             }
 
             binding.stateWaitLayout.setOnClickListener {
-                if(SharedPreferenceController.getNowState() == 0){
-                    it.navigateWithData(StateFragmentDirections.actionStateFragmentToMentoringAcceptFragment(
-                        item
-                    ))
-                }else{
-                    it.navigateWithData(StateFragmentDirections.actionStateFragmentToMentoringStart5Fragment(
-                        mentoringStart = null,
-                        stateWait = item
-                    ))
+                if (SharedPreferenceController.getNowState() == 0) {
+                    it.navigateWithData(
+                        StateFragmentDirections.actionStateFragmentToMentoringAcceptFragment(
+                            item
+                        )
+                    )
+                } else {
+                    it.navigateWithData(
+                        StateFragmentDirections.actionStateFragmentToMentoringStart5Fragment(
+                            mentoringStart = null,
+                            stateWait = item
+                        )
+                    )
                 }
             }
         }

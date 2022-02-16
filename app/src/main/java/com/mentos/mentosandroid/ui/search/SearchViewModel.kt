@@ -10,7 +10,7 @@ import com.mentos.mentosandroid.data.response.Mentee
 import com.mentos.mentosandroid.data.api.ServiceBuilder
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody

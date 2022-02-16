@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringAcceptBinding
-import com.mentos.mentosandroid.databinding.FragmentMentoringStart5Binding
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosColor
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg41
+import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.popBackStack
 
 class MentoringAcceptFragment : Fragment() {
@@ -35,14 +34,14 @@ class MentoringAcceptFragment : Fragment() {
             //서버
             mentoringStartViewModel.patchMentoringAccept(args.stateWait.mentoringId, true)
             mentoringStartViewModel.isSuccessAccept.observe(viewLifecycleOwner) { isSuccessAccept ->
-                if(isSuccessAccept != null){
-                    if(isSuccessAccept){
+                if (isSuccessAccept != null) {
+                    if (isSuccessAccept) {
                         binding.mentoringAcceptButtonTv.visibility = View.VISIBLE
                         binding.mentoringAcceptYesNoLayout.visibility = View.GONE
                         binding.mentoringAcceptSubtitle1Tv.setText(R.string.mentoring_accepted_subtitle1)
                         binding.mentoringAcceptSubtitle2Tv.setText(R.string.mentoring_accepted_subtitle2)
-                    }else{
-                        Toast.makeText(requireContext(), "멘토링 수락을 실패했습니다", Toast.LENGTH_SHORT).show()
+                    } else {
+                        makeToast(requireContext(), R.string.toast_mentoring_accept_fail)
                     }
                 }
             }
@@ -53,7 +52,7 @@ class MentoringAcceptFragment : Fragment() {
         binding.mentoringAcceptNoTv.setOnClickListener {
             //서버
             mentoringStartViewModel.patchMentoringAccept(args.stateWait.mentoringId, false)
-            Toast.makeText(requireContext(), "멘토링을 거절했습니다", Toast.LENGTH_SHORT).show()
+            makeToast(requireContext(), R.string.toast_mentoring_refuse)
             popBackStack()
         }
 

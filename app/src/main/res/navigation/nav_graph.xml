@@ -265,7 +265,7 @@
 
     <dialog
         android:id="@+id/mentosCategoryDialog"
-        android:name="com.mentos.mentosandroid.util.MentosCategoryDialog"
+        android:name="com.mentos.mentosandroid.util.customdialog.MentosCategoryDialog"
         android:label="MentosCategoryDialog"
         tools:layout="@layout/dialog_mentos_category" />
 

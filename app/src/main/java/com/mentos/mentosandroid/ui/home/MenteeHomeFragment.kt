@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentHomeMenteeBinding
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 
 class MenteeHomeFragment(): Fragment() {

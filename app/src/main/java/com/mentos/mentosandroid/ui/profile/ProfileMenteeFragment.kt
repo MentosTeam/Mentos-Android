@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentProfileMenteeBinding
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigateWithData
 
 class ProfileMenteeFragment : Fragment() {

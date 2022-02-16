@@ -8,7 +8,7 @@ import com.mentos.mentosandroid.data.request.RequestChangeMentos
 import com.mentos.mentosandroid.data.request.RequestChangePW
 import com.mentos.mentosandroid.data.request.RequestWithdrawal
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody

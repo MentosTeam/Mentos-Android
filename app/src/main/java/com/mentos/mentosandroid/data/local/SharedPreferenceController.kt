@@ -1,9 +1,8 @@
-package com.mentos.mentosandroid.util
+package com.mentos.mentosandroid.data.local
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import android.util.Log
 
 object SharedPreferenceController {
     private const val STORAGE_KEY = "user_auth"

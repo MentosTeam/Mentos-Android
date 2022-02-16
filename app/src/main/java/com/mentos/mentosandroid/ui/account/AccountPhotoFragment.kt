@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.databinding.FragmentAccountPhotoBinding
 import com.mentos.mentosandroid.ui.main.MainActivity
 import com.mentos.mentosandroid.util.MultiPartResolver
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 
 class AccountPhotoFragment : Fragment() {
     private lateinit var binding: FragmentAccountPhotoBinding

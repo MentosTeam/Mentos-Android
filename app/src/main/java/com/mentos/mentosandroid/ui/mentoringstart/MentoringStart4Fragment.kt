@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringStart4Binding
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosColor
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg41
+import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
@@ -47,7 +48,7 @@ class MentoringStart4Fragment : Fragment() {
                             )
                         )
                     }else{
-                        Toast.makeText(requireContext(), "멘토링 요청을 실패했습니다", Toast.LENGTH_SHORT).show()
+                        makeToast(requireContext(), R.string.toast_mentoring_accept_fail)
                     }
                 }
 

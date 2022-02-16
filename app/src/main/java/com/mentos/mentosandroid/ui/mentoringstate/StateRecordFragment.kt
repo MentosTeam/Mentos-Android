@@ -9,6 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.databinding.FragmentStateRecordBinding
 import com.mentos.mentosandroid.util.*
+import com.mentos.mentosandroid.util.customdialog.DialogUtil
+import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
+import com.mentos.mentosandroid.util.customdialog.TwoButtonDialog
 
 class StateRecordFragment : Fragment() {
     private lateinit var binding: FragmentStateRecordBinding
