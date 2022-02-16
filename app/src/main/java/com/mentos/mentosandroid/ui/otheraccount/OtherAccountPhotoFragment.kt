@@ -12,11 +12,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
-import com.mentos.mentosandroid.databinding.FragmentAccountPhotoBinding
 import com.mentos.mentosandroid.databinding.FragmentOtherAccountPhotoBinding
 import com.mentos.mentosandroid.ui.main.MainActivity
 import com.mentos.mentosandroid.util.MultiPartResolver
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 
 class OtherAccountPhotoFragment : Fragment() {
     private lateinit var binding: FragmentOtherAccountPhotoBinding

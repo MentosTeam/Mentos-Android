@@ -10,7 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentStateOneBinding
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg55
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 

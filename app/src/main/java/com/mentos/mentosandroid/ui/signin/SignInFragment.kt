@@ -11,7 +11,7 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSignInBinding
 import com.mentos.mentosandroid.ui.main.FirstAccountActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
-import com.mentos.mentosandroid.util.DialogUtil
+import com.mentos.mentosandroid.util.customdialog.DialogUtil
 import com.mentos.mentosandroid.util.navigate
 
 class SignInFragment : Fragment() {

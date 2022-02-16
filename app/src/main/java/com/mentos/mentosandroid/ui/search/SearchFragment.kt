@@ -17,7 +17,7 @@ import com.mentos.mentosandroid.util.KeyBoardUtil
 import com.mentos.mentosandroid.util.MentosCategoryUtil.getMentosText
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setSearchCategoryBg
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setSearchCategoryTextSize
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 
 class SearchFragment : Fragment() {

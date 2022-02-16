@@ -103,6 +103,8 @@ object MentosImgUtil {
         }
     }
 
+    @BindingAdapter("mentosImg59")
+    @JvmStatic
     fun ImageView.setMentosImg59(category: Int) {
         when (category) {
             1 -> this.setImageResource(R.drawable.img_mentos_red_59)
@@ -120,6 +122,8 @@ object MentosImgUtil {
         }
     }
 
+    @BindingAdapter("mentosImg55")
+    @JvmStatic
     fun ImageView.setMentosImg55(category: Int) {
         when (category) {
             1 -> this.setImageResource(R.drawable.img_mentos_red_55)

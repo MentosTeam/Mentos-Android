@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentStateBinding
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 
 class StateFragment : Fragment() {
     private lateinit var binding: FragmentStateBinding

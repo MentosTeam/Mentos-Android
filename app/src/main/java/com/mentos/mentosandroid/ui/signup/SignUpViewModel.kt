@@ -6,7 +6,7 @@ import com.mentos.mentosandroid.data.api.ServiceBuilder
 import com.mentos.mentosandroid.data.request.RequestSchoolCheck
 import com.mentos.mentosandroid.data.request.RequestSignUp
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.lang.Integer.parseInt

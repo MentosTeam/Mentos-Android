@@ -2,16 +2,16 @@ package com.mentos.mentosandroid.ui.setting
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangePasswordBinding
 import com.mentos.mentosandroid.ui.main.AuthActivity
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
+import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.popBackStack
 
 class ChangePasswordFragment : Fragment() {
@@ -42,17 +42,14 @@ class ChangePasswordFragment : Fragment() {
         settingViewModel.isSuccessChangePW.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
                 true -> {
-                    Log.d("비번 변경", "isSuccessChangePW true")
-                    Toast.makeText(requireContext(), "비밀번호가 변경되었습니다!", Toast.LENGTH_SHORT).show()
+                    makeToast(requireContext(), R.string.toast_setting_password_success)
                     settingViewModel.initSuccesChangePW()
-
                     clearSDF()
                     startActivity(Intent(requireContext(), AuthActivity::class.java))
                     requireActivity().finish()
                 }
                 false -> {
-                    Log.d("비번 변경", "isSuccessChangePW false")
-                    Toast.makeText(requireContext(), "비밀번호 변경을 실패했습니다", Toast.LENGTH_SHORT).show()
+                    makeToast(requireContext(), R.string.toast_setting_password_fail)
                     popBackStack()
                     settingViewModel.initSuccessNickName()
                     settingViewModel.setNickNameValid(false)

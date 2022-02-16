@@ -10,7 +10,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -21,6 +20,8 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentSearchCreateBinding
 import com.mentos.mentosandroid.util.*
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
+import com.mentos.mentosandroid.util.customdialog.DialogUtil
+import com.mentos.mentosandroid.util.customdialog.MentosCategoryDialog
 
 class SearchCreateFragment : Fragment() {
     private lateinit var binding: FragmentSearchCreateBinding
@@ -190,8 +191,7 @@ class SearchCreateFragment : Fragment() {
         searchViewModel.isRegister.observe(viewLifecycleOwner) { isRegister ->
             if (isRegister) {
                 popBackStack()
-                Toast.makeText(requireContext(), "글 등록이 완료되었습니다.", Toast.LENGTH_SHORT)
-                    .show()
+                makeToast(requireContext(), R.string.toast_write_complete)
             }
         }
     }
@@ -200,8 +200,7 @@ class SearchCreateFragment : Fragment() {
         searchViewModel.isModifySuccess.observe(viewLifecycleOwner) { isModify ->
             if (isModify) {
                 popBackStack()
-                Toast.makeText(requireContext(), "글 수정이 완료되었습니다.", Toast.LENGTH_SHORT)
-                    .show()
+                makeToast(requireContext(), R.string.toast_write_modify)
             }
         }
     }

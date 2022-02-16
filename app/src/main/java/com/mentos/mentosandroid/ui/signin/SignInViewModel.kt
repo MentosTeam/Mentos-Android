@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.mentos.mentosandroid.data.api.ServiceBuilder
 import com.mentos.mentosandroid.data.request.RequestSignIn
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 

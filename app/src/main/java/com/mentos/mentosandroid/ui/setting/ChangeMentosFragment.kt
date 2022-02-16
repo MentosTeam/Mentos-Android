@@ -1,17 +1,15 @@
 package com.mentos.mentosandroid.ui.setting
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangeMentosBinding
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.popBackStack
 
@@ -108,12 +106,12 @@ class ChangeMentosFragment : Fragment() {
             //멘토
             0 -> {
                 binding.changeMentosTitleTv.setText(R.string.account_intro_title_mentor)
-                binding.changeMentosSubTitleTv.setText(R.string.account_intro_sub_title_mentor)
+                binding.changeMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentee)
             }
             //멘티
             1 -> {
                 binding.changeMentosTitleTv.setText(R.string.account_intro_title_mentee)
-                binding.changeMentosSubTitleTv.setText(R.string.account_intro_sub_title_mentee)
+                binding.changeMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentor)
             }
         }
     }

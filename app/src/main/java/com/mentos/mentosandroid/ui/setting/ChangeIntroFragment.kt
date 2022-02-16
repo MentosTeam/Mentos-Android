@@ -1,17 +1,15 @@
 package com.mentos.mentosandroid.ui.setting
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangeIntroBinding
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
+import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.popBackStack
 
 class ChangeIntroFragment : Fragment() {
@@ -52,21 +50,14 @@ class ChangeIntroFragment : Fragment() {
         settingViewModel.isSuccessMentosIntro.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
                 true -> {
-                    Log.d("멘토스, 소개 변경", "isSuccessMentosIntro true")
-                    Toast.makeText(requireContext(), "멘토-쓰 및 자기소개가 변경되었습니다!", Toast.LENGTH_SHORT)
-                        .show()
+                    makeToast(requireContext(), R.string.toast_setting_intro_success)
                     popBackStack()
                     popBackStack()
                     settingViewModel.initSuccessMentosIntro()
                     settingViewModel.clearCategory()
-                    Log.d("멘토스 소개 변경", settingViewModel.tempCategory.toString())
-                    Log.d("멘토스 소개 변경", settingViewModel.selectedCategory.value.toString())
-//                    settingViewModel.setTempCategory()
                 }
                 false -> {
-                    Log.d("멘토스, 소개 변경", "isSuccessMentosIntro false")
-                    Toast.makeText(requireContext(), "멘토-쓰 및 자기소개 변경을 실패했습니다", Toast.LENGTH_SHORT)
-                        .show()
+                    makeToast(requireContext(), R.string.toast_setting_intro_fail)
                     popBackStack()
                     popBackStack()
                     settingViewModel.initSuccessMentosIntro()

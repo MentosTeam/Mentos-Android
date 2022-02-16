@@ -2,18 +2,19 @@ package com.mentos.mentosandroid.ui.setting
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mentos.mentosandroid.R
-import com.mentos.mentosandroid.data.request.RequestChangePW
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.databinding.FragmentSettingBinding
 import com.mentos.mentosandroid.ui.main.AuthActivity
 import com.mentos.mentosandroid.util.*
+import com.mentos.mentosandroid.util.customdialog.EditTextDialog
+import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
+import com.mentos.mentosandroid.util.customdialog.TwoButtonDialog
 
 class SettingFragment : Fragment() {
     private lateinit var binding: FragmentSettingBinding
@@ -70,7 +71,7 @@ class SettingFragment : Fragment() {
                 clearSDF()
                 startActivity(Intent(requireContext(), AuthActivity::class.java))
                 requireActivity().finish()
-                Toast.makeText(requireContext(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
+                makeToast(requireContext(), R.string.toast_logout)
             }.show(childFragmentManager, "logout")
         }
         binding.settingWithdrawalTv.setOnClickListener {
@@ -78,13 +79,12 @@ class SettingFragment : Fragment() {
                 EditTextDialog(1) {
                     settingViewModel.postWithdrawal(password = it)
                     settingViewModel.isSuccessWithdrawal.observe(viewLifecycleOwner) { isSuccess ->
-                        Log.d("탈퇴", isSuccess.toString())
                         if (isSuccess != null && isSuccess) {
                             OneButtonDialog(1) {
                                 clearSDF()
                                 startActivity(Intent(requireContext(), AuthActivity::class.java))
                                 requireActivity().finish()
-                                Toast.makeText(requireContext(), "회원탈퇴 되었습니다", Toast.LENGTH_SHORT).show()
+                                makeToast(requireContext(), R.string.toast_withdrawal)
                             }.show(childFragmentManager, "withdrawal")
                         }
                     }

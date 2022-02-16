@@ -7,7 +7,6 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
@@ -15,7 +14,8 @@ import com.mentos.mentosandroid.databinding.FragmentSplashBinding
 import com.mentos.mentosandroid.ui.main.FirstAccountActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
 import com.mentos.mentosandroid.ui.signin.SignInViewModel
-import com.mentos.mentosandroid.util.DialogUtil
+import com.mentos.mentosandroid.util.customdialog.DialogUtil
+import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.navigate
 
 class SplashFragment : Fragment() {
@@ -65,11 +65,7 @@ class SplashFragment : Fragment() {
                         {
                             startActivity(Intent(requireContext(), MainActivity::class.java))
                             requireActivity().finish()
-                            Toast.makeText(
-                                requireContext(),
-                                R.string.toast_auto_login,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            makeToast(requireContext(), R.string.toast_auto_login)
                         }, 1000
                     )
                 }
@@ -89,8 +85,7 @@ class SplashFragment : Fragment() {
     private fun setIsEmptyProfileObserve() {
         signInViewModel.isEmptyProfile.observe(viewLifecycleOwner) { isEmpty ->
             if (isEmpty) {
-                Toast.makeText(requireContext(), R.string.toast_auto_login, Toast.LENGTH_SHORT)
-                    .show()
+                makeToast(requireContext(), R.string.toast_auto_login)
                 startActivity(Intent(requireContext(), FirstAccountActivity::class.java))
                 requireActivity().finish()
             }

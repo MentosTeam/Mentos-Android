@@ -1,4 +1,4 @@
-package com.mentos.mentosandroid.util
+package com.mentos.mentosandroid.util.customdialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

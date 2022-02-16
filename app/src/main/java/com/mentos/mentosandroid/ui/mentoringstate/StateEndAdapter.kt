@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.response.StateEnd
 import com.mentos.mentosandroid.databinding.ItemStateEndBinding
-import com.mentos.mentosandroid.util.EditTextDialog
+import com.mentos.mentosandroid.util.customdialog.EditTextDialog
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosBgStroke
+import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosColor
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg59
-import com.mentos.mentosandroid.util.OneButtonDialog
-import com.mentos.mentosandroid.util.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigateWithData
 
 class StateEndAdapter(
@@ -48,8 +48,8 @@ class StateEndAdapter(
                 }.show(fragmentManager, "review_star")
             }
 
-            if(SharedPreferenceController.getNowState()==1){
-                when (item.reviewCheck ) {
+            if (SharedPreferenceController.getNowState() == 1) {
+                when (item.reviewCheck) {
                     1 -> {
                         binding.stateEndReviewDoneLayout.visibility = View.VISIBLE
                         binding.stateEndReviewWriteLayout.visibility = View.GONE

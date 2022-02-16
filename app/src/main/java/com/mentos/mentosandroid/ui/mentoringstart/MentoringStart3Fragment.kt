@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentMentoringStart3Binding
-import com.mentos.mentosandroid.util.MentosCategoryDialog
 import com.mentos.mentosandroid.util.MentosCategoryUtil.setMentosText
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg71
+import com.mentos.mentosandroid.util.customdialog.MentosCategoryDialog
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 

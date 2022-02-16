@@ -90,7 +90,6 @@ class AccountMentosFragment : Fragment() {
         }
     }
 
-
     private fun initView() {
         when (args.state) {
             2 -> {

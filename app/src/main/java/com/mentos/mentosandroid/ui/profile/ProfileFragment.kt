@@ -16,7 +16,7 @@ import com.mentos.mentosandroid.databinding.FragmentProfileBinding
 import com.mentos.mentosandroid.ui.home.BOTH
 import com.mentos.mentosandroid.ui.home.ONLY_MENTEE
 import com.mentos.mentosandroid.ui.home.ONLY_MENTOR
-import com.mentos.mentosandroid.util.SharedPreferenceController
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 
 class ProfileFragment : Fragment() {

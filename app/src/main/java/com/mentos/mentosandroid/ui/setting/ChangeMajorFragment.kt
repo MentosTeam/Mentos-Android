@@ -1,14 +1,14 @@
 package com.mentos.mentosandroid.ui.setting
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangeMajorBinding
+import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.popBackStack
 
 class ChangeMajorFragment : Fragment() {
@@ -40,14 +40,12 @@ class ChangeMajorFragment : Fragment() {
         settingViewModel.isSuccessMajor.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
                 true -> {
-                    Log.d("전공 변경", "isSuccessMajor true")
-                    Toast.makeText(requireContext(), "전공이 변경되었습니다!", Toast.LENGTH_SHORT).show()
+                    makeToast(requireContext(), R.string.toast_setting_major_success)
                     popBackStack()
                     settingViewModel.initSuccessMajor()
                 }
                 false -> {
-                    Log.d("전공 변경", "isSuccessMajor false")
-                    Toast.makeText(requireContext(), "전공 변경을 실패했습니다", Toast.LENGTH_SHORT).show()
+                    makeToast(requireContext(), R.string.toast_setting_major_fail)
                     popBackStack()
                     settingViewModel.initSuccessMajor()
                 }
