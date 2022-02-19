@@ -320,4 +320,7 @@
     <string name="toast_mentoring_refuse">멘토가 멘토링을 거절하였습니다</string>
     <string name="toast_mentoring_accept_fail">멘토링 수락이 실패하였습니다</string>
     <string name="toast_mentoring_request_fail">멘토링 요청을 실패하였습니다</string>
+
+    <!--Chat Fragment-->
+    <string name="chat_title">채팅</string>
 </resources>

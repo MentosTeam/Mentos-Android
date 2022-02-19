@@ -18,7 +18,7 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.main.AuthActivity"
@@ -33,13 +33,7 @@
         <activity
             android:name=".ui.main.FirstAccountActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <service android:name=".data.api.MentosFireBaseMessagingService">
             <intent-filter>
