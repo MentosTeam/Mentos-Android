@@ -14,7 +14,7 @@ import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 
-class MentorHomeFragment(): Fragment() {
+class MentorHomeFragment() : Fragment() {
     lateinit var binding: FragmentHomeMentorBinding
     lateinit var homeViewModel: HomeViewModel
 
@@ -25,12 +25,13 @@ class MentorHomeFragment(): Fragment() {
     ): View? {
         binding = FragmentHomeMentorBinding.inflate(inflater, container, false)
 
-        //뷰모델 연결
         initViewModel()
+        setMentosObserve()
         setSearchBarClickListener()
         setRainbowBackground()
         setMenteeMoreClickListener()
         setBtnChatClickListener()
+        setBtnPushClickListener()
 
         return binding.root
     }
@@ -41,19 +42,23 @@ class MentorHomeFragment(): Fragment() {
         }
     }
 
+    private fun setBtnPushClickListener() {
+        binding.homeBellLayout.setOnClickListener {
+            navigate(R.id.action_homeFragment_to_notificationFragment)
+        }
+    }
+
     private fun initViewModel() {
-        //뷰모델 연결
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.homeViewModel = homeViewModel
-        //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
         binding.lifecycleOwner = this
 
-        //데이터 가져옴
         homeViewModel.getMentorData()
+    }
 
-        //가지고 있는 멘토스 개수 저장
+    private fun setMentosObserve() {
         homeViewModel.mentorHomeData.observe(viewLifecycleOwner) { mentorHomeData ->
-            if(mentorHomeData.mentos != null){
+            if (mentorHomeData.mentos != null) {
                 SharedPreferenceController.setMyMentos(
                     requireContext(),
                     homeViewModel.mentorHomeData.value?.mentos
@@ -69,7 +74,6 @@ class MentorHomeFragment(): Fragment() {
     }
 
     private fun setRainbowBackground() {
-        //homeTopLayout에 무지개 배경 지정
         var bgHomeTopLayout: GradientDrawable = binding.homeTopLayout.background as GradientDrawable
         bgHomeTopLayout.setColors(
             intArrayOf(

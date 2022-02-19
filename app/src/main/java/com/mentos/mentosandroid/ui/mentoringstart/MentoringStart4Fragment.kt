@@ -35,12 +35,10 @@ class MentoringStart4Fragment : Fragment() {
 
     private fun setBtnRequestClickListener() {
         binding.mentoringStart4ButtonTv.setOnClickListener {
-            //+서버 전송
             mentoringStartViewModel.postMentoringStart(args.mentoringStart)
             mentoringStartViewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
                 if(isSuccess != null){
                     if (isSuccess) {
-                        //start5로 이동
                         navigateWithData(
                             MentoringStart4FragmentDirections.actionMentoringStart4FragmentToMentoringStart5Fragment(
                                 mentoringStart = args.mentoringStart,

@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.request.RequestNewDeviceFcmToken
 import com.mentos.mentosandroid.data.response.HomeMenteeResult
 import com.mentos.mentosandroid.data.response.HomeMentorResult
 import com.mentos.mentosandroid.data.response.MenteeCategory
 import com.mentos.mentosandroid.data.response.MentorCategory
-import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -31,7 +31,6 @@ class HomeViewModel() : ViewModel() {
 
 
     fun getMentorData() {
-        Log.d("홈 멘토", SharedPreferenceController.getJwtToken())
         viewModelScope.launch() {
             try {
                 val responseHomeMentor = ServiceBuilder.homeService.getHomeMentor()
@@ -52,7 +51,6 @@ class HomeViewModel() : ViewModel() {
     }
 
     fun getMenteeData() {
-        Log.d("홈 멘티", SharedPreferenceController.getJwtToken())
         viewModelScope.launch() {
             try {
                 val responseHomeMentee = ServiceBuilder.homeService.getHomeMentee()
@@ -68,6 +66,23 @@ class HomeViewModel() : ViewModel() {
                 _mentorHomeData.value = mentorHomeDataItem
                 Log.d("홈 멘티", e.message().toString())
                 Log.d("홈 멘티", e.code().toString())
+            }
+        }
+    }
+
+    fun postDeviceFcmToken(currToken: String, newToken: String){
+        viewModelScope.launch {
+            try {
+                val responseFcmToken = ServiceBuilder.authService.postDeviceFcmToken(
+                    RequestNewDeviceFcmToken(
+                        currToken,
+                        newToken
+                    )
+                )
+                Log.d("홈 fcm token", responseFcmToken.message)
+            }catch (e: HttpException){
+                Log.d("홈 fcm token", e.message().toString())
+                Log.d("홈 fcm token", e.code().toString())
             }
         }
     }
