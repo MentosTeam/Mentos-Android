@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatListFragment"
+            app:destination="@id/chatListFragment" />
     </fragment>
 
     <fragment
@@ -130,7 +133,7 @@
         tools:layout="@layout/fragment_mentoring_accept">
         <argument
             android:name="stateWait"
-            app:argType="com.mentos.mentosandroid.data.response.StateWait"/>
+            app:argType="com.mentos.mentosandroid.data.response.StateWait" />
     </fragment>
     <fragment
         android:id="@+id/stateFragment"
@@ -291,12 +294,12 @@
         tools:layout="@layout/fragment_mentoring_start5">
         <argument
             android:name="mentoringStart"
-            app:nullable="true"
-            app:argType="com.mentos.mentosandroid.data.request.RequestMentoringStart" />
+            app:argType="com.mentos.mentosandroid.data.request.RequestMentoringStart"
+            app:nullable="true" />
         <argument
             android:name="stateWait"
-            app:nullable="true"
-            app:argType="com.mentos.mentosandroid.data.response.StateWait"/>
+            app:argType="com.mentos.mentosandroid.data.response.StateWait"
+            app:nullable="true" />
     </fragment>
 
     <fragment
@@ -419,4 +422,20 @@
         android:name="com.mentos.mentosandroid.ui.otheraccount.OtherAccountPhotoFragment"
         android:label="OtherAccountPhotoFragment"
         tools:layout="@layout/fragment_other_account_photo" />
+
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.mentos.mentosandroid.ui.chat.ChatListFragment"
+        android:label="ChatListFragment"
+        tools:layout="@layout/fragment_chat_list">
+        <action
+            android:id="@+id/action_chatListFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatRoomFragment"
+        android:name="com.mentos.mentosandroid.ui.chat.ChatRoomFragment"
+        android:label="ChatRoomFragment"
+        tools:layout="@layout/fragment_chat_room" />
 </navigation>

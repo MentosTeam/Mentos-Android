@@ -28,14 +28,14 @@ class MenteeHomeFragment(): Fragment() {
         initViewModel()
         setSearchBarClickListener()
         setRainbowBackground()
-        setBtnNotiClickListener()
+        setBtnChatClickListener()
 
         return binding.root
     }
 
-    private fun setBtnNotiClickListener() {
+    private fun setBtnChatClickListener() {
         binding.homeAlarmLayout.setOnClickListener {
-            navigate(R.id.action_homeFragment_to_notificationFragment)
+            navigate(R.id.action_homeFragment_to_chatListFragment)
         }
     }
 
