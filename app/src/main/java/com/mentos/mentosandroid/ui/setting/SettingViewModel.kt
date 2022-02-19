@@ -9,6 +9,7 @@ import com.mentos.mentosandroid.data.request.RequestChangePW
 import com.mentos.mentosandroid.data.request.RequestWithdrawal
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
+import com.mentos.mentosandroid.data.request.RequestDeleteDeviceFcmToken
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -157,6 +158,9 @@ class SettingViewModel : ViewModel() {
     //성별 공개 설정
     val openSex = MutableLiveData<Boolean>()
 
+    //푸시알림 설정
+    val mentorAgreementPush = MutableLiveData<Boolean>()
+    val menteeAgreementPush = MutableLiveData<Boolean>()
 
     //프로필 사진 설정
     //현재 사진
@@ -435,6 +439,24 @@ class SettingViewModel : ViewModel() {
             }catch (e:HttpException){
                 Log.d("회원 탈퇴", e.message())
                 Log.d("회원 탈퇴", e.code().toString())
+            }
+        }
+    }
+
+    private var _isSuccessDeleteToken = MutableLiveData<Boolean>()
+    var isSuccessDeleteToken: LiveData<Boolean> = _isSuccessDeleteToken
+
+    fun deleteDeviceFcmToken(token: String){
+        viewModelScope.launch {
+            try {
+                val responseFcmToken = ServiceBuilder.authService.deleteDeviceFcmToken(
+                    RequestDeleteDeviceFcmToken(token)
+                )
+                Log.d("logout", responseFcmToken.message)
+                _isSuccessDeleteToken.value = responseFcmToken.isSuccess
+            }catch (e: HttpException){
+                Log.d("logout", e.code().toString())
+                Log.d("logout", e.message().toString())
             }
         }
     }

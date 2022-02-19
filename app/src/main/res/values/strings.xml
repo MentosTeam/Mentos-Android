@@ -247,6 +247,7 @@
     <string name="setting_mentos">멘토-쓰 및 자기소개</string>
     <string name="setting_major">전공</string>
     <string name="setting_etc_title">기타</string>
+    <string name="setting_push">PUSH 알림 설정</string>
     <string name="setting_pw">비밀번호 변경</string>
     <string name="setting_policy">이용약관 / 개인처리정보지침</string>
     <string name="setting_logout">로그아웃</string>

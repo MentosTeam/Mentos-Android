@@ -34,6 +34,8 @@ class SettingFragment : Fragment() {
         setBtnClickListener()
         setCurrentOpenSex()
         setOpenSexObserve()
+        setCurrentPush()
+        setPushObserve()
         return binding.root
     }
 
@@ -44,6 +46,34 @@ class SettingFragment : Fragment() {
     private fun setOpenSexObserve() {
         settingViewModel.openSex.observe(viewLifecycleOwner) { isOpen ->
             SharedPreferenceController.setOpenSex(requireContext(), isOpen)
+        }
+    }
+
+    private fun setCurrentPush() {
+        if (SharedPreferenceController.getNowState() == 0) {
+            binding.switchMentorPush.visibility = View.VISIBLE
+            binding.switchMenteePush.visibility = View.GONE
+
+            settingViewModel.mentorAgreementPush.value =
+                SharedPreferenceController.getAgreementPush(0)
+        } else {
+            binding.switchMentorPush.visibility = View.GONE
+            binding.switchMenteePush.visibility = View.VISIBLE
+
+            settingViewModel.menteeAgreementPush.value =
+                SharedPreferenceController.getAgreementPush(1)
+        }
+    }
+
+    private fun setPushObserve() {
+        if (SharedPreferenceController.getNowState() == 0) {
+            settingViewModel.mentorAgreementPush.observe(viewLifecycleOwner) { isAgree ->
+                SharedPreferenceController.setAgreementPush(0, isAgree)
+            }
+        } else {
+            settingViewModel.mentorAgreementPush.observe(viewLifecycleOwner) { isAgree ->
+                SharedPreferenceController.setAgreementPush(1, isAgree)
+            }
         }
     }
 
@@ -68,10 +98,15 @@ class SettingFragment : Fragment() {
         }
         binding.settingLogoutTv.setOnClickListener {
             TwoButtonDialog(2) {
-                clearSDF()
-                startActivity(Intent(requireContext(), AuthActivity::class.java))
-                requireActivity().finish()
-                makeToast(requireContext(), R.string.toast_logout)
+                settingViewModel.deleteDeviceFcmToken(SharedPreferenceController.getDeviceFcmToken())
+                settingViewModel.isSuccessDeleteToken.observe(viewLifecycleOwner) { isSuccess ->
+                    if (isSuccess != null && isSuccess) {
+                        clearSDF()
+                        startActivity(Intent(requireContext(), AuthActivity::class.java))
+                        requireActivity().finish()
+                        makeToast(requireContext(), R.string.toast_logout)
+                    }
+                }
             }.show(childFragmentManager, "logout")
         }
         binding.settingWithdrawalTv.setOnClickListener {

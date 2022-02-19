@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.mentos.mentosandroid.R
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-
         setIntent(intent)
     }
 
@@ -26,17 +26,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setBottomNavigation()
 
-        Log.d("new intent", "oncreate")
         if (intent != null) {
-            Log.d("new intent", "인텐트")
-            Log.d("new intent", intent.getIntExtra("Destination", 2).toString())
+            val nowState = intent.getIntExtra("nowState", -1)
+            Log.d("nowState",nowState.toString() )
+            if(nowState != -1){
+                SharedPreferenceController.setNowState(nowState)
+            }
+
             binding.mainBottomNavi.selectedItemId =
-                when (intent.getIntExtra("Destination", 2)) {
-                    0 -> R.id.searchFragment
-                    1 -> R.id.stateFragment
-                    2 -> R.id.homeFragment
-                    3 -> R.id.profileFragment
-                    4 -> R.id.settingFragment
+                when (intent.getBooleanExtra("isMentoring", false)) {
+                    true -> R.id.stateFragment
                     else -> R.id.homeFragment
                 }
         }

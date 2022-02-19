@@ -13,7 +13,7 @@ import com.mentos.mentosandroid.databinding.FragmentHomeMenteeBinding
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 
-class MenteeHomeFragment(): Fragment() {
+class MenteeHomeFragment() : Fragment() {
     lateinit var binding: FragmentHomeMenteeBinding
     lateinit var homeViewModel: HomeViewModel
 
@@ -24,11 +24,12 @@ class MenteeHomeFragment(): Fragment() {
     ): View? {
         binding = FragmentHomeMenteeBinding.inflate(inflater, container, false)
 
-        //뷰모델 연결
         initViewModel()
+        setMentosObserve()
         setSearchBarClickListener()
         setRainbowBackground()
         setBtnChatClickListener()
+        setBtnPushClickListener()
 
         return binding.root
     }
@@ -39,19 +40,24 @@ class MenteeHomeFragment(): Fragment() {
         }
     }
 
+    private fun setBtnPushClickListener() {
+        binding.homeBellLayout.setOnClickListener {
+            navigate(R.id.action_homeFragment_to_notificationFragment)
+        }
+    }
+
+
     private fun initViewModel() {
-        //뷰모델 연결
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.homeViewModel = homeViewModel
-        //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
         binding.lifecycleOwner = this
 
-        //데이터 가져옴
         homeViewModel.getMenteeData()
+    }
 
-        //가지고 있는 멘토스 개수 저장
+    private fun setMentosObserve() {
         homeViewModel.menteeHomeData.observe(viewLifecycleOwner) { menteeHomeData ->
-            if(menteeHomeData.mentos != null){
+            if (menteeHomeData.mentos != null) {
                 SharedPreferenceController.setMyMentos(
                     requireContext(),
                     homeViewModel.menteeHomeData.value?.mentos
@@ -67,7 +73,6 @@ class MenteeHomeFragment(): Fragment() {
     }
 
     private fun setRainbowBackground() {
-        //homeTopLayout에 무지개 배경 지정
         var bgHomeTopLayout: GradientDrawable = binding.homeTopLayout.background as GradientDrawable
         bgHomeTopLayout.setColors(
             intArrayOf(
