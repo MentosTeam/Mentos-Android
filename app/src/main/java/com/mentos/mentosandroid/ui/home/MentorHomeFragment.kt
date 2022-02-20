@@ -44,7 +44,9 @@ class MentorHomeFragment() : Fragment() {
 
     private fun setBtnPushClickListener() {
         binding.homeBellLayout.setOnClickListener {
-            navigate(R.id.action_homeFragment_to_notificationFragment)
+            navigateWithData(HomeFragmentDirections.actionHomeFragmentToNotificationFragment(
+                from = "home"
+            ))
         }
     }
 

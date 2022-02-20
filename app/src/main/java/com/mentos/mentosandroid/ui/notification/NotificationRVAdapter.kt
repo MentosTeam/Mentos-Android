@@ -3,17 +3,22 @@ package com.mentos.mentosandroid.ui.notification
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mentos.mentosandroid.data.Notification
+import com.mentos.mentosandroid.data.response.Notice
 import com.mentos.mentosandroid.databinding.ItemNotificationBinding
+import java.text.SimpleDateFormat
 
 class NotificationRVAdapter : RecyclerView.Adapter<NotificationRVAdapter.NotificationViewHolder>() {
 
-    var notiList = mutableListOf<Notification>()
+    var notiList = mutableListOf<Notice>()
 
     inner class NotificationViewHolder(val binding: ItemNotificationBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentNoti: Notification) {
+        fun bind(currentNoti: Notice) {
             binding.notification = currentNoti
+
+            val date = SimpleDateFormat("yyyy-MM-dd").parse(currentNoti.createAt.substring(0, 10))
+            val sdf = SimpleDateFormat("yyyy년 MM월 dd일")
+            binding.itemNotificationDateTv.text = sdf.format(date)
         }
     }
 
@@ -30,6 +35,4 @@ class NotificationRVAdapter : RecyclerView.Adapter<NotificationRVAdapter.Notific
     override fun getItemCount(): Int {
         return notiList.size
     }
-
-
 }

@@ -12,6 +12,7 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentHomeMenteeBinding
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
+import com.mentos.mentosandroid.util.navigateWithData
 
 class MenteeHomeFragment() : Fragment() {
     lateinit var binding: FragmentHomeMenteeBinding
@@ -42,7 +43,9 @@ class MenteeHomeFragment() : Fragment() {
 
     private fun setBtnPushClickListener() {
         binding.homeBellLayout.setOnClickListener {
-            navigate(R.id.action_homeFragment_to_notificationFragment)
+            navigateWithData(HomeFragmentDirections.actionHomeFragmentToNotificationFragment(
+                from = "home"
+            ))
         }
     }
 

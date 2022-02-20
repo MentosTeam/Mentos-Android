@@ -88,10 +88,10 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         if (args.myList) {
             binding.searchDetailEditLayout.visibility = View.VISIBLE
             binding.searchDetailBottomMenuLayout.visibility = View.GONE
-            binding.searchDetailBtnSiren.visibility = View.GONE
+            binding.searchDetailBtnSiren.visibility = View.VISIBLE
         } else {
             binding.searchDetailEditLayout.visibility = View.GONE
-            binding.searchDetailBtnSiren.visibility = View.VISIBLE
+            binding.searchDetailBtnSiren.visibility = View.GONE
         }
     }
 

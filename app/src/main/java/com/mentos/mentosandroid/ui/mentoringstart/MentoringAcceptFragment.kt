@@ -47,10 +47,17 @@ class MentoringAcceptFragment : Fragment() {
         }
 
         binding.mentoringAcceptNoTv.setOnClickListener {
-            //서버
             mentoringStartViewModel.patchMentoringAccept(args.stateWait.mentoringId, false)
-            makeToast(requireContext(), R.string.toast_mentoring_refuse)
-            popBackStack()
+            mentoringStartViewModel.isSuccessAccept.observe(viewLifecycleOwner) { isSuccessAccept ->
+                if (isSuccessAccept != null) {
+                    if (isSuccessAccept) {
+                        makeToast(requireContext(), R.string.toast_mentoring_refuse)
+                        popBackStack()
+                    } else {
+                        makeToast(requireContext(), R.string.toast_mentoring_refuse_fail)
+                    }
+                }
+            }
         }
 
         binding.mentoringAcceptButtonTv.setOnClickListener {
