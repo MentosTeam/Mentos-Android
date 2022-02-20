@@ -49,6 +49,7 @@ class EditTextDialog(
                     dialogEtSubTitleTv.visibility = View.VISIBLE
                     dialogEtPasswordLayout.visibility = View.GONE
                     dialogEtReviewLayout.visibility = View.VISIBLE
+                    dialogEtReportLayout.visibility = View.GONE
                     dialogBtnComplete.setText(R.string.dialog_review_et_btn)
                     dialogPasswordFailTv.visibility = View.GONE
                     setEditReviewChangeListener()
@@ -59,8 +60,21 @@ class EditTextDialog(
                     dialogEtSubTitleTv.visibility = View.GONE
                     dialogEtPasswordLayout.visibility = View.VISIBLE
                     dialogEtReviewLayout.visibility = View.GONE
+                    dialogEtReportLayout.visibility = View.GONE
                     dialogBtnComplete.setText(R.string.dialog_withdrawal_password_btn)
                     setEditPWChangeListener()
+                }
+                REPORT -> {
+                    dialogBtnComplete.isClickable = false
+                    dialogEtTitleTv.setText(R.string.dialog_report_title)
+                    dialogEtSubTitleTv.setText(R.string.dialog_report_sub_title)
+                    dialogEtSubTitleTv.visibility = View.VISIBLE
+                    dialogEtReviewLayout.visibility = View.GONE
+                    dialogEtPasswordLayout.visibility = View.GONE
+                    dialogEtReportLayout.visibility = View.VISIBLE
+                    dialogBtnComplete.setText(R.string.dialog_report_complete)
+                    dialogPasswordFailTv.visibility = View.GONE
+                    setEditReportChangeListener()
                 }
                 else -> throw IllegalStateException()
             }
@@ -156,6 +170,44 @@ class EditTextDialog(
         }
     }
 
+    private fun setEditReportChangeListener() {
+        binding.dialogEtReportEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                chkReportValidation(count)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
+    }
+
+    private fun chkReportValidation(count: Int) {
+        if (count == 0) {
+            binding.dialogBtnComplete.setBackgroundResource(R.drawable.shape_gray_fill_8)
+            binding.dialogBtnComplete.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.gray_c7c6
+                )
+            )
+            binding.dialogBtnComplete.isClickable = false
+        } else {
+            binding.dialogBtnComplete.setBackgroundResource(R.drawable.shape_black_fill_8)
+            binding.dialogBtnComplete.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.white
+                )
+            )
+            binding.dialogBtnComplete.isClickable = true
+        }
+    }
+
     private fun setClickListener() {
         binding.dialogBtnComplete.setOnClickListener {
             when (dialogMode) {
@@ -166,6 +218,9 @@ class EditTextDialog(
                     val password = binding.dialogEtPasswordEt.text.toString()
                     doAfterConfirm(password)
                 }
+                REPORT -> {
+                    doAfterConfirm(binding.dialogEtReportEt.text.toString())
+                }
             }
             dismiss()
         }
@@ -174,5 +229,6 @@ class EditTextDialog(
     companion object {
         const val REVIEW_TEXT = 0
         const val WITHDRAWAL = 1
+        const val REPORT = 2
     }
 }

@@ -49,6 +49,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/one_mentee_btn_back_ib" />
+
+            <ImageView
+                android:id="@+id/one_mentee_btn_siren"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/siren"
+                app:layout_constraintBottom_toBottomOf="@+id/one_mentee_btn_back_ib"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/one_mentee_btn_back_ib" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.core.widget.NestedScrollView

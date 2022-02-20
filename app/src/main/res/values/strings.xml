@@ -48,6 +48,11 @@
     <string name="dialog_logout_btn_2">😀계속 이용하기</string>
     <string name="dialog_mentoring_complete_title">멘토링 완료-!\n멘토-쓰가 전달되었어요!😊</string>
     <string name="dialog_mentoring_complete_sub_title">내정보에서 확인해 주세요!</string>
+    <string name="dialog_report_title">어떤 점이 불편하셨나요?😢</string>
+    <string name="dialog_report_sub_title">신고 사유를 적어주세요.</string>
+    <string name="dialog_report_complete">작성 완료</string>
+    <string name="dialog_report_complete_title">성공적으로 <b>접수</b>되었어요❤️</string>
+    <string name="dialog_report_complete_sub_title">더 나은 서비스를 위해\n멘토-쓰 팀이 노력하겠습니다!</string>
 
     <!--First Account Dialog-->
     <string name="dialog_account_title">본격적인 이용 전, <b>역할 설정</b>이 필요해요!</string>

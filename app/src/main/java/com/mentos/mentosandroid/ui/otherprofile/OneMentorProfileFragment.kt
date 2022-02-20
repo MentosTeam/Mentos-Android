@@ -15,6 +15,8 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentOneMentorProfileBinding
 import com.mentos.mentosandroid.ui.profile.ProfileMentosVPAdapter
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
+import com.mentos.mentosandroid.util.customdialog.EditTextDialog
+import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
@@ -35,7 +37,23 @@ class OneMentorProfileFragment : Fragment() {
         setBackBtnClickListener()
         setNavigateWithMentorId()
         setMentorListObserve()
+        setReportBtnClickListener()
         return binding.root
+    }
+
+    private fun setReportBtnClickListener() {
+        binding.oneMentorBtnSiren.setOnClickListener {
+            EditTextDialog(2) { reportText ->
+                profileViewModel.postReport(2, args.mentorId, reportText)
+                profileViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
+                    if (isSuccess != null && isSuccess){
+                        OneButtonDialog(5) {
+
+                        }.show(childFragmentManager, "report")
+                    }
+                }
+            }.show(childFragmentManager, "report_text")
+        }
     }
 
     private fun setMentorListObserve() {

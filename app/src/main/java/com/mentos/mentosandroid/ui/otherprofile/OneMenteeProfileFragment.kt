@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentOneMenteeProfileBinding
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
+import com.mentos.mentosandroid.util.customdialog.EditTextDialog
+import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
 import com.mentos.mentosandroid.util.popBackStack
 
 class OneMenteeProfileFragment : Fragment() {
@@ -28,7 +30,23 @@ class OneMenteeProfileFragment : Fragment() {
         initSex()
         initImg()
         setBackBtnClickListener()
+        setReportBtnClickListener()
         return binding.root
+    }
+
+    private fun setReportBtnClickListener() {
+        binding.oneMenteeBtnSiren.setOnClickListener {
+            EditTextDialog(2) { reportText ->
+                profileViewModel.postReport(2, args.menteeId, reportText)
+                profileViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
+                    if (isSuccess != null && isSuccess){
+                        OneButtonDialog(5) {
+
+                        }.show(childFragmentManager, "report")
+                    }
+                }
+            }.show(childFragmentManager, "report_text")
+        }
     }
 
     private fun initViewModel() {

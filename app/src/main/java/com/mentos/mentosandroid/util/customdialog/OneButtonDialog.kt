@@ -44,6 +44,7 @@ class OneButtonDialog(
                     dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
                     dialogReviewCompleteTitleLayout.visibility = View.GONE
                     dialogReviewLayout.visibility = View.GONE
+                    dialogReportCompleteTitleLayout.visibility = View.GONE
                     dialogBgMentos.visibility = View.VISIBLE
                     dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
@@ -53,6 +54,7 @@ class OneButtonDialog(
                     dialogReviewCompleteTitleLayout.visibility = View.GONE
                     dialogReviewLayout.visibility = View.GONE
                     dialogBtnCompleteTv.visibility = View.GONE
+                    dialogReportCompleteTitleLayout.visibility = View.GONE
                     dialogBgMentos.visibility = View.VISIBLE
                     dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
@@ -61,6 +63,7 @@ class OneButtonDialog(
                     dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
                     dialogReviewCompleteTitleLayout.visibility = View.VISIBLE
                     dialogReviewLayout.visibility = View.GONE
+                    dialogReportCompleteTitleLayout.visibility = View.GONE
                     dialogBgMentos.visibility = View.VISIBLE
                     dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
@@ -70,6 +73,7 @@ class OneButtonDialog(
                     dialogReviewCompleteTitleLayout.visibility = View.GONE
                     dialogReviewLayout.visibility = View.VISIBLE
                     dialogBtnCompleteTv.visibility = View.GONE
+                    dialogReportCompleteTitleLayout.visibility = View.GONE
                     dialogBgMentos.visibility = View.GONE
                     dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
@@ -78,8 +82,18 @@ class OneButtonDialog(
                     dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
                     dialogReviewCompleteTitleLayout.visibility = View.GONE
                     dialogReviewLayout.visibility = View.GONE
+                    dialogReportCompleteTitleLayout.visibility = View.GONE
                     dialogBgMentos.visibility = View.VISIBLE
                     dialogMentoringCompleteTitleLayout.visibility = View.VISIBLE
+                }
+                END_REPORT -> {
+                    dialogRecordCompleteTitleLayout.visibility = View.GONE
+                    dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
+                    dialogReviewCompleteTitleLayout.visibility = View.GONE
+                    dialogReviewLayout.visibility = View.GONE
+                    dialogReportCompleteTitleLayout.visibility = View.VISIBLE
+                    dialogBgMentos.visibility = View.VISIBLE
+                    dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
                 else -> throw IllegalStateException()
             }
@@ -115,5 +129,6 @@ class OneButtonDialog(
         const val REVIEW = 2
         const val REVIEW_STAR = 3
         const val END_MENTORING = 4
+        const val END_REPORT = 5
     }
 }
