@@ -15,6 +15,8 @@ import com.mentos.mentosandroid.ui.myprofiledetail.PostListViewModel
 import com.mentos.mentosandroid.util.customdialog.DialogUtil
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
+import com.mentos.mentosandroid.util.customdialog.EditTextDialog
+import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
 import com.mentos.mentosandroid.util.makeToast
 
 class SearchDetailDialog : BottomSheetDialogFragment() {
@@ -36,11 +38,30 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         if (args.myList) {
             setDeleteBtnClickListener()
             setEditBtnClickListener()
+        }else{
+            setReportBtnClickListener()
         }
         setMentorInfoLayoutClickListener()
         setMentoringStartClickListener()
         setIsDeletedObserve()
+
         return binding.root
+    }
+
+    private fun setReportBtnClickListener() {
+        binding.searchDetailBtnSiren.setOnClickListener {
+            EditTextDialog(2) { reportText ->
+                postListViewModel.postReport(1, args.postMento!!.postId, reportText)
+                postListViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
+                    if (isSuccess != null && isSuccess){
+                        OneButtonDialog(5) {
+
+                        }.show(childFragmentManager, "report")
+                        postListViewModel.initSuccessReport()
+                    }
+                }
+            }.show(childFragmentManager, "report_text")
+        }
     }
 
     private fun initData() {
@@ -67,8 +88,10 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         if (args.myList) {
             binding.searchDetailEditLayout.visibility = View.VISIBLE
             binding.searchDetailBottomMenuLayout.visibility = View.GONE
+            binding.searchDetailBtnSiren.visibility = View.GONE
         } else {
             binding.searchDetailEditLayout.visibility = View.GONE
+            binding.searchDetailBtnSiren.visibility = View.VISIBLE
         }
     }
 

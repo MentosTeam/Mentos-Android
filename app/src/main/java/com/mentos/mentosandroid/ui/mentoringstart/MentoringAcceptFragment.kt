@@ -29,9 +29,7 @@ class MentoringAcceptFragment : Fragment() {
         initLayout()
         setBtnBackClickListener()
 
-        //수락
         binding.mentoringAcceptYesTv.setOnClickListener {
-            //서버
             mentoringStartViewModel.patchMentoringAccept(args.stateWait.mentoringId, true)
             mentoringStartViewModel.isSuccessAccept.observe(viewLifecycleOwner) { isSuccessAccept ->
                 if (isSuccessAccept != null) {
@@ -48,7 +46,6 @@ class MentoringAcceptFragment : Fragment() {
 
         }
 
-        //거절
         binding.mentoringAcceptNoTv.setOnClickListener {
             //서버
             mentoringStartViewModel.patchMentoringAccept(args.stateWait.mentoringId, false)
@@ -56,7 +53,6 @@ class MentoringAcceptFragment : Fragment() {
             popBackStack()
         }
 
-        //확인
         binding.mentoringAcceptButtonTv.setOnClickListener {
             popBackStack()
         }

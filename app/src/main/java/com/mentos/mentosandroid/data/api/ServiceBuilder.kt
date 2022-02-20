@@ -35,4 +35,5 @@ object ServiceBuilder {
     val profileService: ProfileService = retrofit.create(ProfileService::class.java)
     val mentoringStartService: MentoringStartService = retrofit.create(MentoringStartService::class.java)
     val stateService: StateService = retrofit.create(StateService::class.java)
+    val reportService: ReportService = retrofit.create(ReportService::class.java)
 }

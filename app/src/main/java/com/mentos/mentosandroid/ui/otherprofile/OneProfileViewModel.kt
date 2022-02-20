@@ -6,11 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.request.RequestReport
 import com.mentos.mentosandroid.data.response.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class OneProfileViewModel: ViewModel() {
+class OneProfileViewModel : ViewModel() {
 
     private val _menteeMajorList = MutableLiveData<ArrayList<Int>>()
     val menteeMajorList: LiveData<ArrayList<Int>>
@@ -45,6 +46,8 @@ class OneProfileViewModel: ViewModel() {
     val mentorReview2: LiveData<ArrayList<Review>>
         get() = _mentorReview2
 
+    private var _isSuccessReport = MutableLiveData<Boolean>()
+    var isSuccessReport: LiveData<Boolean> = _isSuccessReport
 
     fun getMentorProfileData(memberId: Int) {
         viewModelScope.launch {
@@ -55,14 +58,13 @@ class OneProfileViewModel: ViewModel() {
                 _mentorProfileData.value = mentorProfileDataItem
                 getMentorData()
             } catch (e: HttpException) {
-                Log.d("내 정보", e.message().toString())
-                Log.d("내 정보", e.code().toString())
+                Log.d("멘토 정보", e.message().toString())
+                Log.d("멘토 정보", e.code().toString())
             }
         }
     }
 
     private fun getMentorData() {
-        //프로필에서는 2개씩만 보여줌
         if (mentorProfileDataItem.postArr.size >= 3) {
             _mentorPost2.value = arrayListOf(
                 mentorProfileDataItem.postArr[0],
@@ -91,7 +93,6 @@ class OneProfileViewModel: ViewModel() {
             }
         _mentorMajorList.value = mentorMajorItems
 
-        //진행한 멘토링-멘토스 리스트
         mentorProfileDataItem.numOfMentos.forEach { it ->
             for (i in 1..it.mentoringMentos)
                 mentorMentosItems.add(it.majorCategoryId)
@@ -108,14 +109,13 @@ class OneProfileViewModel: ViewModel() {
                 _menteeProfileData.value = menteeProfileDataItem
                 getMenteeData()
             } catch (e: HttpException) {
-                Log.d("내 정보", e.message().toString())
-                Log.d("내 정보", e.code().toString())
+                Log.d("멘토 정보", e.message().toString())
+                Log.d("멘토 정보", e.code().toString())
             }
         }
     }
 
     private fun getMenteeData() {
-        //Major
         menteeMajorItems =
             if (menteeProfileDataItem.basicInformation.majorSecond == 0) {
                 arrayListOf(menteeProfileDataItem.basicInformation.majorFirst)
@@ -126,5 +126,21 @@ class OneProfileViewModel: ViewModel() {
                 )
             }
         _menteeMajorList.value = menteeMajorItems
+    }
+
+    fun postReport(flag: Int, number: Int, text: String) {
+        viewModelScope.launch {
+            try {
+                val responseReport = ServiceBuilder.reportService.postReport(
+                    RequestReport(flag, number, text)
+                )
+                Log.d("멘티 멘토 신고", responseReport.message)
+                _isSuccessReport.value = responseReport.code == 1000
+            } catch (e: HttpException) {
+                Log.d("멘티 멘토 신고", e.message().toString())
+                Log.d("멘티 멘토 신고", e.code().toString())
+                _isSuccessReport.value = false
+            }
+        }
     }
 }
