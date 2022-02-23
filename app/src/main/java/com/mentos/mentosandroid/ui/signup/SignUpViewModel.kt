@@ -235,11 +235,14 @@ class SignUpViewModel : ViewModel() {
                 when (responseSignUp.isSuccess) {
                     true -> {
                         setSuccessSignUp(true)
-                        SharedPreferenceController.setJwtToken(responseSignUp.result.memberJwt)
-                        SharedPreferenceController.setAutoLogin(
-                            email.value.toString(),
-                            password.value.toString()
-                        )
+                        with(SharedPreferenceController) {
+                            setJwtToken(responseSignUp.result.memberJwt)
+                            setMemberId(responseSignUp.result.memberId)
+                            setAutoLogin(
+                                email.value.toString(),
+                                password.value.toString()
+                            )
+                        }
                     }
                     false -> setSuccessSignUp(false)
                 }

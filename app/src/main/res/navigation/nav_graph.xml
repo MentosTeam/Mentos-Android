@@ -89,6 +89,9 @@
         <action
             android:id="@+id/action_searchDetailDialog_to_mentoringStart1Fragment"
             app:destination="@id/mentoringStart1Fragment" />
+        <action
+            android:id="@+id/action_searchDetailDialog_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
     </dialog>
 
     <fragment
@@ -100,6 +103,9 @@
             android:name="menteeId"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_oneMenteeProfileFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
     </fragment>
 
     <fragment
@@ -123,6 +129,9 @@
         <action
             android:id="@+id/action_oneMentorProfileFragment_to_searchDetailDialog"
             app:destination="@id/searchDetailDialog" />
+        <action
+            android:id="@+id/action_oneMentorProfileFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
 
     </fragment>
 
@@ -437,5 +446,19 @@
         android:id="@+id/chatRoomFragment"
         android:name="com.mentos.mentosandroid.ui.chat.ChatRoomFragment"
         android:label="ChatRoomFragment"
-        tools:layout="@layout/fragment_chat_room" />
+        tools:layout="@layout/fragment_chat_room">
+        <argument
+            android:name="memberId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="imageUrl"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="nickname"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 </navigation>

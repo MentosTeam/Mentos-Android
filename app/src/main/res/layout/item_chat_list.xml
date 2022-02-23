@@ -1,105 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <soup.neumorphism.NeumorphCardView
-        android:id="@+id/item_chat_list_img_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
-        android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:neumorph_inset="4dp"
-        app:neumorph_shadowColorDark="@color/gray_shadow"
-        app:neumorph_shadowColorLight="@color/gray_shadow"
-        app:neumorph_shadowElevation="2dp"
-        app:neumorph_shapeAppearance="@style/shadow_round_8"
-        app:neumorph_shapeType="flat"
-        app:neumorph_strokeColor="@color/gray_eded"
-        app:neumorph_strokeWidth="1dp">
+    <data>
 
-        <ImageView
-            android:id="@+id/item_chat_list_img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_home_user"
-            tools:ignore="ContentDescription" />
-    </soup.neumorphism.NeumorphCardView>
+        <variable
+            name="data"
+            type="com.mentos.mentosandroid.data.local.ChatList" />
+    </data>
 
-    <TextView
-        android:id="@+id/item_chat_list_nickname_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="50dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/noto_bold"
-        android:includeFontPadding="false"
-        android:text="멘통ㅇ"
-        android:textColor="@color/black_1c1d"
-        android:textSize="13sp"
-        app:layout_constraintStart_toEndOf="@id/item_chat_list_img_layout"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/chat_list_update"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="5dp"
-        android:background="@drawable/ic_chat_update"
-        app:layout_constraintBottom_toBottomOf="@id/item_chat_list_nickname_tv"
-        app:layout_constraintStart_toEndOf="@id/item_chat_list_nickname_tv"
-        app:layout_constraintTop_toTopOf="@id/item_chat_list_nickname_tv" />
-
-    <TextView
-        android:id="@+id/item_chat_list_msg_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="8dp"
-        android:ellipsize="end"
-        android:ems="2"
-        android:fontFamily="@font/noto_regular"
-        android:includeFontPadding="false"
-        android:maxLines="2"
-        android:minLines="2"
-        android:text="안녕하세요\n하이훌하이훌하이훌하이훌이훌"
-        android:textColor="@color/gray_7070"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/item_chat_list_nickname_tv"
-        app:layout_constraintTop_toBottomOf="@id/item_chat_list_nickname_tv" />
-
-    <TextView
-        android:id="@+id/item_chat_list_date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="9dp"
-        android:fontFamily="@font/noto_light"
-        android:includeFontPadding="false"
-        android:text="1/23"
-        android:textColor="@color/gray_7070"
-        android:textSize="9sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_chat_list_layout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray_eded"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content">
+
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/item_chat_list_img_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:neumorph_inset="4dp"
+            app:neumorph_shadowColorDark="@color/gray_shadow"
+            app:neumorph_shadowColorLight="@color/gray_shadow"
+            app:neumorph_shadowElevation="1dp"
+            app:neumorph_shapeAppearance="@style/shadow_round_8"
+            app:neumorph_shapeType="flat"
+            app:neumorph_strokeColor="@color/gray_eded"
+            app:neumorph_strokeWidth="2dp">
+
+            <ImageView
+                android:id="@+id/item_chat_list_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_default_mentos"
+                tools:ignore="ContentDescription" />
+        </soup.neumorphism.NeumorphCardView>
+
+        <TextView
+            android:id="@+id/item_chat_list_nickname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="50dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_bold"
+            android:includeFontPadding="false"
+            android:text="@{data.profile.nickname}"
+            android:textColor="@color/black_1c1d"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@id/item_chat_list_img_layout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/chat_list_update"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/ic_chat_update"
+            app:layout_constraintBottom_toBottomOf="@id/item_chat_list_nickname_tv"
+            app:layout_constraintStart_toEndOf="@id/item_chat_list_nickname_tv"
+            app:layout_constraintTop_toTopOf="@id/item_chat_list_nickname_tv" />
+
+        <TextView
+            android:id="@+id/item_chat_list_msg_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:ems="2"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="@{data.lastMsg}"
+            android:textColor="@color/gray_7070"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/item_chat_list_nickname_tv"
+            app:layout_constraintTop_toBottomOf="@id/item_chat_list_nickname_tv" />
+
+        <TextView
+            android:id="@+id/item_chat_list_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/noto_light"
+            android:includeFontPadding="false"
+            android:textColor="@color/gray_7070"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_eded"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

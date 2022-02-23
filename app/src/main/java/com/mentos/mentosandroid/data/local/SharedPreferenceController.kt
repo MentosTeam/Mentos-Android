@@ -15,6 +15,7 @@ object SharedPreferenceController {
     private const val DEVICE_FCM_TOKEN = "DEVICE_FCM_TOKEN"
     private const val MENTOR_AGREEMENT_PUSH = "MENTOR_AGREEMENT_PUSH"
     private const val MENTEE_AGREEMENT_PUSH = "MENTEE_AGREEMENT_PUSH"
+    private const val MEMBER_ID = "MEMBER_ID"
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -85,6 +86,17 @@ object SharedPreferenceController {
     fun setJwtToken(jwt: String) {
         sharedPreferences.edit()
             .putString(JWT_TOKEN, jwt)
+            .apply()
+    }
+
+    // memberId
+    fun getMemberId(): Int {
+        return sharedPreferences.getInt(MEMBER_ID, 0)
+    }
+
+    fun setMemberId(memberId: Int) {
+        sharedPreferences.edit()
+            .putInt(MEMBER_ID, memberId)
             .apply()
     }
 

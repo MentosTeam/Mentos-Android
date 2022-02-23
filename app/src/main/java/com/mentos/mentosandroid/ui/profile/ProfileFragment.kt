@@ -37,8 +37,8 @@ class ProfileFragment : Fragment() {
         intiViewPager(profileViewPager)
 
         val tabLayout = binding.profileTab
-        profileViewModel.profileState.observe(viewLifecycleOwner){ profileState ->
-            if(profileState != null){
+        profileViewModel.profileState.observe(viewLifecycleOwner) { profileState ->
+            if (profileState != null) {
                 initTab(tabLayout, profileViewPager)
             }
         }
@@ -58,28 +58,31 @@ class ProfileFragment : Fragment() {
             Log.d("내 정보 탭", profileViewModel.profileState.value.toString())
             when (profileViewModel.profileState.value) {
                 ONLY_MENTOR -> {
-                    if(position == 0){
-                        tab.view.isClickable = true
-                    }else if(position == 1){
-                        tab.view.isClickable = false
+                    if (position == 0) {
+                        tab.view.isEnabled = true
+                    } else if (position == 1) {
+                        tab.view.isEnabled = false
                     }
-                    tab.view.background = getDrawable(requireContext(),  R.drawable.selector_profile_only_tab)
+                    tab.view.background =
+                        getDrawable(requireContext(), R.drawable.selector_profile_only_tab)
                 }
                 ONLY_MENTEE -> {
-                    if(position == 0){
-                        tab.view.isClickable = false
-                    }else if(position == 1){
-                        tab.view.isClickable = true
+                    if (position == 0) {
+                        tab.view.isEnabled = false
+                    } else if (position == 1) {
+                        tab.view.isEnabled = true
                     }
-                    tab.view.background = getDrawable(requireContext(),  R.drawable.selector_profile_only_tab)
+                    tab.view.background =
+                        getDrawable(requireContext(), R.drawable.selector_profile_only_tab)
                 }
                 BOTH -> {
-                    if(position == 0){
-                        tab.view.isClickable = true
-                    }else if(position == 1){
-                        tab.view.isClickable = true
+                    if (position == 0) {
+                        tab.view.isEnabled = true
+                    } else if (position == 1) {
+                        tab.view.isEnabled = true
                     }
-                    tab.view.background = getDrawable(requireContext(),  R.drawable.selector_profile_both_tab)
+                    tab.view.background =
+                        getDrawable(requireContext(), R.drawable.selector_profile_both_tab)
                 }
             }
             tab.text = tabTitle[position]

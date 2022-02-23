@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.data.request.RequestReport
 import com.mentos.mentosandroid.data.response.*
 import kotlinx.coroutines.launch
@@ -49,6 +50,9 @@ class OneProfileViewModel : ViewModel() {
     private var _isSuccessReport = MutableLiveData<Boolean>()
     var isSuccessReport: LiveData<Boolean> = _isSuccessReport
 
+    private val _isMyProfile = MutableLiveData<Boolean>()
+    val isMyProfile: LiveData<Boolean> = _isMyProfile
+
     fun getMentorProfileData(memberId: Int) {
         viewModelScope.launch {
             try {
@@ -57,6 +61,12 @@ class OneProfileViewModel : ViewModel() {
                 mentorProfileDataItem = responseMentorProfile.result
                 _mentorProfileData.value = mentorProfileDataItem
                 getMentorData()
+
+                if (SharedPreferenceController.getMemberId() == responseMentorProfile.result.basicInformation.memberId) {
+                    _isMyProfile.postValue(true)
+                } else {
+                    _isMyProfile.postValue(false)
+                }
             } catch (e: HttpException) {
                 Log.d("멘토 정보", e.message().toString())
                 Log.d("멘토 정보", e.code().toString())
@@ -108,6 +118,12 @@ class OneProfileViewModel : ViewModel() {
                 menteeProfileDataItem = responseMenteeProfile.result
                 _menteeProfileData.value = menteeProfileDataItem
                 getMenteeData()
+
+                if (SharedPreferenceController.getMemberId() == responseMenteeProfile.result.basicInformation.memberId) {
+                    _isMyProfile.postValue(true)
+                } else {
+                    _isMyProfile.postValue(false)
+                }
             } catch (e: HttpException) {
                 Log.d("멘토 정보", e.message().toString())
                 Log.d("멘토 정보", e.code().toString())

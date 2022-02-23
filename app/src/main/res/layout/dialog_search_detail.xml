@@ -88,11 +88,11 @@
             android:id="@+id/search_detail_btn_siren"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/siren"
             android:layout_marginEnd="20dp"
+            android:src="@drawable/siren"
             app:layout_constraintBottom_toBottomOf="@id/search_detail_mentor_info_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/search_detail_mentor_info_layout"/>
+            app:layout_constraintTop_toTopOf="@id/search_detail_mentor_info_layout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/search_detail_edit_layout"
@@ -196,7 +196,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:adjustViewBounds="true"
                         android:scaleType="centerInside"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
