@@ -50,13 +50,14 @@ class SignInViewModel : ViewModel() {
                 setLoadingState(false)
                 when (responseSignIn.code) {
                     1000 -> {
-                        SharedPreferenceController.setJwtToken(
-                            responseSignIn.result.jwt
-                        )
-                        SharedPreferenceController.setAutoLogin(
-                            email.value.toString(),
-                            password.value.toString()
-                        )
+                        with(SharedPreferenceController) {
+                            setJwtToken(responseSignIn.result.jwt)
+                            setMemberId(responseSignIn.result.memberId)
+                            setAutoLogin(
+                                email.value.toString(),
+                                password.value.toString()
+                            )
+                        }
                         setSuccessSignIn(true)
 
                         if (responseSignIn.result.mentor == 1) {

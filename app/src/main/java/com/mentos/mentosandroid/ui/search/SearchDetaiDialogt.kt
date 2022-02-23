@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mentos.mentosandroid.R
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.databinding.DialogSearchDetailBinding
 import com.mentos.mentosandroid.ui.myprofiledetail.PostListViewModel
 import com.mentos.mentosandroid.util.customdialog.DialogUtil
@@ -38,13 +39,13 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         if (args.myList) {
             setDeleteBtnClickListener()
             setEditBtnClickListener()
-        }else{
+        } else {
             setReportBtnClickListener()
         }
         setMentorInfoLayoutClickListener()
         setMentoringStartClickListener()
+        setChatBtnClickListener()
         setIsDeletedObserve()
-
         return binding.root
     }
 
@@ -53,10 +54,8 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
             EditTextDialog(2) { reportText ->
                 postListViewModel.postReport(1, args.postMento!!.postId, reportText)
                 postListViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
-                    if (isSuccess != null && isSuccess){
-                        OneButtonDialog(5) {
-
-                        }.show(childFragmentManager, "report")
+                    if (isSuccess != null && isSuccess) {
+                        OneButtonDialog(5) { }.show(childFragmentManager, "report")
                         postListViewModel.initSuccessReport()
                     }
                 }
@@ -80,6 +79,12 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
                         .load(args.postMento?.imageUrl)
                         .into(searchDetailPhotoIv)
                 }
+                searchDetailBottomMenuLayout.visibility =
+                    if (SharedPreferenceController.getMemberId() == args.postMento?.mentoId) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
             }
         }
     }
@@ -126,6 +131,18 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
             navigateWithData(
                 SearchDetailDialogDirections.actionSearchDetailDialogToMentoringStart1Fragment(
                     args.postMento?.mentoId!!
+                )
+            )
+        }
+    }
+
+    private fun setChatBtnClickListener() {
+        binding.searchBottomChatLayout.setOnClickListener {
+            navigateWithData(
+                SearchDetailDialogDirections.actionSearchDetailDialogToChatRoomFragment(
+                    memberId = requireNotNull(args.postMento?.mentoId),
+                    nickname = requireNotNull(args.postMento?.mentoNickName),
+                    imageUrl = null
                 )
             )
         }

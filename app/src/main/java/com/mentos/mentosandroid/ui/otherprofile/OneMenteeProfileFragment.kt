@@ -13,6 +13,7 @@ import com.mentos.mentosandroid.databinding.FragmentOneMenteeProfileBinding
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.customdialog.EditTextDialog
 import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
+import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.popBackStack
 
 class OneMenteeProfileFragment : Fragment() {
@@ -31,6 +32,8 @@ class OneMenteeProfileFragment : Fragment() {
         initImg()
         setBackBtnClickListener()
         setReportBtnClickListener()
+        setChatBtnClickListener()
+        setIsMyProfileObserve()
         return binding.root
     }
 
@@ -39,7 +42,7 @@ class OneMenteeProfileFragment : Fragment() {
             EditTextDialog(2) { reportText ->
                 profileViewModel.postReport(2, args.menteeId, reportText)
                 profileViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
-                    if (isSuccess != null && isSuccess){
+                    if (isSuccess != null && isSuccess) {
                         OneButtonDialog(5) {
 
                         }.show(childFragmentManager, "report")
@@ -59,6 +62,18 @@ class OneMenteeProfileFragment : Fragment() {
     private fun setBackBtnClickListener() {
         binding.oneMenteeBtnBackIb.setOnClickListener {
             popBackStack()
+        }
+    }
+
+    private fun setChatBtnClickListener() {
+        binding.menteeProfileBottomChatLayout.setOnClickListener {
+            navigateWithData(
+                OneMenteeProfileFragmentDirections.actionOneMenteeProfileFragmentToChatRoomFragment(
+                    memberId = profileViewModel.menteeProfileData.value!!.basicInformation.memberId,
+                    nickname = profileViewModel.menteeProfileData.value!!.basicInformation.nickname,
+                    imageUrl = profileViewModel.menteeProfileData.value!!.basicInformation.profileImage
+                )
+            )
         }
     }
 
@@ -85,6 +100,15 @@ class OneMenteeProfileFragment : Fragment() {
                         .load(menteeProfileData.basicInformation.profileImage)
                         .into(binding.menteeProfileImg)
                 }
+            }
+        }
+    }
+
+    private fun setIsMyProfileObserve() {
+        profileViewModel.isMyProfile.observe(viewLifecycleOwner) { isMyProfile ->
+            if (isMyProfile) {
+                binding.menteeProfileBottomMenuLayout.visibility = View.GONE
+                binding.oneMenteeBtnSiren.visibility = View.GONE
             }
         }
     }

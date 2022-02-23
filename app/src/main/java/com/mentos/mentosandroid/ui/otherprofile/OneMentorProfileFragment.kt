@@ -38,6 +38,7 @@ class OneMentorProfileFragment : Fragment() {
         setNavigateWithMentorId()
         setMentorListObserve()
         setReportBtnClickListener()
+        setIsMyProfileObserve()
         return binding.root
     }
 
@@ -46,7 +47,7 @@ class OneMentorProfileFragment : Fragment() {
             EditTextDialog(2) { reportText ->
                 profileViewModel.postReport(2, args.mentorId, reportText)
                 profileViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
-                    if (isSuccess != null && isSuccess){
+                    if (isSuccess != null && isSuccess) {
                         OneButtonDialog(5) {
 
                         }.show(childFragmentManager, "report")
@@ -139,6 +140,15 @@ class OneMentorProfileFragment : Fragment() {
                 )
             )
         }
+        binding.mentorProfileBottomChatLayout.setOnClickListener {
+            navigateWithData(
+                OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToChatRoomFragment(
+                    memberId = profileViewModel.mentorProfileData.value!!.basicInformation.memberId,
+                    nickname = profileViewModel.mentorProfileData.value!!.basicInformation.nickname,
+                    imageUrl = profileViewModel.mentorProfileData.value!!.basicInformation.profileImage
+                )
+            )
+        }
     }
 
     private fun initImg() {
@@ -153,6 +163,15 @@ class OneMentorProfileFragment : Fragment() {
                         .load(mentorProfileData.basicInformation.profileImage)
                         .into(binding.mentorProfileImg)
                 }
+            }
+        }
+    }
+
+    private fun setIsMyProfileObserve() {
+        profileViewModel.isMyProfile.observe(viewLifecycleOwner) { isMyProfile ->
+            if (isMyProfile) {
+                binding.mentorProfileBottomChatLayout.visibility = View.GONE
+                binding.oneMentorBtnSiren.visibility = View.GONE
             }
         }
     }

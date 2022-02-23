@@ -1,49 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/chat_bubble_content_tv"
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="chatContent"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/item_chat_bubble_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/img_chat_other"
-        android:fontFamily="@font/noto_regular"
-        android:includeFontPadding="false"
-        android:paddingVertical="6dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="6dp"
-        android:text="안녕하세요안녕하세요\n요"
-        android:textColor="@color/black_3333"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        android:paddingBottom="4dp">
 
-    <TextView
-        android:id="@+id/chat_bubble_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:fontFamily="@font/noto_light"
-        android:includeFontPadding="false"
-        android:text="12:11"
-        android:textColor="@color/gray_7070"
-        android:textSize="9sp"
-        app:layout_constraintBottom_toBottomOf="@id/chat_bubble_content_tv"
-        app:layout_constraintStart_toEndOf="@id/chat_bubble_content_tv" />
+        <TextView
+            android:id="@+id/chat_bubble_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_chat_other"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:maxWidth="230dp"
+            android:paddingVertical="7dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="9dp"
+            android:text="@{chatContent}"
+            android:textColor="@color/black_3333"
+            android:textSize="11sp" />
 
-    <View
-        android:id="@+id/chat_bubble_update"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/ic_chat_update"
-        app:layout_constraintBottom_toBottomOf="@id/chat_bubble_time_tv"
-        app:layout_constraintStart_toEndOf="@id/chat_bubble_time_tv"
-        app:layout_constraintTop_toTopOf="@id/chat_bubble_time_tv" />
+        <TextView
+            android:id="@+id/chat_bubble_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/noto_light"
+            android:includeFontPadding="false"
+            android:paddingBottom="2dp"
+            android:textColor="@color/gray_7070"
+            android:textSize="9sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/chat_bubble_update"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="3dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/ic_chat_update" />
+    </LinearLayout>
+</layout>
