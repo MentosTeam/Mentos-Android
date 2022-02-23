@@ -170,7 +170,7 @@ class OneMentorProfileFragment : Fragment() {
     private fun setIsMyProfileObserve() {
         profileViewModel.isMyProfile.observe(viewLifecycleOwner) { isMyProfile ->
             if (isMyProfile) {
-                binding.mentorProfileBottomChatLayout.visibility = View.GONE
+                binding.mentorProfileBottomMenuLayout.visibility = View.GONE
                 binding.oneMentorBtnSiren.visibility = View.GONE
             }
         }

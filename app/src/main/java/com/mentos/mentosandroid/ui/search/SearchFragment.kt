@@ -1,9 +1,10 @@
 package com.mentos.mentosandroid.ui.search
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,7 @@ class SearchFragment : Fragment() {
             binding.searchCategoryAllRb.isChecked = false
             searchViewModel.getMentosCategoryForFirst()
         }
-        setIsChecked()
+        setIsCheckedChangeListener()
         setCategoryClickObserve()
         initCategoryBtnLayout()
         setHomeSelectedCategory()
@@ -61,6 +62,7 @@ class SearchFragment : Fragment() {
                 binding.searchWriteIb.visibility = View.GONE
                 binding.searchMentorListRv.visibility = View.GONE
                 binding.searchMenteeListRv.visibility = View.VISIBLE
+                binding.searchMenteeListRv.itemAnimator = null
             }
             1 -> {
                 binding.searchMentorListRv.visibility = View.VISIBLE
@@ -68,6 +70,7 @@ class SearchFragment : Fragment() {
                 binding.searchMentorTitleSubIv.setText(R.string.search_title_sub)
                 binding.searchMenteeListRv.visibility = View.GONE
                 binding.searchMentorListRv.visibility = View.VISIBLE
+                binding.searchMentorListRv.itemAnimator = null
             }
         }
     }
@@ -96,7 +99,7 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setIsChecked() {
+    private fun setIsCheckedChangeListener() {
         binding.searchCategoryFirstRb.setOnCheckedChangeListener { _, isCheck ->
             if (isCheck) {
                 searchViewModel.getMentosCategoryForFirst()
@@ -128,8 +131,8 @@ class SearchFragment : Fragment() {
             if (isClick) {
                 searchViewModel.clearSearchCategory()
                 searchViewModel.setSearchCategory(searchViewModel.firstCategory.value!!)
-                Log.d("검색first 결과", searchViewModel.searchCategory.value.toString())
                 searchByCategory()
+                setRVScrollTop()
             } else {
                 searchViewModel.isCategoryClicked(false)
             }
@@ -140,7 +143,7 @@ class SearchFragment : Fragment() {
                 searchViewModel.clearSearchCategory()
                 searchViewModel.setSearchCategory(searchViewModel.secondCategory.value!!)
                 searchByCategory()
-                Log.d("검색secodn 결과", searchViewModel.searchCategory.value.toString())
+                setRVScrollTop()
             } else {
                 searchViewModel.isCategoryClicked(false)
             }
@@ -153,10 +156,23 @@ class SearchFragment : Fragment() {
                     searchViewModel.setSearchCategory(i)
                 }
                 searchByCategory()
-                Log.d("검색all", searchViewModel.searchCategory.value.toString())
+                setRVScrollTop()
             } else {
                 searchViewModel.isCategoryClicked(false)
             }
+        }
+    }
+
+    private fun setRVScrollTop() {
+        if (searchViewModel.searchMentorList.value != null) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.searchMentorListRv.smoothScrollToPosition(0)
+            }, 100)
+        }
+        if (searchViewModel.searchMenteeList.value != null) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.searchMenteeListRv.smoothScrollToPosition(0)
+            }, 100)
         }
     }
 

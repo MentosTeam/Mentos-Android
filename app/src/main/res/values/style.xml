@@ -29,6 +29,12 @@
         <item name="neumorph_cornerFamily">oval</item>
     </style>
 
+    <style name="shadow_round_top_20">
+        <item name="neumorph_cornerFamily">rounded</item>
+        <item name="neumorph_cornerSizeTopLeft">20dp</item>
+        <item name="neumorph_cornerSizeTopRight">20dp</item>
+    </style>
+
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/noto_medium</item>
         <item name="android:textSize">12sp</item>

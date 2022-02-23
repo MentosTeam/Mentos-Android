@@ -2,12 +2,9 @@ package com.mentos.mentosandroid.ui.otherprofile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemMajorDetailBinding
-import com.mentos.mentosandroid.ui.home.HomeFragmentDirections
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 import com.mentos.mentosandroid.util.navigateWithData
 
@@ -23,11 +20,9 @@ class MentorProfilePostRVAdapter :
             binding.itemMajorDetailTitleTv.text = currentMajorDetail.postTitle
             binding.itemMajorDetailMentosIv.setMentosImg17(currentMajorDetail.majorCategoryId)
 
-            //글 상세보기 다이얼로그 이동
             binding.itemMajorDetailLayout.setOnClickListener {
                 it.navigateWithData(
                     OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToSearchDetailDialog(
-                        myList = false,
                         postMento = currentMajorDetail
                     )
                 )
