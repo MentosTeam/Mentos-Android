@@ -63,12 +63,14 @@ class SearchCreateFragment : Fragment() {
             setCreateTitle(args.postMento?.postTitle!!)
             setCreateContent(args.postMento?.postContents!!)
             setCategory(true)
-            setModifyHasImage(true)
             searchViewModel.createCategory.value = args.postMento?.majorCategoryId
         }
-        Glide.with(this)
-            .load(args.postMento?.imageUrl)
-            .into(binding.searchCreateModifyPhotoIv)
+        if (args.postMento?.imageUrl != null) {
+            searchViewModel.setModifyHasImage(true)
+            Glide.with(this)
+                .load(args.postMento?.imageUrl)
+                .into(binding.searchCreateModifyPhotoIv)
+        }
         binding.searchCreateMentosIv.setMentosImg17(args.postMento?.majorCategoryId!!)
         binding.searchCreateBtnComplete.setText(R.string.search_create_modify_complete)
     }

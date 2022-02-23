@@ -92,7 +92,8 @@
             android:src="@drawable/siren"
             app:layout_constraintBottom_toBottomOf="@id/search_detail_mentor_info_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/search_detail_mentor_info_layout" />
+            app:layout_constraintTop_toTopOf="@id/search_detail_mentor_info_layout"
+            tools:ignore="ContentDescription" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/search_detail_edit_layout"
@@ -214,73 +215,85 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <soup.neumorphism.NeumorphCardView
             android:id="@+id/search_detail_bottom_menu_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_gray_stroke_top_20"
-            android:paddingVertical="14dp"
-            android:visibility="visible"
+            android:padding="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:neumorph_backgroundColor="@android:color/transparent"
+            app:neumorph_inset="1dp"
+            app:neumorph_shadowColorDark="@color/gray_shadow"
+            app:neumorph_shadowColorLight="@color/gray_shadow"
+            app:neumorph_shadowElevation="1dp"
+            app:neumorph_shapeAppearance="@style/shadow_round_top_20"
+            app:neumorph_shapeType="flat">
 
-            <LinearLayout
-                android:id="@+id/search_bottom_chat_layout"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/search_bottom_mentoring_layout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:background="@drawable/shape_gray_stroke_top_20"
+                android:paddingVertical="14dp"
+                android:visibility="visible">
 
-                <ImageView
+                <LinearLayout
+                    android:id="@+id/search_bottom_chat_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:src="@drawable/ic_bottom_chat"
-                    tools:ignore="ContentDescription" />
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/search_bottom_mentoring_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/ic_bottom_chat"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/bottom_chat_mentor"
+                        android:textColor="@color/gray_7070"
+                        android:textSize="9sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/search_bottom_mentoring_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:text="@string/bottom_chat_mentor"
-                    android:textColor="@color/gray_7070"
-                    android:textSize="9sp" />
-            </LinearLayout>
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/search_bottom_chat_layout"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:id="@+id/search_bottom_mentoring_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/search_bottom_chat_layout"
-                app:layout_constraintTop_toTopOf="parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/ic_bottom_start_mentoring"
+                        tools:ignore="ContentDescription" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:src="@drawable/ic_bottom_start_mentoring"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:text="@string/bottom_start_mentoring"
-                    android:textColor="@color/gray_7070"
-                    android:textSize="9sp" />
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/bottom_start_mentoring"
+                        android:textColor="@color/gray_7070"
+                        android:textSize="9sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </soup.neumorphism.NeumorphCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

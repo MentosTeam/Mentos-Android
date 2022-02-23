@@ -23,5 +23,6 @@ data class SearchMentor(
     val mentoNickName: String,
     val postContents: String,
     val postId: Int,
-    val postTitle: String
+    val postTitle: String,
+    val mentoImage : String?
 ) : Parcelable

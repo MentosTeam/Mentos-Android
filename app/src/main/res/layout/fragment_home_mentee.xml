@@ -150,7 +150,8 @@
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="ContentDescription" />
 
                             </soup.neumorphism.NeumorphCardView>
 
@@ -161,6 +162,7 @@
                                 android:layout_marginTop="1dp"
                                 android:layout_marginEnd="6dp"
                                 android:background="@drawable/shape_red_fill_oval"
+                                android:visibility="gone"
                                 app:layout_constraintEnd_toEndOf="@+id/home_alarm_neumorp_layout"
                                 app:layout_constraintTop_toTopOf="@+id/home_alarm_neumorp_layout" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -195,9 +197,9 @@
                                 android:layout_marginTop="3dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:src="@drawable/ic_home_bell_alarm" />
+                                android:src="@drawable/ic_home_bell_alarm"
+                                tools:ignore="ContentDescription" />
                         </soup.neumorphism.NeumorphCardView>
-
 
                         <TextView
                             android:id="@+id/home_search_tv1"
@@ -341,17 +343,6 @@
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_category_layout" />
-
-                <ImageView
-                    android:id="@+id/home_other_more_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:padding="1dp"
-                    android:src="@drawable/ic_home_more"
-                    app:layout_constraintBottom_toBottomOf="@+id/home_other_tv"
-                    app:layout_constraintStart_toEndOf="@+id/home_other_tv"
-                    app:layout_constraintTop_toTopOf="@+id/home_other_tv" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/home_other_mentor_rv"

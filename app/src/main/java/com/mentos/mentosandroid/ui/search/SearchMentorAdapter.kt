@@ -30,7 +30,6 @@ class SearchMentorAdapter :
             binding.searchListLayout.setOnClickListener {
                 it.navigateWithData(
                     SearchFragmentDirections.actionSearchFragmentToSearchDetailDialog(
-                        myList = false,
                         postMento = item
                     )
                 )

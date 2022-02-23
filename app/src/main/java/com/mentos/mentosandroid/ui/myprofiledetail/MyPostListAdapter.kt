@@ -30,7 +30,6 @@ class MyPostListAdapter :
             binding.searchListLayout.setOnClickListener {
                 it.navigateWithData(
                     MyPostListFragmentDirections.actionPostListFragmentToSearchDetailDialog(
-                        myList = true,
                         postMento = item
                     )
                 )

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.response.MentorPost
-import com.mentos.mentosandroid.data.response.OtherMentor
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemHomeMentorPostBinding
 import com.mentos.mentosandroid.util.navigateWithData
@@ -23,11 +22,9 @@ class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostV
         fun bind(currentMentorPost: MentorPost) {
             binding.mentorPost = currentMentorPost
 
-            //글 상세보기 다이얼로그 이동
             binding.itemHomeMentorLayout.setOnClickListener {
                 it.navigateWithData(
                     HomeFragmentDirections.actionHomeFragmentToSearchDetailDialog(
-                        myList = false,
                         postMento = SearchMentor(
                             currentMentorPost.postImgUrl.toString(),
                             currentMentorPost.postCategoryId,
@@ -36,7 +33,8 @@ class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostV
                             currentMentorPost.nickName,
                             currentMentorPost.postContents,
                             currentMentorPost.postId,
-                            currentMentorPost.postTitle
+                            currentMentorPost.postTitle,
+                            currentMentorPost.mentorImage
                         )
                     )
                 )

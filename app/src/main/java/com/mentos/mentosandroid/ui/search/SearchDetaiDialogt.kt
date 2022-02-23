@@ -36,7 +36,7 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         initData()
         initMyPostView()
-        if (args.myList) {
+        if (SharedPreferenceController.getMemberId() == args.postMento?.mentoId) {
             setDeleteBtnClickListener()
             setEditBtnClickListener()
         } else {
@@ -79,24 +79,18 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
                         .load(args.postMento?.imageUrl)
                         .into(searchDetailPhotoIv)
                 }
-                searchDetailBottomMenuLayout.visibility =
-                    if (SharedPreferenceController.getMemberId() == args.postMento?.mentoId) {
-                        View.GONE
-                    } else {
-                        View.VISIBLE
-                    }
             }
         }
     }
 
     private fun initMyPostView() {
-        if (args.myList) {
+        if (SharedPreferenceController.getMemberId() == args.postMento?.mentoId) {
             binding.searchDetailEditLayout.visibility = View.VISIBLE
             binding.searchDetailBottomMenuLayout.visibility = View.GONE
-            binding.searchDetailBtnSiren.visibility = View.VISIBLE
+            binding.searchDetailBtnSiren.visibility = View.GONE
         } else {
             binding.searchDetailEditLayout.visibility = View.GONE
-            binding.searchDetailBtnSiren.visibility = View.GONE
+            binding.searchDetailBtnSiren.visibility = View.VISIBLE
         }
     }
 
@@ -142,7 +136,7 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
                 SearchDetailDialogDirections.actionSearchDetailDialogToChatRoomFragment(
                     memberId = requireNotNull(args.postMento?.mentoId),
                     nickname = requireNotNull(args.postMento?.mentoNickName),
-                    imageUrl = null
+                    imageUrl = requireNotNull(args.postMento?.mentoImage),
                 )
             )
         }
