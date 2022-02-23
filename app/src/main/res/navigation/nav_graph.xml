@@ -233,6 +233,9 @@
         <action
             android:id="@+id/action_settingFragment_to_changeProfileImgFragment"
             app:destination="@id/changeProfileImgFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
 
     <fragment
@@ -396,7 +399,11 @@
         android:id="@+id/notificationFragment"
         android:name="com.mentos.mentosandroid.ui.notification.NotificationFragment"
         android:label="NotificationFragment"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/fragment_notification">
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/otherAccountIntroFragment"

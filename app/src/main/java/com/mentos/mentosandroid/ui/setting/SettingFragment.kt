@@ -90,6 +90,13 @@ class SettingFragment : Fragment() {
         binding.settingMentosLayout.setOnClickListener {
             navigate(R.id.action_settingFragment_to_changeMentosFragment)
         }
+        binding.settingNoticeLayout.setOnClickListener {
+            navigateWithData(
+                SettingFragmentDirections.actionSettingFragmentToNotificationFragment(
+                    from = "setting"
+                )
+            )
+        }
         binding.settingPwLayout.setOnClickListener {
             navigate(R.id.action_settingFragment_to_changePasswordFragment)
         }

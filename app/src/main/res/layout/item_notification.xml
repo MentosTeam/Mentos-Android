@@ -6,7 +6,7 @@
 
         <variable
             name="notification"
-            type="com.mentos.mentosandroid.data.Notification" />
+            type="com.mentos.mentosandroid.data.response.Notice" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,9 +18,9 @@
 
         <TextView
             android:id="@+id/item_notification_content_tv"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/noto_regular"
@@ -29,7 +29,6 @@
             android:textColor="@color/black_1c1d"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,14 +36,13 @@
             android:id="@+id/item_notification_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="9dp"
             android:fontFamily="@font/noto_medium"
             android:includeFontPadding="false"
-            android:text="@{notification.date}"
             android:textColor="@color/gray_7070"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/item_notification_content_tv" />
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
