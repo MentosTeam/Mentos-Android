@@ -44,7 +44,7 @@ class OtherMentorRVAdapter() : RecyclerView.Adapter<OtherMentorRVAdapter.OtherMe
 
         private fun initImg(currentOtherMentor: OtherMentor) {
             if (currentOtherMentor.mentorImage == null) {
-                binding.itemHomeOtherMentorImg.setImageResource(R.drawable.img_home_user)
+                binding.itemHomeOtherMentorImg.setImageResource(R.drawable.img_default_mentos)
             } else {
                 Glide.with(context)
                     .load(currentOtherMentor.mentorImage)

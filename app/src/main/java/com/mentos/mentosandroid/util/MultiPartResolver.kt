@@ -33,7 +33,7 @@ class MultiPartResolver(private val context: Context) {
     }
 
     private fun getOrientationOfImage(uri: Uri): Int {
-        var exif: ExifInterface? = null
+        val exif: ExifInterface?
         try {
             val filePath = getPathFromUri(uri)
             exif = ExifInterface(filePath)

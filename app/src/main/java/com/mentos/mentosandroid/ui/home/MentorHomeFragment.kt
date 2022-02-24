@@ -14,7 +14,7 @@ import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.util.navigate
 import com.mentos.mentosandroid.util.navigateWithData
 
-class MentorHomeFragment() : Fragment() {
+class MentorHomeFragment : Fragment() {
     lateinit var binding: FragmentHomeMentorBinding
     lateinit var homeViewModel: HomeViewModel
 
@@ -22,7 +22,7 @@ class MentorHomeFragment() : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeMentorBinding.inflate(inflater, container, false)
 
         initViewModel()
@@ -44,9 +44,11 @@ class MentorHomeFragment() : Fragment() {
 
     private fun setBtnPushClickListener() {
         binding.homeBellLayout.setOnClickListener {
-            navigateWithData(HomeFragmentDirections.actionHomeFragmentToNotificationFragment(
-                from = "home"
-            ))
+            navigateWithData(
+                HomeFragmentDirections.actionHomeFragmentToNotificationFragment(
+                    from = "home"
+                )
+            )
         }
     }
 
@@ -59,13 +61,11 @@ class MentorHomeFragment() : Fragment() {
     }
 
     private fun setMentosObserve() {
-        homeViewModel.mentorHomeData.observe(viewLifecycleOwner) { mentorHomeData ->
-            if (mentorHomeData.mentos != null) {
-                SharedPreferenceController.setMyMentos(
-                    requireContext(),
-                    homeViewModel.mentorHomeData.value?.mentos
-                )
-            }
+        homeViewModel.mentorHomeData.observe(viewLifecycleOwner) {
+            SharedPreferenceController.setMyMentos(
+                requireContext(),
+                homeViewModel.mentorHomeData.value?.mentos
+            )
         }
     }
 
@@ -76,16 +76,14 @@ class MentorHomeFragment() : Fragment() {
     }
 
     private fun setRainbowBackground() {
-        var bgHomeTopLayout: GradientDrawable = binding.homeTopLayout.background as GradientDrawable
-        bgHomeTopLayout.setColors(
-            intArrayOf(
-                ContextCompat.getColor(requireContext(), R.color.bg_red),
-                ContextCompat.getColor(requireContext(), R.color.bg_orange),
-                ContextCompat.getColor(requireContext(), R.color.bg_yellow),
-                ContextCompat.getColor(requireContext(), R.color.bg_green),
-                ContextCompat.getColor(requireContext(), R.color.bg_blue),
-                ContextCompat.getColor(requireContext(), R.color.bg_purple)
-            )
+        val bgHomeTopLayout: GradientDrawable = binding.homeTopLayout.background as GradientDrawable
+        bgHomeTopLayout.colors = intArrayOf(
+            ContextCompat.getColor(requireContext(), R.color.bg_red),
+            ContextCompat.getColor(requireContext(), R.color.bg_orange),
+            ContextCompat.getColor(requireContext(), R.color.bg_yellow),
+            ContextCompat.getColor(requireContext(), R.color.bg_green),
+            ContextCompat.getColor(requireContext(), R.color.bg_blue),
+            ContextCompat.getColor(requireContext(), R.color.bg_purple)
         )
         bgHomeTopLayout.orientation = GradientDrawable.Orientation.TL_BR
     }

@@ -124,7 +124,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/img_home_user"
+                                android:src="@drawable/img_default_mentos"
                                 tools:ignore="ContentDescription" />
                         </soup.neumorphism.NeumorphCardView>
 

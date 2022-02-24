@@ -154,10 +154,10 @@ class OneMentorProfileFragment : Fragment() {
     private fun initImg() {
         profileViewModel.mentorProfileData.observe(viewLifecycleOwner) { mentorProfileData ->
             if (mentorProfileData == null) {
-                binding.mentorProfileImg.setImageResource(R.drawable.img_home_user)
+                binding.mentorProfileImg.setImageResource(R.drawable.img_default_mentos)
             } else {
                 if (mentorProfileData.basicInformation.profileImage == null) {
-                    binding.mentorProfileImg.setImageResource(R.drawable.img_home_user)
+                    binding.mentorProfileImg.setImageResource(R.drawable.img_default_mentos)
                 } else {
                     Glide.with(requireContext())
                         .load(mentorProfileData.basicInformation.profileImage)

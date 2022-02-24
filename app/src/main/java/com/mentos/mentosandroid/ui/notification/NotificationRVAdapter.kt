@@ -18,7 +18,7 @@ class NotificationRVAdapter : RecyclerView.Adapter<NotificationRVAdapter.Notific
 
             val date = SimpleDateFormat("yyyy-MM-dd").parse(currentNoti.createAt.substring(0, 10))
             val sdf = SimpleDateFormat("yyyy년 MM월 dd일")
-            binding.itemNotificationDateTv.text = sdf.format(date)
+            binding.itemNotificationDateTv.text = sdf.format(requireNotNull(date))
         }
     }
 

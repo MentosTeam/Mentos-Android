@@ -43,7 +43,7 @@
                 android:layout_height="30dp"
                 android:background="@drawable/shape_gray_stroke_8"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_home_user"
+                android:src="@drawable/img_default_mentos"
                 tools:ignore="ContentDescription" />
         </soup.neumorphism.NeumorphCardView>
 
