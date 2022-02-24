@@ -134,7 +134,7 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         binding.searchBottomChatLayout.setOnClickListener {
             navigateWithData(
                 SearchDetailDialogDirections.actionSearchDetailDialogToChatRoomFragment(
-                    memberId = requireNotNull(args.postMento?.mentoId),
+                    memberId = args.postMento?.mentoId.toString(),
                     nickname = requireNotNull(args.postMento?.mentoNickName),
                     imageUrl = requireNotNull(args.postMento?.mentoImage),
                 )

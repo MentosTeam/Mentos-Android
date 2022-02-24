@@ -66,6 +66,7 @@
             android:layout_height="10dp"
             android:layout_marginStart="5dp"
             android:background="@drawable/ic_chat_update"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/item_chat_list_nickname_tv"
             app:layout_constraintStart_toEndOf="@id/item_chat_list_nickname_tv"
             app:layout_constraintTop_toTopOf="@id/item_chat_list_nickname_tv" />
@@ -83,7 +84,7 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="2"
-            android:text="@{data.lastMsg}"
+            android:text="@{data.comments.content}"
             android:textColor="@color/gray_7070"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"

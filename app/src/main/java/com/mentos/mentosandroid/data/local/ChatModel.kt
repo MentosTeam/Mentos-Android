@@ -8,5 +8,6 @@ data class ChatModel(
 data class ChatBubble(
     val memberId: String = "",
     val content: String = "",
-    val createAt: String = ""
+    val createAt: String = "",
+    val readUsers: HashMap<String, Boolean> = HashMap()
 )

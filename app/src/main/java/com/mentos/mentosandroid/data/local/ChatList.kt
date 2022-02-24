@@ -2,8 +2,7 @@ package com.mentos.mentosandroid.data.local
 
 data class ChatList(
     val profile: ChatProfile = ChatProfile(),
-    val lastMsg: String? = "",
-    val date: String? = "",
+    val comments: ChatBubble = ChatBubble(),
 )
 
 data class ChatProfile(

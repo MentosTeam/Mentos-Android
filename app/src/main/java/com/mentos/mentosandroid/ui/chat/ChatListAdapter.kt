@@ -1,7 +1,7 @@
 package com.mentos.mentosandroid.ui.chat
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.local.ChatList
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.databinding.ItemChatListBinding
 import com.mentos.mentosandroid.util.navigateWithData
 
@@ -29,16 +30,24 @@ class ChatListAdapter(val fragment: Fragment) :
                     .into(binding.itemChatListImg)
             }
 
-            if (item.lastMsg != "") {
-                val time = item.date!!.split(" ")
+            if (item.comments.content != "") {
+                val time = item.comments.createAt.split(" ")
                 binding.itemChatListDateTv.text = time[0]
+
+                if (item.comments.memberId != SharedPreferenceController.getMemberId().toString()
+                    && item.comments.readUsers.size != 2
+                ) {
+                    binding.chatListUpdate.visibility = View.VISIBLE
+                } else {
+                    binding.chatListUpdate.visibility = View.GONE
+                }
             }
 
             binding.itemChatListLayout.setOnClickListener {
                 it.navigateWithData(
                     ChatListFragmentDirections.actionChatListFragmentToChatRoomFragment(
                         nickname = item.profile.nickname,
-                        memberId = item.profile.memberId.toInt(),
+                        memberId = item.profile.memberId,
                         imageUrl = item.profile.profileImage
                     )
                 )

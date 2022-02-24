@@ -331,4 +331,5 @@
 
     <!--Chat Fragment-->
     <string name="chat_title">채팅</string>
+    <string name="chat_empty_message">아직 진행한 대화 내역이 없습니다-!</string>
 </resources>
