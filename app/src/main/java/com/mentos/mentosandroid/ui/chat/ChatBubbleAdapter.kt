@@ -10,7 +10,6 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.local.ChatBubble
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.databinding.ItemChatBubbleBinding
-import com.mentos.mentosandroid.databinding.ItemStateNowBinding
 
 class ChatBubbleAdapter :
     ListAdapter<ChatBubble, ChatBubbleAdapter.ChatBubbleViewHolder>(ChatBubbleDiffUtil()) {
@@ -26,6 +25,11 @@ class ChatBubbleAdapter :
             if (SharedPreferenceController.getMemberId().toString() == item.memberId) {
                 binding.chatBubbleContentTv.setBackgroundResource(R.drawable.img_chat_mine)
                 binding.itemChatBubbleLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
+                binding.chatBubbleUpdate.visibility = if (item.readUsers.size == 2) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
             } else {
                 binding.chatBubbleContentTv.setBackgroundResource(R.drawable.img_chat_other)
                 binding.itemChatBubbleLayout.layoutDirection = View.LAYOUT_DIRECTION_LTR

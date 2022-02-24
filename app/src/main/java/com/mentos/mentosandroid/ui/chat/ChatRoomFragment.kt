@@ -1,6 +1,7 @@
 package com.mentos.mentosandroid.ui.chat
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -49,13 +52,23 @@ class ChatRoomFragment : Fragment() {
         setReportBtnClickListener()
         setAdapter()
         writeProfileDB()
+        readChatDB()
         setNewMsgEtObserve()
         setChatBubbleListObserve()
         return binding.root
     }
 
     private fun initView() {
-        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            activity?.window?.setDecorFitsSystemWindows(false)
+            ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+                val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+                binding.root.setPadding(0, 0, 0, imeHeight)
+                insets
+            }
+        } else {
+            activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        }
         binding.chatRoomTitleTv.text = args.nickname
     }
 
@@ -78,41 +91,11 @@ class ChatRoomFragment : Fragment() {
         val getTime: String = dateFormat.format(currentTime)
 
         binding.chatBtnSendIv.setOnClickListener {
-            database.child("chatRooms")
-                .child(chatViewModel.chatRoomKey.value.toString())
-                .child("comments").push().setValue(
-                    ChatBubble(
-                        memberId = SharedPreferenceController.getMemberId()
-                            .toString(),
-                        content = requireNotNull(chatViewModel.newMsg.value),
-                        createAt = getTime
-                    )
-                )
 
-            chatViewModel.newMsg.value = ""
-            binding.chatBubbleRv.itemAnimator = null
-            if (chatViewModel.chatBubbleList.value != null) {
-                binding.chatBubbleRv.scrollToPosition(chatViewModel.chatBubbleList.value!!.size - 1)
-            }
-        }
-    }
-
-    private fun writeProfileDB() {
-        database.child("profile").child(args.memberId.toString()).setValue(
-            ChatProfile(
-                memberId = args.memberId.toString(),
-                profileImage = args.imageUrl,
-                nickname = args.nickname
-            )
-        )
-        readChatDB()
-
-        Handler(Looper.getMainLooper()).postDelayed({
             if (chatViewModel.chatRoomKey.value == null) {
-
                 val users = HashMap<String, Boolean>()
                 users[SharedPreferenceController.getMemberId().toString()] = true
-                users[args.memberId.toString()] = true
+                users[args.memberId] = true
 
                 database.child("chatRooms").push().setValue(
                     ChatModel(
@@ -123,24 +106,74 @@ class ChatRoomFragment : Fragment() {
                     readChatDB()
                 }
             }
-        }, 2000)
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (chatViewModel.newMsg.value!!.isNotEmpty()) {
+                    database.child("chatRooms")
+                        .child(chatViewModel.chatRoomKey.value.toString())
+                        .child("comments").push().setValue(
+                            ChatBubble(
+                                memberId = SharedPreferenceController.getMemberId().toString(),
+                                content = requireNotNull(chatViewModel.newMsg.value),
+                                createAt = getTime
+                            )
+                        ).addOnCompleteListener {
+                            chatViewModel.newMsg.value = ""
+                            if (chatViewModel.chatBubbleList.value != null) {
+                                binding.chatBubbleRv.scrollToPosition(chatViewModel.chatBubbleList.value!!.size - 1)
+                            }
+                        }
+                }
+            }, 100)
+        }
+    }
+
+    private fun writeProfileDB() {
+        database.child("profile").child(args.memberId).setValue(
+            ChatProfile(
+                memberId = args.memberId,
+                profileImage = args.imageUrl,
+                nickname = args.nickname
+            )
+        )
     }
 
     private fun readChatDB() {
         database.child("chatRooms")
-            .orderByChild("users/${SharedPreferenceController.getMemberId()}")
-            .equalTo(true)
+            .orderByChild("users/${SharedPreferenceController.getMemberId()}").equalTo(true)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     chatViewModel.clearChatBubbleList()
 
                     for (chatSnapshot in dataSnapshot.children) {
                         val chatItem = chatSnapshot.getValue(ChatModel::class.java)
-                        if (chatItem!!.users.containsKey(args.memberId.toString())) {
+                        if (chatItem!!.users.containsKey(args.memberId)) {
                             chatViewModel.setRoomKey(chatSnapshot.key.toString())
-                            for (chatBubbleSnapShot in chatSnapshot.child("comments").children) {
-                                val bubbleItem = chatBubbleSnapShot.getValue(ChatBubble::class.java)
+                            for (bubbleSnapShot in chatSnapshot.child("comments").children) {
+
+                                val bubbleItem = bubbleSnapShot.getValue(ChatBubble::class.java)
                                 chatViewModel.addChatBubbleList(requireNotNull(bubbleItem))
+
+                                // 읽음표시
+                                if (chatViewModel.chatBubbleList.value != null &&
+                                    !chatViewModel.chatBubbleList.value?.get(chatViewModel.chatBubbleList.value!!.size - 1)?.readUsers!!.containsKey(
+                                        SharedPreferenceController.getMemberId().toString())
+                                ) {
+                                    val bubbleUpdateItem =
+                                        bubbleSnapShot.getValue(ChatBubble::class.java)
+
+                                    bubbleUpdateItem!!.readUsers[SharedPreferenceController.getMemberId().toString()] = true
+                                    val chatItemKey = bubbleSnapShot.key.toString()
+                                    val updateReadUserMap: MutableMap<String, ChatBubble> =
+                                        mutableMapOf()
+                                    updateReadUserMap[chatItemKey] = bubbleUpdateItem
+                                    Log.d("읽기item", bubbleUpdateItem.toString())
+                                    database.child("chatRooms")
+                                        .child(chatViewModel.chatRoomKey.value.toString())
+                                        .child("comments")
+                                        .updateChildren(updateReadUserMap as Map<String, ChatBubble>)
+                                }
+
                             }
                         }
                     }
@@ -154,6 +187,7 @@ class ChatRoomFragment : Fragment() {
 
     private fun setAdapter() {
         binding.chatBubbleRv.adapter = ChatBubbleAdapter()
+        binding.chatBubbleRv.itemAnimator = null
     }
 
     private fun setChatBubbleListObserve() {
@@ -185,7 +219,7 @@ class ChatRoomFragment : Fragment() {
         binding.chatRoomBtnReportIb.setOnClickListener {
             EditTextDialog(2) { reportText ->
                 val memberId = args.memberId
-                chatViewModel.postReport(3, memberId, reportText)
+                chatViewModel.postReport(3, memberId.toInt(), reportText)
                 chatViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
                     if (isSuccess != null && isSuccess) {
                         OneButtonDialog(5) {

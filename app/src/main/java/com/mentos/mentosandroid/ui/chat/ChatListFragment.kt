@@ -22,7 +22,6 @@ class ChatListFragment : Fragment() {
     private lateinit var binding: FragmentChatListBinding
     private lateinit var database: DatabaseReference
     private val chatViewModel by viewModels<ChatViewModel>()
-    private val myId = SharedPreferenceController.getMemberId().toString()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +49,7 @@ class ChatListFragment : Fragment() {
 
     private fun setChatListObserve() {
         chatViewModel.chatList.observe(viewLifecycleOwner) { list ->
+            binding.listSize = list.size
             list?.let {
                 with(binding.chatListRv.adapter as ChatListAdapter) { submitList(list) }
             }
@@ -58,52 +58,45 @@ class ChatListFragment : Fragment() {
 
     private fun readMyChatList() {
         database.child("chatRooms")
-            .orderByChild("users/${myId}").equalTo(true)
+            .orderByChild("users/${SharedPreferenceController.getMemberId()}").equalTo(true)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     chatViewModel.clearChatList()
                     for (chatSnapshot in snapshot.children) {
                         val chatItem = chatSnapshot.getValue(ChatModel::class.java)
-
                         for (memberId in chatItem!!.users) {
-                            if (memberId.key != myId) {
-                                val comment: MutableList<ChatBubble> = mutableListOf()
+                            if (SharedPreferenceController.getMemberId().toString() != memberId.key) {
 
-                                for (chatBubbleSnapShot in chatSnapshot.child("comments").children) {
-                                    val bubbleItem =
-                                        chatBubbleSnapShot.getValue(ChatBubble::class.java)
+                                val comment: MutableList<ChatBubble> = mutableListOf()
+                                for (bubbleSnapShot in chatSnapshot.child("comments").children) {
+                                    val bubbleItem = bubbleSnapShot.getValue(ChatBubble::class.java)
                                     comment.add(requireNotNull(bubbleItem))
                                 }
                                 comment.reverse()
 
                                 database.child("profile").child(memberId.key)
-                                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                                    .addValueEventListener(object : ValueEventListener {
                                         override fun onDataChange(snapshot: DataSnapshot) {
                                             val item = snapshot.getValue(ChatProfile::class.java)
-                                            val profileItem = ChatProfile(
-                                                memberId = item!!.memberId,
-                                                nickname = item.nickname,
-                                                profileImage = item.profileImage
+                                            val chatListItem = ChatList(
+                                                ChatProfile(
+                                                    memberId = item!!.memberId,
+                                                    nickname = item.nickname,
+                                                    profileImage = item.profileImage
+                                                ),
+                                                comment[0]
                                             )
-                                            val chatListItem = if (comment.size != 0) {
-                                                ChatList(
-                                                    profileItem,
-                                                    comment[0].content,
-                                                    comment[0].createAt
-                                                )
-                                            } else {
-                                                ChatList(
-                                                    profileItem,
-                                                    "",
-                                                    ""
-                                                )
-                                            }
                                             chatViewModel.addChatList(chatListItem)
+                                            Log.d(
+                                                "읽기-채팅리스트",
+                                                chatViewModel.chatList.value.toString()
+                                            )
                                         }
 
                                         override fun onCancelled(error: DatabaseError) {
                                         }
                                     })
+
                             }
                         }
                     }

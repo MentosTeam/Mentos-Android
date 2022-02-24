@@ -161,6 +161,7 @@
                                 android:layout_marginTop="1dp"
                                 android:layout_marginEnd="6dp"
                                 android:background="@drawable/shape_red_fill_oval"
+                                android:visibility="gone"
                                 app:layout_constraintEnd_toEndOf="@+id/home_alarm_neumorp_layout"
                                 app:layout_constraintTop_toTopOf="@+id/home_alarm_neumorp_layout" />
                         </androidx.constraintlayout.widget.ConstraintLayout>

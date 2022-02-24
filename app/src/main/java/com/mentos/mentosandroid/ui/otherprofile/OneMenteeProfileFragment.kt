@@ -69,7 +69,7 @@ class OneMenteeProfileFragment : Fragment() {
         binding.menteeProfileBottomChatLayout.setOnClickListener {
             navigateWithData(
                 OneMenteeProfileFragmentDirections.actionOneMenteeProfileFragmentToChatRoomFragment(
-                    memberId = profileViewModel.menteeProfileData.value!!.basicInformation.memberId,
+                    memberId = profileViewModel.menteeProfileData.value!!.basicInformation.memberId.toString(),
                     nickname = profileViewModel.menteeProfileData.value!!.basicInformation.nickname,
                     imageUrl = profileViewModel.menteeProfileData.value!!.basicInformation.profileImage
                 )

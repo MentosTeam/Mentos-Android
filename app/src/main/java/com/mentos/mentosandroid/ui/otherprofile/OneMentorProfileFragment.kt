@@ -143,7 +143,7 @@ class OneMentorProfileFragment : Fragment() {
         binding.mentorProfileBottomChatLayout.setOnClickListener {
             navigateWithData(
                 OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToChatRoomFragment(
-                    memberId = profileViewModel.mentorProfileData.value!!.basicInformation.memberId,
+                    memberId = profileViewModel.mentorProfileData.value!!.basicInformation.memberId.toString(),
                     nickname = profileViewModel.mentorProfileData.value!!.basicInformation.nickname,
                     imageUrl = profileViewModel.mentorProfileData.value!!.basicInformation.profileImage
                 )
