@@ -24,7 +24,7 @@ class ProfileMentorFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileMentorBinding.inflate(inflater, container, false)
 
         //뷰모델 연결
@@ -139,10 +139,10 @@ class ProfileMentorFragment : Fragment() {
     private fun initImg() {
         profileViewModel.mentorProfileData.observe(viewLifecycleOwner) { mentorProfileData ->
             if (mentorProfileData == null) {
-                binding.mentorProfileImg.setImageResource(R.drawable.img_home_user)
+                binding.mentorProfileImg.setImageResource(R.drawable.img_default_mentos)
             } else {
                 if (mentorProfileData.basicInformation.profileImage == null) {
-                    binding.mentorProfileImg.setImageResource(R.drawable.img_home_user)
+                    binding.mentorProfileImg.setImageResource(R.drawable.img_default_mentos)
                 } else {
                     Glide.with(requireContext())
                         .load(mentorProfileData.basicInformation.profileImage)

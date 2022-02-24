@@ -219,7 +219,7 @@ class SettingViewModel : ViewModel() {
                 (SharedPreferenceController.getNowState() + 1).toString()
             )
         map["imageUrl"] =
-            RequestBody.create(MediaType.parse("text/plain"), currentImage)
+            RequestBody.create(MediaType.parse("text/plain"), requireNotNull(currentImage))
     }
 
     private fun setSuccessImage(isSuccess: Boolean) {
@@ -396,7 +396,7 @@ class SettingViewModel : ViewModel() {
                 )
             } else {
                 RequestChangeMentos(
-                    kotlin.requireNotNull(introduce.value),
+                    requireNotNull(introduce.value),
                     selectedCategory.value!![0],
                     0,
                     SharedPreferenceController.getNowState() + 1

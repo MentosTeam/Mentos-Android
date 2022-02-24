@@ -20,7 +20,7 @@ class ProfileMenteeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileMenteeBinding.inflate(inflater, container, false)
 
         //뷰모델 연결
@@ -81,10 +81,10 @@ class ProfileMenteeFragment : Fragment() {
     private fun initImg() {
         profileViewModel.menteeProfileData.observe(viewLifecycleOwner) { menteeProfileData ->
             if (menteeProfileData == null) {
-                binding.menteeProfileImg.setImageResource(R.drawable.img_home_user)
+                binding.menteeProfileImg.setImageResource(R.drawable.img_default_mentos)
             } else {
                 if (menteeProfileData.basicInformation.profileImage == null) {
-                    binding.menteeProfileImg.setImageResource(R.drawable.img_home_user)
+                    binding.menteeProfileImg.setImageResource(R.drawable.img_default_mentos)
                 } else {
                     Glide.with(requireContext())
                         .load(menteeProfileData.basicInformation.profileImage)

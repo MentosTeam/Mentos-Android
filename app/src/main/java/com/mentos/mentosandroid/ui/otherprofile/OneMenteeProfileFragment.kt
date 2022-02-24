@@ -91,10 +91,10 @@ class OneMenteeProfileFragment : Fragment() {
     private fun initImg() {
         profileViewModel.menteeProfileData.observe(viewLifecycleOwner) { menteeProfileData ->
             if (menteeProfileData == null) {
-                binding.menteeProfileImg.setImageResource(R.drawable.img_home_user)
+                binding.menteeProfileImg.setImageResource(R.drawable.img_default_mentos)
             } else {
                 if (menteeProfileData.basicInformation.profileImage == null) {
-                    binding.menteeProfileImg.setImageResource(R.drawable.img_home_user)
+                    binding.menteeProfileImg.setImageResource(R.drawable.img_default_mentos)
                 } else {
                     Glide.with(requireContext())
                         .load(menteeProfileData.basicInformation.profileImage)

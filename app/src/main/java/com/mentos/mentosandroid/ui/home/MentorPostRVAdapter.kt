@@ -45,7 +45,7 @@ class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostV
 
         private fun initImg(currentMentorPost: MentorPost) {
             if (currentMentorPost.mentorImage == null) {
-                binding.itemHomeMentorImg.setImageResource(R.drawable.img_home_user)
+                binding.itemHomeMentorImg.setImageResource(R.drawable.img_default_mentos)
             } else {
                 Glide.with(context)
                     .load(currentMentorPost.mentorImage)

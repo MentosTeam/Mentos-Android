@@ -74,7 +74,8 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/img_home_user" />
+                                android:src="@drawable/img_default_mentos"
+                                tools:ignore="ContentDescription" />
                         </soup.neumorphism.NeumorphCardView>
 
 
@@ -159,7 +160,8 @@
                                     android:src="@drawable/ic_profile_certification"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/mentee_profile_view1" />
+                                    app:layout_constraintTop_toBottomOf="@+id/mentee_profile_view1"
+                                    tools:ignore="ContentDescription" />
 
                                 <TextView
                                     android:id="@+id/mentee_profile_mentoring_tv"
@@ -202,7 +204,8 @@
                                     android:id="@+id/mentee_profile_sex_img"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_profile_mentoring_count" />
+                                    android:src="@drawable/ic_profile_mentoring_count"
+                                    tools:ignore="ContentDescription" />
 
                                 <TextView
                                     android:id="@+id/mentee_profile_open_sex_tv"
@@ -364,7 +367,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_profile_megaphone" />
+                        android:src="@drawable/ic_profile_megaphone"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -410,7 +414,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_profile_add_user" />
+                        android:src="@drawable/ic_profile_add_user"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/create_mentor_tv"

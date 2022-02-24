@@ -38,7 +38,7 @@ class MenteeRVAdapter() : RecyclerView.Adapter<MenteeRVAdapter.MenteeViewHolder>
 
         private fun initImg(currentMentee: Mentee) {
             if (currentMentee.menteeImage == null) {
-                binding.itemHomeMenteeImg.setImageResource(R.drawable.img_home_user)
+                binding.itemHomeMenteeImg.setImageResource(R.drawable.img_default_mentos)
             } else {
                 Glide.with(context)
                     .load(currentMentee.menteeImage)

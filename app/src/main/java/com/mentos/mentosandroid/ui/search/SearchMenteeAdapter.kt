@@ -40,7 +40,7 @@ class SearchMenteeAdapter(val context: Context) :
 
         private fun initImg(menteeImage: String?) {
             if (menteeImage == null || menteeImage == "null") {
-                binding.itemHomeMenteeImg.setImageResource(R.drawable.img_home_user)
+                binding.itemHomeMenteeImg.setImageResource(R.drawable.img_default_mentos)
             } else {
                 Glide.with(context)
                     .load(menteeImage)
