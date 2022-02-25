@@ -21,7 +21,6 @@ class StateOneFragment : Fragment() {
     private var mentoringId = 0
     private var mentoringCategoryId = 0
     private var mentoringCount = 0
-    private var listSize = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +34,7 @@ class StateOneFragment : Fragment() {
         setBackBtnClickListener()
         setWriteBtnClickListener()
         setStateAdapter()
-        setStateNowObserver()
+        setRecordListObserver()
         return binding.root
     }
 
@@ -96,9 +95,8 @@ class StateOneFragment : Fragment() {
         binding.stateRecordRv.adapter = StateRecordAdapter(mentoringCategoryId)
     }
 
-    private fun setStateNowObserver() {
+    private fun setRecordListObserver() {
         stateViewModel.recordList.observe(viewLifecycleOwner) { list ->
-            listSize = list.size
             if (SharedPreferenceController.getNowState() == 0 && list.size != mentoringCount) {
                 binding.stateOneWriteIb.visibility = View.VISIBLE
             }
