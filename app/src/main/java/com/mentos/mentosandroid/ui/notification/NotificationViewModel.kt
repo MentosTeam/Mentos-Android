@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.data.response.Notice
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -22,16 +23,15 @@ class NotificationViewModel : ViewModel() {
             try {
                 val responseNotice = ServiceBuilder.reportService.getNotice()
                 Log.d("공지사항", responseNotice.message)
-                if(responseNotice.isSuccess){
+                if (responseNotice.isSuccess) {
                     notiItems = responseNotice.result
                     _notiList.value = notiItems
-                }else{
+                } else {
                     notiItems = arrayListOf(Notice("공지입니다", "2022-02-19T12:30:21.000+00:00", 1))
                     _notiList.value = notiItems
                 }
             } catch (e: HttpException) {
                 Log.d("공지사항", e.message().toString())
-                Log.d("공지사항", e.code().toString())
                 notiItems = arrayListOf(Notice("공지입니다", "2022-02-19T12:30:21.000+00:00", 1))
                 _notiList.value = notiItems
             }
@@ -41,10 +41,23 @@ class NotificationViewModel : ViewModel() {
     fun getPush() {
         viewModelScope.launch {
             try {
-               notiItems = arrayListOf(Notice("푸시 알림입니다", "2022-02-19T12:30:21.000+00:00", 1))
-                _notiList.value = notiItems
+                val statusFlag = when (SharedPreferenceController.getNowState()) {
+                    0 -> 1
+                    1 -> 2
+                    else -> 2
+                }
+                val responsePush = ServiceBuilder.reportService.getPushList(statusFlag)
+                Log.d("푸쉬알림", responsePush.message)
+                if (responsePush.isSuccess) {
+                     notiItems = responsePush.result
+                    _notiList.value = notiItems
+                } else {
+                    notiItems = arrayListOf(Notice("푸시 알림입니다", "2022-02-19T12:30:21.000+00:00", 1))
+                    _notiList.value = notiItems
+                }
             } catch (e: HttpException) {
-
+                notiItems = arrayListOf(Notice("푸시 알림입니다", "2022-02-19T12:30:21.000+00:00", 1))
+                _notiList.value = notiItems
             }
         }
     }
