@@ -214,7 +214,10 @@
     <string name="sign_up_password_check_hint">(한 번 더 입력해주세요!)</string>
     <string name="sign_up_password_success">비밀번호가 일치합니다</string>
     <string name="sign_up_password_fail">비밀번호가 일치하지 않습니다!</string>
-    <string name="sign_up_fourth_terms"><u>멘토-쓰 가입 약관에 모두 동의합니다</u></string>
+    <string name="sign_up_fourth_terms_service"><u>멘토-쓰 서비스 이용약관에 동의합니다</u></string>
+    <string name="sign_up_fourth_terms_personal"><u>멘토-쓰 개인정보 처리방침에 동의합니다</u></string>
+    <string name="link_terms_service">https://sky-cyclamen-acf.notion.site/31c7b49608c740ea9fd2ed314761046c</string>
+    <string name="link_terms_personal">https://sky-cyclamen-acf.notion.site/2a4587c245df47d88c46b1a701d0649b</string>
     <string name="sign_up_fourth_btn">회원가입 완료-!</string>
 
     <string name="sign_in_id">이메일</string>
@@ -255,7 +258,8 @@
     <string name="setting_notice">공지사항</string>
     <string name="setting_push">PUSH 알림 설정</string>
     <string name="setting_pw">비밀번호 변경</string>
-    <string name="setting_policy">이용약관 / 개인처리정보지침</string>
+    <string name="setting_terms_service">서비스 이용약관</string>
+    <string name="setting_terms_personal">개인정보 처리방침</string>
     <string name="setting_logout">로그아웃</string>
     <string name="setting_withdrawal">회원탈퇴</string>
 

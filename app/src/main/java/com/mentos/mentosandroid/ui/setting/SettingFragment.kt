@@ -1,6 +1,7 @@
 package com.mentos.mentosandroid.ui.setting
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -100,8 +101,21 @@ class SettingFragment : Fragment() {
         binding.settingPwLayout.setOnClickListener {
             navigate(R.id.action_settingFragment_to_changePasswordFragment)
         }
-        binding.settingPolicyLayout.setOnClickListener {
-            //약관으로 이동
+        binding.settingTermsPersonalLayout.setOnClickListener {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(getString(R.string.link_terms_personal))
+                )
+            )
+        }
+        binding.settingTermsServiceLayout.setOnClickListener {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(getString(R.string.link_terms_service))
+                )
+            )
         }
         binding.settingLogoutTv.setOnClickListener {
             TwoButtonDialog(2) {
