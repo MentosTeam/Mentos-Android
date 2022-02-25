@@ -85,7 +85,6 @@ class SplashFragment : Fragment() {
     private fun setIsEmptyProfileObserve() {
         signInViewModel.isEmptyProfile.observe(viewLifecycleOwner) { isEmpty ->
             if (isEmpty) {
-                makeToast(requireContext(), R.string.toast_auto_login)
                 startActivity(Intent(requireContext(), FirstAccountActivity::class.java))
                 requireActivity().finish()
             }

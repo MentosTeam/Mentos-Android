@@ -58,15 +58,15 @@ class SignInViewModel : ViewModel() {
                                 password.value.toString()
                             )
                         }
-                        setSuccessSignIn(true)
-
                         if (responseSignIn.result.mentor == 1) {
                             if (SharedPreferenceController.getNowState() == -1) {
                                 SharedPreferenceController.setNowState(0)
                             }
+                            setSuccessSignIn(true)
                             setIsEmptyProfile(false)
                         } else if (responseSignIn.result.mentee == 1) {
                             SharedPreferenceController.setNowState(1)
+                            setSuccessSignIn(true)
                             setIsEmptyProfile(false)
                         } else if (responseSignIn.result.mentor == 0 && responseSignIn.result.mentee == 0) {
                             setIsEmptyProfile(true)
@@ -76,7 +76,6 @@ class SignInViewModel : ViewModel() {
                 }
             } catch (e: HttpException) {
                 Log.d("로그인", e.message().toString())
-                Log.d("로그인", e.code().toString())
             }
         }
     }
