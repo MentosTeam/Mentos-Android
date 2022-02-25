@@ -28,16 +28,13 @@ class MentoringStartViewModel : ViewModel() {
                 val responseMentoringStart =
                     ServiceBuilder.mentoringStartService.postMentoringStart(mentoringStart)
                 Log.d("멘토링 요청", mentoringStart.toString())
-                Log.d("멘토링 요청", responseMentoringStart.message)
                 if (responseMentoringStart.code == 1000) {
                     _isSuccess.value = true
                 } else {
-                    Log.d("멘토링 요청", responseMentoringStart.code.toString())
                     Log.d("멘토링 요청", responseMentoringStart.message)
                     _isSuccess.value = false
                 }
             } catch (e: HttpException) {
-                Log.d("멘토링 요청", e.code().toString())
                 Log.d("멘토링 요청", e.message())
                 _isSuccess.value = false
             }
@@ -53,11 +50,9 @@ class MentoringStartViewModel : ViewModel() {
                 if (responseMentorNicName.code == 1000) {
                     _nickName.value = responseMentorNicName.result
                 } else {
-                    Log.d("닉네임", responseMentorNicName.code.toString())
                     Log.d("닉네임", responseMentorNicName.message)
                 }
             } catch (e: HttpException) {
-                Log.d("닉네임", e.code().toString())
                 Log.d("닉네임", e.message())
             }
         }
@@ -68,17 +63,14 @@ class MentoringStartViewModel : ViewModel() {
             try {
                 val responseMentoringAccept =
                     ServiceBuilder.mentoringStartService.patchMentoringAccept(mentoringId, accept)
-                Log.d("멘토링 수락", mentoringId.toString() + accept.toString())
                 Log.d("멘토링 수락", responseMentoringAccept.toString())
-                if (responseMentoringAccept.code == 1000) {
+                if (responseMentoringAccept.isSuccess) {
                     _isSuccessAccept.value = true
                 } else {
-                    Log.d("멘토링 수락", responseMentoringAccept.code.toString())
                     Log.d("멘토링 수락", responseMentoringAccept.message)
                     _isSuccessAccept.value = false
                 }
             } catch (e: HttpException) {
-                Log.d("멘토링 수락", e.code().toString())
                 Log.d("멘토링 수락", e.message())
                 _isSuccessAccept.value = false
             }

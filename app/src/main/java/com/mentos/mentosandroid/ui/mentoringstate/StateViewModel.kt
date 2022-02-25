@@ -69,10 +69,10 @@ class StateViewModel : ViewModel() {
     }
 
     fun getRecordList(mentoringId: Int) {
+        clearRecordList()
         viewModelScope.launch {
             try {
                 val responseGetRecord = ServiceBuilder.stateService.getRecord(mentoringId)
-                tempRecordList.clear()
                 for (i in responseGetRecord.result.reports.indices) {
                     tempRecordList.add(
                         i,
@@ -121,5 +121,10 @@ class StateViewModel : ViewModel() {
             } catch (e: HttpException) {
             }
         }
+    }
+
+    private fun clearRecordList() {
+        tempRecordList.clear()
+        _recordList.value = tempRecordList.toMutableList()
     }
 }
