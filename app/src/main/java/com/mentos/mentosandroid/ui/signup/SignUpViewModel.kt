@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.signup
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.mentos.mentosandroid.data.api.ServiceBuilder
 import com.mentos.mentosandroid.data.request.RequestSchoolCheck
@@ -125,7 +124,6 @@ class SignUpViewModel : ViewModel() {
                 setLoadingState(false)
                 when (response.code) {
                     1000 -> {
-                        Log.d("학교인증번호", response.result.certificationNumber)
                         setDomainValid(true)
                         emailConfirmNumber = response.result.certificationNumber
                     }
@@ -167,7 +165,8 @@ class SignUpViewModel : ViewModel() {
     // signUpFourth
     val password = MutableLiveData("")
     val passwordCheck = MutableLiveData("")
-    private val isTermsChecked = MutableLiveData(false)
+    private val isTermsServiceChecked = MutableLiveData(false)
+    private val isTermsPersonalChecked = MutableLiveData(false)
 
     private val _isSuccessSignUp = MutableLiveData<Boolean>()
     val isSuccessSignUp: LiveData<Boolean> = _isSuccessSignUp
@@ -191,7 +190,7 @@ class SignUpViewModel : ViewModel() {
     val passwordValid: LiveData<Boolean> = _passwordValid
 
     private val _canFourthRegister = MediatorLiveDataUtil.initMediatorLiveData(
-        listOf(password, passwordCheck, isTermsChecked, isSamePassword, passwordValid)
+        listOf(password, passwordCheck, isTermsServiceChecked, isTermsPersonalChecked, isSamePassword, passwordValid)
     ) { canFourthRegisterCheck() }
     val canFourthRegister: LiveData<Boolean> = _canFourthRegister
 
@@ -208,12 +207,17 @@ class SignUpViewModel : ViewModel() {
     private fun canFourthRegisterCheck() =
         requireNotNull(password.value).isNotBlank()
                 && requireNotNull(passwordCheck.value).isNotBlank()
-                && isTermsChecked.value == true
+                && isTermsServiceChecked.value == true
+                && isTermsPersonalChecked.value == true
                 && isSamePassword.value == true
                 && passwordValid.value == true
 
-    fun setTermsCheck() {
-        isTermsChecked.value = !requireNotNull(isTermsChecked.value)
+    fun setTermsServiceCheck() {
+        isTermsServiceChecked.value = !requireNotNull(isTermsServiceChecked.value)
+    }
+
+    fun setTermsPersonalCheck() {
+        isTermsPersonalChecked.value = !requireNotNull(isTermsPersonalChecked.value)
     }
 
     fun setPostSignUp() {

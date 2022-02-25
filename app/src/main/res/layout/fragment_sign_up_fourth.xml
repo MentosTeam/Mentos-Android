@@ -236,6 +236,35 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/sign_up_terms_personal_layout"
+                app:layout_constraintStart_toStartOf="@id/sign_up_terms_personal_layout">
+
+                <CheckBox
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/selector_terms_checkbox"
+                    android:button="@null"
+                    android:onClick="@{() -> viewModel.setTermsServiceCheck()}" />
+
+                <TextView
+                    android:id="@+id/sign_up_terms_service_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/sign_up_fourth_terms_service"
+                    android:textColor="@color/black_3333"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sign_up_terms_personal_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="13dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -244,21 +273,20 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <CheckBox
-                    android:id="@+id/sign_up_terms_cb"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:background="@drawable/selector_terms_checkbox"
                     android:button="@null"
-                    android:onClick="@{() -> viewModel.setTermsCheck()}" />
+                    android:onClick="@{() -> viewModel.setTermsPersonalCheck()}" />
 
                 <TextView
-                    android:id="@+id/sign_up_terms_tv"
+                    android:id="@+id/sign_up_terms_personal_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/sign_up_fourth_terms"
+                    android:text="@string/sign_up_fourth_terms_personal"
                     android:textColor="@color/black_3333"
                     android:textSize="12sp" />
             </LinearLayout>

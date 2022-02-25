@@ -377,19 +377,19 @@
                         android:background="@color/gray_eded" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/setting_policy_layout"
+                        android:id="@+id/setting_terms_service_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="20dp">
 
                         <TextView
-                            android:id="@+id/setting_policy_tv"
+                            android:id="@+id/setting_terms_service_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="12dp"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:text="@string/setting_policy"
+                            android:text="@string/setting_terms_service"
                             android:textColor="@color/black_1c1d"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -401,14 +401,47 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:src="@drawable/ic_home_more"
-                            app:layout_constraintBottom_toBottomOf="@+id/setting_policy_tv"
+                            app:layout_constraintBottom_toBottomOf="@+id/setting_terms_service_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_policy_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_terms_service_tv" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_eded" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/setting_terms_personal_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="20dp">
+
+                        <TextView
+                            android:id="@+id/setting_terms_personal_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="12dp"
+                            android:fontFamily="@font/noto_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/setting_terms_personal"
+                            android:textColor="@color/black_1c1d"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_home_more"
+                            app:layout_constraintBottom_toBottomOf="@+id/setting_terms_personal_tv"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/setting_terms_personal_tv" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </LinearLayout>
-
-
         </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -430,7 +463,7 @@
                 android:padding="3dp"
                 android:text="@string/setting_logout"
                 android:textColor="@color/gray_7070"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/setting_withdrawal_tv"
                 app:layout_constraintStart_toStartOf="parent"
@@ -445,7 +478,7 @@
                 android:padding="3dp"
                 android:text="@string/setting_withdrawal"
                 android:textColor="@color/gray_7070"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/setting_logout_tv"
                 app:layout_constraintTop_toTopOf="parent" />
