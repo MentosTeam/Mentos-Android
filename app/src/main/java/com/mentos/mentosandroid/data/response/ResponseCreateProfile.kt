@@ -9,5 +9,7 @@ data class ResponseCreateProfile(
 
 data class CreateProfile(
     val memberId: Int,
-    val profile: String
+    val profile: String,
+    val nickname: String,
+    val profileImgUrl: String?
 )

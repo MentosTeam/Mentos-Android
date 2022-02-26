@@ -1,9 +1,11 @@
 package com.mentos.mentosandroid.ui.setting
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.local.ChatProfile
 import com.mentos.mentosandroid.data.request.RequestChangeMentos
 import com.mentos.mentosandroid.data.request.RequestChangePW
 import com.mentos.mentosandroid.data.request.RequestWithdrawal
@@ -20,18 +22,25 @@ import java.util.regex.Pattern
 class SettingViewModel : ViewModel() {
 
     fun getSettingData() {
-        Log.d("설정 멘토", SharedPreferenceController.getJwtToken())
         viewModelScope.launch {
             try {
                 val responseSetting =
-                    //멘토
                     if (SharedPreferenceController.getNowState() == 0) {
                         ServiceBuilder.settingService.getSettingMentor()
                     } else {
                         ServiceBuilder.settingService.getSettingMentee()
                     }
 
-                Log.d("설정 데이터", responseSetting.message)
+                if (responseSetting.isSuccess) {
+                    Firebase.database.reference.child("profile")
+                        .child(SharedPreferenceController.getMemberId().toString()).setValue(
+                            ChatProfile(
+                                memberId = SharedPreferenceController.getMemberId().toString(),
+                                profileImage = responseSetting.result.memberImage,
+                                nickname = responseSetting.result.memberNickName
+                            )
+                        )
+                }
                 newNickName.value = responseSetting.result.memberNickName
                 major.value = responseSetting.result.memberMajor
                 currentImage = responseSetting.result.memberImage
@@ -41,8 +50,6 @@ class SettingViewModel : ViewModel() {
                     } else {
                         Uri.parse(responseSetting.result.memberImage)
                     }
-                Log.d("프로필 데이터 current", currentImage.toString())
-                Log.d("프로필 데이터 _image", _image.value.toString())
                 introduce.value = responseSetting.result.memberIntro
                 tempCategory = mutableListOf()
                 tempCategory.add(responseSetting.result.memberMajorFirst)
@@ -50,8 +57,6 @@ class SettingViewModel : ViewModel() {
                     tempCategory.add(responseSetting.result.memberMajorSecond)
                 }
             } catch (e: HttpException) {
-                Log.d("설정 데이터", e.message().toString())
-                Log.d("설정 데이터", e.code().toString())
             }
         }
     }
@@ -71,7 +76,6 @@ class SettingViewModel : ViewModel() {
                 val response = ServiceBuilder.authService.getNickNameCheck(
                     requireNotNull(newNickName.value)
                 )
-                Log.d("중복 확인", response.message)
                 if (response.isSuccess) {
                     setNickNameValid(true)
                 } else {
@@ -98,10 +102,9 @@ class SettingViewModel : ViewModel() {
     fun postNickName() {
         viewModelScope.launch {
             try {
-                val response = ServiceBuilder.settingService.postNickName(
+                ServiceBuilder.settingService.postNickName(
                     requireNotNull(newNickName.value)
                 )
-                Log.d("닉네임 변경", response.message)
                 setSuccessNickName(true)
             } catch (e: HttpException) {
                 setSuccessNickName(false)
@@ -135,10 +138,9 @@ class SettingViewModel : ViewModel() {
     fun postMajor() {
         viewModelScope.launch {
             try {
-                val response = ServiceBuilder.settingService.postMajor(
+                ServiceBuilder.settingService.postMajor(
                     requireNotNull(major.value)
                 )
-                Log.d("전공 변경", response.message)
                 setSuccessMajor(true)
             } catch (e: HttpException) {
                 setSuccessMajor(false)
@@ -199,7 +201,6 @@ class SettingViewModel : ViewModel() {
                         else -> imageMultiPart
                     }
                 )
-                Log.d("설정 사진 변경", responseImage.message)
                 if (responseImage.isSuccess) {
                     setSuccessImage(true)
                 } else {
@@ -209,7 +210,6 @@ class SettingViewModel : ViewModel() {
                 setSuccessImage(false)
             }
         }
-
     }
 
     private fun setMultiPart() {
@@ -218,8 +218,9 @@ class SettingViewModel : ViewModel() {
                 MediaType.parse("text/plain"),
                 (SharedPreferenceController.getNowState() + 1).toString()
             )
-        map["imageUrl"] =
+        if (currentImage != null) {
             RequestBody.create(MediaType.parse("text/plain"), requireNotNull(currentImage))
+        }
     }
 
     private fun setSuccessImage(isSuccess: Boolean) {
@@ -230,7 +231,6 @@ class SettingViewModel : ViewModel() {
         _isSuccessImage = MutableLiveData<Boolean>()
         isSuccessImage = _isSuccessImage
     }
-
 
 
     //비밀번호 변경 설정
@@ -315,13 +315,12 @@ class SettingViewModel : ViewModel() {
     fun postChangePW() {
         viewModelScope.launch {
             try {
-                val response = ServiceBuilder.settingService.postPW(
+                ServiceBuilder.settingService.postPW(
                     RequestChangePW(
                         currentPassword,
                         requireNotNull(newPassword.value)
                     )
                 )
-                Log.d("비번 변경", response.message)
                 setSuccessChangePW(true)
             } catch (e: HttpException) {
                 setSuccessChangePW(false)
@@ -337,7 +336,6 @@ class SettingViewModel : ViewModel() {
         _isSuccessChangePW = MutableLiveData<Boolean>()
         isSuccessChangePW = _isSuccessChangePW
     }
-
 
     //멘토스, 자기소개 변경 설정
     val introduce = MutableLiveData("")
@@ -404,10 +402,9 @@ class SettingViewModel : ViewModel() {
             }
         viewModelScope.launch {
             try {
-                val response = ServiceBuilder.settingService.postMentosIntro(
+                ServiceBuilder.settingService.postMentosIntro(
                     requestChangeMentos
                 )
-                Log.d("멘토스, 소개 변경", response.message)
                 setSuccessMentosIntro(true)
             } catch (e: HttpException) {
                 setSuccessMentosIntro(false)
@@ -428,17 +425,14 @@ class SettingViewModel : ViewModel() {
     private var _isSuccessWithdrawal = MutableLiveData<Boolean>()
     var isSuccessWithdrawal: LiveData<Boolean> = _isSuccessWithdrawal
 
-    fun postWithdrawal(password: String){
+    fun postWithdrawal(password: String) {
         viewModelScope.launch {
             try {
                 val responseWithdrawal = ServiceBuilder.settingService.postWithdrawal(
                     RequestWithdrawal(password)
                 )
-                Log.d("회원 탈퇴", responseWithdrawal.message)
                 _isSuccessWithdrawal.value = responseWithdrawal.isSuccess
-            }catch (e:HttpException){
-                Log.d("회원 탈퇴", e.message())
-                Log.d("회원 탈퇴", e.code().toString())
+            } catch (e: HttpException) {
             }
         }
     }
@@ -446,17 +440,14 @@ class SettingViewModel : ViewModel() {
     private var _isSuccessDeleteToken = MutableLiveData<Boolean>()
     var isSuccessDeleteToken: LiveData<Boolean> = _isSuccessDeleteToken
 
-    fun deleteDeviceFcmToken(token: String){
+    fun deleteDeviceFcmToken(token: String) {
         viewModelScope.launch {
             try {
                 val responseFcmToken = ServiceBuilder.authService.deleteDeviceFcmToken(
                     RequestDeleteDeviceFcmToken(token)
                 )
-                Log.d("logout", responseFcmToken.message)
                 _isSuccessDeleteToken.value = responseFcmToken.isSuccess
-            }catch (e: HttpException){
-                Log.d("logout", e.code().toString())
-                Log.d("logout", e.message().toString())
+            } catch (e: HttpException) {
             }
         }
     }
