@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.response.Notice
 import com.mentos.mentosandroid.databinding.ItemNotificationBinding
 import java.text.SimpleDateFormat
+import java.util.*
 
 class NotificationRVAdapter : RecyclerView.Adapter<NotificationRVAdapter.NotificationViewHolder>() {
 
@@ -16,8 +17,8 @@ class NotificationRVAdapter : RecyclerView.Adapter<NotificationRVAdapter.Notific
         fun bind(currentNoti: Notice) {
             binding.notification = currentNoti
 
-            val date = SimpleDateFormat("yyyy-MM-dd").parse(currentNoti.createAt.substring(0, 10))
-            val sdf = SimpleDateFormat("yyyy년 MM월 dd일")
+            val date = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(currentNoti.createAt.substring(0, 10))
+            val sdf = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA)
             binding.itemNotificationDateTv.text = sdf.format(requireNotNull(date))
         }
     }

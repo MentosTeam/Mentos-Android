@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.chat
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -29,6 +28,8 @@ import com.mentos.mentosandroid.util.customdialog.EditTextDialog
 import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
 import com.mentos.mentosandroid.util.popBackStack
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class ChatRoomFragment : Fragment() {
     private lateinit var binding: FragmentChatRoomBinding
@@ -84,10 +85,9 @@ class ChatRoomFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun setSendBtnClickListener() {
         val currentTime = System.currentTimeMillis()
-        val dateFormat = SimpleDateFormat("MM/dd HH:mm")
+        val dateFormat = SimpleDateFormat("MM/dd HH:mm", Locale.KOREA)
         val getTime: String = dateFormat.format(currentTime)
 
         binding.chatBtnSendIv.setOnClickListener {
@@ -167,7 +167,6 @@ class ChatRoomFragment : Fragment() {
                                     val updateReadUserMap: MutableMap<String, ChatBubble> =
                                         mutableMapOf()
                                     updateReadUserMap[chatItemKey] = bubbleUpdateItem
-                                    Log.d("읽기item", bubbleUpdateItem.toString())
                                     database.child("chatRooms")
                                         .child(chatViewModel.chatRoomKey.value.toString())
                                         .child("comments")
@@ -229,5 +228,10 @@ class ChatRoomFragment : Fragment() {
                 }
             }.show(childFragmentManager, "report_text")
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 }

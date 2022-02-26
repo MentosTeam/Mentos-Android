@@ -6,7 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.mentos.mentosandroid.data.api.ServiceBuilder
+import com.mentos.mentosandroid.data.local.ChatProfile
 import com.mentos.mentosandroid.util.MediatorLiveDataUtil
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
@@ -66,22 +69,23 @@ class OtherAccountViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 setMultiPart()
-                val responseCreateProfile = when (image.value) {
-                    null -> {
-                        ServiceBuilder.profileService.postCreateProfile(
-                            map,
-                            null
-                        )
+                val responseCreateProfile = ServiceBuilder.profileService.postCreateProfile(
+                    map,
+                    imageFile = when (image.value) {
+                        null -> null
+                        else -> imageMultiPart
                     }
-                    else -> {
-                        ServiceBuilder.profileService.postCreateProfile(
-                            map,
-                            imageMultiPart
-                        )
-                    }
-                }
+                )
                 if (responseCreateProfile.isSuccess) {
                     setSuccessCreate(true)
+                    Firebase.database.reference.child("profile")
+                        .child(responseCreateProfile.result.memberId.toString()).setValue(
+                            ChatProfile(
+                                memberId = responseCreateProfile.result.memberId.toString(),
+                                profileImage = responseCreateProfile.result.profileImgUrl,
+                                nickname = responseCreateProfile.result.nickname
+                            )
+                        )
                 } else {
                     setSuccessCreate(false)
                 }
@@ -98,11 +102,6 @@ class OtherAccountViewModel : ViewModel() {
 
     fun removeCategory(category: Int) {
         tempCategory.remove(category)
-        _selectedCategory.value = tempCategory.toMutableList()
-    }
-
-    fun clearCategory() {
-        tempCategory.clear()
         _selectedCategory.value = tempCategory.toMutableList()
     }
 
