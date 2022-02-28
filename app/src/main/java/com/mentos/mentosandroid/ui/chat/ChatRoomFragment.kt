@@ -82,6 +82,11 @@ class ChatRoomFragment : Fragment() {
     private fun setEtLayoutClickListener() {
         binding.chatSendLayout.setOnClickListener {
             KeyBoardUtil.show(requireContext(), binding.chatSendEt)
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (chatViewModel.chatBubbleList.value != null) {
+                    binding.chatBubbleRv.smoothScrollToPosition(chatViewModel.chatBubbleList.value!!.size - 1)
+                }
+            }, 500)
         }
     }
 
@@ -119,9 +124,6 @@ class ChatRoomFragment : Fragment() {
                             )
                         ).addOnCompleteListener {
                             chatViewModel.newMsg.value = ""
-                            if (chatViewModel.chatBubbleList.value != null) {
-                                binding.chatBubbleRv.scrollToPosition(chatViewModel.chatBubbleList.value!!.size - 1)
-                            }
                         }
                 }
             }, 100)
@@ -157,12 +159,14 @@ class ChatRoomFragment : Fragment() {
                                 // 읽음표시
                                 if (chatViewModel.chatBubbleList.value != null &&
                                     !chatViewModel.chatBubbleList.value?.get(chatViewModel.chatBubbleList.value!!.size - 1)?.readUsers!!.containsKey(
-                                        SharedPreferenceController.getMemberId().toString())
+                                        SharedPreferenceController.getMemberId().toString()
+                                    )
                                 ) {
                                     val bubbleUpdateItem =
                                         bubbleSnapShot.getValue(ChatBubble::class.java)
 
-                                    bubbleUpdateItem!!.readUsers[SharedPreferenceController.getMemberId().toString()] = true
+                                    bubbleUpdateItem!!.readUsers[SharedPreferenceController.getMemberId()
+                                        .toString()] = true
                                     val chatItemKey = bubbleSnapShot.key.toString()
                                     val updateReadUserMap: MutableMap<String, ChatBubble> =
                                         mutableMapOf()
@@ -174,6 +178,11 @@ class ChatRoomFragment : Fragment() {
                                 }
 
                             }
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                if (chatViewModel.chatBubbleList.value != null) {
+                                    binding.chatBubbleRv.smoothScrollToPosition(chatViewModel.chatBubbleList.value!!.size - 1)
+                                }
+                            }, 500)
                         }
                     }
                 }

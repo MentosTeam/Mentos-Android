@@ -23,6 +23,7 @@
             android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
             android:maxWidth="230dp"
+            android:layout_marginStart="20dp"
             android:paddingVertical="7dp"
             android:paddingStart="16dp"
             android:paddingEnd="9dp"
