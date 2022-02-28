@@ -1,5 +1,6 @@
 package com.mentos.mentosandroid.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,7 @@ class ProfileMenteeFragment : Fragment() {
         initViewModel()
         initSex()
         initImg()
-
+        setFeedbackLayoutClickListener()
         initCreateMentorView()
         setCreateMentorClickListener()
 
@@ -40,6 +41,15 @@ class ProfileMenteeFragment : Fragment() {
                     1
                 )
             )
+        }
+    }
+
+    private fun setFeedbackLayoutClickListener() {
+        binding.menteeProfileInformLayout.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.mentos_gmail)))
+            startActivity(intent)
         }
     }
 

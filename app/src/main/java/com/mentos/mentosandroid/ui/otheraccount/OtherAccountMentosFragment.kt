@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
-import com.mentos.mentosandroid.databinding.FragmentAccountMentosBinding
 import com.mentos.mentosandroid.databinding.FragmentOtherAccountMentosBinding
 import com.mentos.mentosandroid.util.navigateWithData
+import com.mentos.mentosandroid.util.popBackStack
 
 class OtherAccountMentosFragment : Fragment() {
     private lateinit var binding: FragmentOtherAccountMentosBinding
@@ -28,6 +28,7 @@ class OtherAccountMentosFragment : Fragment() {
         binding.viewModel = otherAccountViewModel
         binding.lifecycleOwner = viewLifecycleOwner
         initCategoryArray()
+        setBackBtnClickListener()
         setBtnCategoryClickListener()
         setCategoryObserve()
         setBtnCompleteClickListener()
@@ -50,6 +51,12 @@ class OtherAccountMentosFragment : Fragment() {
             binding.mentosBrownRedCb,
             binding.mentosGrayCb
         )
+    }
+
+    private fun setBackBtnClickListener() {
+        binding.accountBtnBackIb.setOnClickListener {
+            popBackStack()
+        }
     }
 
     private fun setBtnCategoryClickListener() {
@@ -95,11 +102,11 @@ class OtherAccountMentosFragment : Fragment() {
     private fun initView() {
         when (args.state) {
             2 -> {
-                binding.accountMentosTitleTv.setText(R.string.account_intro_title_mentee)
+                binding.accountMentosTitleTv.setText(R.string.account_mentos_title_mentee)
                 binding.accountMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentee)
             }
             1 -> {
-                binding.accountMentosTitleTv.setText(R.string.account_intro_title_mentor)
+                binding.accountMentosTitleTv.setText(R.string.account_mentos_title_mentor)
                 binding.accountMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentor)
             }
         }
