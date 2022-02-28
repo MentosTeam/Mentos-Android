@@ -72,7 +72,7 @@ class SettingFragment : Fragment() {
                 SharedPreferenceController.setAgreementPush(0, isAgree)
             }
         } else {
-            settingViewModel.mentorAgreementPush.observe(viewLifecycleOwner) { isAgree ->
+            settingViewModel.menteeAgreementPush.observe(viewLifecycleOwner) { isAgree ->
                 SharedPreferenceController.setAgreementPush(1, isAgree)
             }
         }

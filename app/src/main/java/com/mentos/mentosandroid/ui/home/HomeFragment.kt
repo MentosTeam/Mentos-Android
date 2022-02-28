@@ -34,8 +34,6 @@ class HomeFragment : Fragment() {
             }
 
             val token = task.result
-            val msg = "FCM 토근: $token"
-            Log.d("new fcm token", msg)
 
             if(token != null){
                 if (SharedPreferenceController.getDeviceFcmToken() == "" || SharedPreferenceController.getDeviceFcmToken() == token) {

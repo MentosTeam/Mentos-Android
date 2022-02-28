@@ -27,7 +27,6 @@ class ProfileMentorFragment : Fragment() {
     ): View {
         binding = FragmentProfileMentorBinding.inflate(inflater, container, false)
 
-        //뷰모델 연결
         initViewModel()
         initSex()
         initImg()
@@ -52,7 +51,6 @@ class ProfileMentorFragment : Fragment() {
 
     private fun setCreateMenteeClickListener() {
         binding.mentorProfileAddMenteeLayout.setOnClickListener {
-            //멘티 프로필 생성
             navigateWithData(
                 ProfileFragmentDirections.actionProfileFragmentToOtherAccountMentosFragment(
                     2
@@ -65,11 +63,9 @@ class ProfileMentorFragment : Fragment() {
         profileViewModel.profileState.observe(viewLifecycleOwner) { profileState ->
             when (profileState) {
                 1 -> {
-                    //멘토만 존재
                     binding.mentorProfileAddMenteeLayout.visibility = View.VISIBLE
                 }
                 3 -> {
-                    //멘토멘티 둘다 존재
                     binding.mentorProfileAddMenteeLayout.visibility = View.GONE
                 }
             }
@@ -82,12 +78,10 @@ class ProfileMentorFragment : Fragment() {
 
         val mentosVP = binding.mentorProfileMentoringMentosVp
 
-        // 좌/우 노출되는 크기를 크게하려면 offsetPx 증가
         val leftOffsetPx = 27.dpToPx(resources.displayMetrics)
         val rightOffsetPx = 18.dpToPx(resources.displayMetrics)
         mentosVP.setPadding(leftOffsetPx, 0, rightOffsetPx, 0)
 
-        // 페이지간 마진 크게하려면 pageMarginPx 증가
         val pageMarginPx = 1.dpToPx(resources.displayMetrics)
         val marginTransformer = MarginPageTransformer(pageMarginPx)
         mentosVP.setPageTransformer(marginTransformer)
@@ -130,9 +124,7 @@ class ProfileMentorFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        //뷰모델 연결
         binding.profileViewModel = profileViewModel
-        //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
         binding.lifecycleOwner = this
     }
 

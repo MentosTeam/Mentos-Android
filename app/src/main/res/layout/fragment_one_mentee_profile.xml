@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/siren"
+                android:src="@drawable/ic_siren"
                 app:layout_constraintBottom_toBottomOf="@+id/one_mentee_btn_back_ib"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/one_mentee_btn_back_ib"

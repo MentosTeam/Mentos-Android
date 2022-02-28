@@ -61,7 +61,7 @@ class SettingViewModel : ViewModel() {
         }
     }
 
-    //닉네임 관련
+
     val newNickName = MutableLiveData("")
 
     private val _isNickNameCheckResult = MutableLiveData(false)
@@ -129,7 +129,7 @@ class SettingViewModel : ViewModel() {
         isSuccessNickName = _isSuccessNickName
     }
 
-    //전공 관련
+
     val major = MutableLiveData("")
 
     private var _isSuccessMajor = MutableLiveData<Boolean>()
@@ -165,18 +165,16 @@ class SettingViewModel : ViewModel() {
         isSuccessMajor = _isSuccessMajor
     }
 
-    //성별 공개 설정
+
     val openSex = MutableLiveData<Boolean>()
 
-    //푸시알림 설정
+
     val mentorAgreementPush = MutableLiveData<Boolean>()
     val menteeAgreementPush = MutableLiveData<Boolean>()
 
-    //프로필 사진 설정
-    //현재 사진
+
     private var currentImage: String? = ""
 
-    //새로운 사진
     private val _image = MutableLiveData<Uri?>()
     val image: MutableLiveData<Uri?> = _image
 
@@ -241,7 +239,7 @@ class SettingViewModel : ViewModel() {
     }
 
 
-    //비밀번호 변경 설정
+
     private var currentPassword = SharedPreferenceController.getUserPw()
     val nowPassword = MutableLiveData("")
 
@@ -316,7 +314,7 @@ class SettingViewModel : ViewModel() {
                 && newPasswordValid.value == true
                 && isDiffCurrentNew.value == true
 
-    //최종 비밀번호 변경
+
     private var _isSuccessChangePW = MutableLiveData<Boolean>()
     var isSuccessChangePW: LiveData<Boolean> = _isSuccessChangePW
 
@@ -345,7 +343,7 @@ class SettingViewModel : ViewModel() {
         isSuccessChangePW = _isSuccessChangePW
     }
 
-    //멘토스, 자기소개 변경 설정
+
     val introduce = MutableLiveData("")
     var tempCategory = mutableListOf<Int>()
 
@@ -429,7 +427,7 @@ class SettingViewModel : ViewModel() {
         isSuccessMentosIntro = _isSuccessMentosIntro
     }
 
-    //회원탈퇴
+
     private var _isSuccessWithdrawal = MutableLiveData<Boolean>()
     var isSuccessWithdrawal: LiveData<Boolean> = _isSuccessWithdrawal
 

@@ -28,7 +28,6 @@ class MentoringStart3Fragment : Fragment() {
     ): View {
         binding = FragmentMentoringStart3Binding.inflate(inflater, container, false)
 
-        //mentosingStart4에서 back버튼 눌렀을 때 사용
         initLayout()
 
         setBtnBackClickListener()
