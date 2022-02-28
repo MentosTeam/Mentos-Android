@@ -25,7 +25,7 @@ class ChatBubbleAdapter :
             if (SharedPreferenceController.getMemberId().toString() == item.memberId) {
                 binding.chatBubbleContentTv.setBackgroundResource(R.drawable.img_chat_mine)
                 binding.itemChatBubbleLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
-                binding.chatBubbleUpdate.visibility = if (item.readUsers.size == 2) {
+                binding.chatBubbleUpdate.visibility = if (item.readUsers.size != 1) {
                     View.GONE
                 } else {
                     View.VISIBLE
