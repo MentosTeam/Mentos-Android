@@ -64,7 +64,15 @@ class SettingViewModel : ViewModel() {
     //닉네임 관련
     val newNickName = MutableLiveData("")
 
-    private val _isNickNameValid = MutableLiveData(false)
+    private val _isNickNameCheckResult = MutableLiveData(false)
+    val isNickNameCheckResult: LiveData<Boolean> = _isNickNameCheckResult
+
+    private val _isNickNameValid = Transformations.map(newNickName) { nickname ->
+        Pattern.matches(
+            "^(?=.*[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]).{1,10}+$",
+            nickname
+        )
+    }
     val isNickNameValid: LiveData<Boolean> = _isNickNameValid
 
     private var _isSuccessNickName = MutableLiveData<Boolean>()
@@ -87,17 +95,17 @@ class SettingViewModel : ViewModel() {
     }
 
     fun setNickNameValid(valid: Boolean) {
-        _isNickNameValid.value = valid
+        _isNickNameCheckResult.value = valid
     }
 
     private val _canNickNameRegister = MediatorLiveDataUtil.initMediatorLiveData(
-        listOf(newNickName, isNickNameValid)
+        listOf(newNickName, isNickNameCheckResult)
     ) { canNickNameRegisterCheck() }
     val canNickNameRegister: LiveData<Boolean> = _canNickNameRegister
 
     private fun canNickNameRegisterCheck() =
         requireNotNull(newNickName.value).isNotBlank()
-                && requireNotNull(isNickNameValid.value)
+                && requireNotNull(isNickNameCheckResult.value)
 
     fun postNickName() {
         viewModelScope.launch {

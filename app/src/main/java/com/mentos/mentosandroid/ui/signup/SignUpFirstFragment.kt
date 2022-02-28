@@ -55,29 +55,14 @@ class SignUpFirstFragment : Fragment() {
     private fun setNickNameCheckClickListener() {
         binding.signUpNickNameCheckTv.setOnClickListener {
             signUpViewModel.getNickNameValid()
-            setNickNameValidObserve()
-        }
-    }
-
-    private fun setNickNameValidObserve() {
-        signUpViewModel.isNickNameCheck.observe(viewLifecycleOwner) { isNickNameValid ->
-            when (isNickNameValid) {
-                true -> {
-                    binding.signUpNickNameSuccessTv.visibility = View.VISIBLE
-                    binding.signUpNickNameFailTv.visibility = View.GONE
-                }
-                false -> {
-                    binding.signUpNickNameSuccessTv.visibility = View.GONE
-                    binding.signUpNickNameFailTv.visibility = View.VISIBLE
-                }
-            }
+            signUpViewModel.checkedNickName.value = signUpViewModel.nowNickName.value
         }
     }
 
     private fun setNickNameObserve() {
         signUpViewModel.nowNickName.observe(viewLifecycleOwner) { nowNickName ->
             if (nowNickName.isNullOrEmpty()) {
-                signUpViewModel.setNickNameValid(false)
+                signUpViewModel.setNickNameValid(true)
             }
         }
     }

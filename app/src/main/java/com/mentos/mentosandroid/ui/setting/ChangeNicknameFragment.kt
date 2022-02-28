@@ -23,7 +23,6 @@ class ChangeNicknameFragment : Fragment() {
         binding = FragmentChangeNicknameBinding.inflate(inflater, container, false)
         binding.settingViewModel = settingViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
         setBtnBackClickListener()
         setNickNameCheckClickListener()
         setNickNameObserve()
@@ -34,6 +33,7 @@ class ChangeNicknameFragment : Fragment() {
     private fun setBtnBackClickListener() {
         binding.changeNicknameBackIb.setOnClickListener {
             popBackStack()
+            settingViewModel.setNickNameValid(false)
         }
     }
 
@@ -45,8 +45,7 @@ class ChangeNicknameFragment : Fragment() {
     }
 
     private fun setNickNameValidObserve() {
-        // nickName 중복 api를 호출 했을때만 이 함수 호출
-        settingViewModel.isNickNameValid.observe(viewLifecycleOwner) { isNickNameValid ->
+        settingViewModel.isNickNameCheckResult.observe(viewLifecycleOwner) { isNickNameValid ->
             when (isNickNameValid) {
                 true -> {
                     binding.changeNickNameSuccessTv.visibility = View.VISIBLE
@@ -68,7 +67,6 @@ class ChangeNicknameFragment : Fragment() {
         }
     }
 
-    //등록
     private fun setSuccessNickNameObserve() {
         settingViewModel.isSuccessNickName.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {
@@ -86,6 +84,5 @@ class ChangeNicknameFragment : Fragment() {
                 }
             }
         }
-
     }
 }
