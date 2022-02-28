@@ -24,7 +24,6 @@ class MentorCategoryRVAdapter() :
 
             binding.menteeHomeCategoryMentorRv.adapter = innerMentorRVAdapter
 
-            //더보기 이미지 클릭 시 멘토스 찾기 화면으로 이동
             setMentorMoreClickListener(position)
         }
 

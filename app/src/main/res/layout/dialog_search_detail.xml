@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/siren"
+            android:src="@drawable/ic_siren"
             app:layout_constraintBottom_toBottomOf="@id/search_detail_mentor_info_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/search_detail_mentor_info_layout"

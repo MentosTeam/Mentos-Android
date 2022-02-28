@@ -29,7 +29,6 @@ class ReviewListFragment : Fragment() {
         binding = FragmentReviewListBinding.inflate(inflater, container, false)
         reviewList = args.reviewList.toCollection(ArrayList())
 
-        //뷰모델 연결
         initViewModel()
 
         setBtnBackClickListener()
@@ -43,12 +42,10 @@ class ReviewListFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        //뷰모델 연결
         reviewViewModel = ViewModelProvider(this).get(ReviewViewModel::class.java)
         reviewViewModel.setReviewData(reviewList)
         binding.reviewViewModel = reviewViewModel
 
-        //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
         binding.lifecycleOwner = this
     }
 }

@@ -80,12 +80,10 @@ class OneMentorProfileFragment : Fragment() {
 
         val mentosVP = binding.mentorProfileMentoringMentosVp
 
-        // 좌/우 노출되는 크기를 크게하려면 offsetPx 증가
         val leftOffsetPx = 27.dpToPx(resources.displayMetrics)
         val rightOffsetPx = 18.dpToPx(resources.displayMetrics)
         mentosVP.setPadding(leftOffsetPx, 0, rightOffsetPx, 0)
 
-        // 페이지간 마진 크게하려면 pageMarginPx 증가
         val pageMarginPx = 1.dpToPx(resources.displayMetrics)
         val marginTransformer = MarginPageTransformer(pageMarginPx)
         mentosVP.setPageTransformer(marginTransformer)

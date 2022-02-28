@@ -35,7 +35,6 @@ class ChangeMajorFragment : Fragment() {
         }
     }
 
-    //등록
     private fun setSuccessMajorObserve() {
         settingViewModel.isSuccessMajor.observe(viewLifecycleOwner) { isSuccess ->
             when (isSuccess) {

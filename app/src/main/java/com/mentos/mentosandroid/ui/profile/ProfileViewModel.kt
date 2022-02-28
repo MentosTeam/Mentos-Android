@@ -85,11 +85,10 @@ class ProfileViewModel() : ViewModel() {
         }
     }
 
-    fun getMenteeData() {
+    private fun getMenteeData() {
         menteeProfileDataItem = myProfileDataItem.menteeProfile!!
         _menteeProfileData.value = menteeProfileDataItem
 
-        //Major
         menteeMajorItems =
             if (menteeProfileDataItem.basicInformation.majorSecond == 0) {
                 arrayListOf(menteeProfileDataItem.basicInformation.majorFirst)
@@ -102,11 +101,10 @@ class ProfileViewModel() : ViewModel() {
         _menteeMajorList.value = menteeMajorItems
     }
 
-    fun getMentorData() {
+    private fun getMentorData() {
         mentorProfileDataItem = myProfileDataItem.mentorProfile!!
         _mentorProfileData.value = mentorProfileDataItem
 
-        //프로필에서는 2개씩만 보여줌
         if (mentorProfileDataItem.postArr.size >= 3) {
             _mentorPost2.value = arrayListOf(
                 mentorProfileDataItem.postArr[0],
@@ -135,7 +133,6 @@ class ProfileViewModel() : ViewModel() {
             }
         _mentorMajorList.value = mentorMajorItems
 
-        //진행한 멘토링-멘토스 리스트
         mentorProfileDataItem.numOfMentos.forEach { it ->
             for (i in 1..it.mentoringMentos)
                 mentorMentosItems.add(it.majorCategoryId)

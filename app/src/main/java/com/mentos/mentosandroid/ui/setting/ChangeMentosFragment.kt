@@ -103,12 +103,10 @@ class ChangeMentosFragment : Fragment() {
 
     private fun initView() {
         when (SharedPreferenceController.getNowState()) {
-            //멘토
             0 -> {
                 binding.changeMentosTitleTv.setText(R.string.account_intro_title_mentor)
                 binding.changeMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentee)
             }
-            //멘티
             1 -> {
                 binding.changeMentosTitleTv.setText(R.string.account_intro_title_mentee)
                 binding.changeMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentor)

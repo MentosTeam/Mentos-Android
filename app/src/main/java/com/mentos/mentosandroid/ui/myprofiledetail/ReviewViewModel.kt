@@ -9,7 +9,6 @@ class ReviewViewModel() : ViewModel() {
     private val _reviewData = MutableLiveData<ArrayList<Review>>()
     val reviewData: LiveData<ArrayList<Review>>
         get() = _reviewData
-    private var reviewItems: ArrayList<Review> = arrayListOf()
 
     fun setReviewData(reviewList: ArrayList<Review>){
         _reviewData.value = reviewList

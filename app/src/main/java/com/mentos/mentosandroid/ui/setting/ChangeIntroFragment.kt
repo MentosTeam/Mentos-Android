@@ -33,12 +33,10 @@ class ChangeIntroFragment : Fragment() {
 
     private fun initView() {
         when (SharedPreferenceController.getNowState()) {
-            //멘토
             0 -> {
                 binding.accountIntroTitleTv.setText(R.string.account_intro_title_mentor)
                 binding.accountIntroSubTitleTv.setText(R.string.account_intro_sub_title_mentor)
             }
-            //멘티
             1 -> {
                 binding.accountIntroTitleTv.setText(R.string.account_intro_title_mentee)
                 binding.accountIntroSubTitleTv.setText(R.string.account_intro_sub_title_mentee)

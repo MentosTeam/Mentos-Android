@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         if (intent != null) {
             val nowState = intent.getIntExtra("nowState", -1)
-            Log.d("nowState",nowState.toString() )
             if(nowState != -1){
                 SharedPreferenceController.setNowState(nowState)
             }

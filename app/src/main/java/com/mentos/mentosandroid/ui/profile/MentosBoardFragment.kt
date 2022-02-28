@@ -42,7 +42,6 @@ class MentosBoardFragment() : Fragment() {
 
         binding.mentorProfileMentoringMentosCountTv.text = "${mentosCount}/10"
 
-        //내부 리사이클러뷰 연동
         val mentosAdapter = ProfileMentosRVAdapter()
         mentosAdapter.mentosList = mentosSubList
         mentosAdapter.notifyDataSetChanged()

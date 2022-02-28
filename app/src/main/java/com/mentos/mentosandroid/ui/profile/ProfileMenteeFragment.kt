@@ -23,7 +23,6 @@ class ProfileMenteeFragment : Fragment() {
     ): View {
         binding = FragmentProfileMenteeBinding.inflate(inflater, container, false)
 
-        //뷰모델 연결
         initViewModel()
         initSex()
         initImg()
@@ -36,7 +35,6 @@ class ProfileMenteeFragment : Fragment() {
 
     private fun setCreateMentorClickListener() {
         binding.menteeProfileAddMentorLayout.setOnClickListener {
-            //멘티 프로필 생성
             navigateWithData(
                 ProfileFragmentDirections.actionProfileFragmentToOtherAccountMentosFragment(
                     1
@@ -49,11 +47,9 @@ class ProfileMenteeFragment : Fragment() {
         profileViewModel.profileState.observe(viewLifecycleOwner) { profileState ->
             when (profileState) {
                 2 -> {
-                    //멘토만 존재
                     binding.menteeProfileAddMentorLayout.visibility = View.VISIBLE
                 }
                 3 -> {
-                    //멘토멘티 둘다 존재
                     binding.menteeProfileAddMentorLayout.visibility = View.GONE
                 }
             }
@@ -72,9 +68,7 @@ class ProfileMenteeFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        //뷰모델 연결
         binding.profileViewModel = profileViewModel
-        //뷰모델을 LifeCycle에 종속시킴, LifeCycle 동안 옵저버 역할을 함
         binding.lifecycleOwner = this
     }
 

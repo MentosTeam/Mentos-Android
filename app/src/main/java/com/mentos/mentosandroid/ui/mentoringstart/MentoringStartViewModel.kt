@@ -27,7 +27,6 @@ class MentoringStartViewModel : ViewModel() {
             try {
                 val responseMentoringStart =
                     ServiceBuilder.mentoringStartService.postMentoringStart(mentoringStart)
-                Log.d("멘토링 요청", mentoringStart.toString())
                 if (responseMentoringStart.code == 1000) {
                     _isSuccess.value = true
                 } else {
@@ -63,7 +62,6 @@ class MentoringStartViewModel : ViewModel() {
             try {
                 val responseMentoringAccept =
                     ServiceBuilder.mentoringStartService.patchMentoringAccept(mentoringId, accept)
-                Log.d("멘토링 수락", responseMentoringAccept.toString())
                 if (responseMentoringAccept.isSuccess) {
                     _isSuccessAccept.value = true
                 } else {

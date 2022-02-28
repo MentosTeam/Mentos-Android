@@ -49,17 +49,14 @@ class MentosFireBaseMessagingService : FirebaseMessagingService() {
         }
     }
 
-    // Firebase Cloud Messaging Server 가 대기중인 메세지를 삭제 시 호출
     override fun onDeletedMessages() {
         super.onDeletedMessages()
     }
 
-    // 메세지가 서버로 전송 성공 했을때 호출
     override fun onMessageSent(p0: String) {
         super.onMessageSent(p0)
     }
 
-    // 메세지가 서버로 전송 실패 했을때 호출
     override fun onSendError(p0: String, p1: Exception) {
         super.onSendError(p0, p1)
     }
@@ -84,6 +81,7 @@ class MentosFireBaseMessagingService : FirebaseMessagingService() {
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
