@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="settingViewModel"
             type="com.mentos.mentosandroid.ui.setting.SettingViewModel" />
@@ -117,15 +119,16 @@
                             android:id="@+id/change_nickname_check_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="7dp"
-                            android:background="@drawable/shape_black_fill_8"
+                            android:layout_marginEnd="4dp"
+                            android:background="@{settingViewModel.isNickNameValid ? @drawable/shape_black_fill_8 : @drawable/shape_gray_fill_8}"
+                            android:clickable="@{settingViewModel.isNickNameValid ? true : false}"
                             android:fontFamily="@font/noto_regular"
                             android:gravity="center"
                             android:includeFontPadding="false"
-                            android:padding="3dp"
+                            android:padding="4dp"
                             android:text="@string/sign_up_nick_name_check"
-                            android:textColor="@color/white"
-                            android:textSize="10dp"
+                            android:textColor="@{settingViewModel.isNickNameValid ? @color/white : @color/gray_c7c6}"
+                            android:textSize="10sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />

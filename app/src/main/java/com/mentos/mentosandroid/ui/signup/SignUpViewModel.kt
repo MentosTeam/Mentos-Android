@@ -15,6 +15,7 @@ class SignUpViewModel : ViewModel() {
 
     val name = MutableLiveData("")
     val nowNickName = MutableLiveData("")
+    val checkedNickName = MutableLiveData("")
 
     private val _sex = MutableLiveData("")
     val sex: LiveData<String> = _sex
@@ -38,20 +39,30 @@ class SignUpViewModel : ViewModel() {
     }
     val isNickNameValid: LiveData<Boolean> = _isNickNameValid
 
-    private val _isNickNameCheck = MutableLiveData(false)
+    private val _isNickNameCheckResult = MutableLiveData<Boolean>()
+    val isNickNameCheckResult: LiveData<Boolean> = _isNickNameCheckResult
+
+    private val _isNickNameCheck = MediatorLiveDataUtil.initMediatorLiveData(
+        listOf(isNickNameCheckResult, nowNickName, checkedNickName)
+    ) { setNicknameMsgVisibility() }
     val isNickNameCheck: LiveData<Boolean> = _isNickNameCheck
 
     private val _canFirstRegister = MediatorLiveDataUtil.initMediatorLiveData(
-        listOf(name, nowNickName, isNickNameCheck, sex, isNameValid)
+        listOf(name, isNickNameCheck, sex, isNameValid)
     ) { canFirstRegisterCheck() }
     val canFirstRegister: LiveData<Boolean> = _canFirstRegister
 
     private fun canFirstRegisterCheck() =
         requireNotNull(name.value).isNotBlank()
-                && requireNotNull(nowNickName.value).isNotBlank()
-                && requireNotNull(isNickNameCheck.value)
                 && requireNotNull(sex.value).isNotBlank()
                 && isNameValid.value == true
+                && requireNotNull(isNickNameCheck.value)
+
+    private fun setNicknameMsgVisibility() =
+        requireNotNull(nowNickName.value).isNotBlank()
+                && requireNotNull(checkedNickName.value).isNotBlank()
+                && requireNotNull(isNickNameCheckResult.value)
+                && requireNotNull(checkedNickName.value) == requireNotNull(nowNickName.value)
 
     fun getNickNameValid() {
         viewModelScope.launch {
@@ -69,14 +80,14 @@ class SignUpViewModel : ViewModel() {
     }
 
     fun setNickNameValid(valid: Boolean) {
-        _isNickNameCheck.value = valid
+        _isNickNameCheckResult.value = valid
     }
 
     fun setSex(sex: String) {
         _sex.value = sex
     }
 
-    fun setLoadingState(isLoading: Boolean) {
+    private fun setLoadingState(isLoading: Boolean) {
         _setLoading.value = isLoading
     }
 
@@ -190,7 +201,14 @@ class SignUpViewModel : ViewModel() {
     val passwordValid: LiveData<Boolean> = _passwordValid
 
     private val _canFourthRegister = MediatorLiveDataUtil.initMediatorLiveData(
-        listOf(password, passwordCheck, isTermsServiceChecked, isTermsPersonalChecked, isSamePassword, passwordValid)
+        listOf(
+            password,
+            passwordCheck,
+            isTermsServiceChecked,
+            isTermsPersonalChecked,
+            isSamePassword,
+            passwordValid
+        )
     ) { canFourthRegisterCheck() }
     val canFourthRegister: LiveData<Boolean> = _canFourthRegister
 
