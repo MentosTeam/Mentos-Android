@@ -104,12 +104,12 @@ class ChangeMentosFragment : Fragment() {
     private fun initView() {
         when (SharedPreferenceController.getNowState()) {
             0 -> {
-                binding.changeMentosTitleTv.setText(R.string.account_intro_title_mentor)
-                binding.changeMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentee)
+                binding.changeMentosTitleTv.setText(R.string.account_mentos_title_mentor)
+                binding.changeMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentor)
             }
             1 -> {
-                binding.changeMentosTitleTv.setText(R.string.account_intro_title_mentee)
-                binding.changeMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentor)
+                binding.changeMentosTitleTv.setText(R.string.account_mentos_title_mentee)
+                binding.changeMentosSubTitleTv.setText(R.string.account_mentos_sub_title_mentee)
             }
         }
     }

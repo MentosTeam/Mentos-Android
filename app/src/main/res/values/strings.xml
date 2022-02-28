@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Mentos</string>
+    <string name="link_terms_service">https://sky-cyclamen-acf.notion.site/31c7b49608c740ea9fd2ed314761046c</string>
+    <string name="link_terms_personal">https://sky-cyclamen-acf.notion.site/2a4587c245df47d88c46b1a701d0649b</string>
+    <string name="mentos_gmail">teammentos0214@gmail.com</string>
 
     <!--Bottom Sheet Dialog-->
     <string name="main_bottom_search">멘토-쓰 찾기</string>
@@ -216,8 +219,6 @@
     <string name="sign_up_password_fail">비밀번호가 일치하지 않습니다!</string>
     <string name="sign_up_fourth_terms_service"><u>멘토-쓰 서비스 이용약관에 동의합니다</u></string>
     <string name="sign_up_fourth_terms_personal"><u>멘토-쓰 개인정보 처리방침에 동의합니다</u></string>
-    <string name="link_terms_service">https://sky-cyclamen-acf.notion.site/31c7b49608c740ea9fd2ed314761046c</string>
-    <string name="link_terms_personal">https://sky-cyclamen-acf.notion.site/2a4587c245df47d88c46b1a701d0649b</string>
     <string name="sign_up_fourth_btn">회원가입 완료-!</string>
 
     <string name="sign_in_id">이메일</string>

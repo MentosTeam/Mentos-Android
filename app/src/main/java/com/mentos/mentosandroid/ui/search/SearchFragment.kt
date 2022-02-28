@@ -59,7 +59,6 @@ class SearchFragment : Fragment() {
                 binding.searchMentorListRv.visibility = View.GONE
                 binding.searchMenteeListRv.visibility = View.VISIBLE
                 binding.searchMentorTitleSubIv.setText(R.string.search_mentee_title_sub)
-                binding.searchWriteIb.visibility = View.GONE
                 binding.searchMentorListRv.visibility = View.GONE
                 binding.searchMenteeListRv.visibility = View.VISIBLE
                 binding.searchMenteeListRv.itemAnimator = null
@@ -69,6 +68,7 @@ class SearchFragment : Fragment() {
                 binding.searchMenteeListRv.visibility = View.GONE
                 binding.searchMentorTitleSubIv.setText(R.string.search_title_sub)
                 binding.searchMenteeListRv.visibility = View.GONE
+                binding.searchWriteIb.visibility = View.GONE
                 binding.searchMentorListRv.visibility = View.VISIBLE
                 binding.searchMentorListRv.itemAnimator = null
             }

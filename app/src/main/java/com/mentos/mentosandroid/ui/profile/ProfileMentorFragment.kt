@@ -1,5 +1,6 @@
 package com.mentos.mentosandroid.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -32,7 +33,7 @@ class ProfileMentorFragment : Fragment() {
         initImg()
         setPostMoreClickListener()
         setReviewMoreClickListener()
-
+        setFeedbackLayoutClickListener()
         initCreateMenteeView()
         setCreateMenteeClickListener()
         setMentorListObserve()
@@ -56,6 +57,15 @@ class ProfileMentorFragment : Fragment() {
                     2
                 )
             )
+        }
+    }
+
+    private fun setFeedbackLayoutClickListener() {
+        binding.mentorProfileInformLayout.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.mentos_gmail)))
+            startActivity(intent)
         }
     }
 
@@ -92,7 +102,7 @@ class ProfileMentorFragment : Fragment() {
         mentosVP.currentItem = mentosVPAdapter.itemCount
     }
 
-    fun Int.dpToPx(displayMetrics: DisplayMetrics): Int = (this * displayMetrics.density).toInt()
+    private fun Int.dpToPx(displayMetrics: DisplayMetrics): Int = (this * displayMetrics.density).toInt()
 
     private fun initSex() {
         val isOpen = SharedPreferenceController.getOpenSex(requireContext())
