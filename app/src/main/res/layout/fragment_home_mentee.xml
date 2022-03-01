@@ -91,7 +91,8 @@
                                     android:src="@drawable/ic_home_mentos"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="ContentDescription" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -356,6 +357,7 @@
                     android:paddingHorizontal="20dp"
                     android:paddingTop="5dp"
                     android:scrollbars="none"
+                    android:visibility="@{homeViewModel.menteeHomeData.otherMentor.size() == 0 ? View.GONE : View.VISIBLE}"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
