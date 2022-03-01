@@ -59,6 +59,7 @@
             app:layout_constraintTop_toBottomOf="@id/state_record_tab_layout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/state_record_container_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

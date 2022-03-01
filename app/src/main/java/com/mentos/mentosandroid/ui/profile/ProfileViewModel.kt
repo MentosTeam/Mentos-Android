@@ -10,7 +10,7 @@ import com.mentos.mentosandroid.data.api.ServiceBuilder
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class ProfileViewModel() : ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     private val _menteeMajorList = MutableLiveData<ArrayList<Int>>()
     val menteeMajorList: LiveData<ArrayList<Int>>
@@ -51,15 +51,15 @@ class ProfileViewModel() : ViewModel() {
         get() = _myProfileData
     private lateinit var myProfileDataItem: MyProfileResult
 
-
     private var _profileState = MutableLiveData<Int>()
     var profileState: LiveData<Int> = _profileState
 
     fun getMyProfileData() {
+        _mentorMentosList.value = ArrayList()
+        mentorMentosItems = ArrayList()
         viewModelScope.launch {
             try {
                 val responseMyProfile = ServiceBuilder.profileService.getMyProfile()
-                Log.d("내 정보", responseMyProfile.message)
                 myProfileDataItem = responseMyProfile.result
                 _myProfileData.value = myProfileDataItem
 
@@ -80,7 +80,6 @@ class ProfileViewModel() : ViewModel() {
                 }
             } catch (e: HttpException) {
                 Log.d("내 정보", e.message().toString())
-                Log.d("내 정보", e.code().toString())
             }
         }
     }
@@ -133,7 +132,7 @@ class ProfileViewModel() : ViewModel() {
             }
         _mentorMajorList.value = mentorMajorItems
 
-        mentorProfileDataItem.numOfMentos.forEach { it ->
+        mentorProfileDataItem.numOfMentos.forEach {
             for (i in 1..it.mentoringMentos)
                 mentorMentosItems.add(it.majorCategoryId)
         }

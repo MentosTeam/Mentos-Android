@@ -298,10 +298,6 @@ class SearchViewModel : ViewModel() {
         _isCategorySelected.value = isSelected
     }
 
-    fun setIsWritten(isWritten: Boolean) {
-        _isWritten.value = isWritten
-    }
-
     fun setSearchCategory(category: Int) {
         tempSearchCategory.add(category)
         _searchCategory.value = tempSearchCategory.toMutableList()

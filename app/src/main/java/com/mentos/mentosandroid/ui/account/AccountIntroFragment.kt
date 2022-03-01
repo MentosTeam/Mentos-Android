@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentAccountIntroBinding
+import com.mentos.mentosandroid.util.KeyBoardUtil
 import com.mentos.mentosandroid.util.navigate
 
 class AccountIntroFragment : Fragment() {
@@ -41,6 +42,10 @@ class AccountIntroFragment : Fragment() {
                 binding.accountIntroSubTitleTv.setText(R.string.account_intro_sub_title_mentor)
                 accountViewModel.setState(1)
             }
+        }
+
+        binding.accountIntroView.setOnClickListener {
+            KeyBoardUtil.hide(requireActivity())
         }
     }
 

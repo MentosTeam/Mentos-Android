@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.databinding.FragmentChangeIntroBinding
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
+import com.mentos.mentosandroid.util.KeyBoardUtil
 import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.popBackStack
 
@@ -42,6 +43,9 @@ class ChangeIntroFragment : Fragment() {
                 binding.accountIntroSubTitleTv.setText(R.string.account_intro_sub_title_mentee)
             }
         }
+        binding.settingIntroView.setOnClickListener {
+            KeyBoardUtil.hide(requireActivity())
+        }
     }
 
     private fun setSuccessChangeMentosIntroObserve() {
@@ -70,5 +74,4 @@ class ChangeIntroFragment : Fragment() {
             popBackStack()
         }
     }
-
 }
