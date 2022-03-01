@@ -97,7 +97,7 @@ class StateOneFragment : Fragment() {
 
     private fun setRecordListObserver() {
         stateViewModel.recordList.observe(viewLifecycleOwner) { list ->
-            if (SharedPreferenceController.getNowState() == 0 && list.size != mentoringCount) {
+            if (SharedPreferenceController.getNowState() == 0 && list.size != mentoringCount && args.nowMentoring != null) {
                 binding.stateOneWriteIb.visibility = View.VISIBLE
             }
             binding.stateOneCount.text = list.size.toString()

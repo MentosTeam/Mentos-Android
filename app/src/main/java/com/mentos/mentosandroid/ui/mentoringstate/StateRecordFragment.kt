@@ -28,13 +28,20 @@ class StateRecordFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         setBackBtnClickListener()
         setCompleteBtnClickListener()
+        setHideKeyboard()
         setIsLastRecordObserve()
         return binding.root
     }
 
     private fun setBackBtnClickListener() {
         binding.stateRecordBackIb.setOnClickListener {
-            setCanRecordObserve()
+            if(requireNotNull(stateViewModel.canRecord.value)) {
+                DialogUtil(5) {
+                    popBackStack()
+                }.show(childFragmentManager, "record_stop_write")
+            } else {
+                popBackStack()
+            }
         }
     }
 
@@ -46,16 +53,9 @@ class StateRecordFragment : Fragment() {
         }
     }
 
-    private fun setCanRecordObserve() {
-        stateViewModel.canRecord.observe(viewLifecycleOwner) { canRecord ->
-            when (canRecord) {
-                true -> {
-                    DialogUtil(5) {
-                        popBackStack()
-                    }.show(childFragmentManager, "record_stop_write")
-                }
-                false -> popBackStack()
-            }
+    private fun setHideKeyboard() {
+        binding.stateRecordContainerView.setOnClickListener {
+            KeyBoardUtil.hide(requireActivity())
         }
     }
 

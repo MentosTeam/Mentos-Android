@@ -39,7 +39,6 @@ class SearchCreateFragment : Fragment() {
         searchViewModel.resetIsRegister()
         searchViewModel.resetImage()
         searchViewModel.setCategory(false)
-        searchViewModel.setIsWritten(false)
         if (args.postMento != null) {
             initModifyView()
             setModifyImageDeleteClickListener()
@@ -146,7 +145,7 @@ class SearchCreateFragment : Fragment() {
     }
 
     private fun hideKeyBoard() {
-        binding.searchCreateTabLayout.setOnClickListener {
+        binding.searchCreateContainerView.setOnClickListener {
             KeyBoardUtil.hide(requireActivity())
         }
     }
@@ -157,17 +156,16 @@ class SearchCreateFragment : Fragment() {
     }
 
     private fun setIsWrittenObserve() {
-        searchViewModel.isWritten.observe(viewLifecycleOwner) { isWritten ->
-            binding.searchBackIb.setOnClickListener {
-                if (isWritten) {
-                    DialogUtil(5) {
-                        popBackStack()
-                    }.show(childFragmentManager, "search_create_stop_write")
-                } else {
+        binding.searchBackIb.setOnClickListener {
+            if (requireNotNull(searchViewModel.isWritten.value)) {
+                DialogUtil(5) {
                     popBackStack()
-                }
+                }.show(childFragmentManager, "search_create_stop_write")
+            } else {
+                popBackStack()
             }
         }
+        searchViewModel.isWritten.observe(viewLifecycleOwner) {}
     }
 
     private fun setImageObserve() {

@@ -34,7 +34,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="19dp"
             android:overScrollMode="never"
-            android:scrollbars="none"
+            android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,8 @@
                             android:src="@drawable/ic_home_more"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_nickname_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_nickname_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_nickname_tv"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
@@ -125,7 +126,8 @@
                             android:src="@drawable/ic_home_more"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_image_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_image_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_image_tv"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
@@ -198,7 +200,8 @@
                             android:src="@drawable/ic_home_more"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_mentos_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_mentos_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_mentos_tv"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
@@ -233,7 +236,8 @@
                             android:src="@drawable/ic_home_more"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_major_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_major_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_major_tv"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -283,7 +287,8 @@
                             android:src="@drawable/ic_home_more"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_notice_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_notice_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_notice_tv"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
@@ -368,7 +373,8 @@
                             android:src="@drawable/ic_home_more"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_pw_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_pw_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_pw_tv"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
@@ -403,7 +409,8 @@
                             android:src="@drawable/ic_home_more"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_terms_service_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_terms_service_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_terms_service_tv"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
@@ -438,7 +445,8 @@
                             android:src="@drawable/ic_home_more"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_terms_personal_tv"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_terms_personal_tv" />
+                            app:layout_constraintTop_toTopOf="@+id/setting_terms_personal_tv"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
