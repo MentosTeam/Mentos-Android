@@ -7,17 +7,11 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
-import com.mentos.mentosandroid.ui.main.AuthActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
 
 class MentosFireBaseMessagingService : FirebaseMessagingService() {
@@ -28,24 +22,12 @@ class MentosFireBaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        if (remoteMessage.data.isNotEmpty()) {
-            if (Integer.parseInt(remoteMessage.data["receiverFlag"]!!) == 1) {
-                if (SharedPreferenceController.getAgreementPush(0)) {
-                    sendNotification(
-                        remoteMessage.data["title"],
-                        remoteMessage.data["body"]!!,
-                        0
-                    )
-                }
-            } else {
-                if (SharedPreferenceController.getAgreementPush(1)) {
-                    sendNotification(
-                        remoteMessage.data["title"],
-                        remoteMessage.data["body"]!!,
-                        1
-                    )
-                }
-            }
+        if (remoteMessage.data.isNotEmpty() && SharedPreferenceController.getAgreementPush() == 1) {
+            sendNotification(
+                remoteMessage.data["title"],
+                remoteMessage.data["body"]!!,
+                Integer.parseInt(remoteMessage.data["receiverFlag"]!!)
+            )
         }
     }
 

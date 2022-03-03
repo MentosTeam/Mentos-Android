@@ -11,5 +11,7 @@ data class SignIn(
     val memberId: Int,
     val jwt: String,
     val mentor: Int,
-    val mentee: Int
+    val mentee: Int,
+    val genderFlag: Int,
+    val mentorNotificationFlag: Int
 )

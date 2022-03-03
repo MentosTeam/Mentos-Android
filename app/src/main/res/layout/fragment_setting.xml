@@ -159,7 +159,6 @@
                             android:id="@+id/switch_sex"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="@={settingViewModel.openSex}"
                             android:gravity="center"
                             android:thumb="@drawable/selector_switch_thumb"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_sex_tv"
@@ -317,22 +316,9 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switch_mentor_push"
+                            android:id="@+id/switch_push"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="@={settingViewModel.mentorAgreementPush}"
-                            android:gravity="center"
-                            android:thumb="@drawable/selector_switch_thumb"
-                            app:layout_constraintBottom_toBottomOf="@+id/setting_push_tv"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/setting_push_tv"
-                            app:track="@drawable/selector_switch" />
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switch_mentee_push"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="@={settingViewModel.menteeAgreementPush}"
                             android:gravity="center"
                             android:thumb="@drawable/selector_switch_thumb"
                             app:layout_constraintBottom_toBottomOf="@+id/setting_push_tv"

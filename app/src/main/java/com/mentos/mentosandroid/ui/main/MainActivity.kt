@@ -2,7 +2,6 @@ package com.mentos.mentosandroid.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -28,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         if (intent != null) {
             val nowState = intent.getIntExtra("nowState", -1)
-            if(nowState != -1){
-                SharedPreferenceController.setNowState(nowState)
+            if (nowState != -1) {
+                SharedPreferenceController.setNowState(nowState - 1)
             }
 
             binding.mainBottomNavi.selectedItemId =

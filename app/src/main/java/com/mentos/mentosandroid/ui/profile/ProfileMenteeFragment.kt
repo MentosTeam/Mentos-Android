@@ -67,13 +67,15 @@ class ProfileMenteeFragment : Fragment() {
     }
 
     private fun initSex() {
-        val isOpen = SharedPreferenceController.getOpenSex(requireContext())
-        if (isOpen) {
-            binding.menteeProfileOpenSexLayout.visibility = View.VISIBLE
-            binding.menteeProfilePrivateSexLayout.visibility = View.GONE
-        } else {
-            binding.menteeProfileOpenSexLayout.visibility = View.GONE
-            binding.menteeProfilePrivateSexLayout.visibility = View.VISIBLE
+        when (SharedPreferenceController.getOpenSex()) {
+            1 -> {
+                binding.menteeProfileOpenSexLayout.visibility = View.VISIBLE
+                binding.menteeProfilePrivateSexLayout.visibility = View.GONE
+            }
+            else -> {
+                binding.menteeProfileOpenSexLayout.visibility = View.GONE
+                binding.menteeProfilePrivateSexLayout.visibility = View.VISIBLE
+            }
         }
     }
 

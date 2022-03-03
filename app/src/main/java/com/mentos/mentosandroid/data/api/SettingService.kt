@@ -1,7 +1,6 @@
 package com.mentos.mentosandroid.data.api
 
 import com.mentos.mentosandroid.data.request.RequestChangeMentos
-import com.mentos.mentosandroid.data.request.RequestChangeProfileImg
 import com.mentos.mentosandroid.data.request.RequestChangePW
 import com.mentos.mentosandroid.data.request.RequestWithdrawal
 import com.mentos.mentosandroid.data.response.BaseResponse
@@ -49,4 +48,10 @@ interface SettingService {
     suspend fun postWithdrawal(
         @Body body: RequestWithdrawal
     ): ResponseWithdrawal
+
+    @POST("/settings/profile/gender")
+    suspend fun postSetOpenSex(): BaseResponse
+
+    @POST("/settings/profile/notification")
+    suspend fun postSetSendNotification(): BaseResponse
 }
