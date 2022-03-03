@@ -57,6 +57,8 @@ class SignInViewModel : ViewModel() {
                                 email.value.toString(),
                                 password.value.toString()
                             )
+                            setOpenSex(responseSignIn.result.genderFlag)
+                            setAgreementPush(responseSignIn.result.mentorNotificationFlag)
                         }
                         if (responseSignIn.result.mentor == 1) {
                             if (SharedPreferenceController.getNowState() == -1) {

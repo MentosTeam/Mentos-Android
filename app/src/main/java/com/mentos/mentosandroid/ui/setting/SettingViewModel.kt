@@ -165,13 +165,23 @@ class SettingViewModel : ViewModel() {
         isSuccessMajor = _isSuccessMajor
     }
 
+    fun setOpenSex() {
+        viewModelScope.launch {
+            try {
+                ServiceBuilder.settingService.postSetOpenSex()
+            } catch (e: HttpException) {
+            }
+        }
+    }
 
-    val openSex = MutableLiveData<Boolean>()
-
-
-    val mentorAgreementPush = MutableLiveData<Boolean>()
-    val menteeAgreementPush = MutableLiveData<Boolean>()
-
+    fun setSendNotification() {
+        viewModelScope.launch {
+            try {
+                ServiceBuilder.settingService.postSetSendNotification()
+            } catch (e: HttpException) {
+            }
+        }
+    }
 
     private var currentImage: String? = ""
 
@@ -237,7 +247,6 @@ class SettingViewModel : ViewModel() {
         _isSuccessImage = MutableLiveData<Boolean>()
         isSuccessImage = _isSuccessImage
     }
-
 
 
     private var currentPassword = SharedPreferenceController.getUserPw()

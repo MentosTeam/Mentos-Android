@@ -41,39 +41,37 @@ class SettingFragment : Fragment() {
     }
 
     private fun setCurrentOpenSex() {
-        settingViewModel.openSex.value = SharedPreferenceController.getOpenSex(requireContext())
+        when (SharedPreferenceController.getOpenSex()) {
+            1 -> binding.switchSex.isChecked = true
+            else -> binding.switchSex.isChecked = false
+        }
     }
 
     private fun setOpenSexObserve() {
-        settingViewModel.openSex.observe(viewLifecycleOwner) { isOpen ->
-            SharedPreferenceController.setOpenSex(requireContext(), isOpen)
+        binding.switchSex.setOnCheckedChangeListener { _, isChecked ->
+            settingViewModel.setOpenSex()
+            if(isChecked) {
+                SharedPreferenceController.setOpenSex(1)
+            } else {
+                SharedPreferenceController.setOpenSex(0)
+            }
         }
     }
 
     private fun setCurrentPush() {
-        if (SharedPreferenceController.getNowState() == 0) {
-            binding.switchMentorPush.visibility = View.VISIBLE
-            binding.switchMenteePush.visibility = View.GONE
-
-            settingViewModel.mentorAgreementPush.value =
-                SharedPreferenceController.getAgreementPush(0)
-        } else {
-            binding.switchMentorPush.visibility = View.GONE
-            binding.switchMenteePush.visibility = View.VISIBLE
-
-            settingViewModel.menteeAgreementPush.value =
-                SharedPreferenceController.getAgreementPush(1)
+        when (SharedPreferenceController.getAgreementPush()) {
+            1 -> binding.switchPush.isChecked = true
+            else -> binding.switchPush.isChecked = false
         }
     }
 
     private fun setPushObserve() {
-        if (SharedPreferenceController.getNowState() == 0) {
-            settingViewModel.mentorAgreementPush.observe(viewLifecycleOwner) { isAgree ->
-                SharedPreferenceController.setAgreementPush(0, isAgree)
-            }
-        } else {
-            settingViewModel.menteeAgreementPush.observe(viewLifecycleOwner) { isAgree ->
-                SharedPreferenceController.setAgreementPush(1, isAgree)
+        binding.switchPush.setOnCheckedChangeListener { _, isChecked ->
+            settingViewModel.setSendNotification()
+            if(isChecked) {
+                SharedPreferenceController.setAgreementPush(1)
+            } else {
+                SharedPreferenceController.setAgreementPush(0)
             }
         }
     }
@@ -152,7 +150,6 @@ class SettingFragment : Fragment() {
     private fun clearSDF() {
         SharedPreferenceController.clearNowState(requireContext())
         SharedPreferenceController.clearMyMentos(requireContext())
-        SharedPreferenceController.clearOpenSex(requireContext())
         SharedPreferenceController.clearAuthData()
     }
 }

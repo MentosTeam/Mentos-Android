@@ -61,7 +61,6 @@ class ChangePasswordFragment : Fragment() {
     private fun clearSDF() {
         SharedPreferenceController.clearNowState(requireContext())
         SharedPreferenceController.clearMyMentos(requireContext())
-        SharedPreferenceController.clearOpenSex(requireContext())
         SharedPreferenceController.clearAuthData()
     }
 }

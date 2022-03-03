@@ -13,8 +13,7 @@ object SharedPreferenceController {
     private const val USER_EMAIL = "USER_EMAIL"
     private const val USER_PW = "USER_PW"
     private const val DEVICE_FCM_TOKEN = "DEVICE_FCM_TOKEN"
-    private const val MENTOR_AGREEMENT_PUSH = "MENTOR_AGREEMENT_PUSH"
-    private const val MENTEE_AGREEMENT_PUSH = "MENTEE_AGREEMENT_PUSH"
+    private const val PUSH_AGREEMENT = "PUSH_AGREEMENT"
     private const val MEMBER_ID = "MEMBER_ID"
 
     private lateinit var sharedPreferences: SharedPreferences
@@ -61,21 +60,14 @@ object SharedPreferenceController {
     }
 
     //성별 공개여부
-    fun getOpenSex(context: Context): Boolean {
-        val sdf = context.getSharedPreferences(OPEN_SEX, MODE_PRIVATE)
-        return sdf!!.getBoolean(OPEN_SEX, true)
+    fun getOpenSex(): Int {
+        return sharedPreferences.getInt(OPEN_SEX, -1)
     }
 
-    fun setOpenSex(context: Context, state: Boolean?) {
-        val sdf = context.getSharedPreferences(OPEN_SEX, MODE_PRIVATE)
-        val editor = sdf.edit()
-        editor.putBoolean(OPEN_SEX, state!!)
-        editor.apply()
-    }
-
-    fun clearOpenSex(context: Context) {
-        val sdf = context.getSharedPreferences(OPEN_SEX, MODE_PRIVATE)
-        sdf.edit().clear().apply()
+    fun setOpenSex(state: Int) {
+        sharedPreferences.edit()
+            .putInt(OPEN_SEX, state)
+            .apply()
     }
 
     // jwt 토큰
@@ -132,29 +124,13 @@ object SharedPreferenceController {
     }
 
     // 푸시알림 설정여부
-    fun getAgreementPush(who: Int): Boolean {
-        return when (who) {
-            0 -> {
-                sharedPreferences.getBoolean(MENTOR_AGREEMENT_PUSH, true)
-            }
-            else -> {
-                sharedPreferences.getBoolean(MENTEE_AGREEMENT_PUSH, true)
-            }
-        }
+    fun getAgreementPush(): Int {
+        return sharedPreferences.getInt(PUSH_AGREEMENT, -1)
     }
 
-    fun setAgreementPush(who: Int, isAgree: Boolean) {
-        when (who) {
-            0 -> {
-                sharedPreferences.edit()
-                    .putBoolean(MENTOR_AGREEMENT_PUSH, isAgree)
-                    .apply()
-            }
-            else -> {
-                sharedPreferences.edit()
-                    .putBoolean(MENTEE_AGREEMENT_PUSH, isAgree)
-                    .apply()
-            }
-        }
+    fun setAgreementPush(state: Int) {
+        sharedPreferences.edit()
+            .putInt(PUSH_AGREEMENT, state)
+            .apply()
     }
 }

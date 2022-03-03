@@ -98,13 +98,15 @@ class OneMentorProfileFragment : Fragment() {
 
 
     private fun initSex() {
-        val isOpen = SharedPreferenceController.getOpenSex(requireContext())
-        if (isOpen) {
-            binding.mentorProfileOpenSexLayout.visibility = View.VISIBLE
-            binding.mentorProfilePrivateSexLayout.visibility = View.GONE
-        } else {
-            binding.mentorProfileOpenSexLayout.visibility = View.GONE
-            binding.mentorProfilePrivateSexLayout.visibility = View.VISIBLE
+        when (SharedPreferenceController.getOpenSex()) {
+            1 -> {
+                binding.mentorProfileOpenSexLayout.visibility = View.VISIBLE
+                binding.mentorProfilePrivateSexLayout.visibility = View.GONE
+            }
+            else -> {
+                binding.mentorProfileOpenSexLayout.visibility = View.GONE
+                binding.mentorProfilePrivateSexLayout.visibility = View.VISIBLE
+            }
         }
     }
 
