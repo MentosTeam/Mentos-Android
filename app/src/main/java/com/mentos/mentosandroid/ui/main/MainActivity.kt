@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         if (intent != null) {
             val nowState = intent.getIntExtra("nowState", -1)
-            if(nowState != -1){
-                SharedPreferenceController.setNowState(nowState)
+            if (nowState != -1) {
+                SharedPreferenceController.setNowState(nowState - 1)
             }
 
             binding.mainBottomNavi.selectedItemId =
