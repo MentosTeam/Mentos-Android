@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.signin
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,7 @@ import com.mentos.mentosandroid.util.MediatorLiveDataUtil
 import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import timber.log.Timber
 
 class SignInViewModel : ViewModel() {
     val email = MutableLiveData(SharedPreferenceController.getUserEmail())
@@ -77,7 +77,7 @@ class SignInViewModel : ViewModel() {
                     else -> setSuccessSignIn(false)
                 }
             } catch (e: HttpException) {
-                Log.d("로그인", e.message().toString())
+                Timber.d(e.message().toString())
             }
         }
     }

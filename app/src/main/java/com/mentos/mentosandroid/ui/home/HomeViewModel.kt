@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +12,7 @@ import com.mentos.mentosandroid.data.response.MenteeCategory
 import com.mentos.mentosandroid.data.response.MentorCategory
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import timber.log.Timber
 
 const val ONLY_MENTOR = 1
 const val ONLY_MENTEE = 2
@@ -34,7 +34,6 @@ class HomeViewModel() : ViewModel() {
         viewModelScope.launch() {
             try {
                 val responseHomeMentor = ServiceBuilder.homeService.getHomeMentor()
-                Log.d("홈 멘토", responseHomeMentor.message)
                 mentorHomeDataItem = responseHomeMentor.result
                 _mentorHomeData.value = mentorHomeDataItem
             } catch (e: HttpException) {
@@ -44,8 +43,7 @@ class HomeViewModel() : ViewModel() {
                     arrayListOf()
                 )
                 _mentorHomeData.value = mentorHomeDataItem
-                Log.d("홈 멘토", e.message().toString())
-                Log.d("홈 멘토", e.code().toString())
+                Timber.d( e.message().toString())
             }
         }
     }
@@ -54,7 +52,6 @@ class HomeViewModel() : ViewModel() {
         viewModelScope.launch() {
             try {
                 val responseHomeMentee = ServiceBuilder.homeService.getHomeMentee()
-                Log.d("홈 멘티", responseHomeMentee.message)
                 menteeHomeDataItem = responseHomeMentee.result
                 _menteeHomeData.value = menteeHomeDataItem
             } catch (e: HttpException) {
@@ -64,13 +61,12 @@ class HomeViewModel() : ViewModel() {
                     arrayListOf()
                 )
                 _mentorHomeData.value = mentorHomeDataItem
-                Log.d("홈 멘티", e.message().toString())
-                Log.d("홈 멘티", e.code().toString())
+                Timber.d(e.message().toString())
             }
         }
     }
 
-    fun postDeviceFcmToken(currToken: String, newToken: String){
+    fun postDeviceFcmToken(currToken: String, newToken: String) {
         viewModelScope.launch {
             try {
                 val responseFcmToken = ServiceBuilder.authService.postDeviceFcmToken(
@@ -79,10 +75,9 @@ class HomeViewModel() : ViewModel() {
                         newToken
                     )
                 )
-                Log.d("홈 fcm token", responseFcmToken.message)
-            }catch (e: HttpException){
-                Log.d("홈 fcm token", e.message().toString())
-                Log.d("홈 fcm token", e.code().toString())
+                Timber.d(responseFcmToken.message)
+            } catch (e: HttpException) {
+                Timber.d(e.message().toString())
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.mentos.mentosandroid.ui.search
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,6 +15,7 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.HttpException
+import timber.log.Timber
 
 class SearchViewModel : ViewModel() {
 
@@ -114,7 +114,7 @@ class SearchViewModel : ViewModel() {
                 _searchMentorList.postValue(responseSearchMentor.result.postArr)
             } catch (e: HttpException) {
                 _searchMentorList.postValue(listOf())
-                Log.d("찾기", e.message().toString())
+                Timber.d(e.message().toString())
             }
         }
     }
@@ -132,7 +132,7 @@ class SearchViewModel : ViewModel() {
                 _searchMenteeList.postValue(responseSearchMentor.result.mentiArr)
             } catch (e: HttpException) {
                 _searchMentorList.postValue(listOf())
-                Log.d("찾기", e.message().toString())
+                Timber.d(e.message().toString())
             }
         }
     }
@@ -221,7 +221,7 @@ class SearchViewModel : ViewModel() {
                     false -> _isDeletedSuccess.postValue(false)
                 }
             } catch (e: HttpException) {
-                Log.d("글 삭제", e.message.toString())
+                Timber.d(e.message.toString())
             }
         }
     }
@@ -246,7 +246,7 @@ class SearchViewModel : ViewModel() {
                     false -> _isModifySuccess.postValue(false)
                 }
             } catch (e: HttpException) {
-                Log.d("글 수정", e.message.toString())
+                Timber.d(e.message.toString())
             }
         }
     }

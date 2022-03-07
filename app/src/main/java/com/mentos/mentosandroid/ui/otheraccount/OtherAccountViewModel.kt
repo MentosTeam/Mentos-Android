@@ -1,7 +1,6 @@
 package com.mentos.mentosandroid.ui.otheraccount
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,6 +15,7 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.HttpException
+import timber.log.Timber
 
 class OtherAccountViewModel : ViewModel() {
     val introduce = MutableLiveData("")
@@ -90,7 +90,7 @@ class OtherAccountViewModel : ViewModel() {
                     setSuccessCreate(false)
                 }
             } catch (e: HttpException) {
-                Log.d("생성실패", e.code().toString())
+                Timber.d(e.code().toString())
             }
         }
     }
