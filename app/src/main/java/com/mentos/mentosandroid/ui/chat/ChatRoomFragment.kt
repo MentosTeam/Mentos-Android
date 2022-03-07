@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +26,7 @@ import com.mentos.mentosandroid.util.KeyBoardUtil
 import com.mentos.mentosandroid.util.customdialog.EditTextDialog
 import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
 import com.mentos.mentosandroid.util.popBackStack
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
@@ -188,7 +188,7 @@ class ChatRoomFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Log.d("read from FireBase", error.toException().toString())
+                    Timber.d(error.toException().toString())
                 }
             })
     }

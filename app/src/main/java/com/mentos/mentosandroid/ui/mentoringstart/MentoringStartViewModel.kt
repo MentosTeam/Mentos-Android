@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.mentoringstart
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,7 @@ import com.mentos.mentosandroid.data.request.RequestMentoringStart
 import com.mentos.mentosandroid.data.response.NickNameResult
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import timber.log.Timber
 
 class MentoringStartViewModel : ViewModel() {
 
@@ -27,14 +27,9 @@ class MentoringStartViewModel : ViewModel() {
             try {
                 val responseMentoringStart =
                     ServiceBuilder.mentoringStartService.postMentoringStart(mentoringStart)
-                if (responseMentoringStart.code == 1000) {
-                    _isSuccess.value = true
-                } else {
-                    Log.d("멘토링 요청", responseMentoringStart.message)
-                    _isSuccess.value = false
-                }
+                _isSuccess.value = responseMentoringStart.code == 1000
             } catch (e: HttpException) {
-                Log.d("멘토링 요청", e.message())
+                Timber.d(e.message())
                 _isSuccess.value = false
             }
         }
@@ -45,14 +40,11 @@ class MentoringStartViewModel : ViewModel() {
             try {
                 val responseMentorNicName =
                     ServiceBuilder.mentoringStartService.getMentorNickName(mentorId)
-                Log.d("닉네임", responseMentorNicName.message)
                 if (responseMentorNicName.code == 1000) {
                     _nickName.value = responseMentorNicName.result
-                } else {
-                    Log.d("닉네임", responseMentorNicName.message)
                 }
             } catch (e: HttpException) {
-                Log.d("닉네임", e.message())
+                Timber.d(e.message())
             }
         }
     }
@@ -62,14 +54,9 @@ class MentoringStartViewModel : ViewModel() {
             try {
                 val responseMentoringAccept =
                     ServiceBuilder.mentoringStartService.patchMentoringAccept(mentoringId, accept)
-                if (responseMentoringAccept.isSuccess) {
-                    _isSuccessAccept.value = true
-                } else {
-                    Log.d("멘토링 수락", responseMentoringAccept.message)
-                    _isSuccessAccept.value = false
-                }
+                _isSuccessAccept.value = responseMentoringAccept.isSuccess
             } catch (e: HttpException) {
-                Log.d("멘토링 수락", e.message())
+                Timber.d(e.message())
                 _isSuccessAccept.value = false
             }
         }

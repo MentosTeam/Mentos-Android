@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.otherprofile
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,7 @@ import com.mentos.mentosandroid.data.request.RequestReport
 import com.mentos.mentosandroid.data.response.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import timber.log.Timber
 
 class OneProfileViewModel : ViewModel() {
 
@@ -57,7 +57,6 @@ class OneProfileViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val responseMentorProfile = ServiceBuilder.profileService.getMentorProfile(memberId)
-                Log.d("멘토 정보", responseMentorProfile.message)
                 mentorProfileDataItem = responseMentorProfile.result
                 _mentorProfileData.value = mentorProfileDataItem
                 getMentorData()
@@ -68,8 +67,7 @@ class OneProfileViewModel : ViewModel() {
                     _isMyProfile.postValue(false)
                 }
             } catch (e: HttpException) {
-                Log.d("멘토 정보", e.message().toString())
-                Log.d("멘토 정보", e.code().toString())
+                Timber.d(e.message().toString())
             }
         }
     }
@@ -114,7 +112,6 @@ class OneProfileViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val responseMenteeProfile = ServiceBuilder.profileService.getMenteeProfile(memberId)
-                Log.d("멘토 정보", responseMenteeProfile.message)
                 menteeProfileDataItem = responseMenteeProfile.result
                 _menteeProfileData.value = menteeProfileDataItem
                 getMenteeData()
@@ -125,8 +122,7 @@ class OneProfileViewModel : ViewModel() {
                     _isMyProfile.postValue(false)
                 }
             } catch (e: HttpException) {
-                Log.d("멘토 정보", e.message().toString())
-                Log.d("멘토 정보", e.code().toString())
+                Timber.d(e.message().toString())
             }
         }
     }
@@ -150,11 +146,9 @@ class OneProfileViewModel : ViewModel() {
                 val responseReport = ServiceBuilder.reportService.postReport(
                     RequestReport(flag, number, text)
                 )
-                Log.d("멘티 멘토 신고", responseReport.message)
                 _isSuccessReport.value = responseReport.code == 1000
             } catch (e: HttpException) {
-                Log.d("멘티 멘토 신고", e.message().toString())
-                Log.d("멘티 멘토 신고", e.code().toString())
+                Timber.d(e.message().toString())
                 _isSuccessReport.value = false
             }
         }

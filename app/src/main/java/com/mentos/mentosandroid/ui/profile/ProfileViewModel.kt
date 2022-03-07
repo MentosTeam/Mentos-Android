@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.profile
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +8,7 @@ import com.mentos.mentosandroid.data.response.*
 import com.mentos.mentosandroid.data.api.ServiceBuilder
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import timber.log.Timber
 
 class ProfileViewModel : ViewModel() {
 
@@ -79,7 +79,7 @@ class ProfileViewModel : ViewModel() {
                     }
                 }
             } catch (e: HttpException) {
-                Log.d("내 정보", e.message().toString())
+                Timber.d(e.message().toString())
             }
         }
     }

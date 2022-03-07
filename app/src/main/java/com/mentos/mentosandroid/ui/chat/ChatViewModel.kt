@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.chat
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,7 @@ import com.mentos.mentosandroid.data.local.ChatList
 import com.mentos.mentosandroid.data.request.RequestReport
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import timber.log.Timber
 
 class ChatViewModel : ViewModel() {
     val newMsg = MutableLiveData("")
@@ -60,10 +60,10 @@ class ChatViewModel : ViewModel() {
                 val responseReport = ServiceBuilder.reportService.postReport(
                     RequestReport(flag, number, text)
                 )
-                Log.d("채팅 신고", responseReport.message)
+                Timber.d(responseReport.message)
                 _isSuccessReport.value = responseReport.code == 1000
             } catch (e: HttpException) {
-                Log.d("채팅 신고", e.message().toString())
+                Timber.d(e.message().toString())
                 _isSuccessReport.value = false
             }
         }

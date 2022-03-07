@@ -1,7 +1,6 @@
 package com.mentos.mentosandroid.ui.chat
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,7 @@ import com.google.firebase.database.ktx.database
 import com.mentos.mentosandroid.data.local.*
 import com.mentos.mentosandroid.databinding.FragmentChatListBinding
 import com.mentos.mentosandroid.util.popBackStack
+import timber.log.Timber
 import java.util.*
 
 class ChatListFragment : Fragment() {
@@ -65,7 +65,9 @@ class ChatListFragment : Fragment() {
                     for (chatSnapshot in snapshot.children) {
                         val chatItem = chatSnapshot.getValue(ChatModel::class.java)
                         for (memberId in chatItem!!.users) {
-                            if (SharedPreferenceController.getMemberId().toString() != memberId.key) {
+                            if (SharedPreferenceController.getMemberId()
+                                    .toString() != memberId.key
+                            ) {
 
                                 val comment: MutableList<ChatBubble> = mutableListOf()
                                 for (bubbleSnapShot in chatSnapshot.child("comments").children) {
@@ -87,10 +89,6 @@ class ChatListFragment : Fragment() {
                                                 comment[0]
                                             )
                                             chatViewModel.addChatList(chatListItem)
-                                            Log.d(
-                                                "읽기-채팅리스트",
-                                                chatViewModel.chatList.value.toString()
-                                            )
                                         }
 
                                         override fun onCancelled(error: DatabaseError) {
@@ -103,7 +101,7 @@ class ChatListFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Log.d("read from FireBase", error.toException().toString())
+                    Timber.d(error.toException().toString())
                 }
             })
     }

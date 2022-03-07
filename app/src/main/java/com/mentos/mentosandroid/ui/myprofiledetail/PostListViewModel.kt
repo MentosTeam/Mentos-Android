@@ -1,6 +1,5 @@
 package com.mentos.mentosandroid.ui.myprofiledetail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,7 @@ import com.mentos.mentosandroid.data.request.RequestReport
 import com.mentos.mentosandroid.data.response.SearchMentor
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import timber.log.Timber
 
 class PostListViewModel : ViewModel() {
 
@@ -23,11 +23,10 @@ class PostListViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val responseMyPostList = ServiceBuilder.profileService.getMyPostList()
-                Log.d("내가 쓴 글", responseMyPostList.message)
+                Timber.d(responseMyPostList.message)
                 _myPostList.value = responseMyPostList.result
-            }catch (e: HttpException){
-                Log.d("내가 쓴 글", e.code().toString())
-                Log.d("내가 쓴 글", e.message().toString())
+            } catch (e: HttpException) {
+                Timber.d(e.message().toString())
             }
         }
     }
@@ -38,11 +37,10 @@ class PostListViewModel : ViewModel() {
                 val responseReport = ServiceBuilder.reportService.postReport(
                     RequestReport(flag, number, text)
                 )
-                Log.d("글 신고", responseReport.message)
+                Timber.d(responseReport.message)
                 _isSuccessReport.value = responseReport.code == 1000
             } catch (e: HttpException) {
-                Log.d("글 신고", e.message().toString())
-                Log.d("글 신고", e.code().toString())
+                Timber.d(e.message().toString())
                 _isSuccessReport.value = false
             }
         }
