@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemMajorDetailBinding
+import com.mentos.mentosandroid.ui.search.SearchDetailDialog.Companion.FROM_OTHER_PROFILE
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 import com.mentos.mentosandroid.util.navigateWithData
 
@@ -23,7 +24,8 @@ class MentorProfilePostRVAdapter :
             binding.itemMajorDetailLayout.setOnClickListener {
                 it.navigateWithData(
                     OneMentorProfileFragmentDirections.actionOneMentorProfileFragmentToSearchDetailDialog(
-                        postMento = currentMajorDetail
+                        postMento = currentMajorDetail,
+                        from = FROM_OTHER_PROFILE
                     )
                 )
             }

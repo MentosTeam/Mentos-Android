@@ -30,7 +30,8 @@ class MentorPostListAdapter :
             binding.searchListLayout.setOnClickListener {
                 it.navigateWithData(
                     MentorPostListFragmentDirections.actionMentorPostListFragmentToSearchDetailDialog(
-                        postMento = item
+                        postMento = item,
+                        from = ""
                     )
                 )
             }

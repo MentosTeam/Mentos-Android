@@ -41,59 +41,29 @@ class OneButtonDialog(
             when (dialogMode) {
                 RECORD -> {
                     dialogRecordCompleteTitleLayout.visibility = View.VISIBLE
-                    dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
-                    dialogReviewCompleteTitleLayout.visibility = View.GONE
-                    dialogReviewLayout.visibility = View.GONE
-                    dialogReportCompleteTitleLayout.visibility = View.GONE
-                    dialogBgMentos.visibility = View.VISIBLE
-                    dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
                 WITHDRAWAL -> {
-                    dialogRecordCompleteTitleLayout.visibility = View.GONE
                     dialogWithdrawalCompleteTitleLayout.visibility = View.VISIBLE
-                    dialogReviewCompleteTitleLayout.visibility = View.GONE
-                    dialogReviewLayout.visibility = View.GONE
                     dialogBtnCompleteTv.visibility = View.GONE
-                    dialogReportCompleteTitleLayout.visibility = View.GONE
-                    dialogBgMentos.visibility = View.VISIBLE
-                    dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
                 REVIEW -> {
-                    dialogRecordCompleteTitleLayout.visibility = View.GONE
-                    dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
                     dialogReviewCompleteTitleLayout.visibility = View.VISIBLE
-                    dialogReviewLayout.visibility = View.GONE
-                    dialogReportCompleteTitleLayout.visibility = View.GONE
-                    dialogBgMentos.visibility = View.VISIBLE
-                    dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
                 REVIEW_STAR -> {
-                    dialogRecordCompleteTitleLayout.visibility = View.GONE
-                    dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
-                    dialogReviewCompleteTitleLayout.visibility = View.GONE
                     dialogReviewLayout.visibility = View.VISIBLE
                     dialogBtnCompleteTv.visibility = View.GONE
-                    dialogReportCompleteTitleLayout.visibility = View.GONE
                     dialogBgMentos.visibility = View.GONE
-                    dialogMentoringCompleteTitleLayout.visibility = View.GONE
                 }
                 END_MENTORING -> {
-                    dialogRecordCompleteTitleLayout.visibility = View.GONE
-                    dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
-                    dialogReviewCompleteTitleLayout.visibility = View.GONE
-                    dialogReviewLayout.visibility = View.GONE
-                    dialogReportCompleteTitleLayout.visibility = View.GONE
-                    dialogBgMentos.visibility = View.VISIBLE
                     dialogMentoringCompleteTitleLayout.visibility = View.VISIBLE
                 }
                 END_REPORT -> {
-                    dialogRecordCompleteTitleLayout.visibility = View.GONE
-                    dialogWithdrawalCompleteTitleLayout.visibility = View.GONE
-                    dialogReviewCompleteTitleLayout.visibility = View.GONE
-                    dialogReviewLayout.visibility = View.GONE
                     dialogReportCompleteTitleLayout.visibility = View.VISIBLE
-                    dialogBgMentos.visibility = View.VISIBLE
-                    dialogMentoringCompleteTitleLayout.visibility = View.GONE
+                }
+                LOGIN_BLOCK -> {
+                    dialogReviewCompleteTitleLayout.visibility = View.VISIBLE
+                    dialogReviewCompleteTitleTv.setText(R.string.dialog_login_block_title)
+                    dialogReviewCompleteSubTitleTv.setText(R.string.dialog_login_block_sub_title)
                 }
                 else -> throw IllegalStateException()
             }
@@ -130,5 +100,6 @@ class OneButtonDialog(
         const val REVIEW_STAR = 3
         const val END_MENTORING = 4
         const val END_REPORT = 5
+        const val LOGIN_BLOCK = 6
     }
 }

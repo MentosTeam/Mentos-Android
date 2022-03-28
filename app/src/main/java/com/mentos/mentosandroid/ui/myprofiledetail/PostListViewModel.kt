@@ -19,6 +19,9 @@ class PostListViewModel : ViewModel() {
     private var _isSuccessReport = MutableLiveData<Boolean>()
     var isSuccessReport: LiveData<Boolean> = _isSuccessReport
 
+    private var _setLoading = MutableLiveData<Boolean>()
+    var setLoading: LiveData<Boolean> = _setLoading
+
     fun getMyPostList() {
         viewModelScope.launch {
             try {
@@ -32,11 +35,13 @@ class PostListViewModel : ViewModel() {
     }
 
     fun postReport(flag: Int, number: Int, text: String) {
+        _setLoading.postValue(true)
         viewModelScope.launch {
             try {
                 val responseReport = ServiceBuilder.reportService.postReport(
                     RequestReport(flag, number, text)
                 )
+                _setLoading.postValue(false)
                 Timber.d(responseReport.message)
                 _isSuccessReport.value = responseReport.code == 1000
             } catch (e: HttpException) {
@@ -49,5 +54,8 @@ class PostListViewModel : ViewModel() {
     fun initSuccessReport() {
         _isSuccessReport = MutableLiveData<Boolean>()
         isSuccessReport = _isSuccessReport
+
+        _setLoading = MutableLiveData<Boolean>()
+        setLoading = _setLoading
     }
 }

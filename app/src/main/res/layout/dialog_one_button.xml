@@ -69,8 +69,8 @@
         android:id="@+id/dialog_review_complete_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_marginBottom="76dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/dialog_btn_complete_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -90,6 +90,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/dialog_review_complete_sub_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -316,6 +317,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="61dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/dialog_btn_complete_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -326,7 +328,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="46dp"
-            android:fontFamily="@font/noto_regular"
+            android:fontFamily="@font/noto_bold"
             android:includeFontPadding="false"
             android:text="@string/dialog_report_complete_title"
             android:textColor="@color/black_3333"

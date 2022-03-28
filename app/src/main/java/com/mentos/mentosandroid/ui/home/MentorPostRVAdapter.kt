@@ -9,6 +9,7 @@ import com.mentos.mentosandroid.R
 import com.mentos.mentosandroid.data.response.MentorPost
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemHomeMentorPostBinding
+import com.mentos.mentosandroid.ui.search.SearchDetailDialog.Companion.FROM_HOME_MENTOR
 import com.mentos.mentosandroid.util.navigateWithData
 
 class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostViewHolder>() {
@@ -35,7 +36,8 @@ class MentorPostRVAdapter : RecyclerView.Adapter<MentorPostRVAdapter.MentorPostV
                             currentMentorPost.postId,
                             currentMentorPost.postTitle,
                             currentMentorPost.mentorImage
-                        )
+                        ),
+                        from = FROM_HOME_MENTOR
                     )
                 )
             }

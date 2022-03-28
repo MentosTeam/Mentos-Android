@@ -19,6 +19,7 @@ import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 import com.mentos.mentosandroid.util.customdialog.EditTextDialog
 import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
 import com.mentos.mentosandroid.util.makeToast
+import com.mentos.mentosandroid.util.navigate
 
 class SearchDetailDialog : BottomSheetDialogFragment() {
     lateinit var binding: DialogSearchDetailBinding
@@ -35,12 +36,14 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         binding = DialogSearchDetailBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         initData()
-        initMyPostView()
+        initView()
         if (SharedPreferenceController.getMemberId() == args.postMento?.mentoId) {
             setDeleteBtnClickListener()
             setEditBtnClickListener()
         } else {
             setReportBtnClickListener()
+            setReportSuccessObserve()
+            setLoadingObserve()
         }
         setMentorInfoLayoutClickListener()
         setMentoringStartClickListener()
@@ -53,13 +56,20 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         binding.searchDetailBtnSiren.setOnClickListener {
             EditTextDialog(2) { reportText ->
                 postListViewModel.postReport(1, args.postMento!!.postId, reportText)
-                postListViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
-                    if (isSuccess != null && isSuccess) {
-                        OneButtonDialog(5) { }.show(childFragmentManager, "report")
-                        postListViewModel.initSuccessReport()
-                    }
-                }
+                this.isCancelable = false
             }.show(childFragmentManager, "report_text")
+        }
+    }
+
+    private fun setReportSuccessObserve() {
+        postListViewModel.isSuccessReport.observe(this) { isSuccess ->
+            if (isSuccess) {
+                OneButtonDialog(5) {
+                    this.dismiss()
+                    afterReportNavigate()
+                    postListViewModel.initSuccessReport()
+                }.show(childFragmentManager, "report")
+            }
         }
     }
 
@@ -83,14 +93,19 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun initMyPostView() {
+    private fun initView() {
         if (SharedPreferenceController.getMemberId() == args.postMento?.mentoId) {
             binding.searchDetailEditLayout.visibility = View.VISIBLE
             binding.searchDetailBottomMenuLayout.visibility = View.GONE
             binding.searchDetailBtnSiren.visibility = View.GONE
         } else {
-            binding.searchDetailEditLayout.visibility = View.GONE
-            binding.searchDetailBtnSiren.visibility = View.VISIBLE
+            when (args.from) {
+                FROM_OTHER_PROFILE -> binding.searchDetailBtnSiren.visibility = View.GONE
+                else -> {
+                    binding.searchDetailEditLayout.visibility = View.GONE
+                    binding.searchDetailBtnSiren.visibility = View.VISIBLE
+                }
+            }
         }
     }
 
@@ -150,5 +165,28 @@ class SearchDetailDialog : BottomSheetDialogFragment() {
                 this.dismiss()
             }
         }
+    }
+
+
+    private fun setLoadingObserve() {
+        postListViewModel.setLoading.observe(viewLifecycleOwner) { isLoading ->
+            when (isLoading) {
+                true -> binding.loadingPb.visibility = View.VISIBLE
+                else -> binding.loadingPb.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun afterReportNavigate() {
+        when (args.from) {
+            FROM_HOME_MENTOR -> navigate(R.id.action_searchDetailDialog_to_homeFragment)
+            FROM_SEARCH -> navigate(R.id.action_searchDetailDialog_to_searchFragment)
+        }
+    }
+
+    companion object {
+        const val FROM_HOME_MENTOR = "home_mentor"
+        const val FROM_SEARCH = "search"
+        const val FROM_OTHER_PROFILE = "other_profile"
     }
 }

@@ -12,6 +12,7 @@ import com.mentos.mentosandroid.databinding.FragmentSignInBinding
 import com.mentos.mentosandroid.ui.main.FirstAccountActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
 import com.mentos.mentosandroid.util.customdialog.DialogUtil
+import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
 import com.mentos.mentosandroid.util.navigate
 
 class SignInFragment : Fragment() {
@@ -29,6 +30,7 @@ class SignInFragment : Fragment() {
         setSuccessSignInObserve()
         setLoadingObserve()
         setIsEmptyProfileObserve()
+        setIsBlockedUserObserve()
         return binding.root
     }
 
@@ -66,6 +68,14 @@ class SignInFragment : Fragment() {
             if (isEmpty) {
                 startActivity(Intent(requireContext(), FirstAccountActivity::class.java))
                 requireActivity().finish()
+            }
+        }
+    }
+
+    private fun setIsBlockedUserObserve() {
+        signInViewModel.blockedUser.observe(viewLifecycleOwner) { isBlock ->
+            if (isBlock) {
+                OneButtonDialog(6) {}.show(childFragmentManager, "login_block")
             }
         }
     }

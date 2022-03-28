@@ -53,6 +53,9 @@ class OneProfileViewModel : ViewModel() {
     private val _isMyProfile = MutableLiveData<Boolean>()
     val isMyProfile: LiveData<Boolean> = _isMyProfile
 
+    private val _setLoading = MutableLiveData<Boolean>()
+    val setLoading: LiveData<Boolean> = _setLoading
+
     fun getMentorProfileData(memberId: Int) {
         viewModelScope.launch {
             try {
@@ -141,11 +144,13 @@ class OneProfileViewModel : ViewModel() {
     }
 
     fun postReport(flag: Int, number: Int, text: String) {
+        _setLoading.postValue(true)
         viewModelScope.launch {
             try {
                 val responseReport = ServiceBuilder.reportService.postReport(
                     RequestReport(flag, number, text)
                 )
+                _setLoading.postValue(false)
                 _isSuccessReport.value = responseReport.code == 1000
             } catch (e: HttpException) {
                 Timber.d(e.message().toString())

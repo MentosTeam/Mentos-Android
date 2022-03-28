@@ -44,23 +44,17 @@ class EditTextDialog(
             when (dialogMode) {
                 REVIEW_TEXT -> {
                     dialogBtnComplete.isClickable = false
-                    dialogEtTitleTv.setText(R.string.dialog_review_et_title)
-                    dialogEtSubTitleTv.setText(R.string.dialog_review_et_sub_title)
-                    dialogEtSubTitleTv.visibility = View.VISIBLE
-                    dialogEtPasswordLayout.visibility = View.GONE
                     dialogEtReviewLayout.visibility = View.VISIBLE
-                    dialogEtReportLayout.visibility = View.GONE
                     dialogBtnComplete.setText(R.string.dialog_review_et_btn)
                     dialogPasswordFailTv.visibility = View.GONE
                     setEditReviewChangeListener()
                 }
                 WITHDRAWAL -> {
                     dialogBtnComplete.isClickable = false
-                    dialogEtTitleTv.setText(R.string.dialog_withdrawal_password)
+                    dialogEtWithdrawalTitleTv.visibility = View.VISIBLE
+                    dialogEtTitleTv.visibility = View.GONE
                     dialogEtSubTitleTv.visibility = View.GONE
                     dialogEtPasswordLayout.visibility = View.VISIBLE
-                    dialogEtReviewLayout.visibility = View.GONE
-                    dialogEtReportLayout.visibility = View.GONE
                     dialogBtnComplete.setText(R.string.dialog_withdrawal_password_btn)
                     setEditPWChangeListener()
                 }
@@ -68,9 +62,6 @@ class EditTextDialog(
                     dialogBtnComplete.isClickable = false
                     dialogEtTitleTv.setText(R.string.dialog_report_title)
                     dialogEtSubTitleTv.setText(R.string.dialog_report_sub_title)
-                    dialogEtSubTitleTv.visibility = View.VISIBLE
-                    dialogEtReviewLayout.visibility = View.GONE
-                    dialogEtPasswordLayout.visibility = View.GONE
                     dialogEtReportLayout.visibility = View.VISIBLE
                     dialogBtnComplete.setText(R.string.dialog_report_complete)
                     dialogPasswordFailTv.visibility = View.GONE

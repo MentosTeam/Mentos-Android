@@ -56,6 +56,7 @@ class ChatRoomFragment : Fragment() {
         readChatDB()
         setNewMsgEtObserve()
         setChatBubbleListObserve()
+        setLoadingObserve()
         return binding.root
     }
 
@@ -231,11 +232,20 @@ class ChatRoomFragment : Fragment() {
                 chatViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
                     if (isSuccess != null && isSuccess) {
                         OneButtonDialog(5) {
-
+                            popBackStack()
                         }.show(childFragmentManager, "report")
                     }
                 }
             }.show(childFragmentManager, "report_text")
+        }
+    }
+
+    private fun setLoadingObserve() {
+        chatViewModel.setLoading.observe(viewLifecycleOwner) { isLoading ->
+            when (isLoading) {
+                true -> binding.loadingPb.visibility = View.VISIBLE
+                else -> binding.loadingPb.visibility = View.GONE
+            }
         }
     }
 

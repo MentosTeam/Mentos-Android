@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mentos.mentosandroid.data.response.SearchMentor
 import com.mentos.mentosandroid.databinding.ItemSearchListBinding
+import com.mentos.mentosandroid.ui.search.SearchDetailDialog.Companion.FROM_SEARCH
 import com.mentos.mentosandroid.util.navigateWithData
 import com.mentos.mentosandroid.util.MentosImgUtil.setMentosImg17
 
@@ -30,7 +31,8 @@ class SearchMentorAdapter :
             binding.searchListLayout.setOnClickListener {
                 it.navigateWithData(
                     SearchFragmentDirections.actionSearchFragmentToSearchDetailDialog(
-                        postMento = item
+                        postMento = item,
+                        from = FROM_SEARCH
                     )
                 )
             }
