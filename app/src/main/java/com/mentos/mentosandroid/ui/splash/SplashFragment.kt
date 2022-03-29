@@ -15,6 +15,7 @@ import com.mentos.mentosandroid.ui.main.FirstAccountActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
 import com.mentos.mentosandroid.ui.signin.SignInViewModel
 import com.mentos.mentosandroid.util.customdialog.DialogUtil
+import com.mentos.mentosandroid.util.customdialog.OneButtonDialog
 import com.mentos.mentosandroid.util.makeToast
 import com.mentos.mentosandroid.util.navigate
 
@@ -33,6 +34,7 @@ class SplashFragment : Fragment() {
         setSuccessSignInObserve()
         setIsEmptyProfileObserve()
         setLoadingObserve()
+        setIsBlockedUserObserve()
         return binding.root
     }
 
@@ -96,6 +98,17 @@ class SplashFragment : Fragment() {
             when (isLoading) {
                 true -> binding.splashLoadingPb.visibility = View.VISIBLE
                 else -> binding.splashLoadingPb.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun setIsBlockedUserObserve() {
+        signInViewModel.blockedUser.observe(viewLifecycleOwner) { isBlock ->
+            if (isBlock) {
+                OneButtonDialog(6) {
+                    binding.splashLayout.visibility = View.GONE
+                    initSplashView(true)
+                }.show(childFragmentManager, "login_block")
             }
         }
     }

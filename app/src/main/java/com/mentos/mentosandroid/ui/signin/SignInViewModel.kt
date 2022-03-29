@@ -25,6 +25,9 @@ class SignInViewModel : ViewModel() {
     private val _isEmptyProfile = MutableLiveData<Boolean>()
     val isEmptyProfile: LiveData<Boolean> = _isEmptyProfile
 
+    private val _blockedUser = MutableLiveData(false)
+    val blockedUser: LiveData<Boolean> = _blockedUser
+
     private val _canSignIn = MediatorLiveDataUtil.initMediatorLiveData(
         listOf(email, password)
     ) { canSignInCheck() }
@@ -74,6 +77,9 @@ class SignInViewModel : ViewModel() {
                             setIsEmptyProfile(true)
                         }
                     }
+                    6003 -> {
+                        _blockedUser.postValue(true)
+                    }
                     else -> setSuccessSignIn(false)
                 }
             } catch (e: HttpException) {
@@ -82,11 +88,11 @@ class SignInViewModel : ViewModel() {
         }
     }
 
-    fun setSuccessSignIn(isSuccess: Boolean) {
+    private fun setSuccessSignIn(isSuccess: Boolean) {
         _isSuccessSignIn.value = isSuccess
     }
 
-    fun setLoadingState(isLoading: Boolean) {
+    private fun setLoadingState(isLoading: Boolean) {
         _setLoading.value = isLoading
     }
 

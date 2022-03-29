@@ -71,14 +71,17 @@
         android:name="com.mentos.mentosandroid.ui.search.SearchDetailDialog"
         android:label="SearchDetailDialog"
         tools:layout="@layout/dialog_search_detail">
-        <action
-            android:id="@+id/action_searchDetailDialog_to_searchCreateFragment"
-            app:destination="@id/searchCreateFragment" />
         <argument
             android:name="postMento"
             android:defaultValue="@null"
             app:argType="com.mentos.mentosandroid.data.response.SearchMentor"
             app:nullable="true" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchDetailDialog_to_searchCreateFragment"
+            app:destination="@id/searchCreateFragment" />
         <action
             android:id="@+id/action_searchDetailDialog_to_oneMentorProfileFragment"
             app:destination="@id/oneMentorProfileFragment" />
@@ -88,6 +91,12 @@
         <action
             android:id="@+id/action_searchDetailDialog_to_chatRoomFragment"
             app:destination="@id/chatRoomFragment" />
+        <action
+            android:id="@+id/action_searchDetailDialog_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_searchDetailDialog_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </dialog>
 
     <fragment

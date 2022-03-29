@@ -39,6 +39,7 @@ class OneMentorProfileFragment : Fragment() {
         setMentorListObserve()
         setReportBtnClickListener()
         setIsMyProfileObserve()
+        setLoadingObserve()
         return binding.root
     }
 
@@ -49,7 +50,7 @@ class OneMentorProfileFragment : Fragment() {
                 profileViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
                     if (isSuccess != null && isSuccess) {
                         OneButtonDialog(5) {
-
+                            popBackStack()
                         }.show(childFragmentManager, "report")
                     }
                 }
@@ -172,6 +173,15 @@ class OneMentorProfileFragment : Fragment() {
             if (isMyProfile) {
                 binding.mentorProfileBottomMenuLayout.visibility = View.GONE
                 binding.oneMentorBtnSiren.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun setLoadingObserve() {
+        profileViewModel.setLoading.observe(viewLifecycleOwner) { isLoading ->
+            when (isLoading) {
+                true -> binding.loadingPb.visibility = View.VISIBLE
+                else -> binding.loadingPb.visibility = View.GONE
             }
         }
     }

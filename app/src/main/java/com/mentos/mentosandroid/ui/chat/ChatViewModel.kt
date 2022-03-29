@@ -30,6 +30,9 @@ class ChatViewModel : ViewModel() {
     private var _isSuccessReport = MutableLiveData<Boolean>()
     var isSuccessReport: LiveData<Boolean> = _isSuccessReport
 
+    private var _setLoading = MutableLiveData<Boolean>()
+    var setLoading: LiveData<Boolean> = _setLoading
+
     fun addChatBubbleList(item: ChatBubble) {
         tempChatBubble.add(item)
         _chatBubbleList.value = tempChatBubble.toMutableList()
@@ -55,11 +58,13 @@ class ChatViewModel : ViewModel() {
     }
 
     fun postReport(flag: Int, number: Int, text: String) {
+        _setLoading.postValue(true)
         viewModelScope.launch {
             try {
                 val responseReport = ServiceBuilder.reportService.postReport(
                     RequestReport(flag, number, text)
                 )
+                _setLoading.postValue(false)
                 Timber.d(responseReport.message)
                 _isSuccessReport.value = responseReport.code == 1000
             } catch (e: HttpException) {

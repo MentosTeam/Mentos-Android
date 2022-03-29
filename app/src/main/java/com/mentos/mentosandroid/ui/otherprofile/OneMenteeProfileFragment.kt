@@ -34,6 +34,7 @@ class OneMenteeProfileFragment : Fragment() {
         setReportBtnClickListener()
         setChatBtnClickListener()
         setIsMyProfileObserve()
+        setLoadingObserve()
         return binding.root
     }
 
@@ -44,7 +45,7 @@ class OneMenteeProfileFragment : Fragment() {
                 profileViewModel.isSuccessReport.observe(viewLifecycleOwner) { isSuccess ->
                     if (isSuccess != null && isSuccess) {
                         OneButtonDialog(5) {
-
+                            popBackStack()
                         }.show(childFragmentManager, "report")
                     }
                 }
@@ -111,6 +112,15 @@ class OneMenteeProfileFragment : Fragment() {
             if (isMyProfile) {
                 binding.menteeProfileBottomMenuLayout.visibility = View.GONE
                 binding.oneMenteeBtnSiren.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun setLoadingObserve() {
+        profileViewModel.setLoading.observe(viewLifecycleOwner) { isLoading ->
+            when (isLoading) {
+                true -> binding.loadingPb.visibility = View.VISIBLE
+                else -> binding.loadingPb.visibility = View.GONE
             }
         }
     }
