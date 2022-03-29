@@ -105,7 +105,10 @@ class SplashFragment : Fragment() {
     private fun setIsBlockedUserObserve() {
         signInViewModel.blockedUser.observe(viewLifecycleOwner) { isBlock ->
             if (isBlock) {
-                OneButtonDialog(6) {}.show(childFragmentManager, "login_block")
+                OneButtonDialog(6) {
+                    binding.splashLayout.visibility = View.GONE
+                    initSplashView(true)
+                }.show(childFragmentManager, "login_block")
             }
         }
     }
