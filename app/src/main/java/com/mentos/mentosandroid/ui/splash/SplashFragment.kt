@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.databinding.FragmentSplashBinding
 import com.mentos.mentosandroid.ui.main.FirstAccountActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
@@ -108,6 +109,7 @@ class SplashFragment : Fragment() {
                 OneButtonDialog(6) {
                     binding.splashLayout.visibility = View.GONE
                     initSplashView(true)
+                    SharedPreferenceController.setSdfAllClear(requireContext())
                 }.show(childFragmentManager, "login_block")
             }
         }
