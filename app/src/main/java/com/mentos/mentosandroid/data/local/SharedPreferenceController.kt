@@ -133,4 +133,10 @@ object SharedPreferenceController {
             .putInt(PUSH_AGREEMENT, state)
             .apply()
     }
+
+    fun setSdfAllClear(context: Context) {
+        this.clearNowState(context)
+        this.clearMyMentos(context)
+        this.clearAuthData()
+    }
 }

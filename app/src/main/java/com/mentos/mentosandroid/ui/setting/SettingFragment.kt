@@ -120,7 +120,7 @@ class SettingFragment : Fragment() {
                 settingViewModel.deleteDeviceFcmToken(SharedPreferenceController.getDeviceFcmToken())
                 settingViewModel.isSuccessDeleteToken.observe(viewLifecycleOwner) { isSuccess ->
                     if (isSuccess != null && isSuccess) {
-                        clearSDF()
+                        SharedPreferenceController.setSdfAllClear(requireContext())
                         startActivity(Intent(requireContext(), AuthActivity::class.java))
                         requireActivity().finish()
                         makeToast(requireContext(), R.string.toast_logout)
@@ -135,7 +135,7 @@ class SettingFragment : Fragment() {
                     settingViewModel.isSuccessWithdrawal.observe(viewLifecycleOwner) { isSuccess ->
                         if (isSuccess != null && isSuccess) {
                             OneButtonDialog(1) {
-                                clearSDF()
+                                SharedPreferenceController.setSdfAllClear(requireContext())
                                 startActivity(Intent(requireContext(), AuthActivity::class.java))
                                 requireActivity().finish()
                                 makeToast(requireContext(), R.string.toast_withdrawal)
@@ -145,11 +145,5 @@ class SettingFragment : Fragment() {
                 }.show(childFragmentManager, "withdrawal")
             }.show(childFragmentManager, "withdrawal")
         }
-    }
-
-    private fun clearSDF() {
-        SharedPreferenceController.clearNowState(requireContext())
-        SharedPreferenceController.clearMyMentos(requireContext())
-        SharedPreferenceController.clearAuthData()
     }
 }

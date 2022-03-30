@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mentos.mentosandroid.R
+import com.mentos.mentosandroid.data.local.SharedPreferenceController
 import com.mentos.mentosandroid.databinding.FragmentSignInBinding
 import com.mentos.mentosandroid.ui.main.FirstAccountActivity
 import com.mentos.mentosandroid.ui.main.MainActivity
@@ -75,7 +76,9 @@ class SignInFragment : Fragment() {
     private fun setIsBlockedUserObserve() {
         signInViewModel.blockedUser.observe(viewLifecycleOwner) { isBlock ->
             if (isBlock) {
-                OneButtonDialog(6) {}.show(childFragmentManager, "login_block")
+                OneButtonDialog(6) {
+                    SharedPreferenceController.setSdfAllClear(requireContext())
+                }.show(childFragmentManager, "login_block")
             }
         }
     }
