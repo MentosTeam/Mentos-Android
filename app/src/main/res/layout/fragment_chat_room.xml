@@ -89,6 +89,7 @@
             android:layout_marginBottom="6dp"
             android:scrollbars="vertical"
             android:scrollbarSize="2dp"
+            android:fillViewport="true"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/chat_send_layout"
             app:layout_constraintEnd_toEndOf="parent"
